@@ -1,12 +1,5 @@
-const pug = require('pug');
-
 module.exports = {
-  purge: {
-    content: ['./views/*.pug'],
-    transform: {
-      pug: (content) => pug.render(content)
-    }
-  },
+  purge: ['./views/*.pug'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
