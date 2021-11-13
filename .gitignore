@@ -4,7 +4,7 @@
 
 ### Node ###
 # VSCode
-.vscode/
+.vscode
 
 # Logs
 logs
