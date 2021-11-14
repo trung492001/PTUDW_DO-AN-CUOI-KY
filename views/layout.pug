@@ -11,11 +11,11 @@ html(lang="en")
         link(rel="stylesheet" href="style.css")
         link(rel="stylesheet" href="indexStyle.css")
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css")
-
+        link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css' integrity='sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay' crossorigin='anonymous')
         script(src="layout.js" defer)
     body
-        nav.bg-black.text-white
-            .mx-auto.flex.p-5.flex-wrap.items-center.flex-row(class="md:justify-between")
+        nav(class="bg-black text-white")
+            div(class="mx-auto flex p-5 flex-wrap items-center flex-row md:justify-between")
                 div(class="logo")
                     a.flex(href="#")
                         img(src="logo.png" alt="Butter logo")
@@ -51,15 +51,58 @@ html(lang="en")
                         ul(id="dishesList")
                 //mobile button goes here
                 div(class="md:hidden flex order-first mr-auto")
-                    button.w-6.h-6.mobile-menu-button
+                    button(class="w-6 h-6 mobile-menu-button")
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
             //Mobile menu
-            div.mobile-menu.hidden.bg-black.text-white.nav-bar.px-2.py-2(class="md:hidden") 
+            div(class="nav-bar mobile-menu hidden md:hidden bg-black text-white px-2 py-2") 
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/") HOME
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/Shop") SHOP
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") MENU
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") RESERVATION 
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/logIn") LOGIN 
         block content
+        div(class="w-full bg-black text-white p-10 md:p-20")
+            div(class="w-full grid grid-cols-1 md:grid-cols-2 gap-4")
+            div(class="col-span-1 md:pl-4")
+                h4(class="text-2xl font-medium mb-2") About Company
+                div(class="bg-red-700 mt-2 mb-6 ml-0 mr-auto" style="width: 36px; height: 2px")
+                p(class="mb-4") Pellentesque mi purus, eleifend sedt commodo vel, sagittis elts vestibulum dui sagittis mlste sagittis elts.
+                ul.address-info 
+                    li(class="my-2")
+                    <i class="fas fa-map-marker-alt"></i> 15 Barnes Wallis Way, 358744, USA
+                    li(class="my-2")
+                    <i class="fas fa-phone"></i> +1 (012) 345 6789 
+                    li(class="my-2")
+                    <i class="fas fa-envelope"></i> info@yourdomain.com
+            div(class="col-span-1 md:pr-4")
+                h4(class="text-2xl font-medium mb-2") Twitter Feed!
+                div(class="bg-red-700 mt-2 mb-6 ml-0 mr-auto" style="width: 36px; height: 2px")              
+                ul
+                    li(class="my-2")
+                    <i class="fas fa-angle-right"></i> 
+                        a(href="#") Customer Support
+                    li(class="my-2")
+                    <i class="fas fa-angle-right"></i> 
+                        a(href="#") Documentation 
+                    li(class="my-2")
+                    <i class="fas fa-angle-right"></i> 
+                        a(href="#") Developer Center
+                    li(class="my-2")
+                    <i class="fas fa-angle-right"></i> 
+                        a(href="/FAQs") General FAQs
+        div(class="w-full text-white min-h grid grid-cols-1 md:grid-cols-2 gap-4 py-10" style="background-color: #1f1f1f")
+            div(class="col-span-1")
+                h5(class="text-xl text-center") Copyright © 2016 YOUR DOMAIN. All rights reserved.
+            div(class="col-span-1")
+                ul(class="mx-auto text-center text-3xl md:text-4xl") 
+                    li(class="mx-3 inline-block")
+                        <i class="fab fa-facebook-square"></i>
+                    li(class="mx-3 inline-block")
+                        <i class="fab fa-instagram"></i>
+                    li(class="mx-3 inline-block")
+                        <i class="fab fa-youtube"></i>
+                    li(class="mx-3 inline-block")
+                        <i class="fab fa-twitter-square"></i>
+

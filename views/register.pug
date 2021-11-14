@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  div(class="w-full h-100 bg-gray-700 h-100 md:py-28 md:px-96")
+    div(class="w-full grid grid-cols-1 md:grid-cols-2 gap-0 md:shadow-2xl bg-transparent md:shadow-2xl")
+      div(class="col-span-1 p-10 md:p-20 text-gray-900 md:rounded-l bg-white")
+        h3(class="text-4xl text-center font-bold mb-8") Register
+        form(action="/login" method="POST")
+          div(class="mb-3")
+            label(for="username" class="text-xl font-semibold") Username
+            input(type="text" name="username" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
+          div(class="mb-3")
+            label(for="email" class="text-xl font-semibold") Email
+            input(type="email" name="email" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
+          div(class="mb-3")
+            label(for="password" class="text-xl font-semibold") Password
+            input(type="password" name="password" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" placeholder="********" required)
+          div(class="mb-3")
+            label(for="confirmPassword" class="text-xl font-semibold") Confirm Password
+            input(type="password" name="confirmPassword" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" placeholder="********" required) 
+          div(class="mb-3")
+            label(for="firstName" class="text-xl font-semibold") First Name
+            input(type="password" name="firstName" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
+          div(class="mb-3")
+            label(for="lastName" class="text-xl font-semibold") Last Name
+            input(type="password" name="lastName" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
+          div(class="mb-3")
+            label(for="address" class="text-xl font-semibold") Address
+            input(type="password" name="address" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm") 
+          div(class="mb-3")
+            label(for="phone" class="text-xl font-semibold") Phone
+            input(type="tel" name="phone" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm") 
+          div(class="mb-3 w-full" style="height: 1px; background: linear-gradient(0.25turn, #fff, #1f1f1f, #fff);")
+          div(class="mb-3")
+            input(type="submit" value="Register" class="w-full h-14 bg-red-700 text-white text-2xl font-bold rounded-sm transition ease-in-out hover:bg-red-600 ring-red-400 focus:ring-4")
+          div(class="text-center")
+            p(class="inline text-xl font-semibold") Already had an account?
+            a(href="/sign-in" class="text-xl font-semibold text-gray-500 ml-2") Sign In
+          
+      div(class="hidden md:col-span-1 md:block bg-center bg-no-repeat bg-cover md:rounded-r" style="background-image: url('/images/register.jpg')")
