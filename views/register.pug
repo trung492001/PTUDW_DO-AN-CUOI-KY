@@ -2,7 +2,7 @@ extends layout
 
 block content
   div(class="w-full h-100 bg-gray-700 h-100 md:py-28 md:px-96")
-    div(class="w-full grid grid-cols-1 md:grid-cols-2 gap-0 md:shadow-2xl bg-transparent md:shadow-2xl")
+    div(class="w-full grid grid-cols-1 md:grid-cols-2 gap-0 md:shadow-2xl bg-transparent")
       div(class="col-span-1 p-10 md:p-20 text-gray-900 md:rounded-l bg-white")
         h3(class="text-4xl text-center font-bold mb-8") Register
         form(action="/login" method="POST")
@@ -20,10 +20,16 @@ block content
             input(type="password" name="confirmPassword" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" placeholder="********" required) 
           div(class="mb-3")
             label(for="firstName" class="text-xl font-semibold") First Name
-            input(type="password" name="firstName" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
+            input(type="text" name="firstName" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
           div(class="mb-3")
             label(for="lastName" class="text-xl font-semibold") Last Name
-            input(type="password" name="lastName" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
+            input(type="text" name="lastName" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
+          div(class="mb-3")
+            label(for="gender" class="text-xl font-semibold") Gender
+            select(name="gender" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" title="gender" required)
+                option(value="1") Male 
+                option(value="2") Female 
+                option(value="3") Other   
           div(class="mb-3")
             label(for="address" class="text-xl font-semibold") Address
             input(type="password" name="address" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm") 
