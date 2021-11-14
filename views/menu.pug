@@ -8,9 +8,9 @@ mixin foodCell(name, price, img, description)
         h4(class="text-xl md:text-2xl font-bold text-red-600")=price+" VNĐ"
         p(class="text-sm md:font-normal")=description
         div(class="float-left")
-          input(class="rounded-none text-center rounded-l border bg-gray-100 border-gray-200 h-8 w-7" type="button" value="-")
+          input(class="rounded-none text-center rounded-l border bg-gray-100 border-gray-200 h-8 w-7 align-top" type="button" value="-")
           input(class="rounded-none text-center border-t border-b bg-white border-gray-200 h-8 w-8" type="number" value="0" min="0" max="5")
-          input(class="rounded-none text-center rounded-r border bg-gray-100 border-gray-200 h-8 w-7" type="button" value="+")
+          input(class="rounded-none text-center rounded-r border bg-gray-100 border-gray-200 h-8 w-7 align-top" type="button" value="+")
         button(class="float-right ml-auto rounded bg-red-600 h-8 text-white font-bold px-3") ADD
 
 block content 
