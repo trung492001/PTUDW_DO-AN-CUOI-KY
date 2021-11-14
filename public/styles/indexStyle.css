@@ -1,0 +1,14 @@
+.nav-bar a:hover, i:hover{
+    color:red;
+    transition: all 0.6s;
+    cursor: pointer;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+.dropdown-menu{
+    min-width: 240px;
+}
+nav>div #search-bar{
+    display:none;
+}

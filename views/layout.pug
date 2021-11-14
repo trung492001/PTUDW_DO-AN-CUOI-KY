@@ -1,7 +1,65 @@
 doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+html(lang="en") 
+    head
+        title Butter
+
+        // Required meta tags
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+        //CSS
+        link(rel="stylesheet" href="style.css")
+        link(rel="stylesheet" href="indexStyle.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css")
+
+        script(src="layout.js" defer)
+    body
+        nav.bg-black.text-white
+            .mx-auto.flex.p-5.flex-wrap.items-center.flex-row(class="md:justify-between")
+                div(class="logo")
+                    a.flex(href="#")
+                        img(src="logo.png" alt="Butter logo")
+                div(class="nav-bar text-xl items-center mr-0 md:ml-auto lg:mr-auto hidden md:flex")
+                    a(class="mr-6" href="/") HOME
+                    a(class="mr-6" href="/Shop") SHOP
+                    a(class="mr-6" href="/menu") MENU
+                    a(class="mr-6" href="/reservation") RESERVATION
+                div(class="nav-bar text-xl items-center flex ml-auto md:ml-0")
+                    div(class="mr-6 text-sm")
+                        if cartLength
+                            span(class="fa-stack fa-2x has-badge" data-count=cartLength)
+                                a(href="/ShoppingCart")
+                                    i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
+                        else
+                            span(class="fa-stack fa-2x has-badge" data-count=0)
+                                a(href="/ShoppingCart")
+                                    i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
+                    i(class="fas fa-search fa-lg mr-6" onclick="myFunction()")
+                    if user
+                        a(class="mr-6" href="/profilePage")
+                            img(src=user.avatar alt="Avatar" class="avatar-nav")
+                        a(class="mr-6" href="/profilePage") = user.userName
+                            div(class="dropdown-content")
+                                a(class="dropdown-item" href="/profilePage") Profile
+                                a(class="dropdown-item" href="/logOut") Log Out
+                    else
+                        a(class="mr-6 hidden md:flex" href="/logIn") LOGIN
+                div.col-12(id="search-bar")
+                    i(class="fas fa-search fa-lg" onclick="myFunction()")
+                    input(type="text" id="searchBar" placeholder="Search Here ..... !")
+                    div(id="search_List")
+                        ul(id="dishesList")
+                //mobile button goes here
+                div(class="md:hidden flex order-first mr-auto")
+                    button.w-6.h-6.mobile-menu-button
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+            //Mobile menu
+            div.mobile-menu.hidden.bg-black.text-white.nav-bar.px-2.py-2(class="md:hidden") 
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/") HOME
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/Shop") SHOP
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") MENU
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") RESERVATION 
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/logIn") LOGIN 
+        block content
