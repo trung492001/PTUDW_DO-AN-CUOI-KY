@@ -1,6 +1,124 @@
 extends layout
-
+block header 
+    link(rel="stylesheet" href="indexStyle.css")
 block content
-  h1= title
-  p(class="md:py-8") Welcome to #{title}
+    //Slideshow
+    div(class="carousel")
+        div(class="carousel-inner")
+            input(class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked")
+            div(class="carousel-item" style="background-image: url('slider-bg.jpg');")
+                div(class="text-white carousel-content text-center")
+                    h2(class="font-light text-5xl") Perfect
+                    p(class="text-xl") Fresh out of the oven
+            input(class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="")
+            div(class="carousel-item" style="background-image: url('slider-bg1.jpg');")
+                div(class="text-white carousel-content text-center")
+                    h2(class="font-light text-5xl") Real
+                    p(class="text-xl") Bite into tender juicy goodness
+            input(class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="")
+            div(class="carousel-item" style="background-image: url('slider-bg2.jpg');")
+                div(class="text-white carousel-content text-center")
+                    h2(class="font-light text-5xl") Tasty
+                    p(class="text-xl") All the flavor, not on your dreams.
+            label(for="carousel-3" class="carousel-control prev control-1") <i class="fas fa-angle-left"></i>
+            label(for="carousel-2" class="carousel-control next control-1") <i class="fas fa-angle-right"></i>
+            label(for="carousel-1" class="carousel-control prev control-2") <i class="fas fa-angle-left"></i>
+            label(for="carousel-3" class="carousel-control next control-2") <i class="fas fa-angle-right"></i>
+            label(for="carousel-2" class="carousel-control prev control-3") <i class="fas fa-angle-left"></i>
+            label(for="carousel-1" class="carousel-control next control-3") <i class="fas fa-angle-right"></i>
+            ol(class="carousel-indicators")
+                li
+                    label(for="carousel-1" class="carousel-bullet") <i class="fas fa-circle text-sm "></i>
+                li
+                    label(for="carousel-2" class="carousel-bullet") <i class="fas fa-circle text-sm"></i>
+                li
+                    label(for="carousel-3" class="carousel-bullet") <i class="fas fa-circle text-sm"></i>
+    //Section 1
+    div(class="container mx-auto")
+        h1(class="text-center px-24 py-10 text-xl") Please be a traveler, not a tourist. Try new things, meet new people, and look beyond what’s right in front of you. Those are the keys to understanding this amazing world we live in.  
+    //Section 2
+    div(class="flex justify-center items-center")
+        div(class="container mx-auto mt-10 mb-10 lg:mb-5 lg:px-20")
+            h1(class="text-center px-24 pb-4 text-xl") Andrew Zimmern
+            div(class="relative w-full")
+                img(alt="Pizza" src="site-img51.jpg" class="max-w-full mx-auto rounded-lg shadow-lg")
+            div(class="relative w-full -mt-9 md:-mt-30 lg:-mt-62 p-8 rounded-b-2xl lg:rounded-2xl z-50 bg-black text-white")
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-indigo-200 fill-current w-12 h-12 md:w-16 md:h-16 text-red-100" viewBox="0 0 24 24"><path d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L9.758 4.03c0 0-.218.052-.597.144C8.97 4.222 8.737 4.278 8.472 4.345c-.271.05-.56.187-.882.312C7.272 4.799 6.904 4.895 6.562 5.123c-.344.218-.741.4-1.091.692C5.132 6.116 4.723 6.377 4.421 6.76c-.33.358-.656.734-.909 1.162C3.219 8.33 3.02 8.778 2.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C2.535 17.474 4.338 19 6.5 19c2.485 0 4.5-2.015 4.5-4.5S8.985 10 6.5 10zM17.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L20.758 4.03c0 0-.218.052-.597.144-.191.048-.424.104-.689.171-.271.05-.56.187-.882.312-.317.143-.686.238-1.028.467-.344.218-.741.4-1.091.692-.339.301-.748.562-1.05.944-.33.358-.656.734-.909 1.162C14.219 8.33 14.02 8.778 13.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C13.535 17.474 15.338 19 17.5 19c2.485 0 4.5-2.015 4.5-4.5S19.985 10 17.5 10z"/></svg>
+                div(class="text-center md:text-left")
+                    h1(class="text-5xl") OUR STORY    
+                    p(class="my-5 px-2").
+                        Starting from simple things, but the elements of earth, air and water have cultivated great things from us. 
+                        The delicious pizzas are made from quality flour selected from the highest grade.<br> The fresh, succulent tomatoes 
+                        are carefully cultivated from the selection of varieties, taking care of the right temperature to grow in the best way. The seafood and meat are carefully selected at the input so that the chef can create great dishes. We say no to ingredients of unknown origin, products containing chemical residues and withered foods. We always guarantee with all our heart that we will bring our customers the best food.
+    //Section 3
+    div(class="bg-cover bg-center" style = "background-image: url('pizza10.jpg');")
+        div(class="container md:grid flex-col md:grid-cols-3 py-24 mx-auto gap-x-8")
+            div(class="relative bg-white mx-auto pt-3 pb-24 px-2 mt-10 rounded-xl text-center w-3/4 md:w-full")
+                img(alt="Pizza Seafood Cocktail" src="Seafood Cocktail.png" class="mx-auto")
+                p Fresh prawns, succulent crab sticks, ham and juicy pineapples with Thousand Island sauce
+                div(class="absolute bottom-3 right-0 grid grid-cols-2 w-full")
+                    p 129.000
+                    a(class="bg-red-500 mx-auto p-1 cursor-pointer rounded-md text-base") GO TO MENU 
+            div(class="relative bg-white mx-auto pt-3 pb-24 px-2 mt-10 rounded-xl text-center w-3/4 md:w-full")
+                img(alt="Pizza Tropical Seafood" src="Tropical Seafood.png" class="mx-auto")
+                p Crab sticks, pineapples and Thousand Island sauce
+                div(class="absolute bottom-3 right-0 mt-3 grid grid-cols-2 w-full")
+                    p 129.000
+                    a(class="bg-red-500 mx-auto p-1 cursor-pointer rounded-md text-base") GO TO MENU  
+            div(class="relative bg-white mx-auto pt-3 pb-24 px-2 mt-10 rounded-xl text-center w-3/4 md:w-full")
+                img(alt="Pizza Seafood Pesto" src="Seafood Pesto.png" class="mx-auto")
+                p Shrimp, crab stick, squid, broccoli and green Pesto sauce
+                div(class="absolute bottom-3 right-0 mt-3 grid grid-cols-2 w-full")
+                    p 169.000
+                    a(class="bg-red-500 mx-auto p-1 cursor-pointer rounded-md text-base") GO TO MENU  
+            
+    //Section 4
+    div(class="bg-cover bg-center md:bg-left" style="background-image:url('parallax-bg2.jpg')")
+        div(class="ml-auto w-1/2 py-10")
+            h1(class="text-3xl") SPECIAL OFFERS
+            div(class="grid grid-cols-1 md:grid-cols-2 mr-5 gap-y-4")
+                div
+                    div(class="grid grid-cols-2")
+                        h1 Seafood Deluxe 
+                        p(class="text-red-600") 129.000
+                    p Prawn, crab sticks and calamari with Marinara sauce
+                div
+                    div(class="grid grid-cols-2")
+                        h1 Pasta shrimp rose 
+                        p(class="text-red-600") 129.000
+                    p The juiciness of fresh shrimps combined with delectable rosé sauce
+                div
+                    div(class="grid grid-cols-2")
+                        h1 Seafood and Peach 
+                        p(class="text-red-600") 169.000
+                    p Shrimp, Ham, Peach "exploded" together with Thousand Island sauce
+                div
+                    div(class="grid grid-cols-2")
+                        h1 Pasta bolognese
+                        p(class="text-red-600") 119.000
+                    p Italian-style mince beef sauce finely mixed with pasta
+                div
+                    div(class="grid grid-cols-2")
+                        h1 Tropical Seafood
+                        p(class="text-red-600") 129.000
+                    p Crab sticks, pineapples and Thousand Island sauce
+                div
+                    div(class="grid grid-cols-2")
+                        h1 Signature salad
+                        p(class="text-red-600") 69.000
+                    p Broccoli, purple cabbage, apple mixed with boiled quail eggs and Salad sauce
+                div
+                    div(class="grid grid-cols-2")
+                        h1 Aloha
+                        p(class="text-red-600") 119.000
+                    p Ham, pepperoni, pork sausage and juicy pineapple with Thousand Island sauce
+                div
+                    div(class="grid grid-cols-2")
+                        h1 Chicken Strip Salad
+                        p(class="text-red-600") 69.000
+                    p Crispy chicken salad with quail eggs, bacon, parmesan and Thousand Island
+
+
+        
+        
 
