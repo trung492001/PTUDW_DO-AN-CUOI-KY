@@ -1,72 +1,74 @@
 doctype html
+
 html(lang="en") 
-    head
-        title Butter
+  head
+    title Butter
 
-        // Required meta tags
-        meta(charset="utf-8")
-        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    // Required meta tags
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
 
-        //CSS
-        link(rel="stylesheet" href="style.css")
-        link(rel="stylesheet" href="layoutStyle.css")
-        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css")
-        link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css' integrity='sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay' crossorigin='anonymous')
-        script(src="layout.js" defer)
+    //CSS
+    link(rel="stylesheet" href="style.css")
+    link(rel="stylesheet" href="layoutStyle.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css")
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css' integrity='sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay' crossorigin='anonymous')
+    script(src="layout.js" defer)
 
-        block header
-    body
-        nav(class="bg-black text-white")
-            div(class="mx-auto flex p-5 flex-wrap items-center flex-row md:justify-between")
-                div(class="logo")
-                    a.flex(href="#")
-                        img(src="logo.png" alt="Butter logo")
-                div(class="nav-bar text-xl items-center ml-auto hidden md:flex")
-                    a(class="mr-6" href="/") HOME
-                    a(class="mr-6" href="/Shop") SHOP
-                    a(class="mr-6" href="/menu") MENU
-                    a(class="mr-6" href="/reservation") RESERVATION
-                div(class="nav-bar text-xl items-center flex ml-auto md:ml-0")
-                    div(class="mr-6 text-sm")
-                        if cartLength
-                            span(class="fa-stack fa-2x has-badge" data-count=cartLength)
-                                a(href="/ShoppingCart")
-                                    i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
-                        else
-                            span(class="fa-stack fa-2x has-badge" data-count=0)
-                                a(href="/ShoppingCart")
-                                    i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
-                    i(class="fas fa-search fa-lg mr-6" onclick="myFunction()")
-                    if user
-                        a(class="mr-6" href="/profilePage")
-                            img(src=user.avatar alt="Avatar" class="avatar-nav")
-                        a(class="mr-6" href="/profilePage") = user.userName
-                            div(class="dropdown-content")
-                                a(class="dropdown-item" href="/profilePage") Profile
-                                a(class="dropdown-item" href="/logOut") Log Out
-                    else
-                        a(class="mr-6 hidden md:flex" href="/logIn") LOGIN
-                div.col-12(id="search-bar")
-                    i(class="fas fa-search fa-lg" onclick="myFunction()")
-                    input(type="text" id="searchBar" placeholder="Search Here ..... !")
-                    div(id="search_List")
-                        ul(id="dishesList")
-                //mobile button goes here
-                div(class="md:hidden flex order-first mr-auto")
-                    button(class="w-6 h-6 mobile-menu-button")
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-            //Mobile menu
-            div(class="nav-bar mobile-menu hidden md:hidden bg-black text-white px-2 py-2") 
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/") HOME
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/Shop") SHOP
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") MENU
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") RESERVATION 
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/logIn") LOGIN 
-        block content
-        div(class="w-full bg-black text-white p-10 md:p-20")
-            div(class="w-full grid grid-cols-1 md:grid-cols-2 gap-4")
+    block header
+  body
+      nav(class="bg-black text-white")
+          div(class="mx-auto flex p-5 flex-wrap items-center flex-row md:justify-between")
+              div(class="logo")
+                  a.flex(href="#")
+                      img(src="logo.png" alt="Butter logo")
+              div(class="nav-bar text-xl items-center mr-0 md:ml-auto lg:mr-auto hidden md:flex")
+                  a(class="mr-6" href="/") HOME
+                  a(class="mr-6" href="/Shop") SHOP
+                  a(class="mr-6" href="/menu") MENU
+                  a(class="mr-6" href="/reservation") RESERVATION
+              div(class="nav-bar text-xl items-center flex ml-auto md:ml-0")
+                  div(class="mr-6 text-sm")
+                      if cartLength
+                          span(class="fa-stack fa-2x has-badge" data-count=cartLength)
+                              a(href="/ShoppingCart")
+                                  i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
+                      else
+                          span(class="fa-stack fa-2x has-badge" data-count=0)
+                              a(href="/ShoppingCart")
+                                  i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
+                  i(class="fas fa-search fa-lg mr-6" onclick="myFunction()")
+                  if user
+                      a(class="mr-6" href="/profilePage")
+                          img(src=user.avatar alt="Avatar" class="avatar-nav")
+                      a(class="mr-6" href="/profilePage") = user.userName
+                          div(class="dropdown-content")
+                              a(class="dropdown-item" href="/profilePage") Profile
+                              a(class="dropdown-item" href="/logOut") Log Out
+                  else
+                      a(class="mr-6 hidden md:flex" href="/logIn") LOGIN
+              div.col-12(id="search-bar")
+                  i(class="fas fa-search fa-lg" onclick="myFunction()")
+                  input(type="text" id="searchBar" placeholder="Search Here ..... !")
+                  div(id="search_List")
+                      ul(id="dishesList")
+              //mobile button goes here
+              div(class="md:hidden flex order-first mr-auto")
+                  button(class="w-6 h-6 mobile-menu-button")
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                      </svg>
+          //Mobile menu
+          div(class="nav-bar mobile-menu hidden md:hidden bg-black text-white px-2 py-2") 
+              a(class="block px-4 py-3 rounded-md hover:bg-white" href="/") HOME
+              a(class="block px-4 py-3 rounded-md hover:bg-white" href="/Shop") SHOP
+              a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") MENU
+              a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") RESERVATION 
+              a(class="block px-4 py-3 rounded-md hover:bg-white" href="/logIn") LOGIN 
+      block content
+      block foot
+      div(class="w-full bg-black text-white p-10 md:p-20")
+          div(class="w-full grid grid-cols-1 md:grid-cols-2 gap-4")
             div(class="col-span-1 md:pl-4")
                 h4(class="text-2xl font-medium mb-2") About Company
                 div(class="bg-red-700 mt-2 mb-6 ml-0 mr-auto" style="width: 36px; height: 2px")
@@ -83,28 +85,28 @@ html(lang="en")
                 div(class="bg-red-700 mt-2 mb-6 ml-0 mr-auto" style="width: 36px; height: 2px")              
                 ul
                     li(class="my-2")
-                    <i class="fas fa-angle-right"></i> 
-                        a(href="#") Customer Support
+                      <i class="fas fa-angle-right"></i> 
+                          a(href="#") Customer Support
                     li(class="my-2")
-                    <i class="fas fa-angle-right"></i> 
-                        a(href="#") Documentation 
+                      <i class="fas fa-angle-right"></i> 
+                          a(href="#") Documentation 
                     li(class="my-2")
-                    <i class="fas fa-angle-right"></i> 
-                        a(href="#") Developer Center
+                      <i class="fas fa-angle-right"></i> 
+                          a(href="#") Developer Center
                     li(class="my-2")
-                    <i class="fas fa-angle-right"></i> 
-                        a(href="/FAQs") General FAQs
-        div(class="w-full text-white min-h grid grid-cols-1 md:grid-cols-2 gap-4 py-10" style="background-color: #1f1f1f")
-            div(class="col-span-1")
-                h5(class="text-xl text-center") Copyright © 2016 YOUR DOMAIN. All rights reserved.
-            div(class="col-span-1")
-                ul(class="mx-auto text-center text-3xl md:text-4xl") 
-                    li(class="mx-3 inline-block")
-                        <i class="fab fa-facebook-square"></i>
-                    li(class="mx-3 inline-block")
-                        <i class="fab fa-instagram"></i>
-                    li(class="mx-3 inline-block")
-                        <i class="fab fa-youtube"></i>
-                    li(class="mx-3 inline-block")
-                        <i class="fab fa-twitter-square"></i>
+                      <i class="fas fa-angle-right"></i> 
+                          a(href="/FAQs") General FAQs
+      div(class="w-full text-white min-h grid grid-cols-1 md:grid-cols-2 gap-4 py-10" style="background-color: #1f1f1f")
+        div(class="col-span-1 px-4 md:p-0")
+          h5(class="text-lg md:text-xl text-center") Copyright © 2021 YOUR DOMAIN. All rights reserved.
+        div(class="col-span-1")
+          ul(class="mx-auto text-center text-3xl md:text-4xl") 
+            li(class="mx-3 inline-block")
+              <i class="fab fa-facebook-square"></i>
+            li(class="mx-3 inline-block")
+              <i class="fab fa-instagram"></i>
+            li(class="mx-3 inline-block")
+              <i class="fab fa-youtube"></i>
+            li(class="mx-3 inline-block")
+              <i class="fab fa-twitter-square"></i>
 
