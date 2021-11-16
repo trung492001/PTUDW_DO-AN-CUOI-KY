@@ -42,9 +42,9 @@ html(lang="en")
                       a(class="mr-6" href="/profilePage") = user.userName
                           div(class="dropdown-content")
                               a(class="dropdown-item" href="/profilePage") Profile
-                              a(class="dropdown-item" href="/logOut") Log Out
+                              a(class="dropdown-item" href="/log-out") Sign Out
                   else
-                      a(class="mr-6 hidden md:flex" href="/logIn") LOGIN
+                      a(class="mr-6 hidden md:flex" href="/sign-in") SIGN IN
               div.col-12(id="search-bar")
                   i(class="fas fa-search fa-lg" onclick="myFunction()")
                   input(type="text" id="searchBar" placeholder="Search Here ..... !")
@@ -65,9 +65,9 @@ html(lang="en")
               a(class="block px-4 py-3 rounded-md hover:bg-white" href="/logIn") LOGIN 
       block content
       block foot
-      div(class="w-full bg-black text-white p-10 md:p-20")
-          div(class="w-full grid grid-cols-1 md:grid-cols-2 gap-4")
-            div(class="col-span-1 md:pl-4")
+      div(class="w-full bg-black text-white")
+          div(class="container mx-auto p-10 grid grid-cols-1 lg:grid-cols-2 gap-4")
+            div(class="col-span-1")
                 h4(class="text-2xl font-medium mb-2") About Company
                 div(class="bg-red-700 mt-2 mb-6 ml-0 mr-auto" style="width: 36px; height: 2px")
                 p(class="mb-4") Pellentesque mi purus, eleifend sedt commodo vel, sagittis elts vestibulum dui sagittis mlste sagittis elts.
@@ -78,7 +78,7 @@ html(lang="en")
                     <i class="fas fa-phone"></i> +1 (012) 345 6789 
                     li(class="my-2")
                     <i class="fas fa-envelope"></i> info@yourdomain.com
-            div(class="col-span-1 md:pr-4")
+            div(class="col-span-1")
                 h4(class="text-2xl font-medium mb-2") Twitter Feed!
                 div(class="bg-red-700 mt-2 mb-6 ml-0 mr-auto" style="width: 36px; height: 2px")              
                 ul
@@ -94,17 +94,18 @@ html(lang="en")
                     li(class="my-2")
                       <i class="fas fa-angle-right"></i> 
                           a(href="/FAQs") General FAQs
-      div(class="w-full text-white min-h grid grid-cols-1 md:grid-cols-2 gap-4 py-10" style="background-color: #1f1f1f")
-        div(class="col-span-1 px-4 md:p-0")
-          h5(class="text-lg md:text-xl text-center") Copyright © 2021 YOUR DOMAIN. All rights reserved.
-        div(class="col-span-1")
-          ul(class="mx-auto text-center text-3xl md:text-4xl") 
-            li(class="mx-3 inline-block")
-              <i class="fab fa-facebook-square"></i>
-            li(class="mx-3 inline-block")
-              <i class="fab fa-instagram"></i>
-            li(class="mx-3 inline-block")
-              <i class="fab fa-youtube"></i>
-            li(class="mx-3 inline-block")
-              <i class="fab fa-twitter-square"></i>
+      div(class="w-full text-white min-h" style="background-color: #1f1f1f")
+        div(class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 p-10")
+          div(class="col-span-1 px-4 lg:p-0")
+            h5(class="text-lg lg:text-xl text-center lg:text-left") Copyright © 2021 YOUR DOMAIN. All rights reserved.
+          div(class="col-span-1")
+            ul(class="mx-auto text-center text-3xl lg:text-4xl") 
+              li(class="mx-3 inline-block")
+                <i class="fab fa-facebook-square"></i>
+              li(class="mx-3 inline-block")
+                <i class="fab fa-instagram"></i>
+              li(class="mx-3 inline-block")
+                <i class="fab fa-youtube"></i>
+              li(class="mx-3 inline-block")
+                <i class="fab fa-twitter-square"></i>
 
