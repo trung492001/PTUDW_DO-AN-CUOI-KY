@@ -18,4 +18,8 @@ router.get('/menu', (req, res, next) => {
   res.render('menu');
 })
 
+router.get('/AboutUs', (req, res, next) => {
+  res.render('AboutUs');
+})
+
 module.exports = router;
