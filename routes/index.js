@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
@@ -16,6 +16,10 @@ router.get('/register', (req, res, next) => {
 
 router.get('/menu', (req, res, next) => {
   res.render('menu');
+})
+
+router.get('/detail', (req, res, next) => {
+  res.render('detail');
 })
 
 module.exports = router;
