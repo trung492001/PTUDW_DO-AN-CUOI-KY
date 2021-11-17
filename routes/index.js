@@ -20,6 +20,10 @@ router.get('/menu', (req, res, next) => {
 
 router.get('/detail', (req, res, next) => {
   res.render('detail');
-})
+});
+
+router.get('/AboutUs', (req, res, next) => {
+  res.render('AboutUs');
+});
 
 module.exports = router;
