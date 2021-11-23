@@ -20,17 +20,17 @@ block content
             +foodCell(dishs[n].dishName, dishs[n].price, dishs[n].image, dishs[n].ingredient)
             -n++ ; 
       div(class="mt-16")
-        h1(class="text-red-600 text-5xl font-extrabold mb-6 text-center") PIZZA
+        h1(class="text-red-600 text-5xl font-extrabold mb-6 text-center") SALAD
         div(class="grid grid-cols-2 lg:grid-cols-4 mb-4 gap-4")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
-          +foodCell("Seafood Deluxe", "129.000", "https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png", "Prawn, crab sticks & calamari with Marinara sauce")
+          - var n = 0;
+          each value in salads
+            +foodCell(salads[n].dishName, salads[n].price, salads[n].image, salads[n].ingredient)
+            -n++ ; 
+      div(class="mt-16")
+        h1(class="text-red-600 text-5xl font-extrabold mb-6 text-center") PASTA
+        div(class="grid grid-cols-2 lg:grid-cols-4 mb-4 gap-4")
+          - var n = 0;
+          each value in pasta
+            +foodCell(pasta[n].dishName, pasta[n].price, pasta[n].image, pasta[n].ingredient)
+            -n++ ; 
 

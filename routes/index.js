@@ -15,12 +15,24 @@ router.get('/register', (req, res, next) => {
 })
 
 router.get('/menu', async (req, res, next) => {
-  const menuData = await dishModels.find(
+  const pizzaData = await dishModels.find(
     {
       type: "pizza",
     },
   );
-  res.locals.dishs = menuData;
+  const saladData = await dishModels.find(
+    {
+      type: "salad",
+    },
+  );
+  const pastaData = await dishModels.find(
+    {
+      type: "pasta",
+    },
+  );
+  res.locals.salads = saladData;
+  res.locals.pasta = pastaData;
+  res.locals.dishs = pizzaData;
   res.render('menu');
 })
 
