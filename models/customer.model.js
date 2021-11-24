@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
 
 const customerModels = new mongoose.Schema({
-    username: String,
+    username: {
+        type: String,
+        unique: true
+    },
     password: String,
     firstName: String,
     lastName: String,
     phone: String,
-    gender: String,
+    gender: Number,
     address: String,
 });
 

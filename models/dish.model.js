@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const dishModel = new mongoose.Schema({
     dishName: String,
-    price: String,
+    price: Number,
     ingredient: String,
     description: String,
     image: String,

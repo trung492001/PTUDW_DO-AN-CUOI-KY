@@ -1,0 +1,102 @@
+[
+  {
+    "_id": "619e4a85ce6f23a70e4ca8bc",
+    "username": "customer_1",
+    "password": "$2b$10$eYdZNYgGLu7Hk3c2vV7MQe.ls7ccE5uvHeNtGe.TkurX171dSulV.",
+    "firstName": "Phú Hưng",
+    "lastName": "Đỗ",
+    "phone": "0297 8818 7039",
+    "gender": 0,
+    "address": "06017 Uyển Nghi Center, New Xuân Thuyếtview, Ấn Độ"
+  },
+  {
+    "_id": "619e4a85ce6f23a70e4ca8bb",
+    "username": "customer_0",
+    "password": "$2b$10$eYdZNYgGLu7Hk3c2vV7MQe.ls7ccE5uvHeNtGe.TkurX171dSulV.",
+    "firstName": "Việt Thông",
+    "lastName": "Phùng",
+    "phone": "0290 9847 0918",
+    "gender": 0,
+    "address": "54964 Mai Ports, East Vân Hươngbury, Ethiopia"
+  },
+  {
+    "_id": "619e4a85ce6f23a70e4ca8be",
+    "username": "customer_3",
+    "password": "$2b$10$eYdZNYgGLu7Hk3c2vV7MQe.ls7ccE5uvHeNtGe.TkurX171dSulV.",
+    "firstName": "An Khê",
+    "lastName": "Tô",
+    "phone": "028 1494 0267",
+    "gender": 0,
+    "address": "14640 Vương Pike, Ðạt Hòaport, Nepal"
+  },
+  {
+    "_id": "619e4a85ce6f23a70e4ca8bf",
+    "username": "customer_4",
+    "password": "$2b$10$eYdZNYgGLu7Hk3c2vV7MQe.ls7ccE5uvHeNtGe.TkurX171dSulV.",
+    "firstName": "Hoàng Hải",
+    "lastName": "Vũ",
+    "phone": "029 1732 8944",
+    "gender": 1,
+    "address": "54359 Hà Circle, South Thiện Tínhport, Iceland"
+  },
+  {
+    "_id": "619e4a85ce6f23a70e4ca8bd",
+    "username": "customer_2",
+    "password": "$2b$10$eYdZNYgGLu7Hk3c2vV7MQe.ls7ccE5uvHeNtGe.TkurX171dSulV.",
+    "firstName": "Bảo Hân",
+    "lastName": "Lý",
+    "phone": "023 3845 4151",
+    "gender": 2,
+    "address": "71885 Minh Phượng Greens, South Trang Nhãland, Uzbekistan"
+  },
+  {
+    "_id": "619e4a85ce6f23a70e4ca8c1",
+    "username": "customer_6",
+    "password": "$2b$10$eYdZNYgGLu7Hk3c2vV7MQe.ls7ccE5uvHeNtGe.TkurX171dSulV.",
+    "firstName": "Kim Khuyên",
+    "lastName": "Ngô",
+    "phone": "0259 8805 7766",
+    "gender": 1,
+    "address": "695 Giáng Tiên Mountains, North Phương Thi, Albania"
+  },
+  {
+    "_id": "619e4a85ce6f23a70e4ca8c2",
+    "username": "customer_7",
+    "password": "$2b$10$eYdZNYgGLu7Hk3c2vV7MQe.ls7ccE5uvHeNtGe.TkurX171dSulV.",
+    "firstName": "Chí Kiên",
+    "lastName": "Vương",
+    "phone": "026 6395 6939",
+    "gender": 1,
+    "address": "02645 Tăng Vista, New Kiến Bình, Nauru"
+  },
+  {
+    "_id": "619e4a85ce6f23a70e4ca8c3",
+    "username": "customer_8",
+    "password": "$2b$10$eYdZNYgGLu7Hk3c2vV7MQe.ls7ccE5uvHeNtGe.TkurX171dSulV.",
+    "firstName": "Khiết Tâm",
+    "lastName": "Phạm",
+    "phone": "0259 3507 2431",
+    "gender": 1,
+    "address": "96580 Lệ Nhi Greens, Tăngton, Burundi"
+  },
+  {
+    "_id": "619e4a85ce6f23a70e4ca8c0",
+    "username": "customer_5",
+    "password": "$2b$10$eYdZNYgGLu7Hk3c2vV7MQe.ls7ccE5uvHeNtGe.TkurX171dSulV.",
+    "firstName": "Tuệ Mẫn",
+    "lastName": "Đinh",
+    "phone": "027 6224 9668",
+    "gender": 1,
+    "address": "78962 Đặng Plain, West Thái Sangville, Hàn Quốc"
+  },
+  {
+    "_id": "619e4a85ce6f23a70e4ca8c4",
+    "username": "customer_9",
+    "password": "$2b$10$eYdZNYgGLu7Hk3c2vV7MQe.ls7ccE5uvHeNtGe.TkurX171dSulV.",
+    "firstName": "Nhật Thịnh",
+    "lastName": "Tô",
+    "phone": "0271 4612 1763",
+    "gender": 0,
+    "address": "91655 Lam Khê Glen, Danville, Malaysia"
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "619e4bc4933bfa6f0bab266e",
+    "username": "staff_1",
+    "password": "$2b$10$laKeYv6aOq4W/vNlSa.KS.RnCshtFiVed.ZOhHFDhLM.7ZaljOIgC",
+    "firstName": "Trường Phát",
+    "lastName": "Trương",
+    "phone": "025 0855 7649",
+    "gender": 0,
+    "address": "57867 Quốc Quý Flats, Ðức Mạnhmouth, Phần Lan"
+  },
+  {
+    "_id": "619e4bc4933bfa6f0bab266d",
+    "username": "staff_0",
+    "password": "$2b$10$laKeYv6aOq4W/vNlSa.KS.RnCshtFiVed.ZOhHFDhLM.7ZaljOIgC",
+    "firstName": "Minh Trung",
+    "lastName": "Bùi",
+    "phone": "0237 2493 9916",
+    "gender": 1,
+    "address": "589 Vũ Neck, South Duy Hiềnborough, Brasil"
+  },
+  {
+    "_id": "619e4bc4933bfa6f0bab2670",
+    "username": "staff_3",
+    "password": "$2b$10$laKeYv6aOq4W/vNlSa.KS.RnCshtFiVed.ZOhHFDhLM.7ZaljOIgC",
+    "firstName": "Danh Nhân",
+    "lastName": "Trương",
+    "phone": "0207 4656 7680",
+    "gender": 2,
+    "address": "727 Tăng Road, Phùngchester, Trinidad và Tobago"
+  },
+  {
+    "_id": "619e4bc4933bfa6f0bab2671",
+    "username": "staff_4",
+    "password": "$2b$10$laKeYv6aOq4W/vNlSa.KS.RnCshtFiVed.ZOhHFDhLM.7ZaljOIgC",
+    "firstName": "Trúc Liên",
+    "lastName": "Hồ",
+    "phone": "020 6866 1307",
+    "gender": 0,
+    "address": "59682 Kim Hương Vista, East Ngọc San, Cộng hòa Dominica"
+  },
+  {
+    "_id": "619e4bc4933bfa6f0bab266f",
+    "username": "staff_2",
+    "password": "$2b$10$laKeYv6aOq4W/vNlSa.KS.RnCshtFiVed.ZOhHFDhLM.7ZaljOIgC",
+    "firstName": "Giáng Tiên",
+    "lastName": "Trần",
+    "phone": "0243 1299 5662",
+    "gender": 2,
+    "address": "1317 Hồ Ports, South Lộc Uyển, Paraguay"
+  }
+]

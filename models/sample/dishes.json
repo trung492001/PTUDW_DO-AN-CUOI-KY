@@ -2,7 +2,7 @@
   {
     "_id": "619b9e2133d0d0c21d29b3cd",
     "dishName": "Seafood Deluxe",
-    "price": "129.000",
+    "price": "129000",
     "ingredient": "Crab sticks,Marinara sauce,Fresh prawns,Calamari",
     "image": "mon1.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -11,7 +11,7 @@
   {
     "_id": "619ca78ac85db5971e1cf235",
     "dishName": "Seafood & Peach",
-    "price": "169.000",
+    "price": "169000",
     "ingredient": "Shrimp, Ham, Peach, Thousand Island sauce",
     "image": "mon2.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -20,7 +20,7 @@
   {
     "_id": "619cab10c85db5971e1cf236",
     "dishName": "Seafood Cocktail",
-    "price": "129.000",
+    "price": "129000",
     "ingredient": "Fresh prawns, Crab sticks, Ham, Juicy pineapples,Thousand Island sauce ",
     "image": "mon3.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -29,7 +29,7 @@
   {
     "_id": "619cab7ac85db5971e1cf237",
     "dishName": "Seafood Pesto",
-    "price": "169.000",
+    "price": "169000",
     "ingredient": "Shrimp, Crab stick, Squid, Broccoli, Green Pesto sauce",
     "image": "mon4.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -38,7 +38,7 @@
   {
     "_id": "619cad2fc85db5971e1cf238",
     "dishName": "Tropical Seafood",
-    "price": "129.000",
+    "price": "129000",
     "ingredient": "Crab sticks, Pineapples, Thousand Island sauce",
     "image": "mon5.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -47,7 +47,7 @@
   {
     "_id": "619cad2fc85db5971e1cf239",
     "dishName": "Aloha",
-    "price": "119.000",
+    "price": "119000",
     "ingredient": "Ham, Pepperoni, Pork sausage, Juicy pineapple, Thousand Island sauce ",
     "image": "mon6.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -56,7 +56,7 @@
   {
     "_id": "619cad6ec85db5971e1cf23b",
     "dishName": "Bacon Super Delight",
-    "price": "119.000",
+    "price": "119000",
     "ingredient": "Italian sausages, Bacon, Ham, Green capsicums, Tomatoes",
     "image": "mon7.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -65,7 +65,7 @@
   {
     "_id": "619caf58c85db5971e1cf23c",
     "dishName": "Canadian Bacon",
-    "price": "119.000",
+    "price": "119000",
     "ingredient": "Ham, Bacon bits, Corns",
     "image": "mon8.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -74,7 +74,7 @@
   {
     "_id": "619caf58c85db5971e1cf23d",
     "dishName": "Cheese Lover",
-    "price": "79.000",
+    "price": "79000",
     "ingredient": "Mozzarella cheese, tomato sauce",
     "image": "mon9.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -83,7 +83,7 @@
   {
     "_id": "619caf58c85db5971e1cf23e",
     "dishName": "Hawaiian Paradise",
-    "price": "109.000",
+    "price": "109000",
     "ingredient": "Hams, Fresh pineapples",
     "image": "mon10.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -92,7 +92,7 @@
   {
     "_id": "619caf58c85db5971e1cf23f",
     "dishName": "Zucchini Basil Sauce",
-    "price": "147.000",
+    "price": "147000",
     "ingredient": "Zucchini, Basil, House-made Latic Cheese",
     "image": "mon11.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -101,7 +101,7 @@
   {
     "_id": "619caf58c85db5971e1cf240",
     "dishName": "Burrata Parma Ham",
-    "price": "299.000",
+    "price": "299000",
     "ingredient": "Burrata chesse, ham",
     "image": "mon12.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -110,7 +110,7 @@
   {
     "_id": "619cb109c85db5971e1cf241",
     "dishName": "Stir fried pasta with spicy seafood",
-    "price": "129.000",
+    "price": "129000",
     "ingredient": "Fresh seafood, garlic, chilli, pepper, Soy scauce, Fish sauce",
     "image": "mon13.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -119,7 +119,7 @@
   {
     "_id": "619cb375c85db5971e1cf242",
     "dishName": "Pasta shrimp rose",
-    "price": "129.000",
+    "price": "129000",
     "ingredient": "Fresh shrimps, Garlic, Onion, red chilli, rosé sauce",
     "image": "mon14.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -128,7 +128,7 @@
   {
     "_id": "619cb375c85db5971e1cf243",
     "dishName": "Pasta bolognese",
-    "price": "129.000",
+    "price": "129000",
     "ingredient": "Carrots, Beef mince, streaky bacon, Plum tomatoes",
     "image": "mon15.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -137,7 +137,7 @@
   {
     "_id": "619cb375c85db5971e1cf244",
     "dishName": "Stir fried pasta with spicy sausage",
-    "price": "129.000",
+    "price": "129000",
     "ingredient": "Parsley sausages, Fresh herbs, Italian basil",
     "image": "mon16.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -146,7 +146,7 @@
   {
     "_id": "619cb3f8c85db5971e1cf245",
     "dishName": "Chicken Strip Salad",
-    "price": "69.000",
+    "price": "69000",
     "ingredient": "Crispy chicken,Salad,Quail eggs,Bacon,Parmesan chesse and Thousand Island sauce",
     "image": "mon17.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -155,7 +155,7 @@
   {
     "_id": "619cb614c85db5971e1cf246",
     "dishName": "Crispy Salmon Skin Salad",
-    "price": "69.000",
+    "price": "69000",
     "ingredient": "Salad, Crispy salmon skin,Red cabbage,Cherry tomatoes,Corn, Yuzu sauce",
     "image": "mon18.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -164,7 +164,7 @@
   {
     "_id": "619cb614c85db5971e1cf247",
     "dishName": "Signature salad",
-    "price": "69.000",
+    "price": "69000",
     "ingredient": "Salad, Broccoli,Purple cabbage,Apple,Quail eggs, Salad sauce ",
     "image": "mon19.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",
@@ -173,7 +173,7 @@
   {
     "_id": "619cb614c85db5971e1cf248",
     "dishName": "Caesar's salad",
-    "price": "69.000",
+    "price": "69000",
     "ingredient": "Parmesan cheese, Crisp croutons, Lettuce, Tomatoes",
     "image": "mon20.png",
     "description": "SeptemBER, OctoBER, NovemBER, it’s time for oysters! And nothing’s better in this season than a luxury seafood platter! In collaboration with my dear friends at Odessa Poissonnier, I present you my way of serving a beautiful tray with shrimps and two types of sauce. Come on, jump in! #odessa #pub",

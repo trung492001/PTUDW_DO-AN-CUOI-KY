@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 const cartModels = new mongoose.Schema({
-    userId: {
+    customerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'customer'
     },
     cart: [
         {
-            bookId: {
+            dishId: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'dish'
             },
@@ -30,6 +30,8 @@ const cartModels = new mongoose.Schema({
     phone: String,
     status: Number,
     total: String,
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('cart', cartModels);

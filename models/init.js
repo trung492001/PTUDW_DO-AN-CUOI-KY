@@ -14,19 +14,20 @@ const db = mongoose.connection;
 db.on('error', () => {
     console.error('Database connection failed')
 });
-db.once('open', () => {
+db.once('open', async () => {
     console.info('Database connection established...');
     console.log('Initializing sample data...');
-    Promise.all([
-        initData('dish', './sample/dishes.json'),
-    ]).then(() => {
-        console.log('All sample data initialized successfully...');
-        db.close();
-        console.info('Database connection closed...');
-    }).catch((error) => {
-        console.error('Error: ', error);
-        db.close();
-        console.info('Database connection closed...');
-    });
+    try {
+        await initData('dish', './sample/dishes.json');
+        await initData('staff', './sample/staffs.json');
+        await initData('customer', './sample/customers.json');
+        await initData('cart', './sample/carts.json');
+        console.info('All sample data initialized successfully...');
+    }
+    catch (error) {
+        console.error(error);
+    }
+    await db.close();
+    console.info('Database connection closed...');
 });
 
