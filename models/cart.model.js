@@ -4,8 +4,9 @@ const cartModels = new mongoose.Schema({
     userId: String,
     cart: [
         {
-        bookId: String,
-        Qty: String,
+            dishId: String,
+            Qty: String,
+            price: String,
         },
     ],
     address: String,
