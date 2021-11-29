@@ -6,11 +6,10 @@ const dishModel = new mongoose.Schema({
     ingredient: String,
     description: String,
     image: String,
-    type: String
-    // type: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'category'
-    // }
+    type: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category'
+    }
 });
 
 module.exports = mongoose.model('dish', dishModel);
