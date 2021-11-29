@@ -29,7 +29,7 @@ const cartModels = new mongoose.Schema({
     address: String,
     phone: String,
     status: Number,
-    total: String,
+    total: Number,
 }, {
     timestamps: true
 });
