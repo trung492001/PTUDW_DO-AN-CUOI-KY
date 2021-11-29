@@ -18,6 +18,7 @@ db.once('open', async () => {
     console.info('Database connection established...');
     console.log('Initializing sample data...');
     try {
+        await initData('category', './sample/categories.json');
         await initData('dish', './sample/dishes.json');
         await initData('staff', './sample/staffs.json');
         await initData('customer', './sample/customers.json');

@@ -1,36 +1,107 @@
 extends layout
 
-mixin foodCell(name, price, img, description)
+mixin foodCell(name, price, img, ingredient)
   div(class="col-span-1 mb-6")
     a(href='/detail')  
       img(src=img alt=name class="w-full mb-3 lg:px-6")
     div(class="text-center mb-4")
       a(href='/detail')  
         h5(class="text-xl mb-2 font-bold")=name
-      h4(class="text-xl lg:text-2xl font-bold text-red-600")=price+" VNĐ"
-      p(class="text-sm lg:font-normal")=description
+      h4(class="text-xl font-bold text-red-600")=price+" VNĐ"
+      p(class="text-sm md:font-normal")=ingredient
+
+mixin categoryCell(id, name, img)
+  a(href=`/menu?category=${id}` class="flex-grow col-span-1")
+    img(src=img alt=name class="my-1 object-contain mx-auto" style="min-width:62px; height:62px;")
+    h4(class="lg:font-semibold text-sm text-center")=name
+
+mixin pagination(currentPage, pageCount)
+  - var category = "pizza";
+  - var currentUrl = `?category=${category}`;
+  if pageCount > 0
+    nav(class="mb-12" id="#pagination")
+      ul(class="flex justify-center gap-x-1")
+
+        //- Prev item
+        if currentPage > 1
+          a(class="" href=`${currentUrl}&page=${currentPage-1}`)
+            li(class="border py-1 px-2 text-center" style="min-width: 36px;")
+              <i class="fas fa-chevron-left"></i>
+
+        //- Small pageCount
+        if pageCount < 8
+          - for(var i = 1; i <= pageCount; ++i)
+            if i == currentPage
+              li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                span(class="underline")=i
+            else
+              li(class="border text-center py-1" style="min-width: 36px;")
+                a(href=`${currentUrl}&page=${i}`)=i
+        else
+          //- First item
+          if currentPage > 4
+            li(class="border text-center py-1" style="min-width: 36px;")
+              a(href=currentUrl) 1
+            li(class="text-center py-1 cursor-default" style="min-width: 36px;")
+              span(class="mt-auto align-baseline text-gray-500") •••
+
+          if currentPage <= 4
+            - for(var i = 1; i <= (currentPage == 4 ? 6 : 5); ++i)
+              if i == currentPage
+                li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                  span(class="underline")=i
+              else
+                li(class="border text-center py-1" style="min-width: 36px;")
+                  a(href=`${currentUrl}&page=${i}`)=i
+          else if pageCount - currentPage < 4
+            - for(var i = (pageCount - currentPage == 3 ? currentPage - 2: pageCount - 4); i <= pageCount; ++i)
+              if i == currentPage
+                li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                  span(class="underline")=i
+              else
+                li(class="border text-center py-1" style="min-width: 36px;")
+                  a(href=`${currentUrl}&page=${i}`)=i
+          
+          
+          //- Last item
+          if pageCount - currentPage >= 4
+            li(class="text-center py-1 cursor-default" style="min-width: 36px;")
+              span(class="mt-auto align-baseline text-gray-500") •••
+            li(class="border text-center py-1" style="min-width: 36px;")
+              a(href=`${currentUrl}&page=${pageCount}`)=pageCount
+        
+        //- Next item
+        if currentPage < pageCount
+          a(class="" href=`${currentUrl}&page=${currentPage+1}`)
+            li(class="border py-1 px-2 text-center" style="min-width: 36px;")
+              <i class="fas fa-chevron-right"></i>
 
 block content 
     div(class="container mx-auto px-4 lg:px-40")
-      div(class="mt-12")
-        h1(class="text-red-600 text-5xl font-extrabold mb-6 text-center") PIZZA
-        div(class="grid grid-cols-2 lg:grid-cols-4 mb-4 gap-2")
+      div(class="mt-6")
+        h3(class="mb-3 font-bold text-5xl text-center text-red-600 py-2 mx-5 md:mx-40 lg:mx-60 xl:mx-96 bg-black" style="transform: skew(-20deg);") MENU
+        div(class="rounded bg-white p-2 lg:p-4 mb-8 shadow")
+          h4(class="mb-3 font-semibold text-2xl text-center lg:text-left") Category
+          div(class="flex flex-nowrap overflow-x-scroll gap-4 lg:gap-6 xl:gap-8 no-scrollbar")
+            +categoryCell("123", "Pizza", "mon2.png")
+            +categoryCell("123", "Pasta", "mon14.png")
+            +categoryCell("123", "Salad", "mon20.png")
+            +categoryCell("123", "Drink", "mon2.png")
+            +categoryCell("123", "Pizza", "mon2.png")
+            +categoryCell("123", "Pizza", "mon2.png")
+            +categoryCell("123", "Pizza", "mon2.png")
+            +categoryCell("123", "Pizza", "mon2.png")
+            +categoryCell("123", "Pizza", "mon2.png")
+            +categoryCell("123", "Pizza", "mon2.png")
+        div(class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 lg:gap-4")
           - var n = 0;
           each value in dishs
             +foodCell(dishs[n].dishName, dishs[n].price, dishs[n].image, dishs[n].ingredient)
-            -n++ ; 
-      div(class="mt-16")
-        h1(class="text-red-600 text-5xl font-extrabold mb-6 text-center") SALAD
-        div(class="grid grid-cols-2 lg:grid-cols-4 mb-4 gap-4")
-          - var n = 0;
-          each value in salads
-            +foodCell(salads[n].dishName, salads[n].price, salads[n].image, salads[n].ingredient)
-            -n++ ; 
-      div(class="mt-16")
-        h1(class="text-red-600 text-5xl font-extrabold mb-6 text-center") PASTA
-        div(class="grid grid-cols-2 lg:grid-cols-4 mb-4 gap-4")
-          - var n = 0;
-          each value in pasta
-            +foodCell(pasta[n].dishName, pasta[n].price, pasta[n].image, pasta[n].ingredient)
-            -n++ ; 
+            -n++ ;
+                
+        +pagination(1, 1)
+
+
+
+
 
