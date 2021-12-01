@@ -1,0 +1,65 @@
+extends layout 
+block header
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playball&family=Raleway:wght@500&display=swap" rel="stylesheet">
+block content
+    div(class="flex flex-col md:flex-row ml-auto py-28 md:p-28 justify-between text-white " style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(cart-caroul.jpg);")
+        div
+            h1(class="text-5xl") My cart
+            p(style="font-family: 'Playball', cursive;" class="text-2xl text-yellow-500") Laughter is brightest where food is best
+        div(class="space-x-1 place-items-center hidden md:flex")
+            a(href="/") Home
+            i /
+            a(href="#") Cart
+    div(class="max-w-5xl mx-auto")
+        div(class="container")
+            div(class="grid grid-cols-7 text-center py-6 md:text-2xl gap-x-3")
+                p(class="uppercase col-span-3") product
+                p(class="uppercase") price
+                p(class="uppercase") qty
+                p(class="uppercase") total 
+            ul
+                div(class="border-t")
+                li
+                    div(class="grid grid-cols-7 items-center text-center py-6 gap-x-3")
+                        div(class="col-span-3 grid grid-cols-3 items-center")
+                            img(src="mon2.png")
+                            p(class="text-left col-span-2 pl-7") Seafood & Peach
+                        p 169.000
+                        p 1
+                        p 169.000
+                        button(class="w-1/2 md:w-1/5 rounded-full mx-auto transition duration-300 ease-in-out hover:bg-red-600 hover:text-white") <i class="fa fa-times"></i>
+                div(class="border-t")
+                li
+                    div(class="grid grid-cols-7 items-center text-center py-6 gap-x-3")
+                        div(class="col-span-3 grid grid-cols-3 items-center")
+                            img(src="mon2.png")
+                            p(class="text-left col-span-2 pl-7") Seafood & Peach
+                        p 169.000
+                        p 1
+                        p 169.000
+                        button(class="w-1/2 md:w-1/5 rounded-full mx-auto transition duration-300 ease-in-out hover:bg-red-600 hover:text-white") <i class="fa fa-times"></i>
+        div(class="my-16")
+            p(class="text-xl") Have A Promo Code
+            div(class="grid grid-cols-4 text-center items-center mt-8")
+                input(class="col-span-3 border h-12 pl-4 border-yellow-800 rounded-xl" id="promo" type="text" name="promo" value placeholder="Enter Code")
+                a(class="w-1/2 mx-auto py-2 rounded-xl transition duration-300 ease-in-out hover:bg-black text-yellow-800" id="promoButton" href="#" onclick="addPromo()") <i class="fas fa-chevron-right"></i>
+        div
+            p(class="text-xl") Shipping To?
+            div(class="grid grid-cols-1 text-center mt-8")
+                input(class="border h-12 pl-4 border-yellow-800 rounded-xl" id="promo" type="text" name="address" value placeholder="Address")
+        div(class="grid grid-cols-4 my-8 text-lg")
+            p(class="col-span-3 uppercase") Subtotal 
+            p(class="text-right text-yellow-800") 169.000 VND
+        div(class="grid grid-cols-4 my-8 text-lg")
+            p(class="col-span-3 uppercase") Shipping 
+            p(class="text-right text-yellow-800") 25.000 VND
+        div(class="grid grid-cols-4 my-8 text-lg")
+            p(class="col-span-3 uppercase") Tax 
+            p(class="text-right text-yellow-800") 10%
+        div(class="grid grid-cols-4 my-8 text-lg border-t")
+            p(class="col-span-3 uppercase") Total 
+            p(class="text-right text-yellow-800") 169.000 VND
+        input(style="font-family: 'Playball', cursive;" class="my-8 w-full py-3 text-2xl rounded-lg transition duration-500 ease-in-out bg-black text-yellow-600 transform hover:-translate-y-1 hover:scale-110" type="submit" value="Checkout")
+
