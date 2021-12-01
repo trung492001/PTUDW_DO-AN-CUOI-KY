@@ -30,8 +30,18 @@ const menuGet = async function(req, res) {
     }
     const categoryData = await categoryModels.find();
     const dishData = await data.loadMenu(dishType);
-    res.locals.dishs = dishData;
+    
+    //Pagination
+    const page = parseInt(req.query.page) || 1;
+    const productPerPage = 16;
+    const begin = (page - 1) * productPerPage;
+    const end = page * productPerPage;
+    const dishArray = dishData.slice(begin, end);
+
+    res.locals.dishs = dishArray;
     res.locals.category = categoryData;
+    res.locals.currentPage = req.query.page;
+    res.locals.maxPage = dishData.length / 16 + 1;
     res.render('menu');
 };
 

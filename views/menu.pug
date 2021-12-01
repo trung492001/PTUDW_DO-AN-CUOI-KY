@@ -99,7 +99,8 @@ block content
             //- id, name, img, type, price, ingredient, description
             +foodCell(dishs[n]._id, dishs[n].dishName, dishs[n].image, dishs[n].type, dishs[n].price, dishs[n].ingredient, dishs[n].description)
             -n++ ;
-      +pagination("pizza", 1, 1)
+      - var n = 0;
+        +pagination(dishs[n].type, currentPage, maxPage)
   div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label-delete-dish" role="dialog" aria-modal="true" id="delete-dish-modal")
     div(class="flex items-end justify-center min-h-screen text-center px-5")
       div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalDeleteDish()")
