@@ -1,4 +1,5 @@
 const dishModels = require('../models/dish.model');
+const categoryModels = require('../models/category.model');
 const data = require('../service/loadData.service');
 const signInGet = async function(req, res) {
     res.render('signIn');
@@ -26,8 +27,10 @@ const menuGet = async function(req, res) {
     } else {
         dishType = "61a54429e07ebfd5e449becb";
     }
+    const categoryData = await categoryModels.find();
     const dishData = await data.loadMenu(dishType);
     res.locals.dishs = dishData;
+    res.locals.category = categoryData;
     res.render('menu');
 };
 
