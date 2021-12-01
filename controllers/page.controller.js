@@ -1,5 +1,5 @@
 const dishModels = require('../models/dish.model');
-
+const data = require('../service/loadData.service');
 const signInGet = async function(req, res) {
     res.render('signIn');
 };
@@ -9,6 +9,9 @@ const registerGet = async function(req, res) {
 };
 
 const detailGet = async function(req, res) {
+    let productId = req.query.productId;
+    const productData = await data.loadProductInfo(productId);
+    res.locals.product = productData;
     res.render('detail');
 };
 
@@ -17,24 +20,14 @@ const aboutUsGet = async function(req, res) {
 };
 
 const menuGet = async function(req, res) {
-    const pizzaData = await dishModels.find(
-        {
-          type: "61a54429e07ebfd5e449becb",
-        },
-    );
-    const saladData = await dishModels.find(
-        {
-          type: "61a54429e07ebfd5e449bece",
-        },
-    );
-    const pastaData = await dishModels.find(
-        {
-          type: "61a54429e07ebfd5e449becd",
-        },
-    );
-    res.locals.salads = saladData;
-    res.locals.pasta = pastaData;
-    res.locals.dishs = pizzaData;
+    let dishType;
+    if (req.query.category) {
+        dishType = req.query.category;
+    } else {
+        dishType = "61a54429e07ebfd5e449becb";
+    }
+    const dishData = await data.loadMenu(dishType);
+    res.locals.dishs = dishData;
     res.render('menu');
 };
 

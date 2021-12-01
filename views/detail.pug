@@ -4,13 +4,13 @@ block content
   div(class="container mx-auto lg:p-10")
     div(class="w-full mb-5 grid grid-cols-1 shadow-lg border-b lg:rounded lg:grid-cols-3 lg:border")
       div(class="col-span-1 lg:p-5")
-        img(src="https://se-pizzaproject-ver2.herokuapp.com/Seafood%20Deluxe.png" alt="Seafood Deluxe" class="w-full" )
+        img(src=product.image alt="Seafood Deluxe" class="w-full" )
       div(class="col-span-1 p-5 lg:col-span-2 lg:border-l")
-        div(class="text-2xl mb-2 md:text-3xl md:mb-6") Seafood Deluxe
-        div(class="font-bold mb-2 text-2xl text-red-600 md:text-3xl md:mb-4") 129.000 đ
+        div(class="text-2xl mb-2 md:text-3xl md:mb-6")=product.dishName
+        div(class="font-bold mb-2 text-2xl text-red-600 md:text-3xl md:mb-4")=product.price + " đ"
         div(class="bg-gray-100 p-2 mb-3 lg:mb-4 lg:p-6")
           div(class="font-semibold text-lg md:text-xl") Ingredients
-          p(class="md:text-lg") Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          p(class="md:text-lg")=product.ingredient
         div(class="bg-gray-100 mb-2" style="height:1px;")
         div
           div(class="font-semibold text-lg md:text-xl mb-2") Quantity
@@ -22,8 +22,4 @@ block content
     div(class="w-full mb-5 grid grid-cols-1 lg:rounded lg:grid-cols-4")
       div(class="col-span-1 p-5 border-b bg-white shadow-xl lg:col-span-3 lg:rounded lg:border")
         h5(class="text-xl font-semibold mb-3 md:text-2xl") Description
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper velit et nunc posuere pulvinar ut in mi. Curabitur accumsan scelerisque ligula, in faucibus tellus finibus ac. Quisque volutpat magna vitae turpis luctus, sit amet ultrices felis eleifend. Morbi at arcu hendrerit, varius neque id, vulputate neque. Curabitur ullamcorper felis ut eros efficitur, ac interdum felis imperdiet. Ut faucibus pellentesque varius. In vitae massa malesuada, commodo lectus nec, placerat diam. 
-        p Etiam volutpat nunc in dolor varius, vel rhoncus metus interdum. Aliquam id nibh vitae ante lobortis cursus. Vivamus metus leo, venenatis eu interdum vel, consectetur non est. Vestibulum vestibulum sit amet nisl finibus dapibus. In suscipit lorem nibh. Cras a dictum urna, sit amet scelerisque erat. Duis ligula risus, hendrerit vel orci in, commodo placerat augue. Vivamus sit amet tempor tortor. Curabitur lobortis arcu mi, eu viverra arcu pulvinar ut. Cras felis est, auctor id dolor laoreet, pretium semper turpis. Maecenas dignissim lacus eu lectus rutrum, eget venenatis odio hendrerit. Suspendisse potenti.
-        p Etiam elementum sapien quis lorem pulvinar facilisis. Praesent pellentesque pulvinar ex vitae faucibus. Aliquam euismod ante ex, vitae tincidunt magna egestas non. Suspendisse mollis turpis commodo nibh rhoncus molestie. Sed rutrum ex in porttitor vulputate. Etiam convallis justo tortor, condimentum maximus mauris venenatis quis. Nullam a malesuada ante, quis commodo diam.
-        p Nulla quis nulla nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus mattis libero nibh, ac maximus lacus commodo nec. Maecenas in arcu lacinia, ullamcorper mauris quis, porta lacus. Nulla facilisi. Nullam at metus non lorem porttitor interdum sed nec nisi. Maecenas vel imperdiet sem. Praesent elit sapien, rhoncus nec ipsum eget, tincidunt aliquet magna. Vivamus congue lacus nec lorem aliquam, eu tincidunt neque elementum. Maecenas eleifend eros quis nunc consequat placerat.
-        p Vivamus ac semper mi. Integer consectetur nibh a venenatis lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut eros urna. Curabitur eget enim ac purus tempor tempor suscipit ut ante. Morbi eget nulla tellus. Ut hendrerit, quam ut hendrerit euismod, leo ex laoreet nulla, vel bibendum tellus lacus fermentum elit. Maecenas aliquet lectus eu velit finibus, a fermentum felis elementum. Vivamus varius purus a urna bibendum tristique.
+        p=product.description
