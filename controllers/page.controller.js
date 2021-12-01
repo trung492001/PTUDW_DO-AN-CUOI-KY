@@ -46,12 +46,5 @@ module.exports ={
     aboutUsGet,
     menuGet,
     staffSignInGet,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     reservationGet
->>>>>>> e7eb8058dff175f0de118d6f5a08cde908617517
-=======
-    reservationGet
->>>>>>> e7eb8058dff175f0de118d6f5a08cde908617517
 };
