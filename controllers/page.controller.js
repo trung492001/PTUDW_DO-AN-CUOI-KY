@@ -1,6 +1,7 @@
 const dishModels = require('../models/dish.model');
 const categoryModels = require('../models/category.model');
 const data = require('../service/loadData.service');
+
 const signInGet = async function(req, res) {
     res.render('signIn');
 };
@@ -46,6 +47,19 @@ const shoppingCartGet = async function(req, res) {
     res.render('cart');
 };
 
+const dishPost = function(req, res) {
+    const newDish = new dishModels({
+        dishName: req.body.name,
+        price: req.body.price,
+        ingredient: req.body.ingredient,
+        description: req.body.description,
+        image: req.file.path.split('\\').slice(1).join('/'),
+        type: req.body.type
+    });
+    newDish.save();
+    res.redirect('menu');
+};
+
 module.exports ={
     signInGet,
     registerGet,
@@ -54,5 +68,6 @@ module.exports ={
     menuGet,
     staffSignInGet,
     reservationGet,
-    shoppingCartGet
+    shoppingCartGet,
+    dishPost
 };
