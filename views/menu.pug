@@ -105,7 +105,7 @@ block content
           button(class="ml-auto px-2" onclick="closeModalDish()")
             i(class="fas fa-times")
         div(class="bg-white px-4 py-3")
-          form(action="/dish" method="post" enctype="multipart/form-data" id="dish-form")
+          form(action="/dish" method="POST" enctype="multipart/form-data" id="dish-form")
             div(class="mb-3")
               label(for="form-dish-name") Dish name:
               input(type="text" id="form-dish-name" name="name" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
@@ -121,6 +121,9 @@ block content
                 option(value="2") Pasta
                 option(value="3") Salad
                 option(value="4") Drink
+            div(class="mb-3")
+              label(for="form-dish-price") Price:
+              input(type="number" value="1000" min="1000" step="1000" id="form-dish-price" name="price" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
             div(class="mb-3")
               label(for="form-dish-ingredient") Ingredients:
               input(type="text" id="form-dish-ingredient" name="ingredient" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
