@@ -1,11 +1,17 @@
 extends layout
 
-mixin foodCell(id, name, price, img, ingredient)
-  div(class="col-span-1 mb-6")
-    a(href=`/detail?productId=${id}`)  
+mixin foodCell(id, name, img, type, price, ingredient, description)
+  div(class="relative inline-block col-span-1 mb-6")
+    div(class="absolute right-0")
+      button(id="dropdown-btn" class="px-2 py-1 float-right" onclick=`toggleDropdown("${id}")`)
+        i(id="dropdown-btn" class="fas fa-ellipsis-v text-gray-600")
+      div(id=`dropdown-content-${id}` class="bg-white rounded z-10 text-left cursor-pointer clear-both hidden")
+        div(class="hover:bg-gray-300 px-3 py-1" onclick=`openModalEditDish("${id}", "${name}", "${img}", "${type}", ${price}, "${ingredient}", "${description}")`) Edit
+        div(class="hover:bg-gray-300 px-3 py-1") Delete
+    a(href=`/detail?productId=${id}`)
       img(src=img alt=name class="w-full mb-3 lg:px-6")
     div(class="text-center mb-4")
-      a(href='/detail')  
+      a(href='/detail')
         h5(class="text-xl mb-2 font-bold")=name
       h4(class="text-xl font-bold text-red-600")=price+" VNĐ"
       p(class="text-sm md:font-normal")=ingredient
@@ -83,22 +89,21 @@ block content
       div(class="rounded bg-white p-2 lg:p-4 mb-8 shadow")
         h4(class="mb-3 font-semibold text-2xl text-center lg:text-left") Category
         div(class="flex flex-nowrap overflow-x-scroll gap-4 lg:gap-6 xl:gap-8 no-scrollbar")
-          +categoryCell("61a54429e07ebfd5e449becb", "Pizza", "mon2.png")
-          +categoryCell("61a54429e07ebfd5e449becc", "Pasta", "mon14.png")
-          +categoryCell("61a54429e07ebfd5e449becd", "Salad", "mon20.png")
-          +categoryCell("61a5ece130ffb6d7f3c3fd16", "Drink", "nuoc1 (9).jpg")
+          each value in category
+            +categoryCell(value._id, value.name, value.image)
       div(class="flex flex-col")
         button(class="ml-auto mb-3 px-2 py-1 rounded bg-gray-600 text-white font-bold hover:bg-red-600" onclick="openModalAddDish()") Add
         div(class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 lg:gap-4")
           - var n = 0;
           each value in dishs
-            +foodCell(dishs[n]._id.valueOf(), dishs[n].dishName, dishs[n].price, dishs[n].image, dishs[n].ingredient)
+            //- id, name, img, type, price, ingredient, description
+            +foodCell(dishs[n]._id, dishs[n].dishName, dishs[n].image, dishs[n].type, dishs[n].price, dishs[n].ingredient, dishs[n].description)
             -n++ ;
               
       +pagination("pizza", 1, 1)
   div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label" role="dialog" aria-modal="true" id="dish-modal")
     div(class="flex items-end justify-center min-h-screen text-center px-5")
-      div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true")
+      div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalDish()")
       div(class="inline-block bg-white rounded text-left overflow-hidden shadow-xl transform transition-all max-w-lg w-full my-auto")
         div(class="flex bg-gray-100 px-4 py-2 text-gray-700") 
           span(class="font-semibold text-xl" id="modal-label") Add dish
@@ -117,10 +122,11 @@ block content
             div(class="mb-3")
               label(for="form-dish-type") Type:
               select(name="type" id="form-dish-type" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
-                option(value="1" selected) Pizza
-                option(value="2") Pasta
-                option(value="3") Salad
-                option(value="4") Drink
+                each value, index in category
+                  if index == 0
+                    option(value=value._id selected)=value.name
+                  else
+                    option(value=value._id)=value.name
             div(class="mb-3")
               label(for="form-dish-price") Price:
               input(type="number" value="1000" min="1000" step="1000" id="form-dish-price" name="price" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
@@ -130,4 +136,4 @@ block content
             div(class="mb-3")
               label(for="form-dish-description") Description:
               textarea(id="form-dish-description" name="description" class="bg-gray-200 h-20 w-full p-2 mt-1 rounded-sm" required) 
-            input(type="submit" value="+ Add dish" class="float-right bg-red-500 text-center h-10 px-2 py-1 rounded font-semibold text-white mb-3")
+            input(id="form-dish-submit" type="submit" value="Add dish" class="float-right bg-red-500 text-center h-10 px-2 py-1 rounded font-semibold text-white mb-3")
