@@ -35,11 +35,21 @@ const staffSignInGet = async function(req, res) {
     res.render('staffSignIn');
 };
 
+const reservationGet = async function(req, res) {
+    res.render('reservation');
+};
+
+const shoppingCartGet = async function(req, res) {
+    res.render('cart');
+};
+
 module.exports ={
     signInGet,
     registerGet,
     detailGet,
     aboutUsGet,
     menuGet,
-    staffSignInGet
+    staffSignInGet,
+    reservationGet,
+    shoppingCartGet
 };
