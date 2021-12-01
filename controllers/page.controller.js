@@ -39,6 +39,10 @@ const reservationGet = async function(req, res) {
     res.render('reservation');
 };
 
+const shoppingCartGet = async function(req, res) {
+    res.render('cart');
+};
+
 module.exports ={
     signInGet,
     registerGet,
@@ -46,5 +50,6 @@ module.exports ={
     aboutUsGet,
     menuGet,
     staffSignInGet,
-    reservationGet
+    reservationGet,
+    shoppingCartGet
 };

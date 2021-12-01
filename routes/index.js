@@ -23,4 +23,6 @@ router.get('/sign-in-staff', pageController.staffSignInGet);
 
 router.get('/reservation', pageController.reservationGet);
 
+router.get('/ShoppingCart', pageController.shoppingCartGet);
+
 module.exports = router;
