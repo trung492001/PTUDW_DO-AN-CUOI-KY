@@ -37,6 +37,15 @@ function openModalEditDish(id, name, image, type, price, ingredient, description
 
 }
 
+function openModalDeleteDish(id){
+    document.getElementById('form-delete-dish').setAttribute('action', `/dish/${id}`);
+    document.getElementById('delete-dish-modal').classList.remove('hidden');
+}
+
 function closeModalDish() {
     document.getElementById('dish-modal').classList.add('hidden');
+}
+
+function closeModalDeleteDish() {
+    document.getElementById('delete-dish-modal').classList.add('hidden');
 }
