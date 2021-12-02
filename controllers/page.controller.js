@@ -40,7 +40,7 @@ const menuGet = async function(req, res) {
     res.locals.dishs = dishArray;
     res.locals.category = categoryData;
     res.locals.currentPage = req.query.page;
-    res.locals.maxPage = (dishData.length / 8 == 0) ? dishData.length / 8 + 1 : dishData.length / 8;
+    res.locals.maxPage = (dishData.length % 8 == 0) ? Math.round(dishData.length / 8) : Math.round(dishData.length / 8) + 1;
     res.render('menu');
 };
 
