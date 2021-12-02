@@ -9,7 +9,6 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
-const bodyParser = require('body-parser');
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 

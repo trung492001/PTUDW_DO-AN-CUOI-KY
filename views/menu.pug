@@ -6,8 +6,8 @@ mixin foodCell(id, name, img, type, price, ingredient, description)
       button(id="dropdown-btn" class="px-2 py-1 float-right" onclick=`toggleDropdown("${id}")`)
         i(id="dropdown-btn" class="fas fa-ellipsis-v text-gray-600")
       div(id=`dropdown-content-${id}` class="bg-white rounded z-10 text-left cursor-pointer clear-both hidden")
-        div(class="hover:bg-gray-300 px-3 py-1" onclick=`openModalEditDish("${id}", "${name}", "${img}", "${type}", ${price}, "${ingredient}", "${description}")`) Edit
-        div(class="hover:bg-gray-300 px-3 py-1" onclick=`openModalDeleteDish("${id}")`) Delete
+        div(class="hover:bg-gray-300 px-3 py-1 rounded-t" onclick=`openModalEditDish("${id}", "${name}", "${img}", "${type}", ${price}, "${ingredient}", "${description}")`) Edit
+        div(class="hover:bg-gray-300 px-3 py-1 rounded-b" onclick=`openModalDeleteDish("${id}")`) Delete
     a(href=`/detail?productId=${id}`)
       img(src=img alt=name class="w-full mb-3 lg:px-6")
     div(class="text-center mb-4")
@@ -95,12 +95,12 @@ block content
         button(class="ml-auto mb-3 px-2 py-1 rounded bg-gray-600 text-white font-bold hover:bg-red-600" onclick="openModalAddDish()") Add
         div(class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 lg:gap-4")
           - var n = 0;
-          each value in dishs
+          each value in dishes
             //- id, name, img, type, price, ingredient, description
-            +foodCell(dishs[n]._id, dishs[n].dishName, dishs[n].image, dishs[n].type, dishs[n].price, dishs[n].ingredient, dishs[n].description)
+            +foodCell(dishes[n]._id, dishes[n].dishName, dishes[n].image, dishes[n].type, dishes[n].price, dishes[n].ingredient, dishes[n].description)
             -n++ ;
       - var n = 0;
-        +pagination(dishs[n].type, currentPage, maxPage)
+        +pagination(currentCategory, currentPage, pageCount)
   div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label-delete-dish" role="dialog" aria-modal="true" id="delete-dish-modal")
     div(class="flex items-end justify-center min-h-screen text-center px-5")
       div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalDeleteDish()")
