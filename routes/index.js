@@ -33,6 +33,6 @@ router.get('/ShoppingCart', pageController.shoppingCartGet);
 
 router.post('/dish', upload.single('image'), pageController.dishPost);
 
-router.post('/dish/:id', upload.single('image'), pageController.dishPatch);
+router.post('/dish/:id', upload.single('image'), pageController.dishUpdateAndDelete);
 
 module.exports = router;

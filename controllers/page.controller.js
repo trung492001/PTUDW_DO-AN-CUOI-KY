@@ -37,11 +37,10 @@ const menuGet = async function(req, res) {
     const begin = (page - 1) * productPerPage;
     const end = page * productPerPage;
     const dishArray = dishData.slice(begin, end);
-
     res.locals.dishs = dishArray;
     res.locals.category = categoryData;
     res.locals.currentPage = req.query.page;
-    res.locals.maxPage = dishData.length / 8 + 1;
+    res.locals.maxPage = (dishData.length / 8 == 0) ? dishData.length / 8 + 1 : dishData.length / 8;
     res.render('menu');
 };
 
@@ -70,16 +69,23 @@ const dishPost = function(req, res) {
     res.redirect('menu');
 };
 
-const dishPatch = async function(req, res) {
-    const dishData = await dishModels.findOne(
-        {_id: req.params.id},
-    );
-    dishData.dishName = req.body.name
-    dishData.price = req.body.price,
-    dishData.ingredient = req.body.ingredient,
-    dishData.description = req.body.description,
-    dishData.image = req.file.path.split('\\').slice(1).join('/'),
-    dishData.save();
+const dishUpdateAndDelete = async function(req, res) {
+    if(req.file) {
+        const dishData = await dishModels.findOne(
+            {_id: req.params.id},
+        );
+        dishData.dishName = req.body.name
+        dishData.price = req.body.price,
+        dishData.ingredient = req.body.ingredient,
+        dishData.description = req.body.description,
+        dishData.image = req.file.path.split('\\').slice(1).join('/'),
+        dishData.save();
+    } else {
+        const dishData = await dishModels.findOneAndDelete(
+            {_id: req.params.id},
+        );
+        dishData.save();
+    }
     res.redirect('/menu');
 };
 
@@ -93,5 +99,5 @@ module.exports ={
     reservationGet,
     shoppingCartGet,
     dishPost,
-    dishPatch
+    dishUpdateAndDelete
 };
