@@ -33,7 +33,7 @@ const menuGet = async function(req, res) {
     
     //Pagination
     const page = parseInt(req.query.page) || 1;
-    const productPerPage = 16;
+    const productPerPage = 8;
     const begin = (page - 1) * productPerPage;
     const end = page * productPerPage;
     const dishArray = dishData.slice(begin, end);
@@ -41,7 +41,7 @@ const menuGet = async function(req, res) {
     res.locals.dishs = dishArray;
     res.locals.category = categoryData;
     res.locals.currentPage = req.query.page;
-    res.locals.maxPage = dishData.length / 16 + 1;
+    res.locals.maxPage = dishData.length / 8 + 1;
     res.render('menu');
 };
 
@@ -70,6 +70,19 @@ const dishPost = function(req, res) {
     res.redirect('menu');
 };
 
+const dishPatch = async function(req, res) {
+    const dishData = await dishModels.findOne(
+        {_id: req.params.id},
+    );
+    dishData.dishName = req.body.name
+    dishData.price = req.body.price,
+    dishData.ingredient = req.body.ingredient,
+    dishData.description = req.body.description,
+    dishData.image = req.file.path.split('\\').slice(1).join('/'),
+    dishData.save();
+    res.redirect('/menu');
+};
+
 module.exports ={
     signInGet,
     registerGet,
@@ -79,5 +92,6 @@ module.exports ={
     staffSignInGet,
     reservationGet,
     shoppingCartGet,
-    dishPost
+    dishPost,
+    dishPatch
 };

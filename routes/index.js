@@ -8,6 +8,7 @@ const clientcontroller = require('../controllers/logIn.controller');
 
 //Upload Image
 const multer  = require('multer');
+const app = require('../app');
 const upload = multer({ dest: './public/uploads/' });
 /* GET home page. */
 router.get('/', indexController.indexGet);
@@ -31,5 +32,7 @@ router.get('/reservation', pageController.reservationGet);
 router.get('/ShoppingCart', pageController.shoppingCartGet);
 
 router.post('/dish', upload.single('image'), pageController.dishPost);
+
+router.post('/dish/:id', upload.single('image'), pageController.dishPatch);
 
 module.exports = router;

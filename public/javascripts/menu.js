@@ -25,7 +25,7 @@ function openModalEditDish(id, name, image, type, price, ingredient, description
     const formDish = document.getElementById('dish-form');
     formDish.reset();
     formDish.setAttribute('action', `/dish/${id}`);
-    formDish.setAttribute('method', 'PATCH');
+    formDish.setAttribute('method', 'POST');
     document.getElementById('form-dish-name').value = name;
     document.getElementById('form-dish-type').value = type;
     document.getElementById('form-dish-price').value = price;
