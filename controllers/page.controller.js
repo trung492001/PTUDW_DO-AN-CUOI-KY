@@ -88,6 +88,13 @@ const dishUpdateAndDelete = async function (req, res) {
     res.redirect('/menu');
 };
 
+const logOut = function(req, res) {
+    // Clear Staff Cookie and Log Out
+    req.logout();
+    res.clearCookie('staffId');
+    res.redirect('/');
+}
+
 module.exports = {
     signInGet,
     registerGet,
@@ -98,5 +105,6 @@ module.exports = {
     reservationGet,
     shoppingCartGet,
     dishPost,
-    dishUpdateAndDelete
+    dishUpdateAndDelete,
+    logOut
 };

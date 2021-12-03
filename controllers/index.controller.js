@@ -8,7 +8,6 @@ const indexGet = async function(req, res) {
       const userData = await staffModels.findOne(
           {_id: req.signedCookies.staffId},
       );
-      console.log(userData);
       res.locals.user = userData;
       res.render('index');
     } else {
