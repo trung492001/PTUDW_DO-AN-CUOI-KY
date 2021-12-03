@@ -39,11 +39,11 @@ html(lang="en")
                   i(class="fas fa-search fa-lg mr-6" onclick="myFunction()")
                   if user
                       a(class="mr-6" href="/profilePage")
-                          img(src=user.avatar alt="Avatar" class="avatar-nav")
-                      a(class="mr-6" href="/profilePage") = user.userName
+                          img(alt="Avatar" src=user.image class="avatar-nav")
+                      a(class="mr-6" href="/profilePage")= user.username
                           div(class="dropdown-content")
                               a(class="dropdown-item" href="/profilePage") Profile
-                              a(class="dropdown-item" href="/log-out") Sign Out
+                              a(class="dropdown-item" href="/log-out") Log Out
                   else
                       a(class="mr-6 hidden md:flex" href="/sign-in") SIGN IN
               div.col-12(id="search-bar")

@@ -38,7 +38,7 @@ const menuGet = async function (req, res) {
     res.locals.dishes = menuData.dishData;
     res.locals.category = categoryData;
     res.locals.currentCategory = dishType;
-    res.locals.currentPage = req.query.page ?? 1;
+    res.locals.currentPage = req.query.page ? req.query.page : 1;
     res.locals.pageCount = menuData.pageCount;
     res.render('menu');
 };

@@ -1,10 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 
+// Controllers
 const indexController = require('../controllers/index.controller');
 const pageController = require('../controllers/page.controller');
 const clientValidate = require('../validate/logInValidation');
-const clientcontroller = require('../controllers/logIn.controller');
+const staffController = require('../controllers/staff.controller');
+
+// Middleware
+const staffAuthMiddleware = require('../middleware/staffAuthentication.middleware');
 
 //Upload Image
 const multer  = require('multer');
@@ -26,6 +31,8 @@ router.get('/detail', pageController.detailGet);
 router.get('/AboutUs', pageController.aboutUsGet);
 
 router.get('/sign-in-staff', pageController.staffSignInGet);
+
+router.post('/sign-in-staff', staffAuthMiddleware.staffAuthentication, staffController.staffLogin);
 
 router.get('/reservation', pageController.reservationGet);
 
