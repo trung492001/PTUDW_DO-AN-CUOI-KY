@@ -40,7 +40,7 @@ const menuGet = async function (req, res) {
     res.locals.dishes = menuData.dishData;
     res.locals.category = categoryData;
     res.locals.currentCategory = dishType;
-    res.locals.currentPage = req.query.page ?? 1;
+    res.locals.currentPage = req.query.page ? req.query.page : 1;
     res.locals.pageCount = menuData.pageCount;
     res.render('menu');
 };
@@ -90,13 +90,11 @@ const dishUpdateAndDelete = async function (req, res) {
     res.redirect('/menu');
 };
 
-const clientPostLogin = async function(req,res){
-    const data = req.body;
-    const user = await customerModel.findOne({username: data.username});
-    const cartUser = await cartModel.findOne({customerId: user._id});
-    res.locals.user = user;
-    res.locals.cartLength = cartUser.cart.length;
-    res.render("index");
+const logOut = function(req, res) {
+    // Clear Staff Cookie and Log Out
+    req.logout();
+    res.clearCookie('staffId');
+    res.redirect('/');
 }
 
 module.exports = {
@@ -110,5 +108,5 @@ module.exports = {
     shoppingCartGet,
     dishPost,
     dishUpdateAndDelete,
-    clientPostLogin
+    logOut
 };
