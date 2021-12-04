@@ -97,6 +97,10 @@ const logOut = function(req, res) {
     res.redirect('/');
 }
 
+const profilePageGet = async function (req, res) {
+    res.render('profilePage');
+};
+
 module.exports = {
     signInGet,
     registerGet,
@@ -108,5 +112,6 @@ module.exports = {
     shoppingCartGet,
     dishPost,
     dishUpdateAndDelete,
-    logOut
+    logOut,
+    profilePageGet
 };

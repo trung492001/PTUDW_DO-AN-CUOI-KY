@@ -20,7 +20,7 @@ router.get('/', indexController.indexGet);
 
 router.get('/sign-in', pageController.signInGet);
 
-router.post('/sign-in', clientValidate.validateLoginClient, pageController.clientPostLogin);
+router.post('/sign-in', pageController.profilePageGet);
 
 router.get('/register', pageController.registerGet);
 
@@ -43,5 +43,7 @@ router.get('/log-out', pageController.logOut);
 router.post('/dish', upload.single('image'), pageController.dishPost);
 
 router.post('/dish/:id', upload.single('image'), pageController.dishUpdateAndDelete);
+
+router.get('/profile', pageController.profilePageGet);
 
 module.exports = router;
