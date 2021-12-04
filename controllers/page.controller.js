@@ -2,6 +2,8 @@ const dishModels = require('../models/dish.model');
 const categoryModels = require('../models/category.model');
 const data = require('../service/loadData.service');
 const pagination = require('../utils/pagination');
+const customerModel = require("../models/customer.model");
+const cartModel = require("../models/cart.model");
 
 const signInGet = async function (req, res) {
     res.render('signIn');
@@ -88,6 +90,15 @@ const dishUpdateAndDelete = async function (req, res) {
     res.redirect('/menu');
 };
 
+const clientPostLogin = async function(req,res){
+    const data = req.body;
+    const user = await customerModel.findOne({username: data.username});
+    const cartUser = await cartModel.findOne({customerId: user._id});
+    res.locals.user = user;
+    res.locals.cartLength = cartUser.cart.length;
+    res.render("index");
+}
+
 module.exports = {
     signInGet,
     registerGet,
@@ -98,5 +109,6 @@ module.exports = {
     reservationGet,
     shoppingCartGet,
     dishPost,
-    dishUpdateAndDelete
+    dishUpdateAndDelete,
+    clientPostLogin
 };

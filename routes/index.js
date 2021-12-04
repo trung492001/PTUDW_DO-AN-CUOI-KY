@@ -4,7 +4,7 @@ var router = express.Router();
 const indexController = require('../controllers/index.controller');
 const pageController = require('../controllers/page.controller');
 const clientValidate = require('../validate/logInValidation');
-const clientcontroller = require('../controllers/logIn.controller');
+const clientController = require('../controllers/logIn.controller');
 
 //Upload Image
 const multer  = require('multer');
@@ -15,7 +15,7 @@ router.get('/', indexController.indexGet);
 
 router.get('/sign-in', pageController.signInGet);
 
-router.post('/sign-in', clientValidate.validateLoginClient);
+router.post('/sign-in', clientValidate.validateLoginClient, pageController.clientPostLogin);
 
 router.get('/register', pageController.registerGet);
 
