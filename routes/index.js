@@ -10,6 +10,7 @@ const staffController = require('../controllers/staff.controller');
 
 // Middleware
 const staffAuthMiddleware = require('../middleware/staffAuthentication.middleware');
+const authMiddeleware = require('../middleware/authMiddleware.middleware');
 
 //Upload Image
 const multer  = require('multer');
@@ -44,6 +45,6 @@ router.post('/dish', upload.single('image'), pageController.dishPost);
 
 router.post('/dish/:id', upload.single('image'), pageController.dishUpdateAndDelete);
 
-router.get('/profile', pageController.profilePageGet);
+router.get('/profile', authMiddeleware.AuthMiddleware, pageController.profilePageGet);
 
 module.exports = router;
