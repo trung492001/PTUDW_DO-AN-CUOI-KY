@@ -12,6 +12,9 @@ const app = require('../app');
 const upload = multer({ dest: './public/uploads/' });
 /* GET home page. */
 router.get('/', indexController.indexGet);
+router.get('/dashboard', (req, res, next) => {
+    res.render('dashboard');
+});
 
 router.get('/sign-in', pageController.signInGet);
 
