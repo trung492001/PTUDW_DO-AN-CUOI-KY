@@ -2,6 +2,8 @@ const dishModels = require('../models/dish.model');
 const categoryModels = require('../models/category.model');
 const data = require('../service/loadData.service');
 const pagination = require('../utils/pagination');
+const customerModel = require("../models/customer.model");
+const cartModel = require("../models/cart.model");
 
 const signInGet = async function (req, res) {
     res.render('signIn');
@@ -38,7 +40,7 @@ const menuGet = async function (req, res) {
     res.locals.dishes = menuData.dishData;
     res.locals.category = categoryData;
     res.locals.currentCategory = dishType;
-    res.locals.currentPage = req.query.page ?? 1;
+    res.locals.currentPage = req.query.page ? req.query.page : 1;
     res.locals.pageCount = menuData.pageCount;
     res.render('menu');
 };
@@ -88,6 +90,17 @@ const dishUpdateAndDelete = async function (req, res) {
     res.redirect('/menu');
 };
 
+const logOut = function(req, res) {
+    // Clear Staff Cookie and Log Out
+    req.logout();
+    res.clearCookie('staffId');
+    res.redirect('/');
+}
+
+const profilePageGet = async function (req, res) {
+    res.render('profilePage');
+};
+
 module.exports = {
     signInGet,
     registerGet,
@@ -98,5 +111,7 @@ module.exports = {
     reservationGet,
     shoppingCartGet,
     dishPost,
-    dishUpdateAndDelete
+    dishUpdateAndDelete,
+    logOut,
+    profilePageGet
 };

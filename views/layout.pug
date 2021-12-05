@@ -38,14 +38,18 @@ html(lang="en")
                                   i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
                   i(class="fas fa-search fa-lg mr-6" onclick="myFunction()")
                   if user
-                      a(class="mr-6" href="/profilePage")
-                          img(src=user.avatar alt="Avatar" class="avatar-nav")
-                      a(class="mr-6" href="/profilePage") = user.userName
-                          div(class="dropdown-content")
-                              a(class="dropdown-item" href="/profilePage") Profile
-                              a(class="dropdown-item" href="/log-out") Sign Out
+                    div(class="hidden md:flex items-center")
+                      a(class="mr-6" href="/profile")
+                        img(alt="Avatar" src="site-img25.jpg" class="h-10 w-10 rounded-full")
+                      div(class="relative inline-block dropdown pt-2")
+                        a(class="mr-6" href="/profile") alo
+                        div(class="dropdown-menu hidden absolute bg-white text-black w-32 z-10 right-0 mt-1 text-right")
+                          div(class="hover:bg-gray-300")
+                            a(class="block p-2" href="/profile") Profile
+                          div(class="hover:bg-gray-300")
+                            a(class="block p-2" href="/log-out") Log Out
                   else
-                      a(class="mr-6 hidden md:flex" href="/sign-in") SIGN IN
+                    a(class="mr-6 hidden md:flex" href="/sign-in") SIGN IN
               div.col-12(id="search-bar")
                   i(class="fas fa-search fa-lg" onclick="myFunction()")
                   input(type="text" id="searchBar" placeholder="Search Here ..... !")
@@ -58,12 +62,19 @@ html(lang="en")
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                       </svg>
           //Mobile menu
-          div(class="nav-bar mobile-menu hidden md:hidden bg-black text-white px-2 py-2") 
-              a(class="block px-4 py-3 rounded-md hover:bg-white" href="/") HOME
-              a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") ABOUT US
-              a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") MENU
-              a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") RESERVATION 
-              a(class="block px-4 py-3 rounded-md hover:bg-white" href="/logIn") LOGIN 
+          div(class="nav-bar mobile-menu hidden md:hidden bg-black text-white px-2 py-2")
+              if user 
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/profile") PROFILE
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/") HOME
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") ABOUT US
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") MENU
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") RESERVATION 
+              else
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/") HOME
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") ABOUT US
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") MENU
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") RESERVATION
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/sign-in") LOGIN
       block content
       block foot
       div(class="w-full bg-black text-white")

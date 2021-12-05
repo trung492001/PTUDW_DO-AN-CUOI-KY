@@ -11,6 +11,7 @@ const customerModels = new mongoose.Schema({
     phone: String,
     gender: Number,
     address: String,
+    image: String,
 });
 
 module.exports = mongoose.model('customer', customerModels);
