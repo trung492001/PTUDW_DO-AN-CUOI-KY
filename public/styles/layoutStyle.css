@@ -6,9 +6,7 @@
 .dropdown:hover .dropdown-menu {
     display: block;
 }
-.dropdown-menu{
-    min-width: 240px;
-}
 nav>div #search-bar{
     display:none;
 }
+
