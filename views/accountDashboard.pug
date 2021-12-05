@@ -1,0 +1,113 @@
+extends dashboard 
+
+mixin accountRow(id, avatar, name, gender, email, phone, address)
+  tr
+    td(class="p-2 whitespace-nowrap")
+      div(class="flex items-center")
+        div(class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3")
+          img(src=avatar class="rounded-full")
+        div(class="font-medium text-gray-800")=name
+    td(class="p-2 whitespace-nowrap")
+      div(class="flex items-center justify-center")
+        span(class=`px-3 py-0.5 rounded-full border${gender == 1 ? " text-blue-700 bg-blue-100 border-blue-300": gender == 2 ? " text-pink-700 bg-pink-100 border-pink-300": " text-gray-700 bg-gray-100 border-gray-300"}`)=gender == 1 ? "Male" : gender == 2 ? "Female" : "Other"
+    td(class="p-2 whitespace-nowrap")
+      div(class="text-left")=email
+    td(class="p-2 whitespace-nowrap")
+      div(class="text-left")=phone
+    td(class="p-2 whitespace-nowrap")
+      div(class="text-left")=address 
+    td(class="p-2 whitespace-nowrap")
+      div(class="flex")
+        a(class="text-indigo-600 hover:text-indigo-900 cursor-pointer") Ban
+
+mixin pagination(currentPage, pageCount)
+  if pageCount > 0
+    nav(class="my-6" id="#pagination")
+      ul(class="flex gap-x-1")
+
+        //- Prev item
+        if currentPage > 1
+          a(class="" href=`?page=${currentPage-1}`)
+            li(class="border py-1 px-2 text-center" style="min-width: 36px;")
+              <i class="fas fa-chevron-left"></i>
+
+        //- Small pageCount
+        if pageCount < 8
+          - for(var i = 1; i <= pageCount; ++i)
+            if i == currentPage
+              li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                span(class="underline")=i
+            else
+              li(class="border text-center py-1" style="min-width: 36px;")
+                a(href=`?page=${i}`)=i
+        else
+          //- First item
+          if currentPage > 4
+            li(class="border text-center py-1" style="min-width: 36px;")
+              a(href=prefixUrl) 1
+            li(class="text-center py-1 cursor-default" style="min-width: 36px;")
+              span(class="mt-auto align-baseline text-gray-500") •••
+
+          if currentPage <= 4
+            - for(var i = 1; i <= (currentPage == 4 ? 6 : 5); ++i)
+              if i == currentPage
+                li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                  span(class="underline")=i
+              else
+                li(class="border text-center py-1" style="min-width: 36px;")
+                  a(href=`?page=${i}`)=i
+          else if pageCount - currentPage < 4
+            - for(var i = (pageCount - currentPage == 3 ? currentPage - 2: pageCount - 4); i <= pageCount; ++i)
+              if i == currentPage
+                li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                  span(class="underline")=i
+              else
+                li(class="border text-center py-1" style="min-width: 36px;")
+                  a(href=`?page=${i}`)=i
+          
+          
+          //- Last item
+          if pageCount - currentPage >= 4
+            li(class="text-center py-1 cursor-default" style="min-width: 36px;")
+              span(class="mt-auto align-baseline text-gray-500") •••
+            li(class="border text-center py-1" style="min-width: 36px;")
+              a(href=`?page=${pageCount}`)=pageCount
+        
+        //- Next item
+        if currentPage < pageCount
+          a(class="" href=`?page=${currentPage+1}`)
+            li(class="border py-1 px-2 text-center" style="min-width: 36px;")
+              <i class="fas fa-chevron-right"></i>
+
+block content 
+  table(class="w-full divide-y divide-gray-200")
+    thead(class="text-sm uppercase text-gray-500 bg-gray-100 w-full")
+      tr
+        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Name
+        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Gender
+        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Email
+        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Phone
+        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Address
+        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Action
+    tbody(class="text-sm")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 2, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 3, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 3, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 2, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
+  
+  +pagination(1, 10)
+
+        
+
+    

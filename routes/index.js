@@ -18,8 +18,21 @@ const app = require('../app');
 const upload = multer({ dest: './public/uploads/' });
 /* GET home page. */
 router.get('/', indexController.indexGet);
-router.get('/dashboard', (req, res, next) => {
+
+
+router.get('/dashboard', async (req, res, next) => {
+    res.locals.activeCell = ['dashboard'];
     res.render('dashboard');
+});
+
+router.get('/dashboard/account/admin', async (req, res, next) => {
+    res.locals.activeCell = ['account', 'admin'];
+    res.render('accountDashboard');
+});
+
+router.get('/dashboard/account/customer', async (req, res, next) => {
+    res.locals.activeCell = ['account', 'customer'];
+    res.render('accountDashboard');
 });
 
 router.get('/sign-in', pageController.signInGet);
