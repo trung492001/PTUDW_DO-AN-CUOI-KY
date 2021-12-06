@@ -80,13 +80,6 @@ mixin pagination(currentQuery, currentPage, pageCount)
             li(class="border py-1 px-2 text-center" style="min-width: 36px;")
               i(class="fas fa-chevron-right")
 block content 
-  div(class="mb-2 md:mb-4")
-    form(class="flex" method="GET")
-      input(id="dashboard-account-search-input" name="query" class="w-40 rounded-l-sm p-1 border text-sm box-border")
-      button(type="submit" class="px-2 rounded-r-sm bg-blue-500 hover:bg-blue-600")
-        i(class="fas fa-search text-white mr-2")
-        span(class="font-medium text-white") Search
-
   table(class="w-full divide-y divide-gray-200")
     thead(class="text-sm uppercase text-gray-500 bg-gray-100 w-full")
       tr
@@ -113,7 +106,7 @@ block content
       +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
       +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
   
-  +pagination("a", 1, 10)
+  +pagination(currentQuery, currentPage, pageCount)
 
         
 

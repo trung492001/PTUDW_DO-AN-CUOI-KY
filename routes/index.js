@@ -53,6 +53,9 @@ router.get('/dashboard/account/admin', async (req, res, next) => {
 
 router.get('/dashboard/account/customer', async (req, res, next) => {
     res.render('accountDashboard', {
+        currentQuery: req.query.query,
+        currentPage: req.query.page ?? 1,
+        pageCount: 40,
         title: "Customer accounts",
         breadcrumb: [
             {
