@@ -13,7 +13,7 @@ const staffAuthMiddleware = require('../middleware/staffAuthentication.middlewar
 const authMiddeleware = require('../middleware/authMiddleware.middleware');
 
 //Upload Image
-const multer  = require('multer');
+const multer = require('multer');
 const app = require('../app');
 const upload = multer({ dest: './public/uploads/' });
 /* GET home page. */
@@ -21,18 +21,53 @@ router.get('/', indexController.indexGet);
 
 
 router.get('/dashboard', async (req, res, next) => {
-    res.locals.activeCell = ['dashboard'];
-    res.render('dashboard');
+    res.render('dashboard', {
+        title: "Dashboard",
+        activeCell: ['dashboard'],
+        breadcrumb: [
+            {
+                name: 'Dashboard'
+            }
+        ]
+    });
 });
 
 router.get('/dashboard/account/admin', async (req, res, next) => {
-    res.locals.activeCell = ['account', 'admin'];
-    res.render('accountDashboard');
+    res.render('accountDashboard', {
+        title: "Admin accounts",
+        breadcrumb: [
+            {
+                link: '/dashboard',
+                name: 'Dashboard'
+            },
+            {
+                name: 'Account'
+            },
+            {
+                name: 'Admin'
+            }
+        ],
+        activeCell: ['account', 'admin']
+    });
 });
 
 router.get('/dashboard/account/customer', async (req, res, next) => {
-    res.locals.activeCell = ['account', 'customer'];
-    res.render('accountDashboard');
+    res.render('accountDashboard', {
+        title: "Customer accounts",
+        breadcrumb: [
+            {
+                link: '/dashboard',
+                name: 'Dashboard'
+            },
+            {
+                name: 'Account'
+            },
+            {
+                name: 'Admin'
+            }
+        ],
+        activeCell: ['account', 'customer']
+    });
 });
 
 router.get('/sign-in', pageController.signInGet);
