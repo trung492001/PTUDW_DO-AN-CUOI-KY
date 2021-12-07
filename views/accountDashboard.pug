@@ -20,16 +20,17 @@ mixin accountRow(id, avatar, name, gender, email, phone, address)
       div(class="flex")
         a(class="text-indigo-600 hover:text-indigo-900 cursor-pointer") Ban
 
-mixin pagination(currentPage, pageCount)
+mixin pagination(currentQuery, currentPage, pageCount)
+  - var prefixUrl = currentQuery?`?query=${currentQuery}`:"";
   if pageCount > 0
-    nav(class="my-6" id="#pagination")
-      ul(class="flex gap-x-1")
+    nav(class="mb-12" id="#pagination")
+      ul(class="flex justify-center gap-x-1")
 
         //- Prev item
         if currentPage > 1
-          a(class="" href=`?page=${currentPage-1}`)
+          a(class="" href=prefixUrl?`${prefixUrl}&page=${currentPage-1}`:`?page=${currentPage-1}`)
             li(class="border py-1 px-2 text-center" style="min-width: 36px;")
-              <i class="fas fa-chevron-left"></i>
+              i(class="fas fa-chevron-left")
 
         //- Small pageCount
         if pageCount < 8
@@ -39,7 +40,7 @@ mixin pagination(currentPage, pageCount)
                 span(class="underline")=i
             else
               li(class="border text-center py-1" style="min-width: 36px;")
-                a(href=`?page=${i}`)=i
+                a(href=prefixUrl?`${prefixUrl}&page=${i}`:`?page=${i}`)=i
         else
           //- First item
           if currentPage > 4
@@ -55,7 +56,7 @@ mixin pagination(currentPage, pageCount)
                   span(class="underline")=i
               else
                 li(class="border text-center py-1" style="min-width: 36px;")
-                  a(href=`?page=${i}`)=i
+                  a(href=prefixUrl?`${prefixUrl}&page=${i}`:`?page=${i}`)=i
           else if pageCount - currentPage < 4
             - for(var i = (pageCount - currentPage == 3 ? currentPage - 2: pageCount - 4); i <= pageCount; ++i)
               if i == currentPage
@@ -63,7 +64,7 @@ mixin pagination(currentPage, pageCount)
                   span(class="underline")=i
               else
                 li(class="border text-center py-1" style="min-width: 36px;")
-                  a(href=`?page=${i}`)=i
+                  a(href=prefixUrl?`${prefixUrl}&page=${i}`:`?page=${i}`)=i
           
           
           //- Last item
@@ -71,31 +72,37 @@ mixin pagination(currentPage, pageCount)
             li(class="text-center py-1 cursor-default" style="min-width: 36px;")
               span(class="mt-auto align-baseline text-gray-500") •••
             li(class="border text-center py-1" style="min-width: 36px;")
-              a(href=`?page=${pageCount}`)=pageCount
+              a(href=prefixUrl?`${prefixUrl}&page=${pageCount}`:`?page=${pageCount}`)=pageCount
         
         //- Next item
         if currentPage < pageCount
-          a(class="" href=`?page=${currentPage+1}`)
+          a(class="" href=prefixUrl?`${prefixUrl}&page=${currentPage+1}`:`?page=${currentPage+1}`)
             li(class="border py-1 px-2 text-center" style="min-width: 36px;")
-              <i class="fas fa-chevron-right"></i>
+              i(class="fas fa-chevron-right")
 
 block content 
+  div(class="mb-2 md:mb-4 flex justify-between")
+    form(class="flex" method="GET")
+      input(id="dashboard-search-input" name="query" value=currentQuery class="w-40 rounded-l-sm p-1 border text-sm box-border")
+      button(type="submit" class="px-1 xs:px-2 rounded-r-sm bg-blue-500 hover:bg-blue-600")
+        i(class="fas fa-search text-white mr-2")
+        span(class="font-medium text-white") Search
+    if (activeCell [1] && activeCell[1] == "staff")
+      button(class="px-2 bg-blue-500 hover:bg-blue-600 rounded-sm font-medium text-white" onclick="openModalDashboardAddStaff()") Add
   table(class="w-full divide-y divide-gray-200")
     thead(class="text-sm uppercase text-gray-500 bg-gray-100 w-full")
       tr
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Name
-        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Gender
+        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-center") Gender
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Email
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Phone
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Address
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Action
     tbody(class="text-sm")
-      - var n = 0;
-      each value in accoutData
-        +accountRow("1", "/" + accoutData[n].image, accoutData[n].lastName + " " + accoutData[n].firstName, accoutData[n].gender, accoutData[n].email, accoutData[n].phone, accoutData[n].address)
-        -n++ ;
-  +pagination(1, 10)
-
+      each value in accountData
+        +accountRow("1", "/" + value.image, value.name, value.gender, value.email, value.phone, value.address)
+  +pagination(currentQuery, currentPage, pageCount)
+  script(src="/accountDashboard.js") 
         
 
     

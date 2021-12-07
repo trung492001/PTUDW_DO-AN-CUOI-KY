@@ -9,21 +9,21 @@ const staffController = require('../controllers/staff.controller');
 const userController = require('../controllers/user.controller');
 // Middleware
 const staffAuthMiddleware = require('../middleware/staffAuthentication.middleware');
-const authMiddeleware = require('../middleware/authMiddleware.middleware');
+const authMiddleware = require('../middleware/authMiddleware.middleware');
 const userAuthMiddleware = require('../middleware/userAuthentication.middleware');
 //Upload Image
-const multer  = require('multer');
+const multer = require('multer');
 const app = require('../app');
 const upload = multer({ dest: './public/uploads/' });
 /* GET home page. */
 router.get('/', indexController.indexGet);
 
 
-router.get('/dashboard',authMiddeleware.StaffAuthMiddleware, pageController.dashboardGet);
+router.get('/dashboard', authMiddleware.StaffAuthMiddleware, pageController.dashboardGet);
 
-router.get('/dashboard/account/admin',authMiddeleware.StaffAuthMiddleware, pageController.dashboardAdminAccount);
+router.get('/dashboard/account/staff', authMiddleware.StaffAuthMiddleware, pageController.dashboardStaffAccount);
 
-router.get('/dashboard/account/customer',authMiddeleware.StaffAuthMiddleware, pageController.dashboardCustomerAccount);
+router.get('/dashboard/account/customer', authMiddleware.StaffAuthMiddleware, pageController.dashboardCustomerAccount);
 
 router.get('/sign-in', pageController.signInGet);
 
@@ -43,7 +43,7 @@ router.post('/sign-in-staff', staffAuthMiddleware.staffAuthentication, staffCont
 
 router.get('/reservation', pageController.reservationGet);
 
-router.get('/ShoppingCart', authMiddeleware.AuthMiddleware, pageController.shoppingCartGet);
+router.get('/ShoppingCart', authMiddleware.AuthMiddleware, pageController.shoppingCartGet);
 
 router.get('/log-out', pageController.logOut);
 
@@ -51,6 +51,6 @@ router.post('/dish', upload.single('image'), pageController.dishPost);
 
 router.post('/dish/:id', upload.single('image'), pageController.dishUpdateAndDelete);
 
-router.get('/profile', authMiddeleware.AuthMiddleware, pageController.profilePageGet);
+router.get('/profile', authMiddleware.AuthMiddleware, pageController.profilePageGet);
 
 module.exports = router;
