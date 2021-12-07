@@ -1,7 +1,7 @@
-var passport = require('passport');
+var passportUser = require('passport');
 
 const userAuthentication = function(req, res, next) {
-    passport.authenticate('local', {
+    passportUser.authenticate('user', {
         failureRedirect: '/sign-in',
         failureFlash: true,
     })(req, res, next)

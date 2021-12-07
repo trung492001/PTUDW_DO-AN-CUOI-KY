@@ -96,6 +96,7 @@ const logOut = function(req, res) {
     // Clear Staff Cookie and Log Out
     req.logout();
     res.clearCookie('staffId');
+    res.clearCookie('userId');
     res.redirect('/');
 }
 

@@ -1,7 +1,7 @@
 var passport = require('passport');
 
 const staffAuthentication = function(req, res, next) {
-    passport.authenticate('local', {
+    passport.authenticate('staff', {
         failureRedirect: '/sign-in-staff',
         failureFlash: true,
     })(req, res, next)
