@@ -40,9 +40,9 @@ html(lang="en")
                   if user
                     div(class="hidden md:flex items-center")
                       a(class="mr-6" href="/profile")
-                        img(alt="Avatar" src="site-img25.jpg" class="h-10 w-10 rounded-full")
+                        img(alt="Avatar" src=user.image class="h-10 w-10 rounded-full")
                       div(class="relative inline-block dropdown pt-2")
-                        a(class="mr-6" href="/profile") alo
+                        a(class="mr-6" href="/profile")=user.username
                         div(class="dropdown-menu hidden absolute bg-white text-black w-32 z-10 right-0 mt-1 text-right")
                           div(class="hover:bg-gray-300")
                             a(class="block p-2" href="/profile") Profile

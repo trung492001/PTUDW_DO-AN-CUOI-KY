@@ -9,7 +9,7 @@ const staffController = require('../controllers/staff.controller');
 const userController = require('../controllers/user.controller');
 // Middleware
 const staffAuthMiddleware = require('../middleware/staffAuthentication.middleware');
-const authMiddeleware = require('../middleware/authMiddleware.middleware');
+const authMiddleware = require('../middleware/authMiddleware.middleware');
 const userAuthMiddleware = require('../middleware/userAuthentication.middleware');
 //Upload Image
 const multer  = require('multer');
@@ -19,11 +19,11 @@ const upload = multer({ dest: './public/uploads/' });
 router.get('/', indexController.indexGet);
 
 
-router.get('/dashboard',authMiddeleware.StaffAuthMiddleware, pageController.dashboardGet);
+router.get('/dashboard',authMiddleware.StaffAuthMiddleware, pageController.dashboardGet);
 
-router.get('/dashboard/account/admin',authMiddeleware.StaffAuthMiddleware, pageController.dashboardAdminAccount);
+router.get('/dashboard/account/admin',authMiddleware.StaffAuthMiddleware, pageController.dashboardAdminAccount);
 
-router.get('/dashboard/account/customer',authMiddeleware.StaffAuthMiddleware, pageController.dashboardCustomerAccount);
+router.get('/dashboard/account/customer',authMiddleware.StaffAuthMiddleware, pageController.dashboardCustomerAccount);
 
 router.get('/sign-in', pageController.signInGet);
 
