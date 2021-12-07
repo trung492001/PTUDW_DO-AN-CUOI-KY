@@ -60,8 +60,8 @@ html(lang="en")
                 div(id="dashboard-sidebar-dropdown-button" class=`mt-1${activeCell[1] ? "" : " hidden"}`)
                   ul(class="pl-11 space-y-1")
                     li(class="")
-                        a(href="/dashboard/account/admin" class=`${activeCell[1] && activeCell[1] == "admin" ? "text-gray-200": "text-gray-400"} hover:text-gray-200 truncate block`)
-                          span(class="text-sm font-medium ") Admin
+                        a(href="/dashboard/account/staff" class=`${activeCell[1] && activeCell[1] == "staff" ? "text-gray-200": "text-gray-400"} hover:text-gray-200 truncate block`)
+                          span(class="text-sm font-medium ") Staff
                         a(href="/dashboard/account/customer" class=`${activeCell[1] && activeCell[1] == "customer" ? "text-gray-200": "text-gray-400"} hover:text-gray-200 truncate block`)
                           span(class="text-sm font-medium ") Customer
 
@@ -104,19 +104,53 @@ html(lang="en")
                         li
                           a(class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="/log-out") Logout
         main
-          div(class="px-4 sm:px-6 lg:px-8 py-8 w-full ")
+          div(class="px-1 xs:px-2 sm:px-4 py-4 lg:p-8 w-full ")
             +breadcrumb(breadcrumb)
             div(class="bg-white h-full shadow-md border")
               div(class="p-2 md:p-4 border-b font-bold tracking-wider uppercase text-gray-600")=title
               div(class="p-2 md:p-4")
                 div(class="overflow-x-auto")
-                  div(class="mb-2 md:mb-4")
-                    form(class="flex" method="GET")
-                      input(id="dashboard-search-input" name="query" value=currentQuery class="w-40 rounded-l-sm p-1 border text-sm box-border")
-                      button(type="submit" class="px-2 rounded-r-sm bg-blue-500 hover:bg-blue-600")
-                        i(class="fas fa-search text-white mr-2")
-                        span(class="font-medium text-white") Search
                   block content
+          if (activeCell [1] && activeCell[1] == "staff")
+            div(class="fixed z-50 inset-0 hidden" aria-labelledby="modal-label" role="dialog" aria-modal="true" id="dashboard-add-staff-modal")
+              div(class="flex items-end justify-center min-h-screen text-center px-5")
+                div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalDashboardAddStaff()")
+                div(class="inline-block bg-white rounded text-left overflow-hidden shadow-xl transform transition-all max-w-lg w-full my-auto")
+                  div(class="flex bg-gray-100 px-4 py-2 text-gray-700") 
+                    span(class="font-semibold text-xl" id="dashboard-add-staff-modal-label") Add Staff
+                    button(class="ml-auto px-2" onclick="closeModalDashboardAddStaff()")
+                      i(class="fas fa-times")
+                  div(class="bg-white px-4 py-3 overflow-y-auto no-scrollbar" style="max-height: calc(100vh - 100px)")
+                    form(action="/staff" method="POST" id="dashboard-add-staff-form")
+                      div(class="mb-3")
+                        label(for="dashboard-add-staff-form-username") Username:
+                        input(type="text" id="dashboard-add-staff-form-username" name="username" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+                      div(class="mb-3")
+                        label(for="dashboard-add-staff-form-email") Email:
+                        input(type="email" id="dashboard-add-staff-form-email" name="email" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+                      div(class="mb-3")
+                        label(for="dashboard-add-staff-form-password") Password:
+                        input(type="password" id="dashboard-add-staff-form-password" name="password" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+                      div(class="mb-3")
+                        label(for="dashboard-add-staff-form-fname") First Name:
+                        input(type="text" id="dashboard-add-staff-form-fname" name="fname" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+                      div(class="mb-3")
+                        label(for="dashboard-add-staff-form-lname") Last Name:
+                        input(type="text" id="dashboard-add-staff-form-lname" name="lname" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+                      div(class="mb-3")
+                        label(for="dashboard-add-staff-form-gender") Gender
+                        select(name="gender" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" title="dashboard-add-staff-form-gender" required)
+                            option(value="1" selected) Male 
+                            option(value="2") Female 
+                            option(value="3") Other 
+                      div(class="mb-3")
+                        label(for="dashboard-add-staff-form-address") Address:
+                        input(type="text" id="dashboard-add-staff-form-address" name="address" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+                      div(class="mb-3")
+                        label(for="dashboard-add-staff-form-phone") Phone:
+                        input(type="text" id="dashboard-add-staff-form-phone" name="phone" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+                      input(id="form-dish-submit" type="submit" value="Add Staff" class="w-full mb-3 float-right inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:w-auto sm:text-sm")
+
 
                     
                   

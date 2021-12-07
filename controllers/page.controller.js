@@ -92,7 +92,7 @@ const dishUpdateAndDelete = async function (req, res) {
     res.redirect('/menu');
 };
 
-const logOut = function(req, res) {
+const logOut = function (req, res) {
     // Clear Staff Cookie and Log Out
     req.logout();
     res.clearCookie('staffId');
@@ -106,32 +106,133 @@ const profilePageGet = async function (req, res) {
 
 const dashboardGet = async (req, res, next) => {
     const userData = await staffModels.findOne(
-        {_id: req.signedCookies.staffId},
+        { _id: req.signedCookies.staffId },
     );
+    res.locals.breadcrumb = [
+        {
+            name: 'Dashboard'
+        }
+    ];
+    res.locals.title = "Dashboard";
     res.locals.user = userData;
     res.locals.activeCell = ['dashboard'];
     res.render('dashboard');
 };
 
-const dashboardAdminAccount = async (req, res, next) => {
-    const adminAccoutData = await staffModels.find();
+const dashboardStaffAccount = async (req, res, next) => {
+    const page = req.query.page ?? 1;
+    const pagi = pagination({ page, pageSize: 15 });
+    const query = req.query.query ?? "";
+    const staffAccountData = await staffModels.aggregate()
+        .addFields({
+            name: {
+                $concat: [
+                    "$lastName",
+                    " ",
+                    "$firstName"
+                ]
+            },
+
+        })
+        .match({
+            $or: [
+                {
+                    username: {
+                        $regex: new RegExp(query, "i")
+                    }
+                },
+                {
+                    name: {
+                        $regex: new RegExp(query, "i")
+                    }
+                }
+            ]
+        })
+        .skip(pagi.skip)
+        .limit(pagi.limit);
+
+    const resultCount = await staffModels.countDocuments();
     const userData = await staffModels.findOne(
-        {_id: req.signedCookies.staffId},
+        { _id: req.signedCookies.staffId },
     );
+    res.locals.title = "Staff Account Dashboard"
+    res.locals.breadcrumb = [
+        {
+            link: '/dashboard',
+            name: 'Dashboard'
+        },
+        {
+            name: 'Account'
+        },
+        {
+            name: 'Staff'
+        }
+    ];
     res.locals.user = userData;
-    res.locals.accoutData = adminAccoutData;
-    res.locals.activeCell = ['account', 'admin'];
+    res.locals.accountData = staffAccountData;
+    res.locals.activeCell = ['account', 'staff'];
+    res.locals.currentQuery = query;
+    res.locals.currentPage = page;
+    res.locals.pageCount = Math.ceil(resultCount / 15);
     res.render('accountDashboard');
 };
 
-const dashboardCustomerAccount =  async (req, res, next) => {
-    const customerAccoutData = await customerModel.find();
+const dashboardCustomerAccount = async (req, res, next) => {
+    const page = req.query.page ?? 1;
+    const pagi = pagination({ page, pageSize: 15 });
+    const query = req.query.query ?? "";
+    const customerAccountData = await customerModel.aggregate()
+        .addFields({
+            name: {
+                $concat: [
+                    "$lastName",
+                    " ",
+                    "$firstName"
+                ]
+            },
+
+        })
+        .match({
+            $or: [
+                {
+                    username: {
+                        $regex: new RegExp(query, "i")
+                    }
+                },
+                {
+                    name: {
+                        $regex: new RegExp(query, "i")
+                    }
+                }
+            ]
+        })
+        .skip(pagi.skip)
+        .limit(pagi.limit);
+
+    const resultCount = await customerModel.countDocuments();
     const userData = await staffModels.findOne(
-        {_id: req.signedCookies.staffId},
+        { _id: req.signedCookies.staffId },
     );
+
+    res.locals.title = "Customer Account Dashboard"
+    res.locals.breadcrumb = [
+        {
+            link: '/dashboard',
+            name: 'Dashboard'
+        },
+        {
+            name: 'Account'
+        },
+        {
+            name: 'Customer'
+        }
+    ];
     res.locals.user = userData;
-    res.locals.accoutData = customerAccoutData;
+    res.locals.accountData = customerAccountData;
     res.locals.activeCell = ['account', 'customer'];
+    res.locals.currentQuery = query;
+    res.locals.currentPage = page;
+    res.locals.pageCount = Math.ceil(resultCount / 15);
     res.render('accountDashboard');
 }
 
@@ -149,6 +250,6 @@ module.exports = {
     logOut,
     profilePageGet,
     dashboardGet,
-    dashboardAdminAccount,
+    dashboardStaffAccount,
     dashboardCustomerAccount
 };
