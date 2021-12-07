@@ -1,4 +1,6 @@
 const dishModels = require('../models/dish.model');
+const staffModels = require('../models/staff.model');
+const customerModels = require('../models/customer.model');
 const categoryModels = require('../models/category.model');
 const data = require('../service/loadData.service');
 const pagination = require('../utils/pagination');
@@ -101,6 +103,37 @@ const profilePageGet = async function (req, res) {
     res.render('profilePage');
 };
 
+const dashboardGet = async (req, res, next) => {
+    const userData = await staffModels.findOne(
+        {_id: req.signedCookies.staffId},
+    );
+    res.locals.user = userData;
+    res.locals.activeCell = ['dashboard'];
+    res.render('dashboard');
+};
+
+const dashboardAdminAccount = async (req, res, next) => {
+    const adminAccoutData = await staffModels.find();
+    const userData = await staffModels.findOne(
+        {_id: req.signedCookies.staffId},
+    );
+    res.locals.user = userData;
+    res.locals.accoutData = adminAccoutData;
+    res.locals.activeCell = ['account', 'admin'];
+    res.render('accountDashboard');
+};
+
+const dashboardCustomerAccount =  async (req, res, next) => {
+    const customerAccoutData = await customerModel.find();
+    const userData = await staffModels.findOne(
+        {_id: req.signedCookies.staffId},
+    );
+    res.locals.user = userData;
+    res.locals.accoutData = customerAccoutData;
+    res.locals.activeCell = ['account', 'customer'];
+    res.render('accountDashboard');
+}
+
 module.exports = {
     signInGet,
     registerGet,
@@ -113,5 +146,8 @@ module.exports = {
     dishPost,
     dishUpdateAndDelete,
     logOut,
-    profilePageGet
+    profilePageGet,
+    dashboardGet,
+    dashboardAdminAccount,
+    dashboardCustomerAccount
 };

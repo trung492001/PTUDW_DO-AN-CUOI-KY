@@ -1,5 +1,5 @@
 const AuthMiddleware = function(req, res, next) {
-    if ((!req.signedCookies.userId) && (!req.signedCookies.staffId)) {
+    if ((!req.signedCookies.userId)) {
         res.redirect('/sign-in');
         return;
     }
@@ -7,7 +7,7 @@ const AuthMiddleware = function(req, res, next) {
 };
 
 const StaffAuthMiddleware = function(req, res, next) {
-    if (!req.signedCookie.staffId) {
+    if (!req.signedCookies.staffId) {
         res.redirect('/sign-in-staff');
         return;
     }

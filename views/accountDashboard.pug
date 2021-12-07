@@ -90,22 +90,10 @@ block content
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Address
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Action
     tbody(class="text-sm")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 2, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 3, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 3, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 2, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-      +accountRow("1", "https://i.pravatar.cc/150?u=a042581f426704d", "Alexander de Airport", 1, "abc@gmail.com", "480130123", "54964 Mai Ports, East Vân Hươngbury, Ethiopia")
-  
+      - var n = 0;
+      each value in accoutData
+        +accountRow("1", "/" + accoutData[n].image, accoutData[n].lastName + " " + accoutData[n].firstName, accoutData[n].gender, accoutData[n].email, accoutData[n].phone, accoutData[n].address)
+        -n++ ;
   +pagination(1, 10)
 
         

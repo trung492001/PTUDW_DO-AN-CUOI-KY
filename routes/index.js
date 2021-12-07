@@ -20,20 +20,11 @@ const upload = multer({ dest: './public/uploads/' });
 router.get('/', indexController.indexGet);
 
 
-router.get('/dashboard', async (req, res, next) => {
-    res.locals.activeCell = ['dashboard'];
-    res.render('dashboard');
-});
+router.get('/dashboard',authMiddeleware.StaffAuthMiddleware, pageController.dashboardGet);
 
-router.get('/dashboard/account/admin', async (req, res, next) => {
-    res.locals.activeCell = ['account', 'admin'];
-    res.render('accountDashboard');
-});
+router.get('/dashboard/account/admin',authMiddeleware.StaffAuthMiddleware, pageController.dashboardAdminAccount);
 
-router.get('/dashboard/account/customer', async (req, res, next) => {
-    res.locals.activeCell = ['account', 'customer'];
-    res.render('accountDashboard');
-});
+router.get('/dashboard/account/customer',authMiddeleware.StaffAuthMiddleware, pageController.dashboardCustomerAccount);
 
 router.get('/sign-in', pageController.signInGet);
 
@@ -53,7 +44,7 @@ router.post('/sign-in-staff', staffAuthMiddleware.staffAuthentication, staffCont
 
 router.get('/reservation', pageController.reservationGet);
 
-router.get('/ShoppingCart', pageController.shoppingCartGet);
+router.get('/ShoppingCart', authMiddeleware.AuthMiddleware, pageController.shoppingCartGet);
 
 router.get('/log-out', pageController.logOut);
 
