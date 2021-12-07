@@ -11,7 +11,8 @@ var indexRouter = require('./routes/index');
 var app = express();
 require('dotenv').config();
 // Passport config
-require('./config/passport')(passport);
+require('./config/passportStaff')(passport);
+require('./config/passportUser')(passport);
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
