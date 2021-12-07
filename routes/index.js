@@ -1,16 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
 
 // Controllers
 const indexController = require('../controllers/index.controller');
 const pageController = require('../controllers/page.controller');
-const clientValidate = require('../validate/logInValidation');
 const staffController = require('../controllers/staff.controller');
+const userController = require('../controllers/user.controller');
 
 // Middleware
 const staffAuthMiddleware = require('../middleware/staffAuthentication.middleware');
 const authMiddeleware = require('../middleware/authMiddleware.middleware');
+const userAuthMiddleware = require('../middleware/userAuthentication.middleware');
 
 //Upload Image
 const multer = require('multer');
@@ -75,7 +75,7 @@ router.get('/dashboard/account/customer', async (req, res, next) => {
 
 router.get('/sign-in', pageController.signInGet);
 
-router.post('/sign-in', pageController.profilePageGet);
+router.post('/sign-in', userAuthMiddleware.userAuthentication, userController.userLogin);
 
 router.get('/register', pageController.registerGet);
 
