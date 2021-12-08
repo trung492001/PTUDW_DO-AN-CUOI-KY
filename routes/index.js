@@ -21,7 +21,7 @@ router.get('/', indexController.indexGet);
 
 router.get('/dashboard',authMiddleware.StaffAuthMiddleware, pageController.dashboardGet);
 
-router.get('/dashboard/account/admin',authMiddleware.StaffAuthMiddleware, pageController.dashboardAdminAccount);
+router.get('/dashboard/account/admin',authMiddleware.StaffAuthMiddleware, pageController.dashboardStaffAccount);
 
 router.get('/dashboard/account/customer',authMiddleware.StaffAuthMiddleware, pageController.dashboardCustomerAccount);
 
@@ -43,7 +43,7 @@ router.post('/sign-in-staff', staffAuthMiddleware.staffAuthentication, staffCont
 
 router.get('/reservation', pageController.reservationGet);
 
-router.get('/ShoppingCart', authMiddeleware.AuthMiddleware, pageController.shoppingCartGet);
+router.get('/ShoppingCart', authMiddleware.AuthMiddleware, pageController.shoppingCartGet);
 
 router.get('/log-out', pageController.logOut);
 
@@ -51,6 +51,6 @@ router.post('/dish', upload.single('image'), pageController.dishPost);
 
 router.post('/dish/:id', upload.single('image'), pageController.dishUpdateAndDelete);
 
-router.get('/profile', authMiddeleware.AuthMiddleware, pageController.profilePageGet);
+router.get('/profile', authMiddleware.AuthMiddleware, pageController.profilePageGet);
 
 module.exports = router;
