@@ -7,6 +7,9 @@ const pagination = require('../utils/pagination');
 const customerModel = require("../models/customer.model");
 const cartModel = require("../models/cart.model");
 
+const indexGet = async function(req,res){
+    res.render('index');
+}
 const signInGet = async function (req, res) {
     res.render('signIn');
 };
@@ -237,6 +240,7 @@ const dashboardCustomerAccount = async (req, res, next) => {
 }
 
 module.exports = {
+    indexGet,
     signInGet,
     registerGet,
     detailGet,
