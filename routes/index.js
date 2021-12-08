@@ -3,7 +3,6 @@ var router = express.Router();
 var passport = require('passport');
 
 // Controllers
-const indexController = require('../controllers/index.controller');
 const pageController = require('../controllers/page.controller');
 const staffController = require('../controllers/staff.controller');
 const userController = require('../controllers/user.controller');
@@ -11,12 +10,13 @@ const userController = require('../controllers/user.controller');
 const staffAuthMiddleware = require('../middleware/staffAuthentication.middleware');
 const authMiddleware = require('../middleware/authMiddleware.middleware');
 const userAuthMiddleware = require('../middleware/userAuthentication.middleware');
+const registerAuthentication = require('../middleware/registerMiddleware.middleware');
 //Upload Image
 const multer  = require('multer');
 const app = require('../app');
 const upload = multer({ dest: './public/uploads/' });
 /* GET home page. */
-router.get('/', indexController.indexGet);
+router.get('/', authMiddleware.userAuthMiddleware, pageController.indexGet);
 
 
 router.get('/dashboard',authMiddleware.StaffAuthMiddleware, pageController.dashboardGet);
@@ -31,19 +31,21 @@ router.post('/sign-in', userAuthMiddleware.userAuthentication, userController.us
 
 router.get('/register', pageController.registerGet);
 
-router.get('/menu', pageController.menuGet);
+router.post('/register', registerAuthentication.registerAuthentication, userController.userLogin);
 
-router.get('/detail', pageController.detailGet);
+router.get('/menu', authMiddleware.userAuthMiddleware, pageController.menuGet);
 
-router.get('/AboutUs', pageController.aboutUsGet);
+router.get('/detail', authMiddleware.userAuthMiddleware, pageController.detailGet);
+
+router.get('/AboutUs', authMiddleware.userAuthMiddleware, pageController.aboutUsGet);
 
 router.get('/sign-in-staff', pageController.staffSignInGet);
 
 router.post('/sign-in-staff', staffAuthMiddleware.staffAuthentication, staffController.staffLogin);
 
-router.get('/reservation', pageController.reservationGet);
+router.get('/reservation', authMiddleware.userAuthMiddleware, pageController.reservationGet);
 
-router.get('/ShoppingCart', authMiddleware.AuthMiddleware, pageController.shoppingCartGet);
+router.get('/ShoppingCart', authMiddleware.AuthMiddleware, authMiddleware.userAuthMiddleware, pageController.shoppingCartGet);
 
 router.get('/log-out', pageController.logOut);
 
@@ -51,7 +53,7 @@ router.post('/dish', upload.single('image'), pageController.dishPost);
 
 router.post('/dish/:id', upload.single('image'), pageController.dishUpdateAndDelete);
 
-router.get('/profile', authMiddleware.AuthMiddleware, pageController.profilePageGet);
+router.get('/profile', authMiddleware.AuthMiddleware, authMiddleware.userAuthMiddleware, pageController.profilePageGet);
 
 router.get('/dashboard/staff-menu', authMiddleware.StaffAuthMiddleware, pageController.staffMenuGet);
 
