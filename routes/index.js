@@ -16,8 +16,7 @@ const multer  = require('multer');
 const app = require('../app');
 const upload = multer({ dest: './public/uploads/' });
 /* GET home page. */
-router.get('/', authMiddleware.userAuthMiddleware, pageController.indexGet);
-
+router.get('/', pageController.indexGet);
 
 router.get('/dashboard',authMiddleware.StaffAuthMiddleware, pageController.dashboardGet);
 
@@ -33,19 +32,19 @@ router.get('/register', pageController.registerGet);
 
 router.post('/register', registerAuthentication.registerAuthentication, userController.userLogin);
 
-router.get('/menu', authMiddleware.userAuthMiddleware, pageController.menuGet);
+router.get('/menu', pageController.menuGet);
 
-router.get('/detail', authMiddleware.userAuthMiddleware, pageController.detailGet);
+router.get('/detail', pageController.detailGet);
 
-router.get('/AboutUs', authMiddleware.userAuthMiddleware, pageController.aboutUsGet);
+router.get('/AboutUs', pageController.aboutUsGet);
 
 router.get('/sign-in-staff', pageController.staffSignInGet);
 
 router.post('/sign-in-staff', staffAuthMiddleware.staffAuthentication, staffController.staffLogin);
 
-router.get('/reservation', authMiddleware.userAuthMiddleware, pageController.reservationGet);
+router.get('/reservation', authMiddleware.AuthMiddleware, pageController.reservationGet);
 
-router.get('/ShoppingCart', authMiddleware.AuthMiddleware, authMiddleware.userAuthMiddleware, pageController.shoppingCartGet);
+router.get('/ShoppingCart', authMiddleware.AuthMiddleware, pageController.shoppingCartGet);
 
 router.get('/log-out', pageController.logOut);
 
@@ -53,7 +52,7 @@ router.post('/dish', upload.single('image'), pageController.dishPost);
 
 router.post('/dish/:id', upload.single('image'), pageController.dishUpdateAndDelete);
 
-router.get('/profile', authMiddleware.AuthMiddleware, authMiddleware.userAuthMiddleware, pageController.profilePageGet);
+router.get('/profile', authMiddleware.AuthMiddleware, pageController.profilePageGet);
 
 router.get('/dashboard/staff-menu', authMiddleware.StaffAuthMiddleware, pageController.staffMenuGet);
 

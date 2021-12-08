@@ -91,7 +91,7 @@ module.exports = function(passport) {
                 newUser.gender = req.body.gender;
                 newUser.address = req.body.address;
                 newUser.phone = req.body.phone;
-                
+                newUser.email = req.body.email;
                 newUser.save(function(err, result){
                     if(err){
                         console.log('error save');

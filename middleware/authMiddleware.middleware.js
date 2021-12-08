@@ -5,12 +5,6 @@ const AuthMiddleware = async function(req, res, next) {
         res.redirect('/sign-in');
         return;
     }
-    else{
-        const userData = await userModels.findOne(
-            {_id: req.signedCookies.userId},
-        );
-        res.locals.user = userData;
-    }
     next();
 };
 
@@ -22,17 +16,7 @@ const StaffAuthMiddleware = function(req, res, next) {
     next();
 };
 
-const userAuthMiddleware =  async function(req, res, next) {
-    if (req.signedCookies.staffId !== false) {
-        const userData = await userModels.findOne(
-            {_id: req.signedCookies.userId},
-        );
-        res.locals.user = userData;
-    }
-    next();
-};
 module.exports = {
     AuthMiddleware,
-    StaffAuthMiddleware,
-    userAuthMiddleware
+    StaffAuthMiddleware
 }
