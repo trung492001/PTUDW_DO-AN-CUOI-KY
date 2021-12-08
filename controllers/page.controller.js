@@ -211,7 +211,7 @@ const dashboardStaffAccount = async (req, res, next) => {
             name: 'Staff'
         }
     ];
-    console.log(staffAccountData);
+
     res.locals.user = userData;
     res.locals.accountData = staffAccountData;
     res.locals.activeCell = ['account', 'staff'];
