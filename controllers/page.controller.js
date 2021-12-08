@@ -123,9 +123,10 @@ const dashboardGet = async (req, res, next) => {
 };
 
 const dashboardStaffAccount = async (req, res, next) => {
-    const page = req.query.page ?? 1;
+    const page = req.query.page ? req.query.page : 1;
     const pagi = pagination({ page, pageSize: 15 });
-    const query = req.query.query ?? "";
+    const query = req.query.query ? req.query.query : "";
+    console.log(query);
     const staffAccountData = await staffModels.aggregate()
         .addFields({
             name: {
@@ -171,6 +172,7 @@ const dashboardStaffAccount = async (req, res, next) => {
             name: 'Staff'
         }
     ];
+    console.log(staffAccountData);
     res.locals.user = userData;
     res.locals.accountData = staffAccountData;
     res.locals.activeCell = ['account', 'staff'];
@@ -181,9 +183,9 @@ const dashboardStaffAccount = async (req, res, next) => {
 };
 
 const dashboardCustomerAccount = async (req, res, next) => {
-    const page = req.query.page ?? 1;
+    const page = req.query.page ? req.query.page : 1;
     const pagi = pagination({ page, pageSize: 15 });
-    const query = req.query.query ?? "";
+    const query = req.query.query ? req.query.query : "";
     const customerAccountData = await customerModel.aggregate()
         .addFields({
             name: {

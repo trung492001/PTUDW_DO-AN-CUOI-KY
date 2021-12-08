@@ -45,7 +45,11 @@ router.post('/sign-in-staff', staffAuthMiddleware.staffAuthentication, staffCont
 
 router.get('/reservation', authMiddleware.userAuthMiddleware, pageController.reservationGet);
 
+<<<<<<< HEAD
 router.get('/ShoppingCart', authMiddleware.AuthMiddleware, authMiddleware.userAuthMiddleware, pageController.shoppingCartGet);
+=======
+router.get('/ShoppingCart', authMiddleware.AuthMiddleware, pageController.shoppingCartGet);
+>>>>>>> 47f4b18d3bcd28777cc694ff46bb7c5bea760047
 
 router.get('/log-out', pageController.logOut);
 
@@ -53,6 +57,10 @@ router.post('/dish', upload.single('image'), pageController.dishPost);
 
 router.post('/dish/:id', upload.single('image'), pageController.dishUpdateAndDelete);
 
+<<<<<<< HEAD
 router.get('/profile', authMiddleware.AuthMiddleware, authMiddleware.userAuthMiddleware, pageController.profilePageGet);
+=======
+router.get('/profile', authMiddleware.AuthMiddleware, pageController.profilePageGet);
+>>>>>>> 47f4b18d3bcd28777cc694ff46bb7c5bea760047
 
 module.exports = router;
