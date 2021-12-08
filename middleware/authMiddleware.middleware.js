@@ -1,5 +1,5 @@
 const AuthMiddleware = function(req, res, next) {
-    if ((!req.signedCookies.userId)) {
+    if ((!req.signedCookies.userId) && (!req.signedCookies.staffId)) {
         res.redirect('/sign-in');
         return;
     }

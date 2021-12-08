@@ -20,12 +20,3 @@ tabTogglers.forEach(function(toggler) {
     });
 });
 document.getElementById("default-tab").click();
-
-function myFunction2() {
-    var x = document.getElementById("myInput2");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
-    }
-}

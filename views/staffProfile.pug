@@ -1,25 +1,18 @@
-extends layout
+extends dashboard
+
 block header 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap" rel="stylesheet">
 block content
     script(src="/profilePage.js" defer)
-    div(class="flex flex-col md:flex-row ml-auto p-28 justify-between text-white" style="background-image: url('site-img10.jpg')")
-        div
-            h1(class="text-5xl") PROFILE
-            p(class="text-xl") A brief history about our company
-        div(class="space-x-1 place-items-center hidden md:flex")
-            a(href="/") Home
-            i /
-            a(href="#") Profile Page
     div(class="container mx-auto my-5")
         div(class="container px-0 xl:px-40 my-3")
             form(action="") 
                 div(class="grid grid-rows-2 lg:grid-cols-3 gap-3")
                     div(class="flex flex-col border gap-3 rounded-md")
                         div(class="h-auto w-auto text-center m-auto mt-3" style="max-height: 200px")
-                            img(class="w-full h-full rounded-lg" src=user.image alt="User Avatar")
+                            img(class="w-full h-full rounded-lg" src='/'+user.image alt="User Avatar")
                         div(class="mx-auto")
                             button(class="border-2 border-gray-400 py-3 px-5 rounded-xl text-gray-400") <i class="fas fa-camera"></i> Edit Photo
                         div(class="text-center items-center")
@@ -74,10 +67,6 @@ block content
                             ul(id="tabs" class="inline-flex w-full px-1 pt-2 ")
                                 li(class="px-4 py-2 -mb-px font-semibold text-gray-800 border-b-2 border-blue-400 rounded-t opacity-50")
                                     a(id="default-tab" href="#first") About
-                                li(class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50")
-                                    a(href="#second") History
-                                li(class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50")
-                                    a(href="#third") Reservation
                             div(id="tab-contents")
                                 div(id="first" class="p-4")
                                     div(class="form group")
@@ -121,12 +110,3 @@ block content
                                                 input(class="cursor-pointer text-base px-5 py-2 rounded-md bg-gray-300 text-black" type='reset' value='Reset')
                                                 a(href='/log-out' id='logOut')
                                                     input(class="cursor-pointer text-base px-5 py-2 rounded-md bg-red-600 text-white" type='button' value='Log Out')
-                                div(id="second" class="hidden p-4") Second tab
-                                div(id="third" class="hidden p-4") Third tab
-
-                        
-
-                        
-
-
-        

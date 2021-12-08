@@ -53,4 +53,10 @@ router.post('/dish/:id', upload.single('image'), pageController.dishUpdateAndDel
 
 router.get('/profile', authMiddleware.AuthMiddleware, pageController.profilePageGet);
 
+router.get('/dashboard/staff-menu', authMiddleware.StaffAuthMiddleware, pageController.staffMenuGet);
+
+router.get('/dashboard/staff-profile', authMiddleware.StaffAuthMiddleware, pageController.staffProfileGet);
+
+router.post('/add-staff', pageController.staffAddNewAccount);
+
 module.exports = router;

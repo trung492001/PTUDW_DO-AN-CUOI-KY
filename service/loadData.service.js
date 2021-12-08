@@ -1,4 +1,3 @@
-const dishModel = require('../models/dish.model');
 const dishModels = require('../models/dish.model');
 
 const loadMenu = async function (dataType, { skip, limit }) {

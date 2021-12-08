@@ -6,7 +6,7 @@ const data = require('../service/loadData.service');
 const pagination = require('../utils/pagination');
 const customerModel = require("../models/customer.model");
 const cartModel = require("../models/cart.model");
-
+const bcrypt = require('../utils/crypto');
 const signInGet = async function (req, res) {
     res.render('signIn');
 };
@@ -16,6 +16,12 @@ const registerGet = async function (req, res) {
 };
 
 const detailGet = async function (req, res) {
+    if (req.signedCookies.userId) {
+        const userData = await customerModel.findOne({
+            _id: req.signedCookies.userId
+        });
+        res.locals.user =  userData;  
+    }
     let productId = req.query.productId;
     const productData = await data.loadProductInfo(productId);
     res.locals.product = productData;
@@ -23,10 +29,22 @@ const detailGet = async function (req, res) {
 };
 
 const aboutUsGet = async function (req, res) {
+    if (req.signedCookies.userId) {
+        const userData = await customerModel.findOne({
+            _id: req.signedCookies.userId
+        });
+        res.locals.user =  userData;  
+    }
     res.render('AboutUs');
 };
 
 const menuGet = async function (req, res) {
+    if (req.signedCookies.userId) {
+        const userData = await customerModel.findOne({
+            _id: req.signedCookies.userId
+        });
+        res.locals.user =  userData;  
+    }
     let dishType;
     const pagi = pagination({ page: req.query.page });
 
@@ -35,7 +53,7 @@ const menuGet = async function (req, res) {
     } else {
         dishType = "61a54429e07ebfd5e449becb";
     }
-
+    
     const categoryData = await categoryModels.find();
     const menuData = await data.loadMenu(dishType, pagi);
 
@@ -52,10 +70,20 @@ const staffSignInGet = async function (req, res) {
 };
 
 const reservationGet = async function (req, res) {
+    if (req.signedCookies.userId) {
+        const userData = await customerModel.findOne({
+            _id: req.signedCookies.userId
+        });
+        res.locals.user =  userData;  
+    }
     res.render('reservation');
 };
 
 const shoppingCartGet = async function (req, res) {
+    const userData = await customerModel.findOne({
+        _id: req.signedCookies.userId
+    });
+    res.locals.user =  userData;  
     res.render('cart');
 };
 
@@ -69,7 +97,7 @@ const dishPost = function (req, res) {
         type: req.body.type
     });
     newDish.save();
-    res.redirect('menu');
+    res.redirect('/dashboard/staff-menu');
 };
 
 const dishUpdateAndDelete = async function (req, res) {
@@ -79,17 +107,16 @@ const dishUpdateAndDelete = async function (req, res) {
         );
         dishData.dishName = req.body.name
         dishData.price = req.body.price,
-            dishData.ingredient = req.body.ingredient,
-            dishData.description = req.body.description,
-            dishData.image = req.file.path.split('\\').slice(1).join('/'),
-            dishData.save();
+        dishData.ingredient = req.body.ingredient,
+        dishData.description = req.body.description,
+        dishData.image = req.file.path.split('\\').slice(1).join('/'),
+        dishData.save();
     } else {
         const dishData = await dishModels.findOneAndDelete(
             { _id: req.params.id },
         );
-        dishData.save();
     }
-    res.redirect('/menu');
+    res.redirect('/dashboard/staff-menu');
 };
 
 const logOut = function (req, res) {
@@ -101,6 +128,10 @@ const logOut = function (req, res) {
 }
 
 const profilePageGet = async function (req, res) {
+    const userData = await customerModel.findOne({
+        _id: req.signedCookies.userId
+    });
+    res.locals.user = userData;  
     res.render('profilePage');
 };
 
@@ -120,9 +151,9 @@ const dashboardGet = async (req, res, next) => {
 };
 
 const dashboardStaffAccount = async (req, res, next) => {
-    const page = req.query.page ? req.query.page : 1;
+    const page = req.query.page ?? 1;
     const pagi = pagination({ page, pageSize: 15 });
-    const query = req.query.query ? req.query.query : "";
+    const query = req.query.query ?? "";
     console.log(query);
     const staffAccountData = await staffModels.aggregate()
         .addFields({
@@ -180,9 +211,9 @@ const dashboardStaffAccount = async (req, res, next) => {
 };
 
 const dashboardCustomerAccount = async (req, res, next) => {
-    const page = req.query.page ? req.query.page : 1;
+    const page = req.query.page ?? 1;
     const pagi = pagination({ page, pageSize: 15 });
-    const query = req.query.query ? req.query.query : "";
+    const query = req.query.query ?? "";
     const customerAccountData = await customerModel.aggregate()
         .addFields({
             name: {
@@ -238,6 +269,56 @@ const dashboardCustomerAccount = async (req, res, next) => {
     res.render('accountDashboard');
 }
 
+const staffMenuGet = async function(req, res) {
+    const userData = await staffModels.findOne(
+        { _id: req.signedCookies.staffId },
+    );
+    let dishType;
+    const pagi = pagination({ page: req.query.page });
+
+    if (req.query.category) {
+        dishType = req.query.category;
+    } else {
+        dishType = "61a54429e07ebfd5e449becb";
+    }
+    
+    const categoryData = await categoryModels.find();
+    const menuData = await data.loadMenu(dishType, pagi);
+    
+    res.locals.activeCell = ['dish', 'staff'];
+    res.locals.dishes = menuData.dishData;
+    res.locals.category = categoryData;
+    res.locals.currentCategory = dishType;
+    res.locals.currentPage = req.query.page ? req.query.page : 1;
+    res.locals.pageCount = menuData.pageCount;
+    res.locals.user = userData;
+    res.render('staffMenu');
+}
+
+const staffProfileGet = async function(req, res) {
+    const userData = await staffModels.findOne({
+        _id: req.signedCookies.staffId
+    });
+    res.locals.activeCell = ['profile'];
+    res.locals.user = userData;  
+    res.render('staffProfile');
+}
+
+const staffAddNewAccount = async function(req, res) {
+    const newAccount = new staffModels({
+        username: req.body.username,
+        password: bcrypt.hashPassword(req.body.password),
+        email: req.body.email,
+        firstName: req.body.fname,
+        lastName: req.body.lname,
+        gender: req.body.gender,
+        address: req.body.address,
+        phone: req.body.phone,
+    });
+    newAccount.save();
+    res.redirect('/dashboard/account/admin');
+}
+
 module.exports = {
     signInGet,
     registerGet,
@@ -253,5 +334,8 @@ module.exports = {
     profilePageGet,
     dashboardGet,
     dashboardStaffAccount,
-    dashboardCustomerAccount
+    dashboardCustomerAccount,
+    staffMenuGet,
+    staffProfileGet,
+    staffAddNewAccount
 };
