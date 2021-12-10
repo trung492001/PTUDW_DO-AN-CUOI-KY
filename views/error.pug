@@ -1,6 +1,17 @@
-extends layout
+html(lang="en") 
+  head
+    title Not Found!
 
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+    // Required meta tags
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+    link(rel="stylesheet" href="/styles/style.css")
+  body
+    div(class="flex h-screen bg-white justify-center items-center")
+      div(class="text-center ")
+        img(src="/images/logo.png" class="w-32 md:w-40 mb-10 mx-auto")
+        h3(class="text-indigo-500 font-bold uppercase tracking-wider text-lg") Error
+        h2(class="text-black font-bold text-5xl mb-3") Something wrong happened!
+        p(class="text-gray-400 mb-6") Sorry, we encountered an error. Please try again later!
+        a(href="/" alt="Go back home" class="font-bold text-indigo-500 text-xl") Go back home ►

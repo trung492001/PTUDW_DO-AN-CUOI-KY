@@ -7,6 +7,9 @@ block content
         h3(class="text-4xl text-center font-bold mb-8") Register
         form(action="/register" method="POST")
           div(class="mb-3")
+            label(for="name" class="text-xl font-semibold") Name
+            input(type="text" name="name" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
+          div(class="mb-3")
             label(for="username" class="text-xl font-semibold") Username
             input(type="text" name="username" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
           div(class="mb-3")
@@ -18,24 +21,6 @@ block content
           div(class="mb-3")
             label(for="confirmPassword" class="text-xl font-semibold") Confirm Password
             input(type="password" name="confirmPassword" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" placeholder="********" required) 
-          div(class="mb-3")
-            label(for="firstName" class="text-xl font-semibold") First Name
-            input(type="text" name="firstName" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
-          div(class="mb-3")
-            label(for="lastName" class="text-xl font-semibold") Last Name
-            input(type="text" name="lastName" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required) 
-          div(class="mb-3")
-            label(for="gender" class="text-xl font-semibold") Gender
-            select(name="gender" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" title="gender" required)
-                option(value="1") Male 
-                option(value="2") Female 
-                option(value="3") Other   
-          div(class="mb-3")
-            label(for="address" class="text-xl font-semibold") Address
-            input(type="text" name="address" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm") 
-          div(class="mb-3")
-            label(for="phone" class="text-xl font-semibold") Phone
-            input(type="tel" name="phone" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm") 
           div(class="mb-3 w-full" style="height: 1px; background: linear-gradient(0.25turn, #fff, #1f1f1f, #fff);")
           div(class="mb-3")
             input(type="submit" value="Register" class="w-full h-14 bg-red-700 text-white text-2xl font-bold rounded-sm transition ease-in-out hover:bg-red-600 ring-red-400 focus:ring-4")

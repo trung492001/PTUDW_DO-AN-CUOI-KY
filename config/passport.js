@@ -1,105 +1,40 @@
+const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 
-const staffModels = require('../models/staff.model');
+const Account = require('../models/account.model');
+const accountService = require('../service/account.service');
 
-const userModels = require('../models/customer.model');
+passport.use('login', new localStrategy(
+    async (username, password, done) => {
+        try {
 
-const bcrypt = require('../utils/crypto');
-
-module.exports = function(passport) {
-    passport.use('staff', 
-        new localStrategy(
-            function(username, password, done) {
-                console.log(username);
-                staffModels.findOne({ username: username }, function (err, user) {
-                    if (err) { return done(err); }
-                    if (!user) { return done(null, false); }
-                    if (bcrypt.comparePassword(password,user.password)) {
-                        return done(null, user); 
-                    } else {
-                        return done(null, false); 
-                    }
-                });
+            const user = await accountService.authenticate(username, password);
+            if (!user) {
+                return done(null, false);
             }
-        )
-    )
-    passport.serializeUser(function(user, done) {
-        done(null, user.id);
-    });
-      
-    passport.deserializeUser(function(id, done) {
-        staffModels.findById(id, function(err, user) {
-            done(err, user);
-        });
-    });
-    
+            return done(null, user);
+        } catch (err) {
+            return done(err);
+        }
+    }
+))
 
-    passport.use('user',
-        new localStrategy(
-            function(username, password, done) {
-                userModels.findOne({ username: username }, function (err, user) {
-                    if (err) { return done(err); }
-                    if (!user) { return done(null, false); }
-                    if (bcrypt.comparePassword(password,user.password)) {
-                        return done(null, user); 
-                    } else {
-                        return done(null, false); 
-                    }
-                });
-            }
-        )
-    )
-    passport.serializeUser(function(user, done) {
-        done(null, user.id);
-      });
-      
-    passport.deserializeUser(function(id, done) {
-        userModels.findById(id, function(err, user) {
-            done(err, user);
-        });
+passport.use('register', new localStrategy({ passReqToCallback: true },
+    async (req, username, password, done) => {
+        const { email, name } = req.body;
+        const user = await accountService.createNewAccount(name, username, password, email);
+        return done(null, user._id);
+    }
+))
+
+passport.serializeUser(function (user, done) {
+    return done(null, user);
+});
+
+passport.deserializeUser(function (id, done) {
+    Account.findById(id, function (err, user) {
+        return done(err, user);
     });
+});
 
-    passport.use('register', 
-        new localStrategy({passReqToCallback: true},
-            function(req,username,password,done){
-                userModels.findOne({username: username}, function(err, user){
-                    if(err){
-                        console.log('error username');
-                        return done(err);
-                    }
-                    if(user){
-                        console.log('have username');
-                        return done(null, false);
-                    }
-                });
-                userModels.findOne({email: req.body.email}, function(err,user){
-                    if(err){
-                        console.log('error email');
-                        return done(err);
-                    }
-                    if(user){
-                        console.log('have email');
-                        return done(null, false);
-                    }
-                });
-
-                let newUser = new userModels();
-                newUser.username = username;
-                newUser.password = bcrypt.hashPassword(password);
-                newUser.firstName = req.body.firstName;
-                newUser.lastName = req.body.lastName;
-                newUser.gender = req.body.gender;
-                newUser.address = req.body.address;
-                newUser.phone = req.body.phone;
-                newUser.email = req.body.email;
-                newUser.save(function(err, result){
-                    if(err){
-                        console.log('error save');
-                        return done(err);
-                    }
-                    return done(null, newUser);
-                });
-            }
-        )
-    )
-}
+module.exports = passport;

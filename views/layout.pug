@@ -9,8 +9,8 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
 
     //CSS
-    link(rel="stylesheet" href="style.css")
-    link(rel="stylesheet" href="layoutStyle.css")
+    link(rel="stylesheet" href="/styles/style.css")
+    link(rel="stylesheet" href="/styles/layoutStyle.css")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css")
     link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css' integrity='sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay' crossorigin='anonymous')
     script(src="layout.js" defer)
@@ -20,7 +20,7 @@ html(lang="en")
           div(class="mx-auto flex p-5 flex-wrap items-center flex-row-0")
               div(class="logo")
                   a.flex(href="/")
-                      img(src="logo.png" alt="Butter logo")
+                      img(src="/images/logo.png" alt="Butter logo")
               div(class="nav-bar text-xl items-center mr-0 md:ml-auto hidden md:flex")
                   a(class="mr-6" href="/") HOME
                   a(class="mr-6" href="/AboutUs") ABOUT US
@@ -47,9 +47,9 @@ html(lang="en")
                           div(class="hover:bg-gray-300")
                             a(class="block p-2" href="/profile") Profile
                           div(class="hover:bg-gray-300")
-                            a(class="block p-2" href="/log-out") Log Out
+                            a(class="block p-2" href="/logout") LOGOUT
                   else
-                    a(class="mr-6 hidden md:flex" href="/sign-in") SIGN IN
+                    a(class="mr-6 hidden md:flex" href="/login") LOGIN
               div.col-12(id="search-bar")
                   i(class="fas fa-search fa-lg" onclick="myFunction()")
                   input(type="text" id="searchBar" placeholder="Search Here ..... !")

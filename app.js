@@ -7,21 +7,22 @@ var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
 var indexRouter = require('./routes/index');
+const errorHandler = require('./middleware/error.middleware');
 
 var app = express();
 require('dotenv').config();
 // Passport config
-require('./config/passport')(passport);
+require('./config/passport');
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser());
 
 app.set('trust proxy', 1); // trust first proxy
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
 }));
 
 // Passport middleware
@@ -42,30 +43,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('public/images'));
-app.use(express.static('public/styles'));
-app.use(express.static('public/javascripts'));
 
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  res.render('404');
+  res.redirect('/404');
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+app.use(errorHandler);
 
 module.exports = app;
