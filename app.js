@@ -1,27 +1,36 @@
-var createError = require('http-errors');
-var express = require('express');
-var mongoose = require('mongoose');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session');
-var passport = require('passport');
-var indexRouter = require('./routes/index');
-const errorHandler = require('./middleware/error.middleware');
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
+const helmet = require('helmet');
+// const csurf = require('csurf');
+const passport = require('passport');
+const indexRouter = require('./routes/index');
+const FileStore = require('session-file-store')(session);
+const errorHandler = require('./middleware/api/error.middleware');
 
-var app = express();
+const fileStoreOptions = {
+  ttl: 3600
+};
+
+const app = express();
+app.use(helmet());
+
 require('dotenv').config();
 // Passport config
 require('./config/passport');
-
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
 
 app.set('trust proxy', 1); // trust first proxy
 app.use(session({
+  store: new FileStore(fileStoreOptions),
   secret: process.env.SESSION_SECRET,
   resave: false,
+  rolling: true,
   saveUninitialized: true,
 }));
 

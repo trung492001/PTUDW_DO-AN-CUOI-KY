@@ -1,5 +1,5 @@
 require('dotenv');
-const { DefaultError, STATUS_CODE } = require('../utils/response');
+const { DefaultError, STATUS_CODE } = require('../../utils/response');
 
 const errorHandler = (err, req, res, next) => {
     if (err instanceof DefaultError) {

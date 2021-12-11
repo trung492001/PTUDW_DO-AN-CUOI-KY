@@ -6,19 +6,19 @@ const commentSchema = new mongoose.Schema({
     ref: 'Account',
     default: null
   },
-  userName: { /**For anonymous user */
-    type: String,
-    default: null
-  },
-  rate: {
-    type: Number,
-    default: 5
+  anonymousUser: { /**For anonymous user */
+    username: {
+      type: String,
+      default: null
+    },
+    avatar: {
+      type: String,
+    }
   },
   content: {
     type: String,
     required: true
   },
-  image: [String],
   createAt: {
     type: Date,
     default: Date.now

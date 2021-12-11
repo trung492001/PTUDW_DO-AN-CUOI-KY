@@ -1,15 +1,16 @@
-var express = require('express');
-var router = express.Router();
-const catchAsync = require('../utils/catchAsync')
-const authRoute = require('./auth.route');
+const express = require('express');
+const router = express.Router();
 
-//Upload Image
-const multer = require('multer');
-const upload = multer({ dest: './public/uploads/' });
+const userDataMiddleware = require('../middleware/userData.middleware.js')
+
+const regularRoute = require('./regular');
+const apiRoute = require('./api');
+
 /* GET home page. */
 
-router.use('/', authRoute);
+router.use('/api', apiRoute);
 
-router.get('/404', (req, res) => res.render('404'));
+router.use('/', userDataMiddleware, regularRoute)
+
 
 module.exports = router;

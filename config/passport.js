@@ -9,12 +9,13 @@ passport.use('login', new localStrategy(
         try {
 
             const user = await accountService.authenticate(username, password);
+            console.log(user);
             if (!user) {
                 return done(null, false);
             }
             return done(null, user);
         } catch (err) {
-            return done(err);
+            return done(err, false);
         }
     }
 ))
