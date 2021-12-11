@@ -16,7 +16,7 @@ const fileStoreOptions = {
 };
 
 const app = express();
-app.use(helmet());
+//app.use(helmet());
 
 require('dotenv').config();
 // Passport config
