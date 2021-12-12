@@ -22,10 +22,9 @@ html(lang="en")
                   a.flex(href="/")
                       img(src="/images/logo.svg" alt="Butter logo")
               div(class="nav-bar text-xl items-center mr-0 md:ml-auto hidden md:flex")
-                  a(class="mr-6" href="/") HOME
-                  a(class="mr-6" href="/AboutUs") ABOUT US
-                  a(class="mr-6" href="/menu") MENU
-                  a(class="mr-6" href="/reservation") RESERVATION
+                  a(class="mr-6" href="/laptop") LAPTOP
+                  a(class="mr-6" href="/menu") PC
+                  a(class="mr-6" href="/reservation") PHỤ KIỆN
               div(class="nav-bar text-xl items-center flex ml-auto md:ml-0")
                   div(class="mr-6 text-sm")
                       if cartLength
@@ -65,62 +64,89 @@ html(lang="en")
           div(class="nav-bar mobile-menu hidden md:hidden bg-black text-white px-2 py-2")
               if user 
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/profile") PROFILE
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/") HOME
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") ABOUT US
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") MENU
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") RESERVATION 
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") LAPTOP
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") PC
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") PHỤ KIỆN 
               else
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/") HOME
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") ABOUT US
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") MENU
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") RESERVATION
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") LAPTOP
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") PC
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") PHỤ KIỆN
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/sign-in") LOGIN
       div(class="container mx-auto px-4" style="max-width: 1254px")
         //- breadcrumb
         div(class="mb-6") Breadcrumb
         block content
       block foot
-      div(class="w-full bg-black text-white")
-          div(class="container mx-auto p-10 grid grid-cols-1 lg:grid-cols-2 gap-4")
-            div(class="col-span-1")
-                h4(class="text-2xl font-medium mb-2") About Company
-                div(class="bg-red-700 mt-2 mb-6 ml-0 mr-auto" style="width: 36px; height: 2px")
-                p(class="mb-4") Pellentesque mi purus, eleifend sedt commodo vel, sagittis elts vestibulum dui sagittis mlste sagittis elts.
-                ul.address-info 
-                    li(class="my-2")
-                    <i class="fas fa-map-marker-alt"></i> 15 Barnes Wallis Way, 358744, USA
-                    li(class="my-2")
-                    <i class="fas fa-phone"></i> +1 (012) 345 6789 
-                    li(class="my-2")
-                    <i class="fas fa-envelope"></i> info@yourdomain.com
-            div(class="col-span-1")
-                h4(class="text-2xl font-medium mb-2") Twitter Feed!
-                div(class="bg-red-700 mt-2 mb-6 ml-0 mr-auto" style="width: 36px; height: 2px")              
+      div(class="text-white" style="background: #05042c")
+        div(class="container mx-auto px-32")
+          div(class="flex flex-wrap justify-between")
+            a(href= '/')
+              img(src='/images/logo2.svg' alt="logo footer" width="314" height="95")
+            div(class="flex justify-between items-center" style='width:424px')
+              div(class="font-semibold text-white hotline")
+                div(class="text-sm text-white text-opacity-50") Hotline 
+                a(href="") yournumber
+              div
+                ul(class="flex items-center space-x-2 md:space-x-4 text-black")
+                  li
+                    a(class="flex items-center justify-center w-8 h-8 rounded-full bg-brand")
+                      <i class="fab fa-youtube"></i>
+                  li
+                    a(class="flex items-center justify-center w-8 h-8 rounded-full bg-brand")
+                      <i class="fab fa-facebook-f"></i>
+                  li
+                    a(class="flex items-center justify-center w-8 h-8 rounded-full bg-brand")
+                      <i class="fab fa-instagram"></i>
+          div(class="flex flex-wrap conetent-wrapper justify-between")
+            p(class="block md:hidden") Sản phẩm và dịch vụ
+            ul(class="flex flex-wrap" style="width:798px")
+              li(class="w-1/4 pb-6")
+                p(class="mb-4 text-lg font-semibold leading-140") Sản phẩm và dịch vụ
                 ul
-                    li(class="my-2")
-                      <i class="fas fa-angle-right"></i> 
-                          a(href="#") Customer Support
-                    li(class="my-2")
-                      <i class="fas fa-angle-right"></i> 
-                          a(href="#") Documentation 
-                    li(class="my-2")
-                      <i class="fas fa-angle-right"></i> 
-                          a(href="#") Developer Center
-                    li(class="my-2")
-                      <i class="fas fa-angle-right"></i> 
-                          a(href="/FAQs") General FAQs
-      div(class="w-full text-white min-h" style="background-color: #1f1f1f")
-        div(class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 p-10")
-          div(class="col-span-1 px-4 lg:p-0")
-            h5(class="text-lg lg:text-xl text-center lg:text-left") Copyright © 2021 YOUR DOMAIN. All rights reserved.
-          div(class="col-span-1")
-            ul(class="mx-auto text-center text-3xl lg:text-4xl") 
-              li(class="mx-3 inline-block")
-                <i class="fab fa-facebook-square"></i>
-              li(class="mx-3 inline-block")
-                <i class="fab fa-instagram"></i>
-              li(class="mx-3 inline-block")
-                <i class="fab fa-youtube"></i>
-              li(class="mx-3 inline-block")
-                <i class="fab fa-twitter-square"></i>
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Laptop Dell 
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Laptop HP 
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Laptop ThinkPad 
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Laptop Lenovo
+              li(class="w-1/4 pb-6" style="margin-top: 42px;")
+                ul
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Alienware
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Macbook
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Laptop Razer 
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Phụ kiện
+              li(class="w-1/4 pb-6")
+                p(class="mb-4 text-lg font-semibold leading-140") Chính sách
+                ul
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Bảo hành
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Vận chuyển 
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Thanh toán 
+              li(class="w-1/4 pb-6")
+                p(class="mb-4 text-lg font-semibold leading-140") Về ThinkPro
+                ul
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Lịch sử thành lập 
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Giá trị cốt lõi
+                  li
+                    a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Tầm nhìn, Sứ mệnh
+            div(style="width: 424px")
+              p(class="mb-4 text-lg font-semibold leading-140") Hệ thống cửa hàng
+              ul(class="flex justify-between") 
+                li
+                  div(class="font-semibold") Hà Nội: 
+                  div(class="mt-3") 53 Thái Hà, Đống Đa, Hà Nội 
+                li 
+                  div(class="font-semibold") TP. Hồ Chí Minh: 
+                  div(class="mt-3") Số 5 + 7 Nguyễn Huy Tưởng, P6, Q. Bình Thạnh
+                  div(class="mt-3") Số 95 Trần Thiện Chánh, Phuờng 12, Quận 10
 
