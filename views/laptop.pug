@@ -1,0 +1,71 @@
+extends layout
+mixin productCell(name, img, number, cost)
+    div(class="flex flex-col w-1/2 md:w-1/3 lg:w-1/5 border transform ease-in duration-200 hover:shadow-2xl")
+        div(class="px-2 pt-2 md:px-4 md:pt-4 mb-2")
+            div
+                a(href="")
+                    img(class="transform hover:-translate-y-1" src=img alt=name)
+        div(class="content-bottom px-2 pb-0 md:px-4 md:pb-4 flex flex-col md:block flex-grow flex-shrink")
+            a(href="" class="font-semibold text-sm md:text-base mb-1 text-body-main block leading-5")=name 
+            div(class="flex items-center space-x-2 text-sm text-dark-gray mb-1 md:mb-2")
+                strong=number
+                span Cấu hình tùy chọn 
+            div
+                div(class="flex items-center space-x-1")
+                    span(class="text-sm text-black leading-5") Giá từ: 
+                    span(class="text-sm xl:text-lg text-red-500 leading-7 font-semibold")=cost + "₫" 
+mixin catalogue(title)
+    div(class="border-t border-gray-300 py-3")
+        p(class="flex items-center text-black justify-between cursor-pointer")
+            span=title
+            <i class="fas fa-plus"></i>
+block content 
+    div(class="container block mx-auto")
+        div(class="px-10")
+            p(class="text-3xl font-bold") Máy tính xách tay
+            div(class="flex space-x-2")
+                div(style="width:247px")
+                    div(class="text-base space-x-1" style="font-size: 14px;margin-bottom: 20px;")
+                        strong 1 - 24
+                        span trên 295 sản phẩm
+                    div(class="sticky top-0")
+                        +catalogue('Thương hiệu')
+                        div(class="catalogue__list show items-center space-x-2")
+                            label(class="check-list")
+                                input(type="checkbox" value="6")
+                                span(class="text") Trên 50 triệu 
+                            label(class="check-list")
+                                input(type="checkbox" value="6")
+                                span(class="text") 40 - 50 triệu
+                            label(class="check-list")
+                                input(type="checkbox" value="6")
+                                span(class="text") 30 - 40 triệu 
+                            label(class="check-list")
+                                input(type="checkbox" value="6")
+                                span(class="text") 20 - 30 triệu 
+                            label(class="check-list")
+                                input(type="checkbox" value="6")
+                                span(class="text") 15 - 20 triệu
+                            label(class="check-list")
+                                input(type="checkbox" value="6")
+                                span(class="text") Trên 50 triệu 
+                            
+                        +catalogue('Khoảng giá')
+                        +catalogue('Loại hàng')
+                        +catalogue('Tình trạng')
+                div(style="width: calc(100% - 247px)")
+                    div(class="flex flex-wrap")
+                        +productCell("Dell Inspiron 5510 (Chính hãng)", "/images/may1.png", "2", "23.490.000")
+                        +productCell("Lenovo Ideapad 1 (Chính hãng)", "/images/may2.png", "1", "9.490.000")
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000")
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000") 
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000")
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000")
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000") 
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000")
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000")
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000") 
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000")
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000")
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000") 
+                        +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000")                           
