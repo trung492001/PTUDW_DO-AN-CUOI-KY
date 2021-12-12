@@ -1,4 +1,7 @@
+const productService = require('../../service/productData.service');
+
 module.exports = async (req, res) => {
-    console.log("index");
+    const productData = await productService.getProductData();
+    console.log(productData);
     res.render('index');
 }
