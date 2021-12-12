@@ -7,9 +7,13 @@ const laptopController = require('../../controllers/auth/laptop.controller');
 
 router.use('/', authRoute);
 
-router.get('/', indexController);
+router.get('/', (req, res) => {
+  res.render('index');
+})
 
-router.get('/laptop', laptopController);
+router.get('/laptop', (req, res) => {
+  res.render('laptop');
+})
 
 router.get('/404', (req, res) => res.render('404'));
 
