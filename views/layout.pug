@@ -13,14 +13,14 @@ html(lang="en")
     link(rel="stylesheet" href="/styles/layoutStyle.css")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css")
     link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css' integrity='sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay' crossorigin='anonymous')
-    script(src="layout.js" defer)
+    script(src="/javascripts/layout.js" defer)
     block header
   body(class="bg-gray-50")
       nav(class="bg-black text-white")
           div(class="mx-auto flex p-5 flex-wrap items-center flex-row-0")
               div(class="logo")
                   a.flex(href="/")
-                      img(src="/images/logo.svg" alt="Butter logo")
+                      img(src="/images/logo.svg" alt="ThinkVip Logo")
               div(class="nav-bar text-xl items-center mr-0 md:ml-auto hidden md:flex")
                   a(class="mr-6" href="/laptop") LAPTOP
                   a(class="mr-6" href="/menu") PC
@@ -74,7 +74,7 @@ html(lang="en")
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/sign-in") LOGIN
       div(class="container mx-auto px-4" style="max-width: 1254px")
         //- breadcrumb
-        div(class="mb-6") Breadcrumb
+        div(class="mb-6") Breadcumb
         block content
       block foot
       div(class="text-white" style="background: #05042c")
