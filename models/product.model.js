@@ -39,6 +39,11 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  infomation: {
+    info: [String],
+  },
+  brand: Number,
+  type: Number,
   comment: [commentSchema]
 });
 
