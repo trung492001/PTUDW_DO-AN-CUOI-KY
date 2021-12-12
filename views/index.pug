@@ -57,16 +57,10 @@ block content
                         label(class="inline-block cursor-pointer h-10 bg-gray-300 text-center text-md leading-10 font-normal px-6 rounded mr-2 transition duration-300 hover:bg-blue-500 hover:text-white") Dưới 10 triệu 
             //List laptop
             div(class="container flex flex-wrap mx-auto mb-7")
-                +productCell("Dell Inspiron 5510 (Chính hãng)", "/images/may1.png", "2", "23.490.000")
-                +productCell("Lenovo Ideapad 1 (Chính hãng)", "/images/may2.png", "1", "9.490.000")
-                +productCell("HP 14s (Nhập khẩu)", "/images/may3.png", "1", "15.490.000")
-                +productCell("Dell Latitude 5410", "/images/may4.png", "1", "17.990.000")
-                +productCell("Dell Inspiron 15 5515 AMD", "/images/may5.png", "4", "21.490.000")
-                +productCell("GIGABYTE G5 Gaming Laptop", "/images/may6.png", "2", "26.990.000")
-                +productCell("ASUS ROG Strix G15 (G513)", "/images/may7.png", "3", "23.990.000")
-                +productCell("Acer Aspire 3 15 Intel (Chính hãng)", "/images/may8.png", "3", "11.990.000")
-                +productCell("ASUS TUF Dash F15 (Chính hãng)", "/images/may9.png", "3", "26.990.000")
-                +productCell("Dell Vostro 15 3500 Intel gen 11 (Chính Hãng)", "/images/may10.png", "2", "14.990.000")
+                - var n = 0;
+                each value in product
+                    +productCell(product[n].name, "/images/"+product[n].thumbnail[0], "2", product[n].price)
+                    -n++ ; 
             div(class="text-center")
                 a(class="border rounded-full inline-block leading-10 px-8 trnsition ease-in-out duration-300 hover:bg-blue-500 hover:text-white" href="") Xem thêm
 

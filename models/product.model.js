@@ -39,11 +39,13 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  infomation: {
+  information: {
     info: [String],
   },
   brand: Number,
   type: Number,
+  cpuType: Number,
+  ramType: Number,
   comment: [commentSchema]
 });
 
