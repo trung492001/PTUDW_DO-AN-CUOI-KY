@@ -27,7 +27,7 @@ app.use(cookieParser());
 
 app.set('trust proxy', 1); // trust first proxy
 app.use(session({
-  store: new FileStore(fileStoreOptions),
+  // store: new FileStore(fileStoreOptions),
   secret: process.env.SESSION_SECRET,
   resave: false,
   rolling: true,

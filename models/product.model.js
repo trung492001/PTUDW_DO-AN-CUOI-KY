@@ -7,12 +7,13 @@ const commentSchema = new mongoose.Schema({
     default: null
   },
   anonymousUser: { /**For anonymous user */
-    username: {
+    name: {
       type: String,
       default: null
     },
     avatar: {
       type: String,
+      default: null
     }
   },
   content: {

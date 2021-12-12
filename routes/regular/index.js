@@ -7,6 +7,9 @@ const indexController = require('../../controllers/auth/index.controller');
 router.use('/', authRoute);
 
 router.get('/', indexController);
+router.get('/laptop', (req, res) => {
+  res.render('laptop');
+})
 
 router.get('/404', (req, res) => res.render('404'));
 

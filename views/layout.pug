@@ -75,7 +75,10 @@ html(lang="en")
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") MENU
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") RESERVATION
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/sign-in") LOGIN
-      block content
+      div(class="container mx-auto px-4" style="max-width: 1254px")
+        //- breadcrumb
+        div(class="mb-6") Breadcrumb
+        block content
       block foot
       div(class="w-full bg-black text-white")
           div(class="container mx-auto p-10 grid grid-cols-1 lg:grid-cols-2 gap-4")
