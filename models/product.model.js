@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const commentSchema = new mongoose.Schema({
-  userId: {
+const replySchema = new mongoose.Schema({
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Account',
     default: null
@@ -13,18 +13,37 @@ const commentSchema = new mongoose.Schema({
     },
     avatar: {
       type: String,
-      default: null
+      default: '/images/default-avatar.png'
     }
   },
   content: {
     type: String,
     required: true
   },
-  createAt: {
-    type: Date,
-    default: Date.now
-  }
-});
+}, { timestamps: true });
+
+const commentSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Account',
+    default: null
+  },
+  anonymousUser: { /**For anonymous user */
+    name: {
+      type: String,
+      default: null
+    },
+    avatar: {
+      type: String,
+      default: '/images/default-avatar.png'
+    }
+  },
+  content: {
+    type: String,
+    required: true
+  },
+  reply: [replySchema]
+}, { timestamps: true });
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -39,12 +58,12 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  infomation: {
-    info: [String],
-  },
+  information: [String],
   brand: Number,
   type: Number,
+  cpuType: Number,
+  ramType: Number,
   comment: [commentSchema]
 });
 
-module.exports = new mongoose.model('Product', productSchema, 'Product');
+module.exports = mongoose.model('Product', productSchema, 'Product');
