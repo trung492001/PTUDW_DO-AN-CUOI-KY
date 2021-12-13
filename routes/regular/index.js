@@ -18,4 +18,5 @@ router.get('/laptop/:id', (req, res) => res.render('detailLaptop'));
 
 router.get('/404', (req, res) => res.render('404'));
 
+router.get('/ShoppingCart', (req, res) => res.render('cart'));
 module.exports = router;
