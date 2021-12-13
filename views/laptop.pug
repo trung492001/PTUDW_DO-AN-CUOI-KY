@@ -1,6 +1,6 @@
 extends layout
 mixin productCell(name, img, number, cost, productId)
-    div(class="flex flex-col w-1/2 md:w-1/3 lg:w-1/5 border transform ease-in duration-200 hover:shadow-2xl")
+    div(class="flex flex-col w-1/2 md:w-1/3 lg:w-1/4 border transform ease-in duration-200 hover:shadow-2xl")
         div(class="px-2 pt-2 md:px-4 md:pt-4 mb-2")
             div
                 a(href="/detailLaptop?productId="+productId)
@@ -49,14 +49,37 @@ mixin catalogue(title, idCatalogue)
         span(class="text") Acer 
       label(class="block space-x-1")
         input(type="checkbox" value="6")
-        span(class="text") Lg 
+        span(class="text") Lg
+block header
+  script(src="/javascripts/laptop.js" defer) 
 block content 
-    script(src="/javascripts/laptop.js") 
     div(class="container block mx-auto")
         div(class="px-10")
-            p(class="text-3xl font-bold") Máy tính xách tay
-            div(class="flex space-x-2")
-                div(style="width:247px")
+            p(class="text-xl xl:text-3xl font-bold") Máy tính xách tay
+            div(class="block xl:flex space-x-2")
+                div(class="flex xl:hidden mt-4 justify-between items-center")
+                  div(class="flex")
+                    p Sắp xếp theo
+                    select(class="bg-white border-0 outline-none")
+                      option(value="none" selected disabled hidden) 
+                      option(value="1") Giá tăng dần 
+                      option(valeue="2") Giá thấp dần
+                  div(class="flex items-center space-x-2 border-2 rounded-full py-1 px-3 filter-btn")
+                    <i class="w-1/2 fas fa-filter"></i>
+                    span Lọc
+                div(class="filter-mobile bg-white ml-0 fixed xl:hidden top-0 -left-2 w-full overflow-scroll p-4 transform translate-x-full transition-all duration-75 ease-in-out" style="height: calc(var(--vh, 1vh)*100); z-index: 998")
+                  div(class="flex justify-between pb-3 items-center")
+                    div(class="back")
+                      <i class="fas fa-angle-left fa-lg"></i>
+                    p(class="text-xl font-semibold") Lọc
+                    p
+                  +catalogue('Thương hiệu','1')
+                  +catalogue('Khoảng giá','2')
+                  +catalogue('Loại hàng','3')
+                  +catalogue('Tình trạng','4')
+                  +catalogue('CPU','5')
+                  +catalogue('RAM','6') 
+                div(class="hidden xl:block" style="width:247px")
                     div(class="text-base space-x-1 mt-3" style="font-size: 14px;margin-bottom: 20px;")
                         strong 1 - 24
                         span trên 295 sản phẩm
@@ -67,8 +90,8 @@ block content
                         +catalogue('Tình trạng','4')
                         +catalogue('CPU','5')
                         +catalogue('RAM','6')
-                div(style="width: calc(100% - 247px)")
-                    div(class="mt-3 mb-5 flex gap-3")
+                div(class="xl:w-997xl 997 mt-3")
+                    div(class="mt-3 mb-5 hidden xl:flex gap-3")
                       strong Sắp xếp theo: 
                       a(href='#') Giá tăng dần 
                       a(href='#') Giá giảm dần

@@ -6816,6 +6816,10 @@ video {
   width: 24rem;
 }
 
+.w-997 {
+  width: 997px;
+}
+
 .w-auto {
   width: auto;
 }
@@ -6962,6 +6966,10 @@ video {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+}
+
+.w-997xl {
+  width: calc(100% - 247px);
 }
 
 .min-w-0 {
@@ -38566,6 +38574,10 @@ input[type=number]::-webkit-outer-spin-button {
     width: 24rem;
   }
 
+  .sm\:w-997 {
+    width: 997px;
+  }
+
   .sm\:w-auto {
     width: auto;
   }
@@ -38712,6 +38724,10 @@ input[type=number]::-webkit-outer-spin-button {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+  }
+
+  .sm\:w-997xl {
+    width: calc(100% - 247px);
   }
 
   .sm\:min-w-0 {
@@ -70223,6 +70239,10 @@ input[type=number]::-webkit-outer-spin-button {
     width: 24rem;
   }
 
+  .md\:w-997 {
+    width: 997px;
+  }
+
   .md\:w-auto {
     width: auto;
   }
@@ -70369,6 +70389,10 @@ input[type=number]::-webkit-outer-spin-button {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+  }
+
+  .md\:w-997xl {
+    width: calc(100% - 247px);
   }
 
   .md\:min-w-0 {
@@ -101880,6 +101904,10 @@ input[type=number]::-webkit-outer-spin-button {
     width: 24rem;
   }
 
+  .lg\:w-997 {
+    width: 997px;
+  }
+
   .lg\:w-auto {
     width: auto;
   }
@@ -102026,6 +102054,10 @@ input[type=number]::-webkit-outer-spin-button {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+  }
+
+  .lg\:w-997xl {
+    width: calc(100% - 247px);
   }
 
   .lg\:min-w-0 {
@@ -133537,6 +133569,10 @@ input[type=number]::-webkit-outer-spin-button {
     width: 24rem;
   }
 
+  .xl\:w-997 {
+    width: 997px;
+  }
+
   .xl\:w-auto {
     width: auto;
   }
@@ -133683,6 +133719,10 @@ input[type=number]::-webkit-outer-spin-button {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+  }
+
+  .xl\:w-997xl {
+    width: calc(100% - 247px);
   }
 
   .xl\:min-w-0 {
@@ -165194,6 +165234,10 @@ input[type=number]::-webkit-outer-spin-button {
     width: 24rem;
   }
 
+  .\32xl\:w-997 {
+    width: 997px;
+  }
+
   .\32xl\:w-auto {
     width: auto;
   }
@@ -165340,6 +165384,10 @@ input[type=number]::-webkit-outer-spin-button {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+  }
+
+  .\32xl\:w-997xl {
+    width: calc(100% - 247px);
   }
 
   .\32xl\:min-w-0 {

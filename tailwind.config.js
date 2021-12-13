@@ -8,6 +8,10 @@ module.exports = {
       },
       spacing: {
         "22": "5.5rem"
+      },
+      width: {
+        "997": "997px",
+        "997xl": "calc(100% - 247px)",
       }
     },
   },

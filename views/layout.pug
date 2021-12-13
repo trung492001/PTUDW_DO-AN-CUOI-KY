@@ -15,7 +15,7 @@ html(lang="en")
     link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css' integrity='sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay' crossorigin='anonymous')
     script(src="/javascripts/layout.js" defer)
     block header
-  body(class="bg-gray-50")
+  body
       nav(class="bg-black text-white")
           div(class="mx-auto flex p-5 flex-wrap items-center flex-row-0")
               div(class="logo")
@@ -78,10 +78,10 @@ html(lang="en")
         block content
       block foot
       div(class="text-white" style="background: #05042c")
-        div(class="container mx-auto px-32")
+        div(class="container mx-auto px-4" style="max-width:1254")
           div(class="flex flex-wrap justify-between")
             a(href= '/')
-              img(src='/images/logo2.svg' alt="logo footer" width="314" height="95")
+              img(src='/images/logo2.svg' alt="logo footer" class="w-28 md:w-52 xl:w-full py-6")
             div(class="flex justify-between items-center" style='width:424px')
               div(class="font-semibold text-white hotline")
                 div(class="text-sm text-white text-opacity-50") Hotline 
@@ -97,11 +97,10 @@ html(lang="en")
                   li
                     a(class="flex items-center justify-center w-8 h-8 rounded-full bg-brand")
                       <i class="fab fa-instagram"></i>
-          div(class="flex flex-wrap conetent-wrapper justify-between")
-            p(class="block md:hidden") Sản phẩm và dịch vụ
+          div(class="flex flex-wrap justify-between mt-3")
             ul(class="flex flex-wrap" style="width:798px")
-              li(class="w-1/4 pb-6")
-                p(class="mb-4 text-lg font-semibold leading-140") Sản phẩm và dịch vụ
+              li(class="w-1/2 md:w-1/4 pb-6")
+                p(class="mb-4 text xl md:text-lg font-semibold leading-140") Sản phẩm và dịch vụ
                 ul
                   li
                     a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Laptop Dell 
@@ -111,7 +110,7 @@ html(lang="en")
                     a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Laptop ThinkPad 
                   li
                     a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Laptop Lenovo
-              li(class="w-1/4 pb-6" style="margin-top: 42px;")
+              li(class="w-1/2 md:w-1/4 pb-6" style="margin-top: 42px;")
                 ul
                   li
                     a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Alienware
@@ -121,8 +120,8 @@ html(lang="en")
                     a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Laptop Razer 
                   li
                     a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Phụ kiện
-              li(class="w-1/4 pb-6")
-                p(class="mb-4 text-lg font-semibold leading-140") Chính sách
+              li(class="w-1/2 md:w-1/4 pb-6")
+                p(class="mb-4 text-xl md:text-lg font-semibold leading-140") Chính sách
                 ul
                   li
                     a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Bảo hành
@@ -130,8 +129,8 @@ html(lang="en")
                     a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Vận chuyển 
                   li
                     a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Thanh toán 
-              li(class="w-1/4 pb-6")
-                p(class="mb-4 text-lg font-semibold leading-140") Về ThinkPro
+              li(class="w-1/2 md:w-1/4 pb-6")
+                p(class="mb-4 text-xl md:text-lg font-semibold leading-140") Về ThinkPro
                 ul
                   li
                     a(href="" class="block text-base text-white text-opacity-70 pb-2 hover:text-blue-500") Lịch sử thành lập 
