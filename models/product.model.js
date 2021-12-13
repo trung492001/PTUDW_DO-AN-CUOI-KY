@@ -58,9 +58,7 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  information: {
-    info: [String],
-  },
+  information: [String],
   brand: Number,
   type: Number,
   cpuType: Number,

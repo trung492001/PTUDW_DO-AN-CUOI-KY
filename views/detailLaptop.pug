@@ -10,15 +10,15 @@ block content
   div(class="md:flex")
     div(class="md:w-1/2 md:pr-6")
       div(class="block md:hidden")
-        h1(class="font-bold text-xl leading-7 mb-0") ASUS TUF Dash F15 (Chính hãng)
+        h1(class="font-bold text-xl leading-7 mb-0")=product.name
         div(class="mb-5 text-sm flex space-x-3")
           a(href="#box-rating" class="underline") 0 đánh giá
           a(href="#box-comment" class="underline") 0 bình luận
       div(class="sticky mb-6 top-24")
-        img(src="/images/may1.jpg" class="block mx-auto")
+        img(src="/images/"+product.thumbnail[0] class="block mx-auto")
     div(class="text-sm md:w-1/2")
       div(class="hidden md:block")
-        h1(class="mb-4 font-bold leading-tight font-primary text-3xl") ASUS TUF Dash F15 (Chính hãng)
+        h1(class="mb-4 font-bold leading-tight font-primary text-3xl")=product.name
         div(class="mb-5 text-sm md:flex md:space-x-4")
             a(href="#box-rating" class="underline") 0 đánh giá
             a(href="#box-comment" class="underline") 0 bình luận
@@ -28,29 +28,15 @@ block content
             span(class="mr-2") Thương hiệu:
             a(class="w-10" href="#") Asus
           div(id="description" class="md:pr-8")
-            +tag("Vi xử lý:", "Intel Core i5 11300H, 4 nhân / 8 luồng")
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
-            +tag("Màn hình:", '15.6" Full HD IPS 144Hz (1920 x 1080), chống chói')
+            +tag("Vi xử lý:", product.information[0])
+            +tag("Màn hình:", product.information[1])
+            +tag("RAM:", product.information[2])
+            +tag("Card đồ họa:", product.information[3])
+            +tag("Lưu trữ:", product.information[4])
+            +tag("Pin:", product.information[5])
+            +tag("Kết nối chính:", product.information[6])
+            +tag("Cân nặng:", product.information[7])
+            +tag("Hệ điều hành:", product.information[8])
         div
           div(id="service" class="mb-4 text-sm rounded p-4 border border-gray-200" style="width: 262px")
             h3(class="text-base mb-2 font-semibold leading-6") Bảo hành
