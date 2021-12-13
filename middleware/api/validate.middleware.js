@@ -1,7 +1,7 @@
 const Joi = require('joi');
-const pick = require('../utils/pick');
-const catchAsync = require('../utils/catchAsync');
-const { BadRequest } = require('../utils/response');
+const pick = require('../../utils/pick');
+const catchAsync = require('../../utils/catchAsync');
+const { BadRequest } = require('../../utils/response');
 
 const validateMiddleware = (schema) => catchAsync((req, res, next) => {
   const validSchema = pick(schema, ['params', 'query', 'body']);

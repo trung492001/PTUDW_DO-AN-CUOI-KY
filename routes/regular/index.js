@@ -12,6 +12,8 @@ router.get('/laptop', (req, res) => {
   res.render('laptop');
 })
 
+router.get('/laptop/:id', (req, res) => res.render('detailLaptop'));
+
 router.get('/404', (req, res) => res.render('404'));
 
 module.exports = router;

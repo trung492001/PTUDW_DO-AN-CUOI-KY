@@ -1,3 +1,5 @@
+extends layout
+
 mixin tag(title, content)
   div(id="tag")
     span
@@ -12,8 +14,8 @@ block content
         div(class="mb-5 text-sm flex space-x-3")
           a(href="#box-rating" class="underline") 0 đánh giá
           a(href="#box-comment" class="underline") 0 bình luận
-      div(class="sticky mb-6" style="top: 92px")
-        img(src="/images/may1.png" class="block mx-auto")
+      div(class="sticky mb-6 top-24")
+        img(src="/images/may1.jpg" class="block mx-auto")
     div(class="text-sm md:w-1/2")
       div(class="hidden md:block")
         h1(class="mb-4 font-bold leading-tight font-primary text-3xl") ASUS TUF Dash F15 (Chính hãng)
@@ -61,5 +63,37 @@ block content
                 strong toàn cầu 24 tháng
               li
                 ="Đổi mới trong 15 ngày đầu tiên"
-  div(id="box-comment" class="text-sm mb-14")
+  div(id="bottom-container" class="max-w-4xl mx-auto")
+    div(id="box-description" class="mb-10")
+      h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12") Chi tiết sản phẩm
+      div(id="description-content") Lorem ipsum
+
+    div(id="box-comment" class="mb-14 pt-10 border-t border-gray-200")
+      h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12 block")
+        span Bình luận
+        span(class="text-sm inline-block ml-2 font-normal") 4 bình luận
+      div(id="comment-input")
+        h3(class="text-base mb-2 font-semibold") Để lại bình luận của bạn
+        div(id="comment-input-area" class="mb-7 relative")
+          textarea(name="comment-content" rows="1" class="w-full h-32 p-4 outline-none bg-gray-100 resize-none rounded border border-gray-50 hover:border-blue-300 focus:border-blue-300" placeholder="Xin hãy để lại bình luận") 
+          button(class="absolute right-4 bottom-4 px-4 py-1.5 rounded-full outline-none bg-brand font-bold text-white text-center") Gửi
+      div(id="comment-list")
+        div(id="comment-item" class="mt-5 relative")
+          div(id="comment-item-ava" class="w-8 h-8 sm:w-12 sm:h-12 mr-4 float-left overflow-hidden")
+            img(src="/images/default-avatar.png" class="rounded-full bg-white")
+          div(id="comment-item-content" class="pb-4 border-b border-gray-200 mb-4 overflow-hidden")
+            h3(class="font-semibold text-base leading-6") User 1235234
+            p(class="text-sm leading-5") Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            span(class="text-xs") 1 tháng trước
+          div(id="comment-reply" class="pl-12 sm:pl-22")
+            div(id="comment-item" class="mt-5 relative")
+              div(id="comment-item-ava" class="w-8 h-8 sm:w-12 sm:h-12 mr-4 float-left overflow-hidden")
+                img(src="/images/default-avatar.png" class="rounded-full bg-white")
+              div(id="comment-item-content" class="pb-4 border-b border-gray-200 mb-4 overflow-hidden")
+                h3(class="font-semibold text-base leading-6") User 1235234
+                p(class="text-sm leading-5") Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                span(class="text-xs") 1 tháng trước
+      //- pagination
+
+
 
