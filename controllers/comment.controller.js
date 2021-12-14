@@ -23,7 +23,7 @@ module.exports.reply = catchAsync(async (req, res) => {
 
 module.exports.get = catchAsync(async (req, res) => {
   const { productId, page } = req.query;
-  const pagi = pagination({ page, pageSize: 10 });
+  const pagi = pagination({ page, pageSize: 5 });
   const data = await commentService.get(productId, pagi);
   res.send(data);
 })
