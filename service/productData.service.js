@@ -29,56 +29,9 @@ const getProductByBrand = async function(brandCode) {
     return productData;
 }
 
-const filterPrice = function(data, priceScale) {
-    console.log(priceScale);
-    if(priceScale === 1) {
-        for(let i = 0; i < data.length; i++) {
-            if(data[i].price < 50000000) {
-                data.splice(i, 1);
-                i--;
-            }
-        }
-    }
-    if(priceScale === 2) {
-        for(let i = 0; i < data.length; i++) {
-            if(data[i].price < 40000000 || data[i].price > 49999999) {
-                data.splice(i, 1);
-                i--;
-            }
-        }
-    }
-    if(priceScale === 3) {
-        for(let i = 0; i < data.length; i++) {
-            if(data[i].price < 30000000 || data[i].price > 39999999) {
-                console.log(data[i].price);
-                data.splice(i, 1);
-                i--;
-            }
-        }
-    }
-    if(priceScale == 4) {
-        for(let i = 0; i < data.length; i++) {
-            if(data[i].price < 20000000 || data[i].price > 29999999) {
-                data.splice(i, 1);
-                i--;
-            }
-        }
-    }
-    if(priceScale == 5) {
-        for(let i = 0; i < data.length; i++) {
-            if(data[i].price < 10000000 || data[i].price > 19999999) {
-                data.splice(i, 1);
-                i--;
-            }
-        }
-    }
-    return data;
-}
-
 module.exports = {
     getProductData,
     getRandomProduct,
     getOneProduct,
     getProductByBrand,
-    filterPrice
 }

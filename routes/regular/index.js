@@ -26,4 +26,6 @@ router.post('/profile', profileController.post);
 
 router.get('/ShoppingCart', (req, res) => res.render('cart'));
 
+router.post('/filter', filterController);
+
 module.exports = router;
