@@ -22,8 +22,16 @@ const getOneProduct = async function(productId) {
     return productData;
 };
 
+const getProductByBrand = async function(brandCode) {
+    const productData = await productModels.find(
+        {brand: brandCode}
+    );
+    return productData;
+}
+
 module.exports = {
     getProductData,
     getRandomProduct,
-    getOneProduct
+    getOneProduct,
+    getProductByBrand,
 }
