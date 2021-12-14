@@ -10,7 +10,7 @@ const apiRoute = require('./api');
 
 router.use('/api', apiRoute);
 
-router.use('/', userDataMiddleware, regularRoute)
+router.use('/', userDataMiddleware, regularRoute);
 
 
 module.exports = router;

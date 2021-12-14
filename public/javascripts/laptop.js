@@ -1,12 +1,16 @@
 const backBtn = document.querySelector('.back');
 const filterMobile = document.querySelector('.filter-mobile');
 const filterBtn = document.querySelector('.filter-btn');
+const filterPC = document.querySelector('.filter-pc');
 
-
-function showAndHide(id){
+function showAndHide(device, id){
     const idList = "list" + id;
-    list = document.getElementById(idList);
-    list.classList.toggle("hidden");    
+    let list;
+    if(device === 'pc')
+        list = filterPC.querySelector(`#${idList}`);
+    else
+        list = filterMobile.querySelector(`#${idList}`);
+    list.classList.toggle("hidden");
 }
 
 
