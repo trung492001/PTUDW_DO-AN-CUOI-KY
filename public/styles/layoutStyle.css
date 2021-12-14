@@ -1,11 +1,25 @@
 .nav-bar a:hover, .nav-bar i:hover{
-    color:red;
-    transition: all 0.6s;
     cursor: pointer;
+    color:red;
 }
 .dropdown:hover .dropdown-menu {
     display: block;
 }
 nav>div #search-bar{
     display:none;
+}
+
+.dropdown-menu::before{
+    width: 13px;
+    height: 13px;
+    border: 1px solid #e3e7ef;
+    border-width: 0 1px 1px 0;
+    content: "";
+    position: absolute;
+    left: inherit;
+    top: -6px;
+    right: 20px;
+    background: white;
+    transform: rotate(225deg);
+    z-index: 1;
 }

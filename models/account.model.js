@@ -38,6 +38,14 @@ const accountSchema = new mongoose.Schema({
   banUntil: {
     type: Date,
     default: Date.now
+  },
+  phone: {
+    type: String,
+    default: ""
+  },
+  address: {
+    type: String,
+    default: ""
   }
 })
 

@@ -9,7 +9,6 @@ const hashPassword = (password) =>{
 const comparePassword = (plainTextPassword, hash) => {
     return bcrypt.compareSync(plainTextPassword, hash);
 }
-
 module.exports = {
     hashPassword,
     comparePassword

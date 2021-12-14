@@ -2,7 +2,7 @@ doctype html
 
 html(lang="en") 
   head
-    title Butter
+    title ThinkVip
 
     // Required meta tags
     meta(charset="utf-8")
@@ -26,7 +26,7 @@ html(lang="en")
                   a(class="mr-6" href="/laptop") LAPTOP
                   a(class="mr-6" href="/menu") PC
                   a(class="mr-6" href="/reservation") PHỤ KIỆN
-              div(class="nav-bar text-xl items-center flex ml-auto md:ml-0")
+              div(class="nav-bar text-xl items-center text-center flex ml-auto md:ml-0")
                   div(class="mr-6 text-sm")
                       if cartLength
                           span(class="fa-stack fa-2x has-badge" data-count=cartLength)
@@ -38,16 +38,20 @@ html(lang="en")
                                   i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
                   i(class="fas fa-search fa-lg mr-6" onclick="myFunction()")
                   if user
-                    div(class="hidden md:flex items-center")
-                      a(class="mr-6" href="/profile")
-                        img(alt="Avatar" src=user.image class="h-10 w-10 rounded-full")
-                      div(class="relative inline-block dropdown pt-2")
-                        a(class="mr-6" href="/profile")=user.username
-                        div(class="dropdown-menu hidden absolute bg-white text-black w-32 z-10 right-0 mt-1 text-right")
-                          div(class="hover:bg-gray-300")
-                            a(class="block p-2" href="/profile") Profile
-                          div(class="hover:bg-gray-300")
-                            a(class="block p-2" href="/logout") LOGOUT
+                    div(class="hidden md:block items-center relative dropdown mt-2 w-11")
+                      div(class="mb-2")
+                        a(href="/profile")
+                          img(alt="Avatar" src=user.avatar class="h-10 w-10 rounded-full")
+                      div(class="dropdown-menu rounded-lg hidden absolute bg-white text-black w-32 text-right right-0 min-w-max")
+                        ul(class="bg-white rounded-lg overflow-hidden text-left" style="box-shadow: 0 2px 8px rgb(0 0 0 / 25%);")
+                          li(class="hover:bg-gray-200")
+                            a(class="block p-2 hover:text-white space-x-3" href="/profile") 
+                              <i class="far fa-user-circle"></i>
+                              span Tài khoản
+                          li(class="hover:bg-gray-200 ")
+                            a(class="block p-2 hover:text-white space-x-3" href="/logout")
+                              <i class="fas fa-sign-out-alt"></i>
+                              span Đăng xuất
                   else
                     a(class="mr-6 hidden md:flex" href="/login") LOGIN
               div.col-12(id="search-bar")
@@ -62,7 +66,7 @@ html(lang="en")
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                       </svg>
           //Mobile menu
-          div(class="nav-bar mobile-menu hidden md:hidden bg-black text-white px-2 py-2")
+          div(class="nav-bar mobile-menu hidden md:hidden text-white px-2 py-2" style="background: #05042c")
               if user 
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/profile") PROFILE
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") LAPTOP
