@@ -18,7 +18,7 @@ const getRandomProduct = async function(size) {
 const getOneProduct = async function(productId) {
     const productData = await productModels.findOne(
         {_id: productId}
-    );
+    ).lean().exec();
     return productData;
 };
 

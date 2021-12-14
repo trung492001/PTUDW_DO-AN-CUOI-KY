@@ -1,15 +1,22 @@
 const catchAsync = require("../utils/catchAsync");
+const { BadRequest } = require("../utils/response");
 const pagination = require("../utils/pagination");
 const commentService = require("../service/comment.service");
 
 module.exports.add = catchAsync(async (req, res) => {
   const { productId, anonymousUsername, content } = req.body;
-  await commentService.add(productId, req.user?._id, anonymousUsername, content);
-  res.send("Success!");
+  if (!req.user && !anonymousUsername) {
+    throw new BadRequest("Thiếu tên người dùng!");
+  }
+  const newComment = await commentService.add(productId, req.user?._id, anonymousUsername, content);
+  res.send(newComment);
 })
 
 module.exports.reply = catchAsync(async (req, res) => {
   const { parentId, anonymousUsername, content } = req.body;
+  if (!req.user && !anonymousUsername) {
+    throw new BadRequest("Thiếu tên người dùng!");
+  }
   await commentService.reply(parentId, req.user?._id, anonymousUsername, content);
   res.send("Success!");
 })
