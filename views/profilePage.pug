@@ -4,120 +4,135 @@ block header
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap" rel="stylesheet">
 block content
-    script(src="/javascripts/profilePage.js" defer)
+    script(src="/profilePage.js" defer)
     div(class="container mx-auto my-5")
-        div(class="container my-3") 
-            div(class="grid lg:grid-cols-3 gap-3")
-                div(class="flex flex-col border gap-3 rounded-md")
-                    div(class="h-auto w-auto text-center m-auto mt-3" style="max-height: 200px")
-                        img(class="w-full h-full rounded-lg" src="/images/default-avatar.png" alt="User Avatar")
-                    div(class="mx-auto")
-                        button(class="border-2 border-gray-400 py-3 px-5 rounded-xl text-gray-400") <i class="fas fa-camera"></i> Edit Photo
-                    div(class="text-center items-center")
-                        p=user.name
-                        svg(class="mx-auto mt-3" xmlns='http://www.w3.org/2000/svg' height='30px' viewbox='0 -92 512 512' width='30px')
-                            path(d='m419.25 277.976562h-326.5c-4.988281 0-9.648438-2.464843-12.457031-6.585937-43.078125-63.171875-46.382813-184.691406-46.632813-202.730469-.015625-.707031-.023437-1.421875-.023437-2.132812 0-8.316406 6.734375-15.0625 15.050781-15.078125h.03125c8.300781 0 15.046875 6.714843 15.078125 15.019531 0 .101562.003906.992188.039063 2.570312 1.328124 42.902344 36.644531 77.390626 79.863281 77.390626 44.058593 0 79.902343-35.84375 79.902343-79.902344 0-8.328125 6.753907-15.078125 15.078126-15.078125h34.636718c8.328125 0 15.078125 6.75 15.078125 15.078125 0 44.058594 35.847657 79.902344 79.90625 79.902344 43.257813 0 78.597657-34.550782 79.867188-77.507813.027343-1.507813.035156-2.351563.035156-2.449219.03125-8.308594 6.773437-15.023437 15.078125-15.023437h.027344c8.316406.015625 15.050781 6.761719 15.050781 15.078125 0 .714844-.007813 1.425781-.019531 2.136718-.253906 18.035157-3.558594 139.558594-46.632813 202.730469-2.808593 4.117188-7.472656 6.582031-12.457031 6.582031zm0 0' fill='#fff780')
-                            path(d='m463.308594 51.449219c-.007813 0-.015625 0-.027344 0-8.300781 0-15.046875 6.714843-15.078125 15.019531 0 .101562-.003906.945312-.035156 2.453125-1.269531 42.953125-36.609375 77.507813-79.867188 77.507813-44.058593 0-79.902343-35.84375-79.902343-79.902344 0-8.328125-6.753907-15.078125-15.078126-15.078125h-17.316406v226.523437h163.246094c4.988281 0 9.648438-2.464844 12.457031-6.582031 43.078125-63.171875 46.382813-184.695313 46.632813-202.730469.015625-.707031.023437-1.421875.023437-2.132812-.003906-8.316406-6.738281-15.0625-15.054687-15.078125zm0 0' fill='#ffc02e')
-                            path(d='m256 0c-26.863281 0-48.71875 21.855469-48.71875 48.71875s21.855469 48.714844 48.71875 48.714844 48.71875-21.851563 48.71875-48.714844-21.855469-48.71875-48.71875-48.71875zm0 0' fill='#ffc02e')
-                            path(d='m256.003906 0v97.4375c26.863282-.003906 48.714844-21.855469 48.714844-48.71875s-21.855469-48.71484375-48.714844-48.71875zm0 0' fill='#ffa73b')
-                            path(d='m48.71875 37.597656c-26.863281 0-48.71875 21.855469-48.71875 48.71875 0 26.863282 21.855469 48.71875 48.71875 48.71875s48.714844-21.855468 48.714844-48.71875c0-26.863281-21.851563-48.71875-48.714844-48.71875zm0 0' fill='#ffc02e')
-                            path(d='m463.28125 37.597656c-26.863281 0-48.714844 21.855469-48.714844 48.71875 0 26.859375 21.851563 48.714844 48.714844 48.714844s48.71875-21.855469 48.71875-48.714844c0-26.863281-21.855469-48.71875-48.71875-48.71875zm0 0' fill='#ffa73b')
-                            path(d='m419.25 327.441406h-326.5c-8.328125 0-15.078125-6.75-15.078125-15.078125v-44.964843h356.65625v44.964843c0 8.328125-6.75 15.078125-15.078125 15.078125zm0 0' fill='#ffc02e')
-                            path(d='m256.003906 327.441406h163.246094c8.328125 0 15.078125-6.75 15.078125-15.078125v-44.964843h-178.324219zm0 0' fill='#ffa73b') 
-                        p(class="mt-3")=user.address
-                    ul(class="p-3 ")
-                        li(class="flex flex-row justify-between px-5 border-t border-b items-center")
-                            div(class="flex flex-row my-2 gap-x-2") 
-                                svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
-                                    circle(cx='12' cy='12' r='10')
-                                    line(x1='2' y1='12' x2='22' y2='12')
-                                    path(d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z')
-                                p Website
-                            span https://bootdey.com
-                        li(class="flex flex-row justify-between px-5 border-t border-b items-center")
-                            div(class="flex flex-row my-2 gap-x-2") 
-                                svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
-                                    path(d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22')
-                                p Github
-                            span bootdey
-                        li(class="flex flex-row justify-between px-5 border-t border-b items-center")
-                            div(class="flex flex-row my-2 gap-x-2") 
-                                svg(style="color: #17a2b8" xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
-                                    path(d='M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z')
-                                p Twitter
-                            span @bootdey
-                        li(class="flex flex-row justify-between px-5 border-t border-b items-center")
-                            div(class="flex flex-row my-2 gap-x-2") 
-                                svg(style="color: #dc3545" xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
-                                    rect(x='2' y='2' width='20' height='20' rx='5' ry='5')
-                                    path(d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z')
-                                    line(x1='17.5' y1='6.5' x2='17.51' y2='6.5')
-                                p Instagram
-                            span bootdey
-                        li(class="flex flex-row justify-between px-5 border-t items-center")
-                            div(class="flex flex-row my-2 gap-x-2") 
-                                svg(style="color: #007bff" xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
-                                    path(d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z')
-                                p Facebook
-                            span bootdey
-                div(class="lg:col-span-2 border rounded-md")
-                    div(class="p-3")
-                        ul(id="tabs" class="inline-flex w-full px-1 pt-2 ")
-                            li(class="px-4 py-2 -mb-px font-semibold text-gray-800 border-b-2 border-blue-400 rounded-t opacity-50")
-                                a(id="default-tab" href="#first") About
-                            li(class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50")
-                                a(href="#second") History
-                            li(class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50")
-                                a(href="#third") Reservation
-                        div(id="tab-contents")
-                            div(id="first" class="p-4")
-                                p(class="text-xl font-semibold") Thông tin cá nhân
-                                form(method="POST" action='/profile')
-                                    div(class="grid grid-cols-4 mb-4")
-                                        label(for="name" class="text-lg") Họ và tên
-                                        input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="name" type="text" name="name" value=user.name)
-                                    div(class="grid grid-cols-4 mb-4")
-                                        label(for="username" class="text-lg") Username
-                                        input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="username" type="text" name="username" value=user.username)
-                                    div(class="grid grid-cols-4 mb-5")
-                                        label(for="email" class="text-lg") Email
-                                        input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="email" type="text" name="email" value=user.email)
-                                    div(class="grid grid-cols-4 mb-5")
-                                        label(for="phone" class="text-lg") Số điện thoại
-                                        input(class=" col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="phone" type="text" name="phone" value=user.phone)  
-                                    div(class="grid grid-cols-4 mb-5")
-                                        label(for="address" class="text-lg") Địa chỉ
-                                        input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="address" type="text" name="address" value=user.address)  
-                                    div(class="flex justify-evenly")
-                                        input(class="cursor-pointer text-base px-5 py-2 rounded-md bg-brand text-white" type='submit' value='Cập nhật')
-                                p(class="text-xl font-semibold mt-5") Thay đổi mật khẩu
-                                div(class="form-changePassword border")
-                                    div(class="p-4")
-                                        div(class="grid grid-cols-4 mb-5")
-                                            div 
-                                                label(for="oldPassword")
-                                                    p(class="text-lg") Mật khẩu hiện tại
-                                            div(class="col-span-3")
-                                                input(class="form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="oldPassword" type="password" name="oldPassword")
-                                        div(class="form group")
+        div(class="container my-3")
+            form(action="") 
+                div(class="grid lg:grid-cols-3 gap-3")
+                    div(class="flex flex-col border gap-3 rounded-md")
+                        div(class="h-auto w-auto text-center m-auto mt-3" style="max-height: 200px")
+                            img(class="w-full h-full rounded-lg" src=user.avatar alt="User Avatar")
+                        div(class="mx-auto")
+                            button(class="border-2 border-gray-400 py-3 px-5 rounded-xl text-gray-400") <i class="fas fa-camera"></i> Edit Photo
+                        div(class="text-center items-center")
+                            p=user.lastName + " " + user.firstName
+                            svg(class="mx-auto mt-3" xmlns='http://www.w3.org/2000/svg' height='30px' viewbox='0 -92 512 512' width='30px')
+                                path(d='m419.25 277.976562h-326.5c-4.988281 0-9.648438-2.464843-12.457031-6.585937-43.078125-63.171875-46.382813-184.691406-46.632813-202.730469-.015625-.707031-.023437-1.421875-.023437-2.132812 0-8.316406 6.734375-15.0625 15.050781-15.078125h.03125c8.300781 0 15.046875 6.714843 15.078125 15.019531 0 .101562.003906.992188.039063 2.570312 1.328124 42.902344 36.644531 77.390626 79.863281 77.390626 44.058593 0 79.902343-35.84375 79.902343-79.902344 0-8.328125 6.753907-15.078125 15.078126-15.078125h34.636718c8.328125 0 15.078125 6.75 15.078125 15.078125 0 44.058594 35.847657 79.902344 79.90625 79.902344 43.257813 0 78.597657-34.550782 79.867188-77.507813.027343-1.507813.035156-2.351563.035156-2.449219.03125-8.308594 6.773437-15.023437 15.078125-15.023437h.027344c8.316406.015625 15.050781 6.761719 15.050781 15.078125 0 .714844-.007813 1.425781-.019531 2.136718-.253906 18.035157-3.558594 139.558594-46.632813 202.730469-2.808593 4.117188-7.472656 6.582031-12.457031 6.582031zm0 0' fill='#fff780')
+                                path(d='m463.308594 51.449219c-.007813 0-.015625 0-.027344 0-8.300781 0-15.046875 6.714843-15.078125 15.019531 0 .101562-.003906.945312-.035156 2.453125-1.269531 42.953125-36.609375 77.507813-79.867188 77.507813-44.058593 0-79.902343-35.84375-79.902343-79.902344 0-8.328125-6.753907-15.078125-15.078126-15.078125h-17.316406v226.523437h163.246094c4.988281 0 9.648438-2.464844 12.457031-6.582031 43.078125-63.171875 46.382813-184.695313 46.632813-202.730469.015625-.707031.023437-1.421875.023437-2.132812-.003906-8.316406-6.738281-15.0625-15.054687-15.078125zm0 0' fill='#ffc02e')
+                                path(d='m256 0c-26.863281 0-48.71875 21.855469-48.71875 48.71875s21.855469 48.714844 48.71875 48.714844 48.71875-21.851563 48.71875-48.714844-21.855469-48.71875-48.71875-48.71875zm0 0' fill='#ffc02e')
+                                path(d='m256.003906 0v97.4375c26.863282-.003906 48.714844-21.855469 48.714844-48.71875s-21.855469-48.71484375-48.714844-48.71875zm0 0' fill='#ffa73b')
+                                path(d='m48.71875 37.597656c-26.863281 0-48.71875 21.855469-48.71875 48.71875 0 26.863282 21.855469 48.71875 48.71875 48.71875s48.714844-21.855468 48.714844-48.71875c0-26.863281-21.851563-48.71875-48.714844-48.71875zm0 0' fill='#ffc02e')
+                                path(d='m463.28125 37.597656c-26.863281 0-48.714844 21.855469-48.714844 48.71875 0 26.859375 21.851563 48.714844 48.714844 48.714844s48.71875-21.855469 48.71875-48.714844c0-26.863281-21.855469-48.71875-48.71875-48.71875zm0 0' fill='#ffa73b')
+                                path(d='m419.25 327.441406h-326.5c-8.328125 0-15.078125-6.75-15.078125-15.078125v-44.964843h356.65625v44.964843c0 8.328125-6.75 15.078125-15.078125 15.078125zm0 0' fill='#ffc02e')
+                                path(d='m256.003906 327.441406h163.246094c8.328125 0 15.078125-6.75 15.078125-15.078125v-44.964843h-178.324219zm0 0' fill='#ffa73b') 
+                            p(class="mt-3")=user.address
+                        ul(class="p-3 ")
+                            li(class="flex flex-row justify-between px-5 border-t border-b items-center")
+                                div(class="flex flex-row my-2 gap-x-2") 
+                                    svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+                                        circle(cx='12' cy='12' r='10')
+                                        line(x1='2' y1='12' x2='22' y2='12')
+                                        path(d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z')
+                                    p Website
+                                span https://bootdey.com
+                            li(class="flex flex-row justify-between px-5 border-t border-b items-center")
+                                div(class="flex flex-row my-2 gap-x-2") 
+                                    svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+                                        path(d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22')
+                                    p Github
+                                span bootdey
+                            li(class="flex flex-row justify-between px-5 border-t border-b items-center")
+                                div(class="flex flex-row my-2 gap-x-2") 
+                                    svg(style="color: #17a2b8" xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+                                        path(d='M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z')
+                                    p Twitter
+                                span @bootdey
+                            li(class="flex flex-row justify-between px-5 border-t border-b items-center")
+                                div(class="flex flex-row my-2 gap-x-2") 
+                                    svg(style="color: #dc3545" xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+                                        rect(x='2' y='2' width='20' height='20' rx='5' ry='5')
+                                        path(d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z')
+                                        line(x1='17.5' y1='6.5' x2='17.51' y2='6.5')
+                                    p Instagram
+                                span bootdey
+                            li(class="flex flex-row justify-between px-5 border-t items-center")
+                                div(class="flex flex-row my-2 gap-x-2") 
+                                    svg(style="color: #007bff" xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+                                        path(d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z')
+                                    p Facebook
+                                span bootdey
+                    div(class="lg:col-span-2 border rounded-md")
+                        div(class="p-3")
+                            ul(id="tabs" class="inline-flex w-full px-1 pt-2 ")
+                                li(class="px-4 py-2 -mb-px font-semibold text-gray-800 border-b-2 border-blue-400 rounded-t opacity-50")
+                                    a(id="default-tab" href="#first") About
+                                li(class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50")
+                                    a(href="#second") History
+                                li(class="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50")
+                                    a(href="#third") Reservation
+                            div(id="tab-contents")
+                                div(id="first" class="p-4")
+                                    p(class="text-xl font-semibold") Thông tin cá nhân
+                                    div(class="form group border")
+                                        div(class="p-3")
+                                            div(class="grid grid-cols-4 mb-4")
+                                                div 
+                                                    label(for="username")
+                                                        p(class="text-lg") Họ và tên
+                                                div(class="col-span-3")
+                                                    input(class="form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="username" type="text" name="username" value=user.username title="Hãy cập nhật họ vè tên")
+                                            div(class="form group")
+                                                div(class="grid grid-cols-4 mb-5")
+                                                    div 
+                                                        label(for="email")
+                                                            p(class="text-lg") Email
+                                                    div(class="col-span-3")
+                                                        input(class="form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="email" type="text" name="email" value=user.email)
+                                            div(class="form group")
+                                                div(class="grid grid-cols-4 mb-5")
+                                                    div 
+                                                        label(for="phone")
+                                                            p(class="text-lg") Số điện thoại
+                                                    div(class="col-span-3")
+                                                        input(class="form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="phone" type="text" name="phone" value=user.phone)  
+                                            div(class="form group")
+                                                div(class="grid grid-cols-4 mb-5")
+                                                    div 
+                                                        label(for="address")
+                                                            p(class="text-lg") Địa chỉ
+                                                    div(class="col-span-3")
+                                                        input(class="form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="address" type="text" name="address" value=user.address)  
+                                            div(class="form group")
+                                                div(class="flex justify-evenly")
+                                                    input(class="cursor-pointer text-base px-5 py-2 rounded-md bg-brand text-white" type='submit' value='Cập nhật')
+                                    p(class="text-xl font-semibold mt-5") Thay đổi mật khẩu
+                                    div(class="form group border")
+                                        div(class="p-4")
                                             div(class="grid grid-cols-4 mb-5")
                                                 div 
-                                                    label(for="newPassword")
-                                                        p(class="text-lg") Mật khẩu mới
+                                                    label(for="oldPassword")
+                                                        p(class="text-lg") Mật khẩu hiện tại
                                                 div(class="col-span-3")
-                                                    input(class="form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="newPassword" type="password" name="newPassword")
-                                        div(class="form group")
-                                            div(class="grid grid-cols-4 mb-5")
-                                                div 
-                                                    label(for="newPassword_v1")
-                                                        p(class="text-lg") Nhập lại mật khẩu mới
-                                                div(class="col-span-3")
-                                                    input(class="form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="newPassword_v1" type="password" name="newPassword_v1")  
-                                        div(class="form group")
-                                            div(class="flex justify-evenly")
-                                                input(class="cursor-pointer text-base px-5 py-2 rounded-md bg-brand text-white" type='submit' value='Cập nhật')
-                            div(id="second" class="hidden p-4") Second tab
-                            div(id="third" class="hidden p-4") Third tab
+                                                    input(class="form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="oldPassword" type="password" name="oldPassword")
+                                            div(class="form group")
+                                                div(class="grid grid-cols-4 mb-5")
+                                                    div 
+                                                        label(for="newPassword")
+                                                            p(class="text-lg") Mật khẩu mới
+                                                    div(class="col-span-3")
+                                                        input(class="form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="newPassword" type="password" name="newPassword")
+                                            div(class="form group")
+                                                div(class="grid grid-cols-4 mb-5")
+                                                    div 
+                                                        label(for="newPassword_v1")
+                                                            p(class="text-lg") Nhập lại mật khẩu mới
+                                                    div(class="col-span-3")
+                                                        input(class="form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="newPassword_v1" type="password" name="newPassword_v1")  
+                                            div(class="form group")
+                                                div(class="flex justify-evenly")
+                                                    input(class="cursor-pointer text-base px-5 py-2 rounded-md bg-brand text-white" type='submit' value='Cập nhật')
+                                div(id="second" class="hidden p-4") Second tab
+                                div(id="third" class="hidden p-4") Third tab
 
                         
 

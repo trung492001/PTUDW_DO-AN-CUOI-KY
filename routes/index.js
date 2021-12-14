@@ -7,9 +7,10 @@ const regularRoute = require('./regular');
 const apiRoute = require('./api');
 
 /* GET home page. */
+
 router.use('/api', apiRoute);
 
-router.use('/', userDataMiddleware, regularRoute);
+router.use('/', userDataMiddleware, regularRoute)
 
 
 module.exports = router;

@@ -29,12 +29,3 @@ module.exports.createNewAccount = async (name, username, password, email) => awa
   password: hashPassword(password),
   email
 })
-
-module.exports.Update = async (user, newInfo) => {
-  let name = newInfo.name;
-  let username = newInfo.username;
-  let email = newInfo.email;
-  let phone = newInfo.phone;
-  let address = newInfo.address;
-  const update = await Account.findByIdAndUpdate({_id: user.id}, {$set: {"name": name, "username": username, "email": email, "phone":phone, "address": address}});
-}
