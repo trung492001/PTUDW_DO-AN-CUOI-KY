@@ -14,15 +14,15 @@ mixin productCell(name, img, number, cost, productId)
                 div(class="flex items-center space-x-1")
                     span(class="text-sm text-black leading-5") Giá từ: 
                     span(class="text-sm xl:text-lg text-red-500 leading-7 font-semibold")=cost + " ₫"
-mixin pagination(category, currentPage, pageCount)
-  - var prefixUrl = `?category=${category}`;
+mixin pagination(currentUrl, currentPage, pageCount)
+  - var prefixUrl = '?'+currentUrl;
   if pageCount > 0
     nav(class="mb-12" id="#pagination")
       ul(class="flex justify-center gap-x-1")
 
         //- Prev item
         if currentPage > 1
-          a(class="" href=`${prefixUrl}&page=${currentPage-1}`)
+          a(class="" href=`${prefixUrl}page=${currentPage-1}`)
             li(class="border py-1 px-2 text-center" style="min-width: 36px;")
               <i class="fas fa-chevron-left"></i>
 
@@ -70,7 +70,7 @@ mixin pagination(category, currentPage, pageCount)
         
         //- Next item
         if currentPage < pageCount
-          a(class="" href=`${prefixUrl}&page=${currentPage+1}`)
+          a(class="" href=`${prefixUrl}page=${currentPage+1}`)
             li(class="border py-1 px-2 text-center" style="min-width: 36px;")
               <i class="fas fa-chevron-right"></i>
 mixin catalogue(title, device, idCatalogue)
@@ -90,118 +90,116 @@ mixin catalogue(title, device, idCatalogue)
           input(type="checkbox" class="checkBox" value="0")
           span(class="text") Dell
         label(class="block space-x-1")
-          input(type="checkbox" value="3")
+          input(type="checkbox" class="checkBox" value="3")
           span(class="text") Asus 
         label(class="block space-x-1")
-          input(type="checkbox" value="4")
+          input(type="checkbox" class="checkBox" value="4")
           span(class="text") HP
         label(class="block space-x-1")
-          input(type="checkbox" value="5")
+          input(type="checkbox" class="checkBox" value="5")
           span(class="text") Microsoft
         label(class="block space-x-1")
-          input(type="checkbox" value="6")
+          input(type="checkbox" class="checkBox" value="6")
           span(class="text") Apple 
         label(class="block space-x-1")
-          input(type="checkbox" value="7")
+          input(type="checkbox" class="checkBox" value="7")
           span(class="text") MSI 
         label(class="block space-x-1")
-          input(type="checkbox" value="8")
+          input(type="checkbox" class="checkBox" value="8")
           span(class="text") Acer 
         label(class="block space-x-1")
-          input(type="checkbox" value="9")
+          input(type="checkbox" class="checkBox" value="9")
           span(class="text") Lg
     if(idCatalogue === "2")
       div(id=`list${idCatalogue}` class="items-center hidden")
         label(class="block space-x-1")
-          input(type="checkbox" value="1")
+          input(type="checkbox" class="checkBox" value="1")
           span(class="text") Trên 50 triệu 
         label(class="block space-x-1")
-          input(type="checkbox" value="2")
+          input(type="checkbox" class="checkBox" value="2")
           span(class="text") 40 - 50 triệu
         label(class="block space-x-1")
-          input(type="checkbox" value="3")
+          input(type="checkbox" class="checkBox" value="3")
           span(class="text") 30 - 40 triệu
         label(class="block space-x-1")
-          input(type="checkbox" value="4")
+          input(type="checkbox" class="checkBox" value="4")
           span(class="text") 20 - 30 triệu 
         label(class="block space-x-1")
-          input(type="checkbox" value="5")
+          input(type="checkbox" class="checkBox" value="5")
           span(class="text") 10 - 20 triệu
     if(idCatalogue === "3")
       div(id=`list${idCatalogue}` class="items-center hidden")
         label(class="block space-x-1")
-          input(type="checkbox" value="1")
+          input(type="checkbox" class="checkBox" value="1")
           span(class="text") Chính hãng 
         label(class="block space-x-1")
-          input(type="checkbox" value="2")
+          input(type="checkbox" class="checkBox" value="2")
           span(class="text") Nhập khẩu
     if(idCatalogue === "4")
       div(id=`list${idCatalogue}` class="items-center hidden")
         label(class="block space-x-1")
-          input(type="checkbox" value="1")
+          input(type="checkbox" class="checkBox" value="1")
           span(class="text") New, Sealed 
         label(class="block space-x-1")
-          input(type="checkbox" value="2")
+          input(type="checkbox" class="checkBox" value="2")
           span(class="text") New, Fullbox
         label(class="block space-x-1")
-          input(type="checkbox" value="3")
+          input(type="checkbox" class="checkBox" value="3")
           span(class="text") New, Outlet 
         label(class="block space-x-1")
-          input(type="checkbox" value="4")
+          input(type="checkbox" class="checkBox" value="4")
           span(class="text") Used
     if(idCatalogue === "5")
       div(id=`list${idCatalogue}` class="items-center hidden")
         label(class="block space-x-1")
-          input(type="checkbox" value="1")
+          input(type="checkbox" class="checkBox" value="1")
           span(class="text") Intel Dual Core 
         label(class="block space-x-1")
-          input(type="checkbox" value="2")
+          input(type="checkbox" class="checkBox" value="2")
           span(class="text") Intel Core i3
         label(class="block space-x-1")
-          input(type="checkbox" value="3")
+          input(type="checkbox" class="checkBox" value="3")
           span(class="text") Intel Core i5
         label(class="block space-x-1")
-          input(type="checkbox" value="3")
+          input(type="checkbox" class="checkBox" value="3")
           span(class="text") Intel Core i7
         label(class="block space-x-1")
-          input(type="checkbox" value="4")
+          input(type="checkbox" class="checkBox" value="4")
           span(class="text") Intel Core i9
         label(class="block space-x-1")
-          input(type="checkbox" value="5")
+          input(type="checkbox" class="checkBox" value="5")
           span(class="text") Intel Xeon
         label(class="block space-x-1")
-          input(type="checkbox" value="6")
+          input(type="checkbox" class="checkBox" value="6")
           span(class="text") AMD Ryzen 3 
         label(class="block space-x-1")
-          input(type="checkbox" value="7")
+          input(type="checkbox" class="checkBox" value="7")
           span(class="text") AMD Ryzen 5
         label(class="block space-x-1")
-          input(type="checkbox" value="8")
+          input(type="checkbox" class="checkBox" value="8")
           span(class="text") AMD Ryzen 7
     if(idCatalogue === "6")
       div(id=`list${idCatalogue}` class="items-center hidden")
         label(class="block space-x-1")
-          input(type="checkbox" value="1")
+          input(type="checkbox" class="checkBox" value="1")
           span(class="text") 4 GB 
         label(class="block space-x-1")
-          input(type="checkbox" value="2")
+          input(type="checkbox" class="checkBox" value="2")
           span(class="text") 8 GB
         label(class="block space-x-1")
-          input(type="checkbox" value="3")
+          input(type="checkbox" class="checkBox" value="3")
           span(class="text") 16 GB
         label(class="block space-x-1")
-          input(type="checkbox" value="3")
+          input(type="checkbox" class="checkBox" value="3")
           span(class="text") 32 GB
         label(class="block space-x-1")
-          input(type="checkbox" value="4")
+          input(type="checkbox" class="checkBox" value="4")
           span(class="text") 64 GB
         label(class="block space-x-1")
-          input(type="checkbox" value="4")
+          input(type="checkbox" class="checkBox" value="4")
           span(class="text") 128 GB
 block header
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
-  script(type="text/javascript").
-    var products = !{productData};
   script(type="text/javascript" src="/javascripts/laptop.js" defer)
 block content 
     div(class="container block mx-auto")
@@ -246,10 +244,10 @@ block content
                       strong Sắp xếp theo: 
                       a(href='#') Giá tăng dần 
                       a(href='#') Giá giảm dần
-                    div(class="flex flex-wrap product")
+                    div(id="product" class="flex flex-wrap")
                       - var n = 0;
                       each value in product
                         +productCell(product[n].name, "/images/"+product[n].thumbnail[0], "2", product[n].price, product[n]._id)
                         -n++ ;
             - var n = 0;
-              +pagination('dell', currentPage, 5)
+              +pagination(currentUrl, currentPage, 5)

@@ -2,7 +2,7 @@ const backBtn = document.querySelector('.back');
 const filterMobile = document.querySelector('.filter-mobile');
 const filterPC = document.querySelector('.filter-pc');
 const filterBtn = document.querySelector('.filter-btn');
-const productData = products;
+
 
 function showAndHide(device, id){
     const idList = "list" + id;
@@ -25,12 +25,27 @@ filterBtn.addEventListener('click', () =>{
 
 $(document).ready(function() {
     $('.checkBox').click(function() {
-        let id = $(this).closest('.items-center').attr('id');
-        let typeId = $(this).val(); 
-        $.post('/filter', {
-            filter: id,
-            type: typeId
+        var names = [];
+        $('input:checked').each(function() {
+            names.push(
+                {   
+                    id: $(this).closest('.items-center').attr('id'),
+                    type: this.value
+                });
+        });
+        let searchId = '';
+        let typeId = '';
+        for(let i = 0; i < names.length; i++) {
+            if(i === names.length - 1) {
+                searchId += names[i].id;
+                typeId += names[i].type;
+            } else {
+                searchId += names[i].id+'_';
+                typeId += names[i].type+'_';
+            }
+        }
+        $('.filter').click(function() {
+            window.location.href= '/laptop?searchId='+searchId+'&typeId='+typeId;
         })
-        $.get('/laptop');
     });
 });
