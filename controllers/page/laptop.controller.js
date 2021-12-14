@@ -25,8 +25,8 @@ module.exports = async (req, res) => {
                 }
             }
             if(searchOption[i] == '2') {
-                if(data === []) {
-                    data = await productService.getProductData();
+                if(data.length === 0) {
+                    data = productData;
                     data = productService.filterPrice(data, parseInt(typeOption[i]));
                 } else {
                     data = productService.filterPrice(data, parseInt(typeOption[i]));
