@@ -15,7 +15,6 @@ module.exports = async (req, res) => {
     if(req.query.searchId) {
         let searchOption = req.query.searchId.replaceAll('list','').split('_');
         let typeOption = req.query.typeId.split('_');
-        console.log(searchOption);
         productData = await productService.getProductByBrand(req.query.brandId);
         for(let i = 0; i < searchOption.length; i++) {
             if(searchOption[i] == '1') {

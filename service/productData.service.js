@@ -30,7 +30,6 @@ const getProductByBrand = async function(brandCode) {
 }
 
 const filterPrice = function(data, priceScale) {
-    console.log(priceScale);
     if(priceScale === 1) {
         for(let i = 0; i < data.length; i++) {
             if(data[i].price < 50000000) {
