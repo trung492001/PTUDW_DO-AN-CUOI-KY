@@ -10,8 +10,12 @@ module.exports = {
         "22": "5.5rem"
       },
       width: {
-        "997": "997px",
+        "997px": "997px",
         "997xl": "calc(100% - 247px)",
+        "168px": "168px"
+      },
+      height:{
+        "168px": "168px"
       }
     },
   },
