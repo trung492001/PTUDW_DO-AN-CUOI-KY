@@ -6,6 +6,7 @@ const indexController = require('../../controllers/auth/index.controller');
 const laptopController = require('../../controllers/page/laptop.controller');
 const detailLaptopController = require('../../controllers/page/productDetail.controller');
 const filterController = require('../../controllers/page/filter.controller');
+const profileController = require('../../controllers/auth/profile.controller');
 
 router.use('/', authRoute);
 
@@ -19,7 +20,9 @@ router.get('/laptop/:id', (req, res) => res.render('detailLaptop'));
 
 router.get('/404', (req, res) => res.render('404'));
 
-router.get('/profile', (req, res) => res.render('profilePage'));
+router.get('/profile', profileController.get);
+
+router.post('/profile', profileController.post);
 
 router.get('/ShoppingCart', (req, res) => res.render('cart'));
 

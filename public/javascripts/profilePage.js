@@ -1,5 +1,6 @@
 let tabsContainer = document.querySelector("#tabs");
 let tabTogglers = tabsContainer.querySelectorAll("a");
+
 tabTogglers.forEach(function(toggler) {
     toggler.addEventListener("click", function(e) {
         e.preventDefault();
@@ -20,3 +21,6 @@ tabTogglers.forEach(function(toggler) {
     });
 });
 document.getElementById("default-tab").click();
+
+
+
