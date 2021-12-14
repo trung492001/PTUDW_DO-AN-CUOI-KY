@@ -21,12 +21,12 @@ module.exports.add = async (productId, userId = null, anonymousUsername = null, 
     comment: { $first: "$comment" },
     _id: 0,
   })
-  .populate("comment.user", "name avatar")
-  .lean()
-  .exec();
+    .populate("comment.user", "name avatar")
+    .lean()
+    .exec();
   return newComment.comment
 }
-module.exports.reply = async (commentId, userId = null, anonymousUsername = null, content) =>
+module.exports.reply = async (commentId, userId = null, anonymousUsername = null, content) => {
   await Product.updateOne({ "comment._id": commentId }, {
     $push: {
       "comment.$.reply": {
@@ -38,6 +38,14 @@ module.exports.reply = async (commentId, userId = null, anonymousUsername = null
       }
     }
   })
+  const reply = await Product.findOne({ "comment._id": commentId }, {
+    _id: 0,
+    comment: {
+      $elemMatch: { _id: commentId }
+    }
+  }).lean().exec();
+  return reply.comment[0].reply[reply.comment[0].reply.length - 1];
+}
 
 module.exports.get = async (productId, { skip, limit }) => {
   const result = await Product.findById(productId, {

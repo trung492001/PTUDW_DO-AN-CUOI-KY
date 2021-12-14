@@ -1,4 +1,40 @@
-function createComment({ _id, user, anonymousUser, content, updatedAt }) {
+function replyBox(to) {
+  console.log(to)
+  const loggedIn = parseInt(document.getElementById('logged-in').value);
+
+  const box = document.createElement('div');
+  box.className = "reply-box mt-2.5 mb-7";
+  const inputArea = document.createElement('textarea');
+  inputArea.placeholder = "Xin hãy để lại bình luận";
+  inputArea.className = "w-full h-20 p-4 outline-none bg-gray-100 resize-none rounded border border-gray-50 hover:border-blue-300 focus:border-blue-300 overflow-y-auto";
+  inputArea.id = `reply-content-to-${to}`;
+
+  const replyBtn = document.createElement('button');
+  replyBtn.className = "px-4 py-1.5 rounded-full outline-none bg-brand font-bold text-white text-center float-right";
+  replyBtn.innerText = "Gửi";
+  replyBtn.onclick = () => replyComment(to);
+
+  if (!loggedIn) {
+    const inputName = document.createElement('input');
+    inputName.placeholder = "Xin hãy để lại tên";
+    inputName.id = `reply-name-to-${to}`;
+    inputName.className = "mb-3 w-full p-4 outline-none bg-gray-100 rounded border border-gray-50 hover:border-blue-300 focus:border-blue-300";
+    box.appendChild(inputName);
+  }
+
+  box.appendChild(inputArea);
+  box.appendChild(replyBtn);
+
+  return box;
+}
+
+function showReplyBox(thisComment, parentId) {
+  [...document.getElementsByClassName("reply-box")].map(n => n && n.remove());
+  const replyBoxElement = replyBox(parentId);
+  document.getElementById(`comment-content-wrapper-${thisComment}`).appendChild(replyBoxElement);
+}
+
+function createComment({ _id, user, anonymousUser, content, updatedAt }, parentId) {
   const comment = document.createElement('div');
   comment.className = "mt-5 relative";
   comment.id = `comment-item-${_id}`;
@@ -11,6 +47,7 @@ function createComment({ _id, user, anonymousUser, content, updatedAt }) {
   avatarWrapper.appendChild(avatar);
 
   const contentWrapper = document.createElement('div');
+  contentWrapper.id = `comment-content-wrapper-${_id}`;
   contentWrapper.classList = "pb-4 border-b border-gray-200 mb-4 overflow-hidden";
   const usernameElement = document.createElement('h3');
   usernameElement.className = "font-semibold text-base leading-6";
@@ -18,11 +55,16 @@ function createComment({ _id, user, anonymousUser, content, updatedAt }) {
   const contentElement = document.createElement('p');
   contentElement.className = "text-sm leading-5";
   contentElement.innerText = content;
+  const replyBtn = document.createElement('button');
+  replyBtn.innerText = "Trả lời";
+  replyBtn.className = "text-brand font-semibold text-sm mr-2";
+  replyBtn.onclick = () => showReplyBox(_id, parentId);
   const timestampElement = document.createElement('span');
   timestampElement.className = "text-xs";
   timestampElement.innerText = updatedAt;
   contentWrapper.appendChild(usernameElement);
   contentWrapper.appendChild(contentElement);
+  contentWrapper.appendChild(replyBtn);
   contentWrapper.appendChild(timestampElement);
 
   comment.appendChild(avatarWrapper);
@@ -39,11 +81,12 @@ function loadComment(page = 1) {
       const commentList = document.getElementById('comment-list');
       commentList.innerHTML = '';
       res.data.result.forEach(comment => {
-        const parentComment = createComment(comment);
+        const parentComment = createComment(comment, comment._id);
         const replySection = document.createElement('div');
         replySection.className = "pl-12 sm:pl-22";
+        replySection.id = `reply-list-${comment._id}`;
         comment.reply.forEach(reply => {
-          const replyComment = createComment(reply);
+          const replyComment = createComment(reply, comment._id);
           replySection.appendChild(replyComment);
         });
         parentComment.appendChild(replySection);
@@ -75,6 +118,38 @@ function postComment() {
     .then(res => {
       const newComment = createComment(res.data);
       document.getElementById('comment-list').prepend(newComment);
+      document.getElementById('comment-input-content').value = "";
+      if (!loggedIn) {
+        document.getElementById('comment-input-username').value = "";
+      }
+      Toast.success("Bình luận thành công")
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
+function replyComment(to) {
+  const loggedIn = parseInt(document.getElementById('logged-in').value);
+  const content = document.getElementById(`reply-content-to-${to}`).value;
+  const data = { parentId: to, content };
+  if (!loggedIn) {
+    const anonymousUsername = document.getElementById(`reply-name-to-${to}`).value;
+    if (!anonymousUsername) {
+      return Toast.alert("Bạn cần để lại tên cho trả lời bình luận!");
+    } else {
+      data.anonymousUsername = anonymousUsername;
+    }
+  }
+  if (!content) {
+    return Toast.alert("Nội dung bình luận không thể trống!");
+  }
+  axios.post('/api/comment/reply', data)
+    .then(res => {
+      const newComment = createComment(res.data);
+      document.getElementById(`reply-list-${to}`).append(newComment);
+      [...document.getElementsByClassName("reply-box")].map(n => n && n.remove());
+      Toast.success("Trả lời bình luận thành công")
     })
     .catch(err => {
       console.log(err);
