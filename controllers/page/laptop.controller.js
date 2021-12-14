@@ -25,13 +25,8 @@ module.exports = async (req, res) => {
                 }
             }
             if(searchOption[i] == '2') {
-<<<<<<< HEAD
                 if(data === []) {
                     data = await productService.getProductData();
-=======
-                if(data.length === 0) {
-                    data = productData;
->>>>>>> parent of 33b65d1 (Merge branch 'master' of https://github.com/trung492001/PTUDW_DO-AN-CUOI-KY)
                     data = productService.filterPrice(data, parseInt(typeOption[i]));
                 } else {
                     data = productService.filterPrice(data, parseInt(typeOption[i]));
