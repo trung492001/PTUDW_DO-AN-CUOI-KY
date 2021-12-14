@@ -17,13 +17,13 @@ module.exports.reply = catchAsync(async (req, res) => {
   if (!req.user && !anonymousUsername) {
     throw new BadRequest("Thiếu tên người dùng!");
   }
-  await commentService.reply(parentId, req.user?._id, anonymousUsername, content);
-  res.send("Success!");
+  const reply = await commentService.reply(parentId, req.user?._id, anonymousUsername, content);
+  res.send(reply);
 })
 
 module.exports.get = catchAsync(async (req, res) => {
   const { productId, page } = req.query;
-  const pagi = pagination({ page, pageSize: 5 });
+  const pagi = pagination({ page, pageSize: 10 });
   const data = await commentService.get(productId, pagi);
   res.send(data);
 })

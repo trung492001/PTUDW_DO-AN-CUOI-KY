@@ -3,11 +3,22 @@ const Toast = {
     text: text,
     duration: 3000,
     close: true,
-    gravity: "top", 
+    gravity: "top",
     position: "right",
     stopOnFocus: true, // Prevents dismissing of toast on hover
-    style:{
+    style: {
       background: "red"
     }
-  }).showToast()
+  }).showToast(),
+  success: (text) => Toastify({
+    text: text,
+    duration: 3000,
+    close: true,
+    gravity: "top",
+    position: "right",
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "#42ba96"
+    }
+  }).showToast(),
 }
