@@ -1,7 +1,10 @@
 const productService = require('../../service/productData.service');
 
 module.exports = async (req, res) => {
-    const productData = await productService.getProductData();
+    let productData = [];
+    let currentUrl;
+    let data = [];
+    let productArray = [];
     // Pagination
     const page = parseInt(req.query.page) || 1;
     const productPerPage = 20;
@@ -22,8 +25,13 @@ module.exports = async (req, res) => {
                 }
             }
             if(searchOption[i] == '2') {
+<<<<<<< HEAD
                 if(data === []) {
                     data = await productService.getProductData();
+=======
+                if(data.length === 0) {
+                    data = productData;
+>>>>>>> parent of 33b65d1 (Merge branch 'master' of https://github.com/trung492001/PTUDW_DO-AN-CUOI-KY)
                     data = productService.filterPrice(data, parseInt(typeOption[i]));
                 } else {
                     data = productService.filterPrice(data, parseInt(typeOption[i]));
@@ -41,5 +49,6 @@ module.exports = async (req, res) => {
 
     res.locals.currentPage = parseInt(page);
     res.locals.product = productArray;
+    res.locals.currentUrl = currentUrl;
     res.render('laptop');
 }
