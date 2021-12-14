@@ -15,9 +15,9 @@ mixin productCell(name, img, number, cost, productId)
                     span(class="text-sm text-black leading-5") Giá từ: 
                     span(class="text-sm xl:text-lg text-red-500 leading-7 font-semibold")=cost + "₫"
 
-mixin trademarkCell(img)
+mixin trademarkCell(img, id)
     div(class="m-2 flex-shrink-0" style="width:115px")
-        a(href="" class="border rounded-lg inline-block w-full hover:border-blue-700")
+        a(href="/category?brandId="+id class="border rounded-lg inline-block w-full hover:border-blue-700")
             img(class="max-w-full" src=img)
 
 block header 
@@ -31,16 +31,16 @@ block content
             div(class="w-32 text-base font-bold") Thương hiệu 
             div(style="width: calc(100% - 125px);")
                 div(class=" relative flex flex-row overflow-x-auto w-full h-full" style="transform: translate3d(0px, 0px, 0px);")
-                    +trademarkCell("/images/lenovo.png")
-                    +trademarkCell("/images/razer.png")
-                    +trademarkCell("/images/dell.png")
-                    +trademarkCell("/images/asus.png")
-                    +trademarkCell("/images/hp.png")
-                    +trademarkCell("/images/microsoft.png")
-                    +trademarkCell("/images/apple.png")
-                    +trademarkCell("/images/msi.png")
-                    +trademarkCell("/images/acer.png")
-                    +trademarkCell("/images/lg.png")
+                    +trademarkCell("/images/lenovo.png", 1)
+                    +trademarkCell("/images/razer.png", 2)
+                    +trademarkCell("/images/dell.png", 0)
+                    +trademarkCell("/images/asus.png", 3)
+                    +trademarkCell("/images/hp.png", 4)
+                    +trademarkCell("/images/microsoft.png", 5)
+                    +trademarkCell("/images/apple.png", 6)
+                    +trademarkCell("/images/msi.png", 7)
+                    +trademarkCell("/images/acer.png", 8)
+                    +trademarkCell("/images/lg.png", 9)
 
         //Cost
         div(class="flex items-center my-4")
