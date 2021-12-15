@@ -160,6 +160,7 @@ mixin catalogue(title, device, idCatalogue)
           span(class="text") 128 GB
 block header
   link(rel="stylesheet" href="/styles/categoryStyle.css")
+  link(rel="stylesheet" href="/styles/laptopStyle.css")
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
   script(type="text/javascript" src="/javascripts/category.js" defer)
 block content
@@ -188,11 +189,13 @@ block content
                     <i class="w-1/2 fas fa-filter"></i>
                     span Lọc
                 div(class="filter-mobile bg-white ml-0 fixed xl:hidden top-0 -left-2 w-full overflow-scroll p-4 transform translate-x-full transition-all duration-75 ease-in-out" style="height: calc(var(--vh, 1vh)*100); z-index: 998")
-                  div(class="flex justify-between pb-3 items-center")
+                  div(class="grid grid-cols-3 pb-3 items-center")
                     div(class="back")
                       <i class="fas fa-angle-left fa-lg"></i>
-                    p(class="text-xl font-semibold") Lọc
-                    p
+                    p(class="text-xl font-semibold text-center") Lọc
+                    div(class="filter text-center border-2 rounded-full filter-btn bg-brand text-white cursor-pointer ml-auto" style="max-width:104px")
+                        div(class="p-2 mx-2")
+                          p Áp dụng
                   +catalogue('Khoảng giá','mobile','1')
                   +catalogue('Tình trạng','mobile','2')
                   +catalogue('CPU','mobile','3')
@@ -201,14 +204,14 @@ block content
                     div(class="text-base space-x-1 mt-3" style="font-size: 14px;margin-bottom: 20px;")
                         strong 1 - 24
                         span trên 295 sản phẩm
-                    div(class="filter-pc sticky top-0 overflow-y-auto" style="max-height: 400px")
+                    div(class="filter text-center border-2 rounded-full filter-btn sticky my-3 w-1/2 mx-auto bg-brand text-white cursor-pointer top-3")
+                        div(class="p-2 mx-2")
+                          p Áp dụng
+                    div(class="filter-pc sticky top-16 overflow-y-auto" style="max-height: 400px")
                         +catalogue('Khoảng giá','pc','1')
                         +catalogue('Tình trạng','pc','2')
                         +catalogue('CPU','pc','3')
                         +catalogue('RAM','pc','4')
-                    div(class="filter flex items-center space-x-2 border-2 rounded-full py-1 px-3 filter-btn")
-                      <i class="w-1/2 fas fa-filter"></i>
-                      span Lọc
                 div(class="xl:w-997xl 997px mt-3")
                     div(class="mt-3 mb-5 hidden xl:flex gap-3")
                       strong Sắp xếp theo: 

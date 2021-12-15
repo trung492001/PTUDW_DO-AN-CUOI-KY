@@ -1,0 +1,25 @@
+.filter-btn:hover {
+    box-shadow: 0px 10px 10px rgb(9, 71, 73);
+    
+    -webkit-transform: rotateX(30deg);
+    -moz-transform: rotateX(30deg);
+    -ms-transform: rotateX(30deg);
+    transform: rotateX(30deg);
+  }
+  
+.filter-btn:active {
+    top: 0.75rem;
+    box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.0 );
+    background: rgba( 20, 224, 133, 1 );
+}
+.filter-btn{
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+  
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
