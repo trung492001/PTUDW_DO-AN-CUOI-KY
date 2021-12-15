@@ -1,0 +1,41 @@
+.section-thuonghieu .info:before {
+    content: "";
+    background: #06c1d4;
+    width: 8px;
+    height: 152px;
+    top: 24px;
+    left: 0;
+    position: absolute;
+}
+.section-thuonghieu .logo {
+    height: 100%;
+    background: #fff;
+    border: 1px solid #e3e7ef;
+    border-left: none;
+    width: 214px;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    transform: translateX(100%);
+}
+.section-thuonghieu .info {
+    border: 1px solid #e3e7ef;
+    background: #fff;
+    padding: 24px 40px;
+    position: relative;
+    color: #414956;
+    font-size: 16px;
+}
+.section-thuonghieu .info .title {
+    font-size: 32px;
+    color: #0e0e0e;
+    margin-bottom: 15px;
+}
+.section-thuonghieu .img-detail {
+    position: absolute;
+    right: 0;
+    height: 222px;
+    max-height: 222px;
+    overflow: hidden;
+    z-index: -1;
+}

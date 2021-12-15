@@ -21,16 +21,16 @@ html(lang="en")
     block header
   body(style="font-family: 'Sen', sans-serif;")
       nav(class="text-white" style="background: #05042c")
-          div(class="mx-auto flex p-5 flex-wrap items-center flex-row-0")
-              div(class="logo")
+          div(class="mx-auto flex px-2 md:px-5 py-5 flex-wrap items-center justify-between")
+              div
                   a.flex(href="/")
-                      img(src="/images/logo2.svg" class="w-1/2" alt="ThinkVip Logo")
-              div(class="nav-bar text-xl items-center mr-0 md:ml-auto hidden md:flex")
-                  a(class="mr-6" href="/laptop") LAPTOP
-                  a(class="mr-6" href="/menu") PC
-                  a(class="mr-6" href="/reservation") PHỤ KIỆN
-              div(class="nav-bar text-xl items-center flex ml-auto md:ml-0")
-                  div(class="mr-6 text-sm")
+                      img(src="/images/logo2.svg" class="w-116px md:w-168px xl:w-1/2" alt="ThinkVip Logo")
+              div(class="nav-bar text-xl items-center flex")
+                  div(class="nav-bar text-xl items-center hidden md:flex")
+                    a(class="mr-6" href="/laptop") LAPTOP
+                    a(class="mr-6" href="/menu") PC
+                    a(href="/reservation") PHỤ KIỆN
+                  div(class="text-sm")
                       if cartLength
                           span(class="fa-stack fa-2x has-badge" data-count=cartLength)
                               a(href="/ShoppingCart")
@@ -56,14 +56,14 @@ html(lang="en")
                               <i class="fas fa-sign-out-alt"></i>
                               span Đăng xuất
                   else
-                    a(class="mr-6 hidden md:flex" href="/login") LOGIN
+                    a(class="hidden md:flex" href="/login") LOGIN
               div.col-12(id="search-bar")
                   i(class="fas fa-search fa-lg" onclick="myFunction()")
                   input(type="text" id="searchBar" placeholder="Search Here ..... !")
                   div(id="search_List")
                       ul(id="dishesList")
               //mobile button goes here
-              div(class="md:hidden flex order-first mr-auto")
+              div(class="md:hidden flex order-first")
                   button(class="w-6 h-6 mobile-menu-button")
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -80,7 +80,7 @@ html(lang="en")
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") PC
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") PHỤ KIỆN
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/sign-in") LOGIN
-      div(class="container mx-auto px-4" style="max-width: 1254px")
+      div(class="container mx-auto" style="max-width: 1254px")
         //- breadcrumb
         div(class="mb-6") Breadcumb
         block content

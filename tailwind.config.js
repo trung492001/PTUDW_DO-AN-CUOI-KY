@@ -12,7 +12,8 @@ module.exports = {
       width: {
         "997px": "997px",
         "997xl": "calc(100% - 247px)",
-        "168px": "168px"
+        "168px": "168px",
+        "116px": "116px"
       },
       height:{
         "168px": "168px"
