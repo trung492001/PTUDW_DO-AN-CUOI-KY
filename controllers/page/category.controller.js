@@ -1,4 +1,5 @@
 const productService = require('../../service/productData.service');
+const categoryService = require('../../service/category.service');
 
 module.exports = async (req, res) => {
     let productData = [];
@@ -11,6 +12,8 @@ module.exports = async (req, res) => {
     const begin = (page - 1) * productPerPage;
     const end = page * productPerPage;
 
+    const brandData = await categoryService.getCategoryByBrand(req.query.brandId);
+    console.log(brandData);
     if(req.query.searchId) {
         let searchOption = req.query.searchId.replace(/list/g,'').split('_');
         let typeOption = req.query.typeId.split('_');
@@ -50,6 +53,7 @@ module.exports = async (req, res) => {
     } else {
         res.locals.maxPage = 1;
     }
+    res.locals.brandData = brandData;
     res.locals.currentPage = parseInt(page);
     res.locals.product = productArray;
     res.locals.currentUrl = currentUrl;
