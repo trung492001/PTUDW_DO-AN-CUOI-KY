@@ -17,7 +17,7 @@ mixin productCell(name, img, number, cost, productId)
 mixin pagination(currentUrl, currentPage, pageCount)
   - var prefixUrl = '?'+currentUrl;
   if pageCount > 0
-    nav(class="mb-12" id="#pagination")
+    nav(class="mt-6 mb-12" id="#pagination")
       ul(class="flex justify-center gap-x-1")
 
         //- Prev item
@@ -195,55 +195,53 @@ block header
   script(type="text/javascript" src="/javascripts/laptop.js" defer)
   link(rel="stylesheet" href="/styles/laptopStyle.css")
 block content 
-    div(class="container block mx-auto")
-        div(class="px-10")
-            p(class="text-xl xl:text-3xl font-bold") Máy tính xách tay
-            div(class="block xl:flex space-x-2")
-                div(class="flex xl:hidden mt-4 justify-between items-center")
-                  div(class="flex")
-                    p Sắp xếp theo
-                    select(class="bg-white border-0 outline-none")
-                      option(value="none" selected disabled hidden) 
-                      option(value="1") Giá tăng dần 
-                      option(valeue="2") Giá thấp dần
-                  div(class="flex items-center space-x-2 border-2 rounded-full py-1 px-3 filter-btn")
-                    <i class="w-1/2 fas fa-filter"></i>
-                    span Lọc
-                div(class="filter-mobile bg-white ml-0 fixed xl:hidden top-0 -left-2 w-full overflow-scroll p-4 transform translate-x-full transition-all duration-75 ease-in-out" style="height: calc(var(--vh, 1vh)*100); z-index: 998")
-                  div(class="grid grid-cols-3 pb-3 items-center")
-                    div(class="back")
-                      <i class="fas fa-angle-left fa-lg"></i>
-                    p(class="text-xl font-semibold text-center") Lọc
-                    div(class="filter text-center border-2 rounded-full filter-btn bg-brand text-white cursor-pointer ml-auto" style="max-width:104px")
-                        div(class="p-2 mx-2")
-                          p Áp dụng
-                  +catalogue('Thương hiệu','mobile','1')
-                  +catalogue('Khoảng giá','mobile','2')
-                  +catalogue('Tình trạng','mobile','3')
-                  +catalogue('CPU','mobile','4')
-                  +catalogue('RAM','mobile','5') 
-                div(class="hidden xl:block" style="width:247px")
-                    div(class="text-base space-x-1 mt-3" style="font-size: 14px;margin-bottom: 20px;")
-                        strong 1 - 24
-                        span trên 295 sản phẩm
-                    div(class="filter text-center border-2 rounded-full filter-btn sticky my-3 w-1/2 mx-auto bg-brand text-white cursor-pointer top-3")
-                        div(class="p-2 mx-2")
-                          p Áp dụng
-                    div(class="filter-pc sticky top-16 overflow-y-auto" style="max-height: 400px")
-                      +catalogue('Thương hiệu','pc','1') 
-                      +catalogue('Khoảng giá','pc','2')
-                      +catalogue('Tình trạng','pc','3')
-                      +catalogue('CPU','pc','4')
-                      +catalogue('RAM','pc','5')
-                div(class="xl:w-997xl 997px mt-3")
-                    div(class="mt-3 mb-5 hidden xl:flex gap-3")
-                      strong Sắp xếp theo: 
-                      a(href='#') Giá tăng dần 
-                      a(href='#') Giá giảm dần
-                    div(id="product" class="flex flex-wrap")
-                      - var n = 0;
-                      each value in product
-                        +productCell(product[n].name, "/images/"+product[n].thumbnail[0], "2", product[n].price, product[n]._id)
-                        -n++ ;
+  p(class="text-xl xl:text-3xl font-bold") Máy tính xách tay
+  div(class="block xl:flex space-x-2")
+      div(class="flex xl:hidden mt-4 justify-between items-center")
+        div(class="flex")
+          p Sắp xếp theo
+          select(class="bg-white border-0 outline-none")
+            option(value="none" selected disabled hidden) 
+            option(value="1") Giá tăng dần 
+            option(valeue="2") Giá thấp dần
+        div(class="flex items-center space-x-2 border-2 rounded-full py-1 px-3 filter-btn")
+          <i class="w-1/2 fas fa-filter"></i>
+          span Lọc
+      div(class="filter-mobile bg-white ml-0 fixed xl:hidden top-0 -left-2 w-full overflow-scroll p-4 transform translate-x-full transition-all duration-75 ease-in-out" style="height: calc(var(--vh, 1vh)*100); z-index: 998")
+        div(class="grid grid-cols-3 pb-3 items-center")
+          div(class="back")
+            <i class="fas fa-angle-left fa-lg"></i>
+          p(class="text-xl font-semibold text-center") Lọc
+          div(class="filter text-center border-2 rounded-full filter-btn bg-brand text-white cursor-pointer ml-auto" style="max-width:104px")
+              div(class="p-2 mx-2")
+                p Áp dụng
+        +catalogue('Thương hiệu','mobile','1')
+        +catalogue('Khoảng giá','mobile','2')
+        +catalogue('Tình trạng','mobile','3')
+        +catalogue('CPU','mobile','4')
+        +catalogue('RAM','mobile','5') 
+      div(class="hidden xl:block" style="width:247px")
+          div(class="text-base space-x-1 mt-3" style="font-size: 14px;margin-bottom: 20px;")
+              strong 1 - 24
+              span trên 295 sản phẩm
+          div(class="filter text-center border-2 rounded-full filter-btn sticky my-3 w-1/2 mx-auto bg-brand text-white cursor-pointer top-3")
+              div(class="p-2 mx-2")
+                p Áp dụng
+          div(class="filter-pc sticky top-16 overflow-y-auto" style="max-height: 400px")
+            +catalogue('Thương hiệu','pc','1') 
+            +catalogue('Khoảng giá','pc','2')
+            +catalogue('Tình trạng','pc','3')
+            +catalogue('CPU','pc','4')
+            +catalogue('RAM','pc','5')
+      div(class="xl:w-997xl 997px mt-3")
+          div(class="mt-3 mb-5 hidden xl:flex gap-3")
+            strong Sắp xếp theo: 
+            a(href='#') Giá tăng dần 
+            a(href='#') Giá giảm dần
+          div(id="product" class="flex flex-wrap")
             - var n = 0;
-              +pagination(currentUrl, currentPage, maxPage)
+            each value in product
+              +productCell(product[n].name, "/images/"+product[n].thumbnail[0], "2", product[n].price, product[n]._id)
+              -n++ ;
+  - var n = 0;
+    +pagination(currentUrl, currentPage, maxPage)

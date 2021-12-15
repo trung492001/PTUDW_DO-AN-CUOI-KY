@@ -1,6 +1,12 @@
 const productService = require('../../service/productData.service');
 
 module.exports = async (req, res) => {
+    res.locals.breadcrumb = [{
+        name: 'Trang chủ',
+        link: '/',
+    }, {
+        name: 'Máy tính xách tay'
+    }]
     let productData = [];
     let currentUrl;
     let data = [];
