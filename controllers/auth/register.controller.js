@@ -11,17 +11,17 @@ module.exports.post = async (req, res, next) => {
   });
 
   if (error) {
+    console.log(error.message);
     res.render('register', { error: error.message });
-    return next();
   }
   const { email, username } = value;
 
   if (await accountService.checkExistAccount(username, email)) {
+    console.log('Username or email is already taken!');
     res.render('register', { error: 'Username or email is already taken!' });
-    return next();
   }
 
   passport.authenticate('register', {
-    successRedirect: '/'
+    successRedirect: '/',
   })(req, res, next)
 }

@@ -72,24 +72,40 @@ block content
                         div(id="tab-contents")
                             div(id="first" class="p-4")
                                 p(class="text-xl font-semibold") Thông tin cá nhân
-                                form(method="POST" action='/profile')
-                                    div(class="grid grid-cols-4 mb-4")
-                                        label(for="name" class="text-lg") Họ và tên
-                                        input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="name" type="text" name="name" value=user.name)
-                                    div(class="grid grid-cols-4 mb-4")
-                                        label(for="username" class="text-lg") Username
-                                        input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="username" type="text" name="username" value=user.username)
-                                    div(class="grid grid-cols-4 mb-5")
-                                        label(for="email" class="text-lg") Email
-                                        input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="email" type="text" name="email" value=user.email)
-                                    div(class="grid grid-cols-4 mb-5")
-                                        label(for="phone" class="text-lg") Số điện thoại
-                                        input(class=" col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="phone" type="text" name="phone" value=user.phone)  
-                                    div(class="grid grid-cols-4 mb-5")
-                                        label(for="address" class="text-lg") Địa chỉ
-                                        input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded " style="font-family: 'Inter', sans-serif;" id="address" type="text" name="address" value=user.address)  
-                                    div(class="flex justify-evenly")
-                                        input(class="cursor-pointer text-base px-5 py-2 rounded-md bg-brand text-white" type='submit' value='Cập nhật')
+                                form(class="border" method="POST" action='/profile/updateProfile')
+                                    div(class="p-3")
+                                        div(class="grid grid-cols-4 mb-4")
+                                            label(for="name" class="text-lg") Họ và tên
+                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="name" type="text" name="name" value=user.name required)
+                                        div(class="grid grid-cols-4 mb-4")
+                                            label(for="username" class="text-lg") Username
+                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="username" type="text" name="username" value=user.username required)
+                                        div(class="grid grid-cols-4 mb-4")
+                                            label(for="email" class="text-lg") Email
+                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="email" type="text" name="email" value=user.email required)
+                                        div(class="grid grid-cols-4 mb-4")
+                                            label(for="phone" class="text-lg") Số điện thoại
+                                            input(class=" col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="phone" type="text" name="phone" value=user.phone)  
+                                        div(class="grid grid-cols-4 mb-4")
+                                            label(for="address" class="text-lg") Địa chỉ
+                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="address" type="text" name="address" value=user.address)  
+                                        div(class="flex justify-evenly")
+                                            input(class="cursor-pointer text-base px-5 py-2 rounded-md bg-brand text-white" type='submit' value='Cập nhật')
+                                
+                                p(class="text-xl font-semibold mt-3") Thay đổi mật khẩu
+                                form(class="border" method="POST" action='/profile/changePassword')
+                                    div(class="p-3")
+                                        div(class="grid grid-cols-7 mb-4")
+                                            label(for="oldPassword" class="text-lg col-span-2") Nhập mật khẩu hiện tại
+                                            input(class="col-span-5 form-control w-full border border-gray-400 py-1 px-3 rounded" id="oldPassword" type="text" name="oldPassword" placeholder="Nhập mật khẩu hiện tại" required)
+                                        div(class="grid grid-cols-7 mb-4")
+                                            label(for="newPassword" class="text-lg col-span-2") Mật khẩu mới
+                                            input(class="col-span-5 form-control w-full border border-gray-400 py-1 px-3 rounded" id="newPassword" type="text" name="newPassword" required)
+                                        div(class="grid grid-cols-7 mb-4")
+                                            label(for="confirmPassword" class="text-lg col-span-2") Nhập lại mật khẩu mới
+                                            input(class="col-span-5 form-control w-full border border-gray-400 py-1 px-3 rounded" id="confirmPassword" type="text" name="confirmPassword" required)
+                                        div(class="flex justify-evenly")
+                                            input(class="cursor-pointer text-base px-5 py-2 rounded-md bg-brand text-white" type='submit' value='Cập nhật')
                             div(id="second" class="hidden p-4") Second tab
                             div(id="third" class="hidden p-4") Third tab
 

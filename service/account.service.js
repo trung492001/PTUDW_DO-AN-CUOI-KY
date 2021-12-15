@@ -37,4 +37,14 @@ module.exports.Update = async (user, newInfo) => {
   let phone = newInfo.phone;
   let address = newInfo.address;
   const update = await Account.findByIdAndUpdate({_id: user.id}, {$set: {"name": name, "username": username, "email": email, "phone":phone, "address": address}});
-} 
+}
+
+module.exports.changePassword = async (userId, oldPassword, newPassword) => {
+  const user = await Account.findById({_id: userId});
+  if(!comparePassword(oldPassword, user.password)){
+    console.log("wrong pass");
+    return null;
+  }
+  user.password = hashPassword(newPassword);
+  await user.save();
+}

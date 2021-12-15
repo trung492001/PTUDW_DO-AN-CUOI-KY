@@ -24,7 +24,9 @@ router.get('/ShoppingCart', (req, res) => res.render('cart'));
 
 router.get('/profile', profileController.get);
 
-router.post('/profile', profileController.post);
+router.post('/profile/updateProfile', profileController.postProfile);
+
+router.post('/profile/changePassword', profileController.postPassword);
 
 router.get('/category?', categoryController);
 

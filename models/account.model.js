@@ -26,6 +26,7 @@ const accountSchema = new mongoose.Schema({
     default: role.User,
   },
   address: String,
+  phone: String,
   avatar: {
     type: String,
     default: '/images/default-avatar.png'
