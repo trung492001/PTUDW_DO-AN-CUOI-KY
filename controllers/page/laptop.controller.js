@@ -12,10 +12,11 @@ module.exports = async (req, res) => {
     const end = page * productPerPage;
 
     if(req.query.searchId) {
-        let searchOption = req.query.searchId.replaceAll('list','').split('_');
+        let searchOption = req.query.searchId.replace(/list/g,'').split('_');
         let typeOption = req.query.typeId.split('_');
         productData = await productService.getProductData();
         for(let i = 0; i < searchOption.length; i++) {
+
             // Loc theo hang
             if(searchOption[i] == '1') {
                 for(let j = 0; j < productData.length; j++) {
@@ -24,9 +25,9 @@ module.exports = async (req, res) => {
                     }
                 }
             }
+
             // Loc theo gia
             if(searchOption[i] == '2') {
-                console.log(data.length);
                 if(data.length === 0 && i === 0) {
                     data = await productService.getProductData();
                     data = productService.filterPrice(data, parseInt(typeOption[i]));
