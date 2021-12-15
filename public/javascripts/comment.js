@@ -73,6 +73,10 @@ function createComment({ _id, user, anonymousUser, content, updatedAt }, parentI
   return comment;
 }
 
+function createPagination(pageCount) {
+
+}
+
 function loadComment(page = 1) {
   const productId = document.getElementById('product-id').value;
   console.log(productId);

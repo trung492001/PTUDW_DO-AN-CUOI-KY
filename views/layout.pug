@@ -1,3 +1,20 @@
+mixin breadcrumb(args)
+  if (args && args.length > 0)
+      ol(class="flex text-gray-900")
+        each item, index in args
+          if (index == args.length-1)
+            li
+              span= item.name
+          else
+            li(class=`${item.link ? "font-semibold cursor-pointer":""}`)
+              if (item.link)
+                a(href=item.link)
+                  span= item.name
+              else
+                span= item.name
+            li
+              span(class="mx-2") /
+
 doctype html
 
 html(lang="en") 
@@ -82,7 +99,8 @@ html(lang="en")
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/sign-in") LOGIN
       div(class="container mx-auto" style="max-width: 1254px")
         //- breadcrumb
-        div(class="mb-6") Breadcumb
+        div(class="my-6 mx-auto")
+          +breadcrumb(breadcrumb)
         block content
       block foot
       div(class="text-white" style="background: #05042c")

@@ -66,6 +66,10 @@ module.exports.get = async (productId, { skip, limit }) => {
   const resultCount = await Product.findById(productId, { _id: -1, commentCount: { $size: '$comment' } }).lean().exec()
   return {
     result: result.comment,
-    resultCount: resultCount.commentCount
   }
+}
+
+module.exports.countComment = async (productId) => {
+  const resultCount = await Product.findById(productId, { _id: -1, commentCount: { $size: '$comment' } }).lean().exec()
+  return resultCount.commentCount;
 }
