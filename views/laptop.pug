@@ -130,64 +130,56 @@ mixin catalogue(title, device, idCatalogue)
     if(idCatalogue === "3")
       div(id=`list${idCatalogue}` class="items-center hidden")
         label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="0")
+          span(class="text") New, Sealed 
+        label(class="block space-x-1")
           input(type="checkbox" class="checkBox" value="1")
-          span(class="text") Chính hãng 
+          span(class="text") New, Fullbox
         label(class="block space-x-1")
           input(type="checkbox" class="checkBox" value="2")
-          span(class="text") Nhập khẩu
+          span(class="text") New, Outlet 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="3")
+          span(class="text") Used
     if(idCatalogue === "4")
       div(id=`list${idCatalogue}` class="items-center hidden")
         label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="0")
+          span(class="text") Intel Dual Core 
+        label(class="block space-x-1")
           input(type="checkbox" class="checkBox" value="1")
-          span(class="text") New, Sealed 
+          span(class="text") Intel Core i3
         label(class="block space-x-1")
           input(type="checkbox" class="checkBox" value="2")
-          span(class="text") New, Fullbox
+          span(class="text") Intel Core i5
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") Intel Core i7
         label(class="block space-x-1")
           input(type="checkbox" class="checkBox" value="3")
-          span(class="text") New, Outlet 
+          span(class="text") Intel Core i9
         label(class="block space-x-1")
           input(type="checkbox" class="checkBox" value="4")
-          span(class="text") Used
+          span(class="text") Intel Xeon
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="5")
+          span(class="text") AMD Ryzen 3 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="6")
+          span(class="text") AMD Ryzen 5
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="7")
+          span(class="text") AMD Ryzen 7
     if(idCatalogue === "5")
       div(id=`list${idCatalogue}` class="items-center hidden")
         label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="1")
-          span(class="text") Intel Dual Core 
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="2")
-          span(class="text") Intel Core i3
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="3")
-          span(class="text") Intel Core i5
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="3")
-          span(class="text") Intel Core i7
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="4")
-          span(class="text") Intel Core i9
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="5")
-          span(class="text") Intel Xeon
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="6")
-          span(class="text") AMD Ryzen 3 
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="7")
-          span(class="text") AMD Ryzen 5
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="8")
-          span(class="text") AMD Ryzen 7
-    if(idCatalogue === "6")
-      div(id=`list${idCatalogue}` class="items-center hidden")
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="1")
+          input(type="checkbox" class="checkBox" value="0")
           span(class="text") 4 GB 
         label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="2")
+          input(type="checkbox" class="checkBox" value="1")
           span(class="text") 8 GB
         label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="3")
+          input(type="checkbox" class="checkBox" value="2")
           span(class="text") 16 GB
         label(class="block space-x-1")
           input(type="checkbox" class="checkBox" value="3")
@@ -196,7 +188,7 @@ mixin catalogue(title, device, idCatalogue)
           input(type="checkbox" class="checkBox" value="4")
           span(class="text") 64 GB
         label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="4")
+          input(type="checkbox" class="checkBox" value="5")
           span(class="text") 128 GB
 block header
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
@@ -224,10 +216,9 @@ block content
                     p
                   +catalogue('Thương hiệu','mobile','1')
                   +catalogue('Khoảng giá','mobile','2')
-                  +catalogue('Loại hàng','mobile','3')
-                  +catalogue('Tình trạng','mobile','4')
-                  +catalogue('CPU','mobile','5')
-                  +catalogue('RAM','mobile','6') 
+                  +catalogue('Tình trạng','mobile','3')
+                  +catalogue('CPU','mobile','4')
+                  +catalogue('RAM','mobile','5') 
                 div(class="hidden xl:block" style="width:247px")
                     div(class="text-base space-x-1 mt-3" style="font-size: 14px;margin-bottom: 20px;")
                         strong 1 - 24
@@ -235,10 +226,9 @@ block content
                     div(class="filter-pc sticky top-0 overflow-y-auto" style="max-height: 400px")
                         +catalogue('Thương hiệu','pc','1') 
                         +catalogue('Khoảng giá','pc','2')
-                        +catalogue('Loại hàng','pc','3')
-                        +catalogue('Tình trạng','pc','4')
-                        +catalogue('CPU','pc','5')
-                        +catalogue('RAM','pc','6')
+                        +catalogue('Tình trạng','pc','3')
+                        +catalogue('CPU','pc','4')
+                        +catalogue('RAM','pc','5')
                     div(class="filter flex items-center space-x-2 border-2 rounded-full py-1 px-3 filter-btn")
                       <i class="w-1/2 fas fa-filter"></i>
                       span Lọc
@@ -253,4 +243,4 @@ block content
                         +productCell(product[n].name, "/images/"+product[n].thumbnail[0], "2", product[n].price, product[n]._id)
                         -n++ ;
             - var n = 0;
-              +pagination(currentUrl, currentPage, 5)
+              +pagination(currentUrl, currentPage, maxPage)
