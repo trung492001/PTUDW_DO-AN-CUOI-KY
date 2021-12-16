@@ -1,5 +1,4 @@
 const Product = require('../models/product.model');
-const mongoose = require('mongoose');
 
 module.exports.add = async (productId, userId = null, anonymousUsername = null, content) => {
   await Product.updateOne({ _id: productId }, {
@@ -66,6 +65,7 @@ module.exports.get = async (productId, { skip, limit }) => {
   const resultCount = await Product.findById(productId, { _id: -1, commentCount: { $size: '$comment' } }).lean().exec()
   return {
     result: result.comment,
+    pageCount: Math.ceil(resultCount.commentCount / limit)
   }
 }
 

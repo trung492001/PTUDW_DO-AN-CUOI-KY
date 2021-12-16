@@ -23,7 +23,7 @@ mixin pagination(currentUrl, currentPage, pageCount)
         //- Prev item
         if currentPage > 1
           a(class="" href=`${prefixUrl}page=${currentPage-1}`)
-            li(class="border py-1 px-2 text-center" style="min-width: 36px;")
+            li(class="border py-1 text-center" style="min-width: 36px;")
               <i class="fas fa-chevron-left"></i>
 
         //- Small pageCount
@@ -71,7 +71,7 @@ mixin pagination(currentUrl, currentPage, pageCount)
         //- Next item
         if currentPage < pageCount
           a(class="" href=`${prefixUrl}page=${currentPage+1}`)
-            li(class="border py-1 px-2 text-center" style="min-width: 36px;")
+            li(class="border py-1 text-center" style="min-width: 36px;")
               <i class="fas fa-chevron-right"></i>
 mixin catalogue(title, device, idCatalogue)
     div(class="border-t border-gray-300 py-3" onclick=`showAndHide('${device}',${idCatalogue})`)

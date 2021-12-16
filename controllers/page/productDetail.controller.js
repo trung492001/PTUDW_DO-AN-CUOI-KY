@@ -10,6 +10,6 @@ module.exports = async (req, res) => {
         name: 'Máy tính xách tay'
     }]
     res.locals.product = productData;
-    res.locals.commentCount = commentService.countComment(req.query.productId);
+    res.locals.commentCount = await commentService.countComment(req.query.productId);
     res.render('detailLaptop');
 }

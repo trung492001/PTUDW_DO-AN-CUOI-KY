@@ -73,13 +73,100 @@ function createComment({ _id, user, anonymousUser, content, updatedAt }, parentI
   return comment;
 }
 
-function createPagination(pageCount) {
+function createPaginationBtn(cursor, innerHTML) {
+  const li = document.createElement('li');
+  li.className = `border py-1 text-center ${cursor}`;
+  li.style = "min-width: 36px;";
+  li.innerHTML = innerHTML;
+  return li;
+}
 
+function createPagination(pageCount) {
+  const currentPage = parseInt(document.getElementById('commentPage').value);
+  const wrapper = document.createElement('nav');
+  wrapper.className = "mt-6 mb-12";
+  wrapper.id = "pagination";
+
+  const ul = document.createElement('ul');
+  ul.className = "flex justify-center gap-x-1";
+
+  if (currentPage > 1) {
+    const li = createPaginationBtn("cursor-pointer", '<i class="fas fa-chevron-left"></i>');
+    li.onclick = () => loadComment(currentPage - 1);
+    ul.appendChild(li);
+  }
+
+  if (pageCount < 8) {
+    for (let i = 1; i <= pageCount; ++i) {
+      if (i == currentPage) {
+        const li = createPaginationBtn('bg-gray-100 cursor-not-allowed', `<span class="underline">${i}</span>`);
+        ul.appendChild(li);
+      } else {
+        const li = createPaginationBtn('cursor-pointer', i);
+        li.onclick = () => loadComment(i);
+        ul.appendChild(li);
+      }
+    }
+  } else {
+    if (currentPage > 4) {
+      const li = createPaginationBtn('cursor-pointer', 1);
+      li.onclick = () => loadComment(1);
+      const dot = document.createElement('li');
+      dot.className = "text-center py-1 cursor-default";
+      dot.style = "min-width: 36px;";
+      dot.innerHTML = '<span class="mt-auto align-baseline text-gray-500">•••</span>';
+      ul.appendChild(li);
+      ul.appendChild(dot);
+    }
+
+    if (currentPage <= 4) {
+      for (let i = 1; i <= (currentPage == 4 ? 6 : 5); ++i) {
+        if (i == currentPage) {
+          const li = createPaginationBtn('bg-gray-100 cursor-not-allowed', `<span class="underline">${i}</span>`);
+          ul.appendChild(li);
+        } else {
+          const li = createPaginationBtn('cursor-pointer', i);
+          li.onclick = () => loadComment(i);
+          ul.appendChild(li);
+        }
+      }
+    } else if (pageCount - currentPage < 4) {
+      for (let i = (pageCount - currentPage == 3 ? currentPage - 2 : pageCount - 4); i <= pageCount; ++i) {
+        if (i == currentPage) {
+          const li = createPaginationBtn('bg-gray-100 cursor-not-allowed', `<span class="underline">${i}</span>`);
+          ul.appendChild(li);
+        } else {
+          const li = createPaginationBtn('cursor-pointer', i);
+          li.onclick = () => loadComment(i);
+          ul.appendChild(li);
+        }
+      }
+    }
+
+    if (pageCount - currentPage >= 4) {
+      const li = createPaginationBtn('cursor-pointer', pageCount);
+      li.onclick = () => loadComment(pageCount);
+      const dot = document.createElement('li');
+      dot.className = "text-center py-1 cursor-default";
+      dot.style = "min-width: 36px;";
+      dot.innerHTML = '<span class="mt-auto align-baseline text-gray-500">•••</span>';
+      ul.appendChild(dot);
+      ul.appendChild(li);
+    }
+  }
+
+  if (currentPage < pageCount) {
+    const li = createPaginationBtn("cursor-pointer", '<i class="fas fa-chevron-right"></i>');
+    li.onclick = () => loadComment(currentPage + 1);
+    ul.appendChild(li);
+  }
+
+  wrapper.appendChild(ul);
+  return wrapper;
 }
 
 function loadComment(page = 1) {
   const productId = document.getElementById('product-id').value;
-  console.log(productId);
   axios.get(`/api/comment?productId=${productId}&page=${page}`)
     .then(res => {
       const commentList = document.getElementById('comment-list');
@@ -96,6 +183,9 @@ function loadComment(page = 1) {
         parentComment.appendChild(replySection);
         commentList.appendChild(parentComment);
       })
+      commentList.appendChild(createPagination(res.data.pageCount));
+      document.getElementById('pageCount').value = res.data.pageCount;
+      document.getElementById('commentPage').value = page;
     })
     .catch(err => {
       console.log(err);
