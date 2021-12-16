@@ -48,3 +48,8 @@ module.exports.changePassword = async (userId, oldPassword, newPassword) => {
   user.password = hashPassword(newPassword);
   await user.save();
 }
+
+module.exports.getAllAccount = async () =>{
+  const users = await Account.find({}).lean().exec();
+  return users;
+};

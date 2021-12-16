@@ -7,6 +7,7 @@ const laptopController = require('../../controllers/page/laptop.controller');
 const detailLaptopController = require('../../controllers/page/productDetail.controller');
 const categoryController = require('../../controllers/page/category.controller');
 const profileController = require('../../controllers/auth/profile.controller');
+const dashboardController = require('../../controllers/page/dashboard.controller');
 
 router.use('/', authRoute);
 
@@ -35,10 +36,7 @@ router.get('/dashboard', async (req, res, next) => {
     res.render('dashboard');
 });
 
-router.get('/dashboard/accounts', async (req, res, next) => {
-    res.locals.activeCell = 'accounts';
-    res.render('accountDashboard');
-});
+router.get('/dashboard/accounts', dashboardController.get);
 
 router.get('/dashboard/category', async (req, res, next) => {
     res.locals.activeCell = 'category';
