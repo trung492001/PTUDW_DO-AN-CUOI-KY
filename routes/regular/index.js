@@ -30,4 +30,26 @@ router.post('/profile/changePassword', profileController.postPassword);
 
 router.get('/category?', categoryController);
 
+router.get('/dashboard', async (req, res, next) => {
+    res.locals.activeCell = 'dashboard';
+    res.render('dashboard');
+});
+
+router.get('/dashboard/accounts', async (req, res, next) => {
+    res.locals.activeCell = 'accounts';
+    res.render('dashboard');
+});
+
+router.get('/dashboard/category', async (req, res, next) => {
+    res.locals.activeCell = 'category';
+    res.render('dashboard');
+});
+
+router.get('/dashboard/order', async (req, res, next) => {
+    res.locals.activeCell = 'order';
+    res.render('dashboard');
+});
+
+router.get('/dashboard/staff-profile', (req, res) => res.render('staffProfile'));
+
 module.exports = router;
