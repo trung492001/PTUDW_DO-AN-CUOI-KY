@@ -15,7 +15,7 @@ block content
         h1(class="font-bold text-xl leading-7 mb-0")=product.name
         div(class="mb-5 text-sm flex space-x-3")
           a(href="#box-rating" class="underline") 0 đánh giá
-          a(href="#box-comment" class="underline") 0 bình luận
+          a(href="#box-comment" class="underline")=commentCount + " bình luận"
       div(class="sticky mb-6 top-24")
         img(src="/images/"+product.thumbnail[0] class="block mx-auto")
     div(class="text-sm md:w-1/2")
@@ -24,7 +24,10 @@ block content
         div(class="mb-5 text-sm md:flex md:space-x-4")
             a(href="#box-rating" class="underline") 0 đánh giá
             a(href="#box-comment" class="underline") 0 bình luận
-      div(class="flex flex-col justify-between mb-2 md:flex-row")
+      div(class="flex flex-col justify-between mb-2 lg:flex-row mx-4")
+        div(class="flex space-x-2 md:hidden")
+          p(class="text-2xl") Giá:
+          p(class="text-2xl text-red-600") 23.990.000 đ
         div(class="flex-1 mb-4")
           div(id="brand" class="mb-3 flex")
             span(class="mr-2") Thương hiệu:
@@ -51,6 +54,14 @@ block content
                 strong toàn cầu 24 tháng
               li
                 ="Đổi mới trong 15 ngày đầu tiên"
+      div(class="flex flex-col leading-10 items-center gap-3 mx-4 mb-5 mb:mb-0")
+        div(class="md:flex space-x-2 mr-auto hidden")
+          p(class="text-2xl") Giá:
+          p(class="text-2xl text-red-600") 23.990.000 đ
+        div(class="border rounded-full bg-brand text-white cursor-pointer w-full text-center")
+          div(class="p-1 space-x-3 ml-2 mr-2")
+            <i class="fas fa-cart-plus fa-lg"></i>
+            a(class="text-lg" href="") Thêm vào giỏ hàng
   div(id="bottom-container" class="max-w-4xl mx-auto")
     div(id="box-description" class="mb-10")
       h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12") Chi tiết sản phẩm
@@ -59,7 +70,7 @@ block content
     div(id="box-comment" class="mb-14 pt-10 border-t border-gray-200")
       h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12 block")
         span Bình luận
-        span(class="text-sm inline-block ml-2 font-normal") 4 bình luận
+        span(class="text-sm inline-block ml-2 font-normal")=commentCount + " bình luận"
       div
         h3(class="text-base mb-2 font-semibold") Để lại bình luận của bạn
         div(class="mb-7 relative")
@@ -68,5 +79,7 @@ block content
           textarea(id="comment-input-content" placeholder="Xin hãy để lại bình luận" class="w-full h-32 p-4 outline-none bg-gray-100 resize-none rounded border border-gray-50 hover:border-blue-300 focus:border-blue-300 overflow-y-auto")
           button(onclick="postComment()" class="absolute right-4 bottom-4 px-4 py-1.5 rounded-full outline-none bg-brand font-bold text-white text-center") Gửi
       div(id="comment-list")
+      input(id="commentPage" value="1" class="hidden" type="number")
+      input(id="pageCount" value="0" class="hidden" type="number")
       //- pagination
   script(src="/javascripts/comment.js")
