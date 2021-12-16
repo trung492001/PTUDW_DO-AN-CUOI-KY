@@ -167,11 +167,11 @@ block content
     div(class="section-thuonghieu relative flex mb-10 mt-20 flex-wrap")
       div(class="information-brand relative flex items-center w-full xl:w-1/2 px-4 xl:px-0")
         div(class="info bg-white")
-          p(class="title font-primary font-bold") Dell 
+          p(class="title font-primary font-bold")=brandData.name
           div(class="description")
-            p Dell là thương hiệu có quá trình phát triển lâu dài và bền bỉ trong ngành công nghiệp máy tính. Dell cung cấp nhiều dòng laptop chất lượng, cao cấp như XPS, Precision, Latitude và nổi bật với G-Series Gaming và Alienware hàng đầu dành cho game thủ.
+            p=brandData.description
         div(class="logo absolute top-0 hidden xl:flex")
-          img(src="/images/dell.png")
+          img(src="/images/"+brandData.thumbnail[0])
       div(class="img-detail w-full xl:w-1/2 xl:-top-10 -top-20")
         img(src="/images/dell-header.jpg")
     div(class="container block mx-auto")

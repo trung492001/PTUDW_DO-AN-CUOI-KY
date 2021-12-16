@@ -80,6 +80,7 @@ module.exports = async (req, res) => {
         } else {
             res.locals.maxPage = 1;
         }
+        res.locals.dataLength = data.length;
     } else {
         productData = await productService.getProductData();
         currentUrl = '';
@@ -89,6 +90,7 @@ module.exports = async (req, res) => {
         } else {
             res.locals.maxPage = 1;
         }
+        res.locals.dataLength = productData.length;
     }
     res.locals.currentPage = parseInt(page);
     res.locals.product = productArray;
