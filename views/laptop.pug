@@ -17,7 +17,7 @@ mixin productCell(name, img, number, cost, productId)
 mixin pagination(currentUrl, currentPage, pageCount)
   - var prefixUrl = '?'+currentUrl;
   if pageCount > 0
-    nav(class="mb-12" id="#pagination")
+    nav(class="mt-6 mb-12" id="#pagination")
       ul(class="flex justify-center gap-x-1")
 
         //- Prev item
@@ -238,8 +238,8 @@ block content
                 div(class="xl:w-997xl 997px mt-3")
                     div(class="mt-3 mb-5 hidden xl:flex gap-3")
                       strong Sắp xếp theo: 
-                      a(href='#') Giá tăng dần 
-                      a(href='#') Giá giảm dần
+                      p(id='ascending' class="cursor-pointer sort") Giá tăng dần 
+                      p(id='descending' class="cursor-pointer sort") Giá giảm dần
                     div(id="product" class="flex flex-wrap")
                       - var n = 0;
                       each value in product

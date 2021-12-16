@@ -1,5 +1,6 @@
 const productService = require('../../service/productData.service');
 const categoryService = require('../../service/category.service');
+const sortService = require('../../service/sort.service');
 
 module.exports = async (req, res) => {
     let productData = [];
@@ -41,9 +42,19 @@ module.exports = async (req, res) => {
         }
         currentUrl = req.originalUrl.replace('/category','').replace('?','');
         currentUrl = currentUrl.replace('&page='+page,'');
+        if(req.query.sort == 1) {
+            productData = sortService.sortAscending(productData);
+        } else if (req.query.sort == 2){
+            productData = sortService.sortDescending(productData);
+        }
         productArray = productData.slice(begin, end);
     } else {
         productData = await productService.getProductByBrand(req.query.brandId);
+        if(req.query.sort == 1) {
+            productData = sortService.sortAscending(productData);
+        } else if (req.query.sort == 2){
+            productData = sortService.sortDescending(productData);
+        }
         currentUrl = 'brandId='+req.query.brandId;
         productArray = productData.slice(begin, end);
     }
