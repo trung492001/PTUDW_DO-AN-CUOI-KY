@@ -37,7 +37,7 @@ router.get('/dashboard', async (req, res, next) => {
 
 router.get('/dashboard/accounts', async (req, res, next) => {
     res.locals.activeCell = 'accounts';
-    res.render('dashboard');
+    res.render('accountDashboard');
 });
 
 router.get('/dashboard/category', async (req, res, next) => {

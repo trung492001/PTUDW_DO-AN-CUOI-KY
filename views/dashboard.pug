@@ -18,6 +18,20 @@ mixin breadcrumb(args)
             li
               span(class="mx-2") /
 
+mixin cardContent(data, content)
+  div(class="bg-white")
+    div(class="flex justify-between items-center p-6")
+      div(class="content")
+        p(class="text-lg")=content
+        p(class="text-3xl")=data
+      if (content == 'Clients')
+        <i class="fas fa-user-friends fa-2x text-green-700"></i>
+      else if (content == 'Sales')
+        <i class="fas fa-shopping-cart fa-2x text-blue-500"></i>
+      else if (content == 'Performance')
+        <i class="fas fa-chart-line fa-2x text-red-600"></i>
+
+
 html(lang="en") 
   head
     title=title 
@@ -32,7 +46,8 @@ html(lang="en")
     link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css' integrity='sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay' crossorigin='anonymous')
 
     //JS
-    script(src="/javascripts/dashboard.js")
+    script(src="/javascripts/dashboard.js" defer)
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js")
     block header
   body
     div(class="flex h-screen overflow-hidden bg-gray-100")
@@ -100,7 +115,14 @@ html(lang="en")
             +breadcrumb(breadcrumb)
             div(class="bg-white h-full shadow-md border")
               div(class="p-2 md:p-4 border-b font-bold tracking-wider uppercase text-gray-600")=title
-              div(class="p-2 md:p-4")
+              div(class="p-2 md:p-4 bg-gray-100")
                 div(class="overflow-x-auto")
                   block content
+                if(activeCell && activeCell == "dashboard")
+                  div(class="grid grid-cols-3 gap-3")
+                    +cardContent("512","Clients")
+                    +cardContent("512","Sales")
+                    +cardContent("512","Performance")
+                  <canvas id="myChart" style="width:100%" class="bg-white mt-4"></canvas>
+
           
