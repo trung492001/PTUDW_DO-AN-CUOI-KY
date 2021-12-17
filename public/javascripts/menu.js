@@ -21,16 +21,13 @@ function openModalAddDish() {
     document.getElementById('dish-modal').classList.remove('hidden');
 }
 
-function openModalEditDish(id, name, image, type, price, ingredient, description) {
+function openModalEditDish(id, name, price) {
     const formDish = document.getElementById('dish-form');
     formDish.reset();
     formDish.setAttribute('action', `/dish/${id}`);
     formDish.setAttribute('method', 'POST');
     document.getElementById('form-dish-name').value = name;
-    document.getElementById('form-dish-type').value = type;
     document.getElementById('form-dish-price').value = price;
-    document.getElementById('form-dish-ingredient').value = ingredient;
-    document.getElementById('form-dish-description').value = description;
     document.getElementById('modal-label').innerText = 'Edit dish';
     document.getElementById('form-dish-submit').value = 'Edit dish';
     document.getElementById('dish-modal').classList.remove('hidden');
