@@ -23,8 +23,11 @@ block content
         h1(class="mb-4 font-bold leading-tight font-primary text-3xl")=product.name
         div(class="mb-5 text-sm md:flex md:space-x-4")
             a(href="#box-rating" class="underline") 0 đánh giá
-            a(href="#box-comment" class="underline")=commentCount + " bình luận"
-      div(class="flex flex-col justify-between mb-2 md:flex-row")
+            a(href="#box-comment" class="underline") 0 bình luận
+      div(class="flex flex-col justify-between mb-2 lg:flex-row mx-4")
+        div(class="flex space-x-2 md:hidden")
+          p(class="text-2xl") Giá:
+          p(class="text-2xl text-red-600") 23.990.000 đ
         div(class="flex-1 mb-4")
           div(id="brand" class="mb-3 flex")
             span(class="mr-2") Thương hiệu:
@@ -51,6 +54,14 @@ block content
                 strong toàn cầu 24 tháng
               li
                 ="Đổi mới trong 15 ngày đầu tiên"
+      div(class="flex flex-col leading-10 items-center gap-3 mx-4 mb-5 mb:mb-0")
+        div(class="md:flex space-x-2 mr-auto hidden")
+          p(class="text-2xl") Giá:
+          p(class="text-2xl text-red-600") 23.990.000 đ
+        div(class="border rounded-full bg-brand text-white cursor-pointer w-full text-center")
+          div(class="p-1 space-x-3 ml-2 mr-2")
+            <i class="fas fa-cart-plus fa-lg"></i>
+            a(class="text-lg" href="") Thêm vào giỏ hàng
   div(id="bottom-container" class="max-w-4xl mx-auto")
     div(id="box-description" class="mb-10")
       h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12") Chi tiết sản phẩm

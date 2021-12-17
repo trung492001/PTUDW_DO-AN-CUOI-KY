@@ -1,4 +1,5 @@
 const productService = require('../../service/productData.service');
+const sortService = require('../../service/sort.service');
 
 module.exports = async (req, res) => {
     res.locals.breadcrumb = [{
@@ -74,6 +75,11 @@ module.exports = async (req, res) => {
         }
         currentUrl = req.originalUrl.replace('/laptop','').replace('?','');
         currentUrl = currentUrl.replace('&page='+page,'');
+        if(req.query.sort == 1) {
+            data = sortService.sortAscending(data);
+        } else if (req.query.sort == 2){
+            data = sortService.sortDescending(data);
+        }
         productArray = data.slice(begin, end);
         if(data.length >= 20) {
             res.locals.maxPage = (data.length % 20 === 0) ? Math.round(data.length / 20) : Math.round(data.length / 20) + 1;
@@ -84,6 +90,13 @@ module.exports = async (req, res) => {
     } else {
         productData = await productService.getProductData();
         currentUrl = '';
+        if(req.query.sort == 1) {
+            productData = sortService.sortAscending(productData);
+            currentUrl = 'sort=1';
+        } else if (req.query.sort == 2){
+            productData = sortService.sortDescending(productData);
+            currentUrl = 'sort=2';
+        }
         productArray = productData.slice(begin, end);
         if(productData.length >= 20) {
             res.locals.maxPage = (productData.length % 20 === 0) ? Math.round(productData.length / 20) : Math.round(productData.length / 20) + 1;

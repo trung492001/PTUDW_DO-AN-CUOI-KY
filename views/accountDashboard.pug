@@ -1,6 +1,6 @@
 extends dashboard 
 
-mixin accountRow(id, avatar, name, gender, email, phone, address)
+mixin accountRow(id, avatar, name, username, email, phone, address)
   tr
     td(class="p-2 whitespace-nowrap")
       div(class="flex items-center")
@@ -8,8 +8,7 @@ mixin accountRow(id, avatar, name, gender, email, phone, address)
           img(src=avatar class="rounded-full")
         div(class="font-medium text-gray-800")=name
     td(class="p-2 whitespace-nowrap")
-      div(class="flex items-center justify-center")
-        span(class=`px-3 py-0.5 rounded-full border${gender == 1 ? " text-blue-700 bg-blue-100 border-blue-300": gender == 2 ? " text-pink-700 bg-pink-100 border-pink-300": " text-gray-700 bg-gray-100 border-gray-300"}`)=gender == 1 ? "Male" : gender == 2 ? "Female" : "Other"
+      div(class="text-left")=username
     td(class="p-2 whitespace-nowrap")
       div(class="text-left")=email
     td(class="p-2 whitespace-nowrap")
@@ -93,13 +92,13 @@ block content
     thead(class="text-sm uppercase text-gray-500 bg-gray-100 w-full")
       tr
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Name
-        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-center") Gender
+        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Username
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Email
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Phone
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Address
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Action
     tbody(class="text-sm")
       each value in accountData
-        +accountRow("1", "/" + value.image, value.name, value.gender, value.email, value.phone, value.address)
+        +accountRow("1", value.avatar, value.name, value.username, value.email, value.phone, value.address)
   +pagination(currentQuery, currentPage, pageCount)
   script(src="/accountDashboard.js") 

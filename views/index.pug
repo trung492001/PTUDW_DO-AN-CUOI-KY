@@ -1,10 +1,10 @@
 extends layout
 mixin productCell(name, img, number, cost, productId)
-    div(class="flex flex-col w-1/2 md:w-1/3 lg:w-1/5 border transform ease-in duration-200 hover:shadow-2xl")
+    div(class="product-cell flex flex-col w-1/2 md:w-1/3 lg:w-1/5 border ease-in duration-200 hover:shadow-2xl")
         div(class="px-2 pt-2 md:px-4 md:pt-4 mb-2")
             div
                 a(href="/detailLaptop?productId="+productId)
-                    img(class="transform hover:-translate-y-1" src=img alt=name)
+                    img(class="transform hover:-translate-y-2" src=img alt=name)
         div(class="content-bottom px-2 pb-0 md:px-4 md:pb-4 flex flex-col md:block flex-grow flex-shrink")
             a(href="/detailLaptop?productId="+productId class="font-semibold text-sm md:text-base mb-1 text-body-main block leading-5")=name 
             div(class="flex items-center space-x-2 text-sm text-dark-gray mb-1 md:mb-2")
@@ -21,9 +21,24 @@ mixin trademarkCell(img, id)
             img(class="max-w-full" src=img)
 
 block header 
-    link(rel="stylesheet" href="indexStyle.css")
+    script(src="/javascripts/index.js" defer)
+    link(rel="stylesheet" href="/styles/indexStyle.css")
 block content
-    //Title
+    div(class="flex justify-center items-center bg-gray-200 lg:bg-white mb-10")
+        div(class="flex-col negative w-72 text-center hidden lg:flex")
+            div(class="btn active")
+                p Mừng sinh nhật Think, linh đình quà tặng!
+            div(class="btn")
+                p Game thêm mạnh, quà thêm yêu! 
+            div(class="btn")
+                p Sức mạnh vượt trội, hội tụ tinh hoa cùng MSI Modern 14 B5M
+        div(class="img-slider")
+            div(class="slide active")
+                img(src="/images/index-header1.jpg" alt="")
+            div(class="slide")
+                img(src="/images/index-header3.jpg" alt="")
+            div(class="slide")
+                img(src="/images/index-header4.jpg" alt="")
     p(class="text-3xl font-bold") Máy tính xách tay
     div(class="relative")
         //Fillter
@@ -64,45 +79,9 @@ block content
         each value in product
             +productCell(product[n].name, "/images/"+product[n].thumbnail[0], "2", product[n].price, product[n]._id)
             -n++ ; 
-    div(class="text-center")
-        a(class="border rounded-full inline-block leading-10 px-8 trnsition ease-in-out duration-300 hover:bg-blue-500 hover:text-white" href="") Xem thêm
+    div(class="text-center mb-7")
+        a(class="border rounded-full inline-block leading-10 px-8 trnsition ease-in-out duration-300 hover:bg-blue-500 hover:text-white" href="/laptop") Xem thêm
 
-    //Title
-    p(class="text-3xl font-bold") Máy tính - PC
-    div(class="relative")
-        //Fillter
-        div(class="flex items-center")
-            div(class="w-32 text-base font-bold") Thương hiệu 
-            div(style="width: calc(100% - 125px);")
-                div(class=" relative flex flex-row overflow-x-auto w-full h-full" style="transform: translate3d(0px, 0px, 0px);")
-                    +trademarkCell("/images/lenovo.png")
-                    +trademarkCell("/images/dell.png")
-                    +trademarkCell("/images/asus.png")
-                    +trademarkCell("/images/hp.png")
-                    +trademarkCell("/images/msi.png")
-                    +trademarkCell("/images/acer.png")
-                    +trademarkCell("/images/intel.png")
-
-        //Cost
-        div(class="flex items-center my-4")
-            div(class="w-32 text-base font-bold") Khoảng giá
-            div(class="overflow-x-auto whitespace-nowrap pb-3" style="width: calc(100% - 125px);")
-                label(class="inline-block cursor-pointer h-10 bg-gray-300 text-center text-md leading-10 font-normal px-6 rounded mr-2 transition duration-300 hover:bg-blue-500 hover:text-white") Trên 50 triệu 
-                label(class="inline-block cursor-pointer h-10 bg-gray-300 text-center text-md leading-10 font-normal px-6 rounded mr-2 transition duration-300 hover:bg-blue-500 hover:text-white") 40 - 50 triệu 
-                label(class="inline-block cursor-pointer h-10 bg-gray-300 text-center text-md leading-10 font-normal px-6 rounded mr-2 transition duration-300 hover:bg-blue-500 hover:text-white") 30 - 40 triệu 
-                label(class="inline-block cursor-pointer h-10 bg-gray-300 text-center text-md leading-10 font-normal px-6 rounded mr-2 transition duration-300 hover:bg-blue-500 hover:text-white") 20 - 30 triệu 
-                label(class="inline-block cursor-pointer h-10 bg-gray-300 text-center text-md leading-10 font-normal px-6 rounded mr-2 transition duration-300 hover:bg-blue-500 hover:text-white") 15 - 20 triệu 
-                label(class="inline-block cursor-pointer h-10 bg-gray-300 text-center text-md leading-10 font-normal px-6 rounded mr-2 transition duration-300 hover:bg-blue-500 hover:text-white") 10 - 15 triệu 
-                label(class="inline-block cursor-pointer h-10 bg-gray-300 text-center text-md leading-10 font-normal px-6 rounded mr-2 transition duration-300 hover:bg-blue-500 hover:text-white") Dưới 10 triệu 
-    //List laptop
-    div(class="container flex flex-wrap mx-auto mb-7")
-        +productCell('Apple iMac 24" (Apple M1 - Chính hãng)', "/images/pc1.png", "3", "46.990.000")
-        +productCell('Lenovo ThinkCentre M725s SFF', "/images/pc2.png", "1", "15.990.000")
-        +productCell('Lenovo ThinkCentre M720s SFF', "/images/pc3.png", "1", "11.990.000")
-        +productCell('Lenovo ThinkCentre M920s SFF', "/images/pc4.png", "1", "9.990.000")
-        +productCell('HP EliteDesk 800 G5 SFF', "/images/pc5.png", "2", "12.990.000")
-    div(class="text-center")
-        a(class="border rounded-full inline-block leading-10 px-8 trnsition ease-in-out duration-300 hover:bg-blue-500 hover:text-white" href="") Xem thêm
 
 
         
