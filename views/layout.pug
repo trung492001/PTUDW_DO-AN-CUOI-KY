@@ -41,7 +41,7 @@ html(lang="en")
     script(src="/javascripts/layout.js" defer)
     block header
   body(style="font-family: 'Sen', sans-serif;")
-      nav(class="text-white" style="background: #05042c")
+      nav(class="text-white z-40" style="background: #05042c")
           div(class="mx-auto flex px-2 md:px-5 py-5 flex-wrap items-center justify-between")
               div
                   a.flex(href="/")
@@ -101,7 +101,7 @@ html(lang="en")
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") PC
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") PHỤ KIỆN
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/sign-in") LOGIN
-      div(class="container mx-auto" style="max-width: 1254px")
+      div(class="container mx-auto px-4" style="max-width: 1254px")
         //- breadcrumb
         div(class="my-6 mx-auto")
           +breadcrumb(breadcrumb)

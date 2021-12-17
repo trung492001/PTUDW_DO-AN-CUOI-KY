@@ -32344,6 +32344,11 @@ input[type=number]::-webkit-outer-spin-button {
   scrollbar-width: none;
 }
 
+.sticker-bottom{
+  top: inherit;
+  bottom: 0;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
