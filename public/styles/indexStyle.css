@@ -1,0 +1,27 @@
+.img-slider{
+    position: relative;
+    width: 800px;
+    height: 284px;
+    margin: 10px;
+    background: white;
+}
+.img-slider .slide{
+    z-index: 1;
+    position: absolute;
+    width:100%;
+    clip-path: circle(0% at 0 50%);
+}
+.img-slider .slide.active{
+    clip-path: circle(150% at 0 50%);
+    transition: 1s;
+    transition-property: clip-path;
+}
+.negative .btn{
+    padding: 22px 14px;
+    border-width: 1px;
+}
+.negative .btn.active{
+    border-width: 1px;
+    border-right-width: 5px;
+    border-right-color: blue;
+}
