@@ -25,3 +25,8 @@ module.exports.post = async (req, res, next) => {
     successRedirect: '/',
   })(req, res, next)
 }
+
+module.exports.active = async (req,res,next) => {
+  const {title} = await accountService.activeAccount(req.params.activeToken);
+  res.render('message', {title: title});
+}
