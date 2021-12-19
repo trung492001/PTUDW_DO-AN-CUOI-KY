@@ -44,7 +44,7 @@ function cartItem({ _id, name, thumbnail, price, quantity }) {
   const thumbnailLink = document.createElement('a');
   thumbnailLink.href = `/detailLaptop?productId=${_id}`;
   const thumbnailImg = new Image();
-  thumbnailImg.src = thumbnail[0];
+  thumbnailImg.src = '/images/' + thumbnail[0];
   thumbnailLink.appendChild(thumbnailImg);
   thumbnailWrapper.appendChild(thumbnailLink);
 
