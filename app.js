@@ -20,7 +20,6 @@ const app = express();
 
 require('dotenv').config();
 // Passport config
-require('./config/passport');
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
@@ -37,6 +36,7 @@ app.use(session({
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+require('./config/passport');
 
 // connect MongoDB
 require('dotenv').config();

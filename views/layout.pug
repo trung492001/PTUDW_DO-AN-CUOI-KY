@@ -39,6 +39,7 @@ html(lang="en")
     script(src="https://cdn.jsdelivr.net/npm/toastify-js")
     script(src="https://code.jquery.com/jquery-3.5.0.js")
     script(src="/javascripts/layout.js" defer)
+    script(src="/javascripts/toast.js")
     block header
   body(style="font-family: 'Sen', sans-serif;")
       nav(class="text-white z-40" style="background: #05042c")
@@ -52,14 +53,9 @@ html(lang="en")
                     a(class="mr-6" href="/menu") PC
                     a(href="/reservation") PHỤ KIỆN
                   div(class="text-sm")
-                      if cartLength
-                          span(class="fa-stack fa-2x has-badge" data-count=cartLength)
-                              a(href="/ShoppingCart")
-                                  i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
-                      else
-                          span(class="fa-stack fa-2x has-badge" data-count=0)
-                              a(href="/ShoppingCart")
-                                  i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
+                    span(class="fa-stack fa-2x has-badge" data-count=0)
+                      a(href="/cart")
+                        i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
                   i(class="fas fa-search fa-lg mr-6" onclick="myFunction()")
                   if user
                     div(class="hidden md:block items-center relative dropdown mt-2 w-11")

@@ -7,6 +7,7 @@ mixin tag(title, content)
       =content
 
 block content
+  script(src="/javascripts/addToCart.js")
   input(id="product-id" value=product._id class="hidden")
   input(id="logged-in" value=user?1:0 class="hidden")
   div(class="md:flex")
@@ -23,7 +24,7 @@ block content
         h1(class="mb-4 font-bold leading-tight font-primary text-3xl")=product.name
         div(class="mb-5 text-sm md:flex md:space-x-4")
             a(href="#box-rating" class="underline") 0 đánh giá
-            a(href="#box-comment" class="underline") 0 bình luận
+            a(href="#box-comment" class="underline")=commentCount + " bình luận"
       div(class="flex flex-col justify-between mb-2 lg:flex-row mx-4")
         div(class="flex space-x-2 md:hidden")
           p(class="text-2xl") Giá:
@@ -90,7 +91,7 @@ block content
           span(class="font-medium text-2xl") 1234567890
       div(class="flex items-center")
         div(class="mr-4 md:mr-8 font-bold text-red-600 text-2xl md:text-3xl") 23.990.000 ₫
-        button(class="flex items-center px-3 md:px-8 py-10px py-2 md:py-3 space-x-2 text-sm md:text-lg font-semibold bg-brand text-white rounded-full")
+        button(onclick=`addProduct("${product._id}")` class="flex items-center px-3 md:px-8 py-10px py-2 md:py-3 space-x-2 text-sm md:text-lg font-semibold bg-brand text-white rounded-full")
           i(class="fas fa-cart-plus mr-2") 
           span Thêm vào giỏ
   script(src="/javascripts/comment.js")
