@@ -19,7 +19,6 @@ var defaultMail = {
 module.exports.send = function(mail){
     // use default setting
     mail = _.merge({}, defaultMail, mail);
-    console.log(mail);
     // send email
     transporter.sendMail(mail, function(error, info){
         if(error){

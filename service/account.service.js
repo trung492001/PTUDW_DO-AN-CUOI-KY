@@ -2,6 +2,7 @@ const Account = require("../models/account.model");
 const { comparePassword, hashPassword } = require("../utils/crypto");
 const random = require('randomstring');
 const mailer = require('../utils/mail');
+const Token = require('../models/token.model');
 
 module.exports.checkExistAccount = async (username, email) => await Account.exists({
   $or: [{
@@ -66,9 +67,9 @@ module.exports.getAllAccount = async () =>{
 module.exports.activeAccount = async (token) => {
   const user = await Account.findOne({activeToken: token, activeExpires: {$gt: Date.now()}});
   if (!user){
-    // console.log("not find user");
     return {
-        title: 'Fail to activate',
+        title: 'active',
+        status: 'fail'
     };
   }
 
@@ -78,6 +79,48 @@ module.exports.activeAccount = async (token) => {
 
   // activation success
   return {
-    title:'Activation success!'
+    title:'active',
+    status: 'success'
   };
+}
+
+module.exports.sendLinkResetPassword = async(email) => {
+  const user = await Account.findOne({email: email});
+  if (!user)
+    return null;
+  let token = await Token.findOne({userId: user._id});
+  if (!token){
+    token = await Token.create({
+      userId: user._id,
+      token: random.generate()
+    });
+  }
+  const link = `http://localhost:3000/account/password-reset/${user._id}/${token.token}`;
+  mailer.send({
+    to: email,
+    subject: 'Reset Password',
+    html: '<h2>You have request to reset password</h2>' + 
+          '<p>Please click <a href="' + link + '"> here </a> to reset your password.</p>'
+  });
+  return user;
+}
+
+module.exports.resetPassword = async(userId,resetToken,password) => {
+  const user = await Account.findById(userId).exec();
+  if(!user){
+    console.log("not exists user");
+    return null;
+  }
+  const token = await Token.findOne({
+    userId: userId,
+    token: resetToken
+  });
+  if (!token){
+    console.log("wrong token"); 
+    return null;
+  }
+  user.password = hashPassword(password);
+  await user.save();
+  await token.delete();
+  return {messsage:'Success'};
 }
