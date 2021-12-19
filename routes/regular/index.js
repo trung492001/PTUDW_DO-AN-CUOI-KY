@@ -11,6 +11,8 @@ const dashboardController = require('../../controllers/page/dashboard.controller
 const resetPasswordController = require('../../controllers/auth/resetPassword.controller');
 const forgotController = require('../../controllers/page/forgot.controller');
 
+const adminAuthMiddleware = require('../../middleware/admin.auth.middleware');
+
 router.use('/', authRoute);
 
 router.get('/', indexController);
@@ -33,7 +35,7 @@ router.post('/profile/changePassword', profileController.postPassword);
 
 router.get('/category?', categoryController);
 
-router.get('/dashboard', async (req, res, next) => {
+router.get('/dashboard', adminAuthMiddleware, async (req, res, next) => {
     res.locals.activeCell = 'dashboard';
     res.render('dashboard');
 });
