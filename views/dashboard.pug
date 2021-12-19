@@ -73,11 +73,11 @@ html(lang="en")
                     i(class=`fas fa-user-circle h-8 w-8 inline-block align-middle text-2xl text-gray-200`)
                     span(class=`text-sm font-medium ml-3 duration-200 text-gray-200`) Accounts
 
-              li(class=`px-3 py-2 rounded-sm group${activeCell=="category" ? " bg-gray-900" : ""}`)
-                a(class="block truncate transition duration-150" href="/dashboard/category")
+              li(class=`px-3 py-2 rounded-sm group${activeCell=="store" ? " bg-gray-900" : ""}`)
+                a(class="block truncate transition duration-150" href="/dashboard/store")
                   div(class="flex items-center")
                     i(class=`far fa-list-alt h-8 w-8 inline-block align-middle text-2xl text-gray-200`)
-                    span(class=`text-sm font-medium ml-3 duration-200 text-gray-200`) Categories
+                    span(class=`text-sm font-medium ml-3 duration-200 text-gray-200`) Store
               
               li(class=`px-3 py-2 rounded-sm group${activeCell=="order" ? " bg-gray-900" : ""}`)
                 a(class="block truncate transition duration-150" href="/dashboard/order")

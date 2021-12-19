@@ -16,4 +16,6 @@ router.route('/register')
 
 router.get('/logout', logoutController);
 
+router.get('/account/active/:activeToken', registerController.active);
+
 module.exports = router;

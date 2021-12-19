@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    div(class="text-center mb-10 h-96 bg-top bg-cover" style="background-image: url('/images/welcome.jpg'")
+        div(class="bg-white")
+            if (title == 'active')
+                div(class="uppercase text-3xl font-semibold text-red-600")=title + ' ' +status 
+                if (status == 'fail')
+                    p(class="text-lg") Your activation link is invalid, please <a href="/register">Register</a> again
+                else 
+                    p(class="text-lg") Click here to go <a class="text-brand" href="/">homepage</a>

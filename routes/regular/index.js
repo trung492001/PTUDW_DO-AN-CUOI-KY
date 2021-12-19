@@ -8,6 +8,8 @@ const detailLaptopController = require('../../controllers/page/productDetail.con
 const categoryController = require('../../controllers/page/category.controller');
 const profileController = require('../../controllers/auth/profile.controller');
 const dashboardController = require('../../controllers/page/dashboard.controller');
+const resetPasswordController = require('../../controllers/auth/resetPassword.controller');
+const forgotController = require('../../controllers/page/forgot.controller');
 
 router.use('/', authRoute);
 
@@ -38,9 +40,9 @@ router.get('/dashboard', async (req, res, next) => {
 
 router.get('/dashboard/accounts', dashboardController.get);
 
-router.get('/dashboard/category', async (req, res, next) => {
-    res.locals.activeCell = 'category';
-    res.render('dashboard');
+router.get('/dashboard/store', async (req, res, next) => {
+    res.locals.activeCell = 'store';
+    res.render('staffStore');
 });
 
 router.get('/dashboard/order', async (req, res, next) => {
@@ -49,5 +51,15 @@ router.get('/dashboard/order', async (req, res, next) => {
 });
 
 router.get('/dashboard/staff-profile', (req, res) => res.render('staffProfile'));
+
+router.get('/staffSignIn', (req, res) => res.render('staffSignIn'));
+
+router.get('/forgot', forgotController.get);
+
+router.post('/forgot', forgotController.post);
+
+router.post('/account/password-reset/:userId/:token', resetPasswordController.post);
+
+router.get('/account/password-reset/:userId/:token', resetPasswordController.get);
 
 module.exports = router;

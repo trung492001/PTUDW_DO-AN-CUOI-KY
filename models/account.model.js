@@ -39,7 +39,13 @@ const accountSchema = new mongoose.Schema({
   banUntil: {
     type: Date,
     default: Date.now
-  }
+  },
+  active: {
+    type: Boolean,
+    default: false
+  },
+  activeToken: String,
+  activeExpires: Date,
 })
 
 module.exports = mongoose.model('Account', accountSchema, 'Account');
