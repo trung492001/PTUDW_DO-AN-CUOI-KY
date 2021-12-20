@@ -46,24 +46,15 @@ router.post('/profile/changePassword', profileController.postPassword);
 
 router.get('/category?', categoryController);
 
-router.get('/dashboard', adminAuthMiddleware, async (req, res, next) => {
-    res.locals.activeCell = 'dashboard';
-    res.render('dashboard');
-});
+router.get('/dashboard', adminAuthMiddleware, dashboardController.get);
 
-router.get('/dashboard/accounts', dashboardController.get);
+router.get('/dashboard/accounts', adminAuthMiddleware, dashboardController.getAccount);
 
-router.get('/dashboard/store', async (req, res, next) => {
-    res.locals.activeCell = 'store';
-    res.render('staffStore');
-});
+router.get('/dashboard/store', adminAuthMiddleware, dashboardController.getStore);
 
-router.get('/dashboard/order', async (req, res, next) => {
-    res.locals.activeCell = 'order';
-    res.render('dashboard');
-});
+router.get('/dashboard/order', adminAuthMiddleware, dashboardController.getOrder);
 
-router.get('/dashboard/staff-profile', (req, res) => res.render('staffProfile'));
+router.get('/dashboard/staff-profile', adminAuthMiddleware, dashboardController.getProfile);
 
 router.get('/staffSignIn', (req, res) => res.render('staffSignIn'));
 

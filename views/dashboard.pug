@@ -31,6 +31,65 @@ mixin cardContent(data, content)
       else if (content == 'Performance')
         <i class="fas fa-chart-line fa-2x text-red-600"></i>
 
+mixin pagination(currentUrl, currentPage, pageCount)
+  - var prefixUrl = '?';
+  if pageCount > 0
+    nav(class="mt-6 mb-12" id="#pagination")
+      ul(class="flex justify-center gap-x-1")
+
+        //- Prev item
+        if currentPage > 1
+          a(class="" href=`${prefixUrl}page=${currentPage-1}`)
+            li(class="border py-1 text-center" style="min-width: 36px;")
+              <i class="fas fa-chevron-left"></i>
+
+        //- Small pageCount
+        if pageCount < 8
+          - for(var i = 1; i <= pageCount; ++i)
+            if i == currentPage
+              li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                span(class="underline")=i
+            else
+              li(class="border text-center py-1" style="min-width: 36px;")
+                a(href=`${prefixUrl}page=${i}`)=i
+        else
+          //- First item
+          if currentPage > 4
+            li(class="border text-center py-1" style="min-width: 36px;")
+              a(href=prefixUrl) 1
+            li(class="text-center py-1 cursor-default" style="min-width: 36px;")
+              span(class="mt-auto align-baseline text-gray-500") •••
+
+          if currentPage <= 4
+            - for(var i = 1; i <= (currentPage == 4 ? 6 : 5); ++i)
+              if i == currentPage
+                li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                  span(class="underline")=i
+              else
+                li(class="border text-center py-1" style="min-width: 36px;")
+                  a(href=`${prefixUrl}page=${i}`)=i
+          else if pageCount - currentPage < 4
+            - for(var i = (pageCount - currentPage == 3 ? currentPage - 2: pageCount - 4); i <= pageCount; ++i)
+              if i == currentPage
+                li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                  span(class="underline")=i
+              else
+                li(class="border text-center py-1" style="min-width: 36px;")
+                  a(href=`${prefixUrl}page=${i}`)=i
+          
+          
+          //- Last item
+          if pageCount - currentPage >= 4
+            li(class="text-center py-1 cursor-default" style="min-width: 36px;")
+              span(class="mt-auto align-baseline text-gray-500") •••
+            li(class="border text-center py-1" style="min-width: 36px;")
+              a(href=`${prefixUrl}page=${pageCount}`)=pageCount
+        
+        //- Next item
+        if currentPage < pageCount
+          a(class="" href=`${prefixUrl}page=${currentPage+1}`)
+            li(class="border py-1 text-center" style="min-width: 36px;")
+              <i class="fas fa-chevron-right"></i>
 
 html(lang="en") 
   head

@@ -36,10 +36,7 @@ const accountSchema = new mongoose.Schema({
     ref: 'Order',
     required: true
   }],
-  banUntil: {
-    type: Date,
-    default: Date.now
-  },
+  banStatus: 0,
   active: {
     type: Boolean,
     default: false

@@ -12,72 +12,10 @@ mixin accountRow(id, avatar, name, username, email, phone, address)
     td(class="p-2 whitespace-nowrap")
       div(class="text-left")=email
     td(class="p-2 whitespace-nowrap")
-      div(class="text-left")=phone
-    td(class="p-2 whitespace-nowrap")
-      div(class="text-left")=address 
-    td(class="p-2 whitespace-nowrap")
       div(class="flex")
         a(class="text-indigo-600 hover:text-indigo-900 cursor-pointer") Ban
 
-mixin pagination(currentQuery, currentPage, pageCount)
-  - var prefixUrl = currentQuery?`?query=${currentQuery}`:"";
-  if pageCount > 0
-    nav(class="mb-12" id="#pagination")
-      ul(class="flex justify-center gap-x-1")
 
-        //- Prev item
-        if currentPage > 1
-          a(class="" href=prefixUrl?`${prefixUrl}&page=${currentPage-1}`:`?page=${currentPage-1}`)
-            li(class="border py-1 px-2 text-center" style="min-width: 36px;")
-              i(class="fas fa-chevron-left")
-
-        //- Small pageCount
-        if pageCount < 8
-          - for(var i = 1; i <= pageCount; ++i)
-            if i == currentPage
-              li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
-                span(class="underline")=i
-            else
-              li(class="border text-center py-1" style="min-width: 36px;")
-                a(href=prefixUrl?`${prefixUrl}&page=${i}`:`?page=${i}`)=i
-        else
-          //- First item
-          if currentPage > 4
-            li(class="border text-center py-1" style="min-width: 36px;")
-              a(href=prefixUrl) 1
-            li(class="text-center py-1 cursor-default" style="min-width: 36px;")
-              span(class="mt-auto align-baseline text-gray-500") •••
-
-          if currentPage <= 4
-            - for(var i = 1; i <= (currentPage == 4 ? 6 : 5); ++i)
-              if i == currentPage
-                li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
-                  span(class="underline")=i
-              else
-                li(class="border text-center py-1" style="min-width: 36px;")
-                  a(href=prefixUrl?`${prefixUrl}&page=${i}`:`?page=${i}`)=i
-          else if pageCount - currentPage < 4
-            - for(var i = (pageCount - currentPage == 3 ? currentPage - 2: pageCount - 4); i <= pageCount; ++i)
-              if i == currentPage
-                li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
-                  span(class="underline")=i
-              else
-                li(class="border text-center py-1" style="min-width: 36px;")
-                  a(href=prefixUrl?`${prefixUrl}&page=${i}`:`?page=${i}`)=i
-          
-          
-          //- Last item
-          if pageCount - currentPage >= 4
-            li(class="text-center py-1 cursor-default" style="min-width: 36px;")
-              span(class="mt-auto align-baseline text-gray-500") •••
-            li(class="border text-center py-1" style="min-width: 36px;")
-              a(href=prefixUrl?`${prefixUrl}&page=${pageCount}`:`?page=${pageCount}`)=pageCount
-        
-        //- Next item
-        if currentPage < pageCount
-          a(class="" href=prefixUrl?`${prefixUrl}&page=${currentPage+1}`:`?page=${currentPage+1}`)
-            li(class="border py-1 px-2 text-center" style="min-width: 36px;")
-              i(class="fas fa-chevron-right")
 
 block content 
   div(class="mb-2 md:mb-4 flex justify-between")
@@ -94,11 +32,10 @@ block content
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Name
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Username
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Email
-        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Phone
-        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Address
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Action
     tbody(class="text-sm")
       each value in accountData
-        +accountRow("1", value.avatar, value.name, value.username, value.email, value.phone, value.address)
-  +pagination(currentQuery, currentPage, pageCount)
+        +accountRow("1", value.avatar, value.name, value.username, value.email)
+  -var n = 0;
+    +pagination(currentQuery, currentPage, maxPage)
   script(src="/accountDashboard.js") 
