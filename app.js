@@ -26,6 +26,8 @@ app.use(cookieParser());
 
 app.set('trust proxy', 1); // trust first proxy
 app.use(session({
+  store: new FileStore(fileStoreOptions),
+  cookie: { maxAge: 3600 * 1000 * 24 * 1},
   secret: process.env.SESSION_SECRET,
   resave: false,
   rolling: true,
@@ -34,14 +36,8 @@ app.use(session({
 
 // Passport middleware
 app.use(passport.initialize());
-app.use(passport.session({
-  store: new FileStore(fileStoreOptions),
-  cookie: { maxAge: 3600 * 1000 * 24 * 1},
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  rolling: true,
-  saveUninitialized: true,
-}));
+app.use(passport.session());
+
 // connect MongoDB
 require('dotenv').config();
 mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });

@@ -1,0 +1,41 @@
+extends layout
+
+mixin inputOrder(name, placeholder, inputType, value)
+  input(id=name name=name placeholder=placeholder type=inputType value=value class="w-full bg-gray-50 px-4 py-2.5 rounded text-gray-900 h-12 outline-none box-border border border-transparent hover:border-brand focus:border-brand shadow-none" required)
+  div(id=`validate-${name}-message` class="mt-2 text-sm text-red-600 hidden") Bạn cần nhập thông tin
+
+block content
+  h1(class="text-xl md:text-4xl leading-7 md:leading-10 text-dark-gray font-bold mb-2 md:mb-6") Đặt hàng
+  div(id="cart-empty" class="text-center mb-7 hidden")
+    i(class="inline-block fas fa-shopping-cart text-5xl mb-5")
+    p(class="mb-7") Bạn chưa có sản phẩm nào trong giỏ hàng
+    a(href="/" alt="Homepage" class="rounded-full bg-brand text-white px-10 py-4 text-center font-bold text-lg") Tiếp tục mua sắm
+  div(id="cart-not-empty" class="mb-7 hidden")
+    div(class="md:flex flex-wrap mb-8 md:mb-14")
+      div(class="w-full md:w-9/12 md:border border-gray-100 md:px-6 md:py-9 ")
+        div(class="space-y-4" style="max-width: 772px")
+          h6(class="text-lg font-bold") Thông tin người nhận
+          div(class="flex flex-wrap md:-mx-2 space-y-4 md:space-y-0")
+            div(class="w-full md:w-1/2 md:px-2")
+              +inputOrder("name", "Họ và tên", "text", "")
+            div(class="w-full md:w-1/2 md:px-2")
+              +inputOrder("phone", "Số điện thoại", "tel", "")
+          h6(class="text-lg font-bold") Địa chỉ người nhận
+          div(class="flex flex-wrap")
+            +inputOrder("address", "Địa chỉ", "text", "")
+      div(class="md:w-3/12 md:-ml-px")
+        div(class="md:border border-gray-100 divide-y divide-gray-100")
+          div(class="flex justify-between px-0 md:px-4  py-4")
+            p(id="product-count")
+            a(href="/cart" class="text-base font-bold") Sửa > 
+          div(id="product-list" class="divide-y divide-gray-100")
+          div(class="flex justify-between px-0 md:px-4 py-4")
+            p(class="font-bold") Tạm tính:
+            p(id="provisional-price" class="text-base") 
+          div(class="flex justify-between items-center px-0 md:px-4 py-4")
+            p(class="font-bold") Thành tiền 
+            p(id="total-price" class="text-lg text-red-400 font-bold")
+          div(class="px-0 md:px-4 py-4")
+            button(onclick="placeOrder()" class="block w-full px-8 py-3 rounded-full bg-brand text-white text-base font-bold text-center") Đặt hàng 
+  script(src="/javascripts/placeOrder.js")
+  

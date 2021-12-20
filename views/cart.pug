@@ -7,17 +7,17 @@ block content
     a(href="/" alt="Homepage" class="rounded-full bg-brand text-white px-10 py-4 text-center font-bold text-lg") Tiếp tục mua sắm
   div(id="cart-not-empty" class="hidden mb-7")
     div(class="md:flex flex-wrap mb-8 md:mb-14")
-      div(class="md:w-9/12")
-        div(id="list-cart")
+      div(class="md:w-9/12 border border-b-0 border-gray-100")
+        div(id="list-cart" class="divide-y divide-gray-100")
       div(class="md:w-3/12 md:-ml-px")
-        div(class="checkout_sidebar py-4 space-y-4 border-t md:border border-gray-100")
+        div(class="md:border border-gray-100")
           input(class="hidden" id="total")
-          div(class="flex justify-between px-0 md:px-4 border-b border-gray-100 pb-4")
-            p(class="font-bold text-sm") Tạm tính:
+          div(class="flex justify-between px-0 md:px-4 border-b border-gray-100 py-4")
+            p(class="font-bold") Tạm tính:
             p(id="provisional-price" class="text-base") 
-          div(class="flex justify-between items-center px-0 md:px-4 border-b border-gray-100 pb-4")
-            p(class="font-bold text-sm") Thành tiền 
+          div(class="flex justify-between items-center px-0 md:px-4 border-b border-gray-100 py-4")
+            p(class="font-bold") Thành tiền 
             p(id="total-price" class="text-lg text-red-400 font-bold")
-          div(class="px-0 md:px-4")
-            a(href="" class="mb-4 block w-full px-8 py-3 rounded-full bg-brand text-white text-base font-bold text-center") Đặt hàng 
+          div(class="px-0 md:px-4 py-4")
+            a(href="/place-order" class="block w-full px-8 py-3 rounded-full bg-brand text-white text-base font-bold text-center") Đặt hàng 
   script(src="/javascripts/cart.js")

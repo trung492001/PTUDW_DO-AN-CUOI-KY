@@ -23,11 +23,6 @@ const orderSchema = new mongoose.Schema({
       required: true
     }
   }],
-  shippingFee: {
-    type: Number,
-    min: 0,
-    required: true
-  },
   status: {
     type: Number,
     enum: Object.values(orderStatus),

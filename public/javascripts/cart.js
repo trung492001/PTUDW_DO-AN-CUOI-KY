@@ -136,7 +136,6 @@ function loadCartInformation() {
   if (cart.length === 0) {
     document.getElementById("cart-empty").classList.remove('hidden');
   } else {
-    document.getElementById("cart-not-empty").classList.remove('hidden');
     const payload = cart.map(e => e.productId);
     let total = 0;
     axios.post('/api/product/min', { productId: payload }).then(res => {
@@ -157,6 +156,7 @@ function loadCartInformation() {
       document.getElementById('total').value = total;
       document.getElementById('provisional-price').innerText = `${total.toLocaleString()} ₫`;
       document.getElementById('total-price').innerText = `${total.toLocaleString()} ₫`;
+      document.getElementById("cart-not-empty").classList.remove('hidden');
     }).catch(err => {
       console.log(err);
       Toast.alert("Có lỗi khi tải thông tin sản phẩm trong giỏ hàng!")

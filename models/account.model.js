@@ -25,8 +25,14 @@ const accountSchema = new mongoose.Schema({
     enum: Object.values(role),
     default: role.User,
   },
-  address: String,
-  phone: String,
+  address: {
+    type: String,
+    default: ""
+  },
+  phone: {
+    type: String,
+    default: ""
+  },
   avatar: {
     type: String,
     default: '/images/default-avatar.png'

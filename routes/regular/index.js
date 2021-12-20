@@ -30,11 +30,23 @@ router.get('/cart', (req, res) => {
         name: 'Home',
         link: '/'
     }, {
-        name: 'Giỏ hàng',
-        link: '/cart'
+        name: 'Giỏ hàng'
     }]
     res.render('cart');
 });
+
+router.get('/place-order', (req, res) => {
+    res.locals.breadcrumb = [{
+        name: 'Home',
+        link: '/'
+    }, {
+        name: 'Giỏ hàng',
+        link: '/cart'
+    }, {
+        name: 'Đặt hàng'
+    }]
+    res.render('placeOrder');
+})
 
 router.get('/profile', userAuthMiddleware, profileController.get);
 
