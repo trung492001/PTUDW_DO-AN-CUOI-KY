@@ -1,6 +1,6 @@
 extends dashboard 
 
-mixin accountRow(id, avatar, name, username, email, phone, address)
+mixin accountRow(id, avatar, name, username, email)
   tr
     td(class="p-2 whitespace-nowrap")
       div(class="flex items-center")
@@ -13,7 +13,7 @@ mixin accountRow(id, avatar, name, username, email, phone, address)
       div(class="text-left")=email
     td(class="p-2 whitespace-nowrap")
       div(class="flex")
-        a(class="text-indigo-600 hover:text-indigo-900 cursor-pointer") Ban
+        a(class="text-indigo-600 hover:text-indigo-900 cursor-pointer" href="/BanUser?userId=" + id) Ban
 
 
 
@@ -35,7 +35,7 @@ block content
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Action
     tbody(class="text-sm")
       each value in accountData
-        +accountRow("1", value.avatar, value.name, value.username, value.email)
+        +accountRow(value._id, value.avatar, value.name, value.username, value.email)
   -var n = 0;
     +pagination(currentQuery, currentPage, maxPage)
   script(src="/accountDashboard.js") 

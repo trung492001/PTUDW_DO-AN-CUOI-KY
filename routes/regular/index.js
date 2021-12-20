@@ -10,6 +10,7 @@ const profileController = require('../../controllers/auth/profile.controller');
 const dashboardController = require('../../controllers/page/dashboard.controller');
 const resetPasswordController = require('../../controllers/auth/resetPassword.controller');
 const forgotController = require('../../controllers/page/forgot.controller');
+const banUserController = require('../../controllers/auth/banUser.controller');
 
 const adminAuthMiddleware = require('../../middleware/admin.auth.middleware');
 const userAuthMiddleware = require('../../middleware/user.auth.middleware');
@@ -65,5 +66,7 @@ router.post('/forgot', forgotController.post);
 router.post('/account/password-reset/:userId/:token', resetPasswordController.post);
 
 router.get('/account/password-reset/:userId/:token', resetPasswordController.get);
+
+router.get('/BanUser', banUserController.banUser);
 
 module.exports = router;
