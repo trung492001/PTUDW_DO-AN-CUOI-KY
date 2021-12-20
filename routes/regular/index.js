@@ -25,7 +25,16 @@ router.get('/laptop/:id', (req, res) => res.render('detailLaptop'));
 
 router.get('/404', (req, res) => res.render('404'));
 
-router.get('/cart', (req, res) => res.render('cart'));
+router.get('/cart', (req, res) => {
+    res.locals.breadcrumb = [{
+        name: 'Home',
+        link: '/'
+    }, {
+        name: 'Giỏ hàng',
+        link: '/cart'
+    }]
+    res.render('cart');
+});
 
 router.get('/profile', profileController.get);
 

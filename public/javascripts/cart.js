@@ -133,30 +133,35 @@ function removeProduct(id) {
 
 function loadCartInformation() {
   const cart = JSON.parse(localStorage.getItem('cart') || "[]");
-  const payload = cart.map(e => e.productId);
-  let total = 0;
-  axios.post('/api/product/min', { productId: payload }).then(res => {
-    const cartList = res.data.result.map(e => {
-      const quantity = cart.find(cartElement => cartElement.productId === e._id).quantity
-      total += e.price * quantity;
-      return {
-        ...e,
-        quantity
-      }
-    });
-    const wrapper = document.getElementById('list-cart');
-    wrapper.innerHTML = '';
-    cartList.forEach(e => {
-      const cartElement = cartItem(e);
-      wrapper.appendChild(cartElement);
-    });
-    document.getElementById('total').value = total;
-    document.getElementById('provisional-price').innerText = `${total.toLocaleString()} ₫`;
-    document.getElementById('total-price').innerText = `${total.toLocaleString()} ₫`;
-  }).catch(err => {
-    console.log(err);
-    Toast.alert("Có lỗi khi tải thông tin sản phẩm trong giỏ hàng!")
-  })
+  if (cart.length === 0) {
+    document.getElementById("cart-empty").classList.remove('hidden');
+  } else {
+    document.getElementById("cart-not-empty").classList.remove('hidden');
+    const payload = cart.map(e => e.productId);
+    let total = 0;
+    axios.post('/api/product/min', { productId: payload }).then(res => {
+      const cartList = res.data.result.map(e => {
+        const quantity = cart.find(cartElement => cartElement.productId === e._id).quantity
+        total += e.price * quantity;
+        return {
+          ...e,
+          quantity
+        }
+      });
+      const wrapper = document.getElementById('list-cart');
+      wrapper.innerHTML = '';
+      cartList.forEach(e => {
+        const cartElement = cartItem(e);
+        wrapper.appendChild(cartElement);
+      });
+      document.getElementById('total').value = total;
+      document.getElementById('provisional-price').innerText = `${total.toLocaleString()} ₫`;
+      document.getElementById('total-price').innerText = `${total.toLocaleString()} ₫`;
+    }).catch(err => {
+      console.log(err);
+      Toast.alert("Có lỗi khi tải thông tin sản phẩm trong giỏ hàng!")
+    })
+  }
 }
 
 loadCartInformation();

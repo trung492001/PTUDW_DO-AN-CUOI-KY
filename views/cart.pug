@@ -1,18 +1,23 @@
 extends layout
 block content
-    script(src="/javascripts/cart.js") 
-    p(class='text-xl md:text-4xl leading-7 md:leading-10 text-black font-bold mb-2 md:mb-6') Giỏ hàng
+  p(class='text-xl md:text-4xl leading-7 md:leading-10 text-black font-bold mb-2 md:mb-6') Giỏ hàng
+  div(id="cart-empty" class="text-center mb-7 hidden")
+    i(class="inline-block fas fa-shopping-cart text-5xl mb-5")
+    p(class="mb-7") Bạn chưa có sản phẩm nào trong giỏ hàng
+    a(href="/" alt="Homepage" class="rounded-full bg-brand text-white px-10 py-4 text-center font-bold text-lg") Tiếp tục mua sắm
+  div(id="cart-not-empty" class="hidden mb-7")
     div(class="md:flex flex-wrap mb-8 md:mb-14")
-        div(class="md:w-9/12")
-            div(id="list-cart" class="md:border border-gray-100")
-        div(class="md:w-3/12 md:-ml-px")
-            div(class="checkout_sidebar py-4 space-y-4 border-t md:border border-gray-100")
-                input(class="hidden" id="total")
-                div(class="flex justify-between px-0 md:px-4 border-b border-gray-100 pb-4")
-                    p(class="font-bold text-sm") Tạm Tính:
-                    p(id="provisional-price" class="text-base") 
-                div(class="flex justify-between items-center px-0 md:px-4 border-b border-gray-100 pb-4")
-                    p(class="font-bold text-sm") Thành tiền 
-                    p(id="total-price" class="text-lg text-red-400 font-bold")
-                div(class="px-0 md:px-4")
-                    a(href="" class="mb-4 block w-full px-8 py-3 rounded-full bg-brand text-white text-base font-bold text-center") Đặt hàng 
+      div(class="md:w-9/12")
+        div(id="list-cart")
+      div(class="md:w-3/12 md:-ml-px")
+        div(class="checkout_sidebar py-4 space-y-4 border-t md:border border-gray-100")
+          input(class="hidden" id="total")
+          div(class="flex justify-between px-0 md:px-4 border-b border-gray-100 pb-4")
+            p(class="font-bold text-sm") Tạm tính:
+            p(id="provisional-price" class="text-base") 
+          div(class="flex justify-between items-center px-0 md:px-4 border-b border-gray-100 pb-4")
+            p(class="font-bold text-sm") Thành tiền 
+            p(id="total-price" class="text-lg text-red-400 font-bold")
+          div(class="px-0 md:px-4")
+            a(href="" class="mb-4 block w-full px-8 py-3 rounded-full bg-brand text-white text-base font-bold text-center") Đặt hàng 
+  script(src="/javascripts/cart.js")

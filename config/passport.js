@@ -31,10 +31,13 @@ passport.serializeUser(function (user, done) {
   return done(null, user);
 });
 
-passport.deserializeUser(function (id, done) {
-  Account.findById(id, function (err, user) {
-    return done(err, user);
-  });
+passport.deserializeUser(async function (id, done) {
+  try {
+    const user = await Account.findById(id);
+    return done(null, user)
+  } catch (err) {
+    return done(err, false);
+  }
 });
 
 module.exports = passport;
