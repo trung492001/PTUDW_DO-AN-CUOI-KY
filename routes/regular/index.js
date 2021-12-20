@@ -12,7 +12,7 @@ const resetPasswordController = require('../../controllers/auth/resetPassword.co
 const forgotController = require('../../controllers/page/forgot.controller');
 
 const adminAuthMiddleware = require('../../middleware/admin.auth.middleware');
-
+const userAuthMiddleware = require('../../middleware/user.auth.middleware');
 router.use('/', authRoute);
 
 router.get('/', indexController);
@@ -36,7 +36,7 @@ router.get('/cart', (req, res) => {
     res.render('cart');
 });
 
-router.get('/profile', profileController.get);
+router.get('/profile', userAuthMiddleware, profileController.get);
 
 router.post('/profile/updateProfile', profileController.postProfile);
 

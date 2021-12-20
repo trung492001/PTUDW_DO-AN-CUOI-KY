@@ -28,16 +28,14 @@ passport.use('register', new localStrategy({ passReqToCallback: true },
 ))
 
 passport.serializeUser(function (user, done) {
-  return done(null, user);
+  return done(null, user._id);
 });
 
 passport.deserializeUser(async function (id, done) {
-  try {
-    const user = await Account.findById(id);
-    return done(null, user)
-  } catch (err) {
-    return done(err, false);
-  }
+  Account.findById(id, function (err, user) {
+    console.log(user);
+    return done(err, user);
+  });
 });
 
 module.exports = passport;

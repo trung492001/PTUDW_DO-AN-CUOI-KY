@@ -10,6 +10,9 @@ router
   .get(loginController.get)
   .post(loginController.post);
 
+router.route('/sign-in-staff')
+  .post(loginController.staffPost);
+
 router.route('/register')
   .get(registerController.get)
   .post(registerController.post);
