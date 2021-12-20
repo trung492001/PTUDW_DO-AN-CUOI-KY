@@ -8,7 +8,7 @@ passport.use('login', new localStrategy(
   async (username, password, done) => {
     try {
       const user = await accountService.authenticate(username, password);
-      console.log(user);
+      
       if (!user) {
         return done(null, false);
       }
@@ -33,7 +33,6 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(async function (id, done) {
   Account.findById(id, function (err, user) {
-    console.log(user);
     return done(err, user);
   });
 });
