@@ -23,3 +23,9 @@ nav>div #search-bar{
     transform: rotate(225deg);
     z-index: 1;
 }
+.search-bar:hover i{
+    color: white!important;
+}
+#listResult a:hover{
+    color: black!important;
+}

@@ -15,7 +15,9 @@ const adminAuthMiddleware = require('../../middleware/admin.auth.middleware');
 const userAuthMiddleware = require('../../middleware/user.auth.middleware');
 router.use('/', authRoute);
 
-router.get('/', indexController);
+router.get('/', indexController.get);
+
+router.post('/', indexController.post);
 
 router.get('/laptop', laptopController);
 

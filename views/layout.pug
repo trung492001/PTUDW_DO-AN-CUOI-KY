@@ -43,20 +43,22 @@ html(lang="en")
     block header
   body(style="font-family: 'Sen', sans-serif;")
       nav(class="text-white z-40" style="background: #05042c")
-          div(class="mx-auto flex px-2 md:px-5 py-5 flex-wrap items-center justify-between")
+          div(class="mx-auto flex px-2 md:px-5 py-5 flex-wrap items-center justify-between" style="max-width:1254px")
               div
-                  a.flex(href="/")
-                      img(src="/images/logo2.svg" class="w-116px md:w-168px xl:w-1/2" alt="ThinkVip Logo")
+                a.flex(href="/")
+                  img(src="/images/logo2.svg" class="w-116px md:w-168px xl:w-1/2" alt="ThinkVip Logo")
               div(class="nav-bar text-xl items-center flex")
+                  form(class="mr-10 hidden md:flex w-full lg:w-96 items-center")
+                    input(class="w-full leading-7 border-4 border-blue-500 rounded-l-lg outline-none text-black pl-1" name="search" placeholder="Tìm kiếm" autocomplete="off" type="text" onkeyup="showResults(this.value)")
+                    div(class="px-2 border-4 border-l-0 border-blue-500 rounded-r-lg bg-blue-500 hover:bg-brand")
+                      i(class="fas fa-search fa-md" onclick="myFunction()")
+                    div(id="listResult" class="absolute bg-white text-black top-16 rounded-sm ml-1 shadow-md hidden z-10 h-96 overflow-y-auto flex-col w-268px lg:w-338px") this
                   div(class="nav-bar text-xl items-center hidden md:flex")
-                    a(class="mr-6" href="/laptop") LAPTOP
-                    a(class="mr-6" href="/menu") PC
-                    a(href="/reservation") PHỤ KIỆN
+                    a(href="/laptop") LAPTOP
                   div(class="text-sm")
                     span(class="fa-stack fa-2x has-badge" data-count=0)
                       a(href="/cart")
                         i(class="fa fa-shopping-cart fa-stack-1x fa-inverse")
-                  i(class="fas fa-search fa-lg mr-6" onclick="myFunction()")
                   if user
                     div(class="hidden md:block items-center relative dropdown mt-2 w-11")
                       div(class="mb-2")
@@ -90,12 +92,8 @@ html(lang="en")
               if user 
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/profile") PROFILE
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") LAPTOP
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") PC
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") PHỤ KIỆN 
               else
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") LAPTOP
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/menu") PC
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/reservation") PHỤ KIỆN
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/sign-in") LOGIN
       input(id="logged-in" value=user?1:0 class="hidden")
       div(class="container mx-auto px-4" style="max-width: 1254px")
