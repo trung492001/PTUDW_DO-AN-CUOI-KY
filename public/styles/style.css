@@ -6532,6 +6532,14 @@ video {
   height: 168px;
 }
 
+.h-284px {
+  height: 284px;
+}
+
+.h-121px {
+  height: 121px;
+}
+
 .max-h-0 {
   max-height: 0px;
 }
@@ -6982,6 +6990,10 @@ video {
 
 .w-116px {
   width: 116px;
+}
+
+.w-800px {
+  width: 800px;
 }
 
 .min-w-0 {
@@ -38307,6 +38319,14 @@ input[type=number]::-webkit-outer-spin-button {
     height: 168px;
   }
 
+  .sm\:h-284px {
+    height: 284px;
+  }
+
+  .sm\:h-121px {
+    height: 121px;
+  }
+
   .sm\:max-h-0 {
     max-height: 0px;
   }
@@ -38757,6 +38777,10 @@ input[type=number]::-webkit-outer-spin-button {
 
   .sm\:w-116px {
     width: 116px;
+  }
+
+  .sm\:w-800px {
+    width: 800px;
   }
 
   .sm\:min-w-0 {
@@ -69984,6 +70008,14 @@ input[type=number]::-webkit-outer-spin-button {
     height: 168px;
   }
 
+  .md\:h-284px {
+    height: 284px;
+  }
+
+  .md\:h-121px {
+    height: 121px;
+  }
+
   .md\:max-h-0 {
     max-height: 0px;
   }
@@ -70434,6 +70466,10 @@ input[type=number]::-webkit-outer-spin-button {
 
   .md\:w-116px {
     width: 116px;
+  }
+
+  .md\:w-800px {
+    width: 800px;
   }
 
   .md\:min-w-0 {
@@ -101661,6 +101697,14 @@ input[type=number]::-webkit-outer-spin-button {
     height: 168px;
   }
 
+  .lg\:h-284px {
+    height: 284px;
+  }
+
+  .lg\:h-121px {
+    height: 121px;
+  }
+
   .lg\:max-h-0 {
     max-height: 0px;
   }
@@ -102111,6 +102155,10 @@ input[type=number]::-webkit-outer-spin-button {
 
   .lg\:w-116px {
     width: 116px;
+  }
+
+  .lg\:w-800px {
+    width: 800px;
   }
 
   .lg\:min-w-0 {
@@ -133338,6 +133386,14 @@ input[type=number]::-webkit-outer-spin-button {
     height: 168px;
   }
 
+  .xl\:h-284px {
+    height: 284px;
+  }
+
+  .xl\:h-121px {
+    height: 121px;
+  }
+
   .xl\:max-h-0 {
     max-height: 0px;
   }
@@ -133788,6 +133844,10 @@ input[type=number]::-webkit-outer-spin-button {
 
   .xl\:w-116px {
     width: 116px;
+  }
+
+  .xl\:w-800px {
+    width: 800px;
   }
 
   .xl\:min-w-0 {
@@ -165015,6 +165075,14 @@ input[type=number]::-webkit-outer-spin-button {
     height: 168px;
   }
 
+  .\32xl\:h-284px {
+    height: 284px;
+  }
+
+  .\32xl\:h-121px {
+    height: 121px;
+  }
+
   .\32xl\:max-h-0 {
     max-height: 0px;
   }
@@ -165465,6 +165533,10 @@ input[type=number]::-webkit-outer-spin-button {
 
   .\32xl\:w-116px {
     width: 116px;
+  }
+
+  .\32xl\:w-800px {
+    width: 800px;
   }
 
   .\32xl\:min-w-0 {

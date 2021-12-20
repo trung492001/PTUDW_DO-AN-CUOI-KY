@@ -17,7 +17,7 @@ const fileStoreOptions = {
 
 const app = express();
 //app.use(helmet());
-
+require('./config/passport');
 require('dotenv').config();
 // Passport config
 app.use(express.json()) // for parsing application/json
@@ -36,8 +36,6 @@ app.use(session({
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport');
-
 // connect MongoDB
 require('dotenv').config();
 mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
