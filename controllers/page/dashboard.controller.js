@@ -8,7 +8,11 @@ module.exports.getAccount = async (req,res) => {
     const accoutData = await accountService.getAllAccount();
     let accoutArray = accoutData.slice(begin, end);
     res.locals.activeCell = 'accounts';
-    res.locals.maxPage = (accoutData.length % 8 === 0) ? Math.round(accoutData.length / 8) : Math.round(accoutData.length / 8) + 1;
+    if(accoutData.length <= 8) {
+        res.locals.maxPage = 1;
+    } else {
+        res.locals.maxPage = (accoutData.length % 8 === 0) ? Math.round(accoutData.length / 8) : Math.round(accoutData.length / 8) + 1;
+    }
     res.locals.currentPage = parseInt(page);
     res.locals.accountData =accoutArray;
     res.render('accountDashboard');

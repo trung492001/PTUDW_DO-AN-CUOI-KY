@@ -66,4 +66,6 @@ router.get('/account/password-reset/:userId/:token', resetPasswordController.get
 
 router.get('/BanUser', banUserController.banUser);
 
+router.get('/UnbanUser', banUserController.unbanUser);
+
 module.exports = router;
