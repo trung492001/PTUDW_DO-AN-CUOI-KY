@@ -8,7 +8,6 @@ passport.use('login', new localStrategy(
   async (username, password, done) => {
     try {
       const user = await accountService.authenticate(username, password);
-      
       if (!user) {
         return done(null, false);
       }

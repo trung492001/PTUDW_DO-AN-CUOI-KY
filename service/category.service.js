@@ -7,6 +7,12 @@ const getCategoryByBrand = async function(brandCode) {
     return productData;
 }
 
+const getAllCategory = async function() {
+    const productData = await categoryModels.find();
+    return productData;
+}
+
 module.exports = {
-    getCategoryByBrand
+    getCategoryByBrand,
+    getAllCategory
 }
