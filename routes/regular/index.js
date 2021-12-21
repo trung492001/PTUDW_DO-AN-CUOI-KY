@@ -3,6 +3,8 @@ const router = express.Router();
 
 const authRoute = require('./auth.route');
 const indexController = require('../../controllers/auth/index.controller');
+const cartController = require('../../controllers/page/cart.controller');
+const placeOrderController = require('../../controllers/page/placeOrder.controller');
 const laptopController = require('../../controllers/page/laptop.controller');
 const detailLaptopController = require('../../controllers/page/productDetail.controller');
 const categoryController = require('../../controllers/page/category.controller');
@@ -28,28 +30,11 @@ router.get('/laptop/:id', (req, res) => res.render('detailLaptop'));
 
 router.get('/404', (req, res) => res.render('404'));
 
-router.get('/cart', (req, res) => {
-    res.locals.breadcrumb = [{
-        name: 'Home',
-        link: '/'
-    }, {
-        name: 'Giỏ hàng'
-    }]
-    res.render('cart');
-});
+router.get('/cart', cartController.get);
 
-router.get('/place-order', (req, res) => {
-    res.locals.breadcrumb = [{
-        name: 'Home',
-        link: '/'
-    }, {
-        name: 'Giỏ hàng',
-        link: '/cart'
-    }, {
-        name: 'Đặt hàng'
-    }]
-    res.render('placeOrder');
-})
+router.get('/place-order', userAuthMiddleware, placeOrderController.get)
+
+router.get('/place-order-success', userAuthMiddleware, placeOrderController.success);
 
 router.get('/profile', userAuthMiddleware, profileController.get);
 

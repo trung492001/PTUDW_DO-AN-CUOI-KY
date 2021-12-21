@@ -26,7 +26,7 @@ app.use(cookieParser());
 
 app.set('trust proxy', 1); // trust first proxy
 app.use(session({
-  store: new FileStore(fileStoreOptions),
+  // store: new FileStore(fileStoreOptions),
   cookie: { maxAge: 3600 * 1000 * 24 * 1},
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -58,7 +58,7 @@ app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  res.redirect('/404');
+  res.redirect(404, '/404');
 });
 
 // error handler

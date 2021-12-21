@@ -36,7 +36,7 @@ function handleReduceQuantity(id) {
 
 function cartItem({ _id, name, thumbnail, price, quantity }) {
   const wrapper = document.createElement('div');
-  wrapper.className = "px-0 md:px-4 py-4 border-b border-gray-100 flex";
+  wrapper.className = "px-0 md:px-4 py-4 flex";
   wrapper.id = `cart-product-${_id}`;
 
   const thumbnailWrapper = document.createElement('div');

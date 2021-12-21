@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const orderStatus = require('../config/orderStatus');
 
 const orderSchema = new mongoose.Schema({
-  userId: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Account',
     required: true,
@@ -23,10 +23,14 @@ const orderSchema = new mongoose.Schema({
       required: true
     }
   }],
+  username: {
+    type: String,
+    required: true
+  },
   status: {
     type: Number,
     enum: Object.values(orderStatus),
-    required: true
+    default: orderStatus.Processing
   },
   address: {
     type: String,
@@ -36,7 +40,6 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-
 }, {
   timestamps: true
 });

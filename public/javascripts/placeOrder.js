@@ -67,9 +67,9 @@ function placeOrder() {
   document.getElementById("validate-phone-message").classList.add('hidden');
   document.getElementById("validate-address-message").classList.add('hidden');
   if (validate("name") || validate("phone") || validate("address")) {
-    Toast.warning("Vui lòng điền đầy đủ thông tin!");
+    return Toast.warning("Vui lòng điền đầy đủ thông tin!");
   }
-  
+
   const payload = {
     name: document.getElementById("name").value,
     phone: document.getElementById("phone").value,
@@ -77,8 +77,12 @@ function placeOrder() {
     cart: JSON.parse(localStorage.getItem('cart') || "[]")
   }
 
-  console.log(payload);
-  //call api
+  axios.post('/api/order', payload).then(res => {
+    Toast.success('Đặt hàng thành công!');
+    setTimeout(() => window.location.href = "/place-order-success", 2000);
+  }).catch(err => {
+    Toast.alert("Có lỗi khi đặt hàng!");
+  })
 }
 
 loadCartMinInformation();

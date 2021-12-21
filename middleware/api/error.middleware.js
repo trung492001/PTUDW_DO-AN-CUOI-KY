@@ -9,7 +9,7 @@ const errorHandler = (err, req, res, next) => {
       })
     };
     console.error(err.stack);
-    res.render('error');
+    res.status(500).render('error');
 };
 
 module.exports = errorHandler
