@@ -120,6 +120,26 @@ const getMinInfoByIdArray = async (arrayId) => {
     return product;
 }
 
+const addNewProduct = async function(productInfo, image) {
+    await productModel.insertOne({
+        name: productInfo.name,
+        thumbnail: [image],
+        price: productInfo.price,
+        information: [
+            productInfo.vi_xu_ly,
+            productInfo.man_hinh,
+            productInfo.ram,
+            productInfo.card,
+            productInfo.luu_tru,
+            productInfo.pin,
+            productInfo.ket_noi_chinh,
+            productInfo.can_nang,
+            productInfo.he_dieu_hanh
+        ],
+        brand: productInfo.type
+    })
+}
+
 module.exports = {
     getProductData,
     getRandomProduct,

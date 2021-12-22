@@ -109,10 +109,10 @@ block content
           div(class="flex flex-row gap-4")
             i(class="fas fa-exclamation-circle text-4xl text-red-400")
             div(class="")
-              h4(class="text-xl leading-6 font-medium text-gray-900") Delete product
+              h4(class="text-xl leading-6 font-medium text-gray-900") Delete Product
               div(class="mt-2")
-                p(class="text-sm text-gray-500") Are you sure to delete this product? This product data will be permanently deleted. This action cannot be undone.
-        form(action="" method="POST" id="form-delete-product" class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse")
+                p(class="text-sm text-gray-500") Are you sure to delete this Product? This dish data will be permanently deleted. This action cannot be undone.
+        form(action="" method="POST" id="form-delete-dish" class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse")
           button(type="submit" class="w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm") Delete
           button(type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="closeModalDeleteProduct()") Cancel
   div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label" role="dialog" aria-modal="true" id="product-modal")
@@ -120,54 +120,77 @@ block content
       div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalProduct()")
       div(class="inline-block bg-white rounded text-left overflow-hidden shadow-xl transform transition-all max-w-lg w-full my-auto")
         div(class="flex bg-gray-100 px-4 py-2 text-gray-700") 
-          span(class="font-semibold text-xl" id="modal-label") Thêm sản phẩm
-          button(class="ml-auto px-2" onclick="closeModalProduct()")
+          span(class="font-semibold text-xl" id="modal-label") Add New Product
+          button(class="ml-auto px-2" onclick="closeModalDish()")
             i(class="fas fa-times")
         div(class="bg-white px-4 py-3 overflow-y-scroll")
-          form(action="/addProduct" method="POST" enctype="multipart/form-data" id="product-form")
+          form(action="/adminProduct" method="POST" enctype="multipart/form-data" id="dish-form")
             div(class="mb-3")
-              label(for="form-product-name") Tên sản phẩm:
-              input(type="text" id="form-product-name" name="name" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+              label(for="form-dish-name") Product name:
+              input(type="text" id="form-dish-name" name="name" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
             div(class="mb-3")
               label(for="form-product-image") Hình sản phẩm:
               label(for="form-product-image") 
                 div(class="bg-gray-200 h-10 w-full px-2 py-1 mt-1 rounded-sm cursor-pointer leading-8" id="form-product-image-filename") No file chosen
               input(type="file" id="form-product-image" name="image" required hidden) 
             div(class="mb-3")
-              label(for="form-product-type") Hãng:
-              select(name="type" id="form-product-type" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
-                //- each value, index in category
-                //-   if index == 0
-                //-     option(value=value._id selected)=value.name
-                //-   else
-                //-     option(value=value._id)=value.name
+              label(for="form-dish-type") Brand:
+              select(name="type" id="form-dish-type" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+                each value, index in category
+                  if index == 0
+                    option(value=value.brandId selected)=value.name
+                  else
+                    option(value=value.brandId)=value.name
             div(class="mb-3")
-              label(for="form-product-price") Giá:
-              input(type="number" value="1000" min="1000" step="1000" id="form-product-price" name="price" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+              label(for="form-dish-type") Tình trạng:
+              select(name="status" id="form-dish-type" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+                option(value=0) New, Sealed 
+                option(value=1) New, Fullbox
+                option(value=2) New, Outlet 
+                option(value=3) Used
             div(class="mb-3")
-              label(for="form-product-description") Thông tin:
-              textarea(id="form-product-description" name="description" class="bg-gray-200 h-20 w-full p-2 mt-1 rounded-sm" required) 
-            input(id="form-product-submit" type="submit" value="Add product" class="w-full float-right mb-3 inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:w-auto sm:text-sm")
-  //Add category
-  div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label" role="dialog" aria-modal="true" id="category-modal")
-    div(class="flex items-end justify-center min-h-screen text-center px-5")
-      div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalCategory()")
-      div(class="inline-block bg-white rounded text-left overflow-hidden shadow-xl transform transition-all max-w-lg w-full my-auto")
-        div(class="flex bg-gray-100 px-4 py-2 text-gray-700") 
-          span(class="font-semibold text-xl" id="category-label") Thêm hãng
-          button(class="ml-auto px-2" onclick="closeModalCategory()")
-            i(class="fas fa-times")
-        div(class="bg-white px-4 py-3 overflow-y-scroll")
-          form(action="/addCategory" method="POST" enctype="multipart/form-data" id="category-form")
+              label(for="form-dish-type") RAM:
+              select(name="ram" id="form-dish-type" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+                option(value=0) 4 GB
+                option(value=1) 8 GB
+                option(value=2) 16 GB
+                option(value=3) 32 GB
+                option(value=4) 64 GB
+                option(value=5) 128 GB
             div(class="mb-3")
-              label(for="category-name") Tên hãng:
-              input(type="text" id="category-name" name="name" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+              label(for="form-dish-type") CPU:
+              select(name="cpu" id="form-dish-type" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+                option(value=0) Intel Dual Core
+                option(value=1) Intel Core i3
+                option(value=2) Intel Core i5
+                option(value=3) Intel Core i7
+                option(value=4) Intel Core i9
+                option(value=5) Intel Xeon
+                option(value=6) AMD Ryzen 3 
+                option(value=7) AMD Ryzen 5
+                option(value=8) AMD Ryzen 7
             div(class="mb-3")
-              label(for="category-image") Hình logo của hãng:
-              label(for="category-image") 
-                div(class="bg-gray-200 h-10 w-full px-2 py-1 mt-1 rounded-sm cursor-pointer leading-8" id="category-image-filename") No file chosen
-              input(type="file" id="category-image" name="image" required hidden)
+              label(for="form-dish-price") Price:
+              input(type="number" value="1000000" min="1000" step="1000" id="form-dish-price" name="price" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
             div(class="mb-3")
-              label(for="category-description") Giới thiệu:
-              textarea(id="category-description" name="description" class="bg-gray-200 h-20 w-full p-2 mt-1 rounded-sm" required) 
-            input(id="category-submit" type="submit" value="Thêm hãng" class="w-full float-right mb-3 inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:w-auto sm:text-sm")
+              label(for="form-dish-ingredient") Màn Hình:
+              input(type="text" name="man_hinh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-ingredient") Card đồ họa:
+              input(type="text" name="card" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-ingredient") Lưu trữ:
+              input(type="text" name="luu_tru" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-ingredient") Pin:
+              input(type="text" name="pin" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-ingredient") Kết nối chính:
+              input(type="text" name="ket_noi_chinh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-ingredient") Cân nặng:
+              input(type="text" name="can_nang" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-ingredient") Hệ điều hành:
+              input(type="text" name="he_dieu_hanh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            input(id="form-dish-submit" type="submit" value="Add Product" class="w-full float-right mb-3 inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:w-auto sm:text-sm")

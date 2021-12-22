@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const multer  = require('multer')
+const upload = multer({ dest: '../../public/uploads' })
 
 const authRoute = require('./auth.route');
 const indexController = require('../../controllers/auth/index.controller');
@@ -13,6 +15,7 @@ const dashboardController = require('../../controllers/page/dashboard.controller
 const resetPasswordController = require('../../controllers/auth/resetPassword.controller');
 const forgotController = require('../../controllers/page/forgot.controller');
 const banUserController = require('../../controllers/auth/banUser.controller');
+const adminProductController = require('../../controllers/adminProduct.controller');
 
 const banUserMiddleware = require('../../middleware/banUser.middleware');
 const adminAuthMiddleware = require('../../middleware/admin.auth.middleware');
@@ -68,5 +71,7 @@ router.get('/account/password-reset/:userId/:token', resetPasswordController.get
 router.get('/BanUser', banUserController.banUser);
 
 router.get('/UnbanUser', banUserController.unbanUser);
+
+router.post('/adminProduct', upload.single('image'), adminProductController.addNewProduct);
 
 module.exports = router;
