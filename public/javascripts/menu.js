@@ -46,3 +46,17 @@ function closeModalDish() {
 function closeModalDeleteDish() {
     document.getElementById('delete-dish-modal').classList.add('hidden');
 }
+
+function closeModalCategory() {
+    document.getElementById('category-modal').classList.add('hidden');
+}
+
+function openModalAddCategory() {
+    const formDish = document.getElementById('category-form');
+    formDish.reset();
+    formDish.setAttribute('action', '/addCategory');
+    formDish.setAttribute('method', 'POST');
+    document.getElementById('category-label').innerText = 'Thêm hãng';
+    document.getElementById('category-submit').value = 'Thêm hãng';
+    document.getElementById('category-modal').classList.remove('hidden');
+}

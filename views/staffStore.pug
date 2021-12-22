@@ -84,14 +84,16 @@ block content
     div(class="mt-6")
       h3(class="mb-3 font-bold text-5xl text-center text-red-600 p-2 mx-auto bg-black max-w-max" style="transform: skew(-20deg);") LAPTOP
       div(class="rounded bg-white p-2 lg:p-4 mb-8 shadow")
-        h4(class="mb-3 font-semibold text-2xl text-center lg:text-left") Category
+        div(class="flex")
+          h4(class="mb-3 font-semibold text-2xl text-center lg:text-left") Category
+          button(class="ml-auto mb-3 px-2 py-1 rounded bg-gray-600 text-white font-bold hover:bg-red-600" onclick="openModalAddCategory()") Thêm
         div(class="flex flex-nowrap overflow-x-scroll gap-4 lg:gap-6 xl:gap-8 no-scrollbar")
           - var n = 0;
           each value in category
             +categoryCell(category[n].brandId, category[n].name, category[n].thumbnail[0])
             -n++;
       div(class="flex flex-col")
-        button(class="ml-auto mb-3 px-2 py-1 rounded bg-gray-600 text-white font-bold hover:bg-red-600" onclick="openModalAddDish()") Add
+        button(class="ml-auto mb-3 px-2 py-1 rounded bg-gray-600 text-white font-bold hover:bg-red-600" onclick="openModalAddDish()") Thêm
         div(class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 lg:gap-4")
           - var n = 0;
           each value in productData
@@ -149,3 +151,26 @@ block content
               label(for="form-dish-description") Description:
               textarea(id="form-dish-description" name="description" class="bg-gray-200 h-20 w-full p-2 mt-1 rounded-sm" required) 
             input(id="form-dish-submit" type="submit" value="Add dish" class="w-full float-right mb-3 inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:w-auto sm:text-sm")
+  //Add category
+  div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label" role="dialog" aria-modal="true" id="category-modal")
+    div(class="flex items-end justify-center min-h-screen text-center px-5")
+      div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalCategory()")
+      div(class="inline-block bg-white rounded text-left overflow-hidden shadow-xl transform transition-all max-w-lg w-full my-auto")
+        div(class="flex bg-gray-100 px-4 py-2 text-gray-700") 
+          span(class="font-semibold text-xl" id="category-label") Thêm hãng
+          button(class="ml-auto px-2" onclick="closeModalCategory()")
+            i(class="fas fa-times")
+        div(class="bg-white px-4 py-3 overflow-y-scroll")
+          form(action="/addCategory" method="POST" enctype="multipart/form-data" id="category-form")
+            div(class="mb-3")
+              label(for="category-name") Tên hãng:
+              input(type="text" id="category-name" name="name" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+            div(class="mb-3")
+              label(for="category-image") Hình logo của hãng:
+              label(for="category-image") 
+                div(class="bg-gray-200 h-10 w-full px-2 py-1 mt-1 rounded-sm cursor-pointer leading-8" id="category-image-filename") No file chosen
+              input(type="file" id="category-image" name="image" required hidden)
+            div(class="mb-3")
+              label(for="category-description") Giới thiệu:
+              textarea(id="category-description" name="description" class="bg-gray-200 h-20 w-full p-2 mt-1 rounded-sm" required) 
+            input(id="category-submit" type="submit" value="Thêm hãng" class="w-full float-right mb-3 inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:w-auto sm:text-sm")
