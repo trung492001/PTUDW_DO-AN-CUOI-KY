@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer  = require('multer')
-const upload = multer({ dest: '../../public/uploads' })
+const upload = multer({ dest: 'public/images/uploads' })
 
 const authRoute = require('./auth.route');
 const indexController = require('../../controllers/auth/index.controller');
@@ -72,6 +72,6 @@ router.get('/BanUser', banUserController.banUser);
 
 router.get('/UnbanUser', banUserController.unbanUser);
 
-router.post('/adminProduct', upload.single('image'), adminProductController.addNewProduct);
+router.post('/addNewProduct', upload.single('image'), adminProductController.addNewProduct);
 
 module.exports = router;

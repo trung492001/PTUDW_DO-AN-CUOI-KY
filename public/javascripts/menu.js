@@ -14,7 +14,7 @@ function toggleDropdown(id) {
 function openModalAddDish() {
     const formDish = document.getElementById('dish-form');
     formDish.reset();
-    formDish.setAttribute('action', '/adminProduct');
+    formDish.setAttribute('action', '/addNewProduct');
     formDish.setAttribute('method', 'POST');
     document.getElementById('modal-label').innerText = 'Add Product';
     document.getElementById('form-dish-submit').value = 'Add Product';
@@ -39,12 +39,12 @@ function openModalDeleteDish(id){
     document.getElementById('delete-dish-modal').classList.remove('hidden');
 }
 
-function closeModalProduct() {
-    document.getElementById('product-modal').classList.add('hidden');
+function closeModalDish() {
+    document.getElementById('dish-modal').classList.add('hidden');
 }
 
-function closeModalDeleteProduct() {
-    document.getElementById('delete-product-modal').classList.add('hidden');
+function closeModalDeleteDish() {
+    document.getElementById('delete-dish-modal').classList.add('hidden');
 }
 
 function closeModalCategory() {

@@ -121,12 +121,12 @@ const getMinInfoByIdArray = async (arrayId) => {
 }
 
 const addNewProduct = async function(productInfo, image) {
-    await productModel.insertOne({
+    const newProduct = await productModel.create({
         name: productInfo.name,
         thumbnail: [image],
         price: productInfo.price,
         information: [
-            productInfo.vi_xu_ly,
+            productInfo.cpu,
             productInfo.man_hinh,
             productInfo.ram,
             productInfo.card,
@@ -136,8 +136,12 @@ const addNewProduct = async function(productInfo, image) {
             productInfo.can_nang,
             productInfo.he_dieu_hanh
         ],
-        brand: productInfo.type
-    })
+        brand: productInfo.type,
+        type: productInfo.status,
+        ramType: productInfo.ram,
+        cpuType: productInfo.cpu
+    });
+    newProduct.save();
 }
 
 module.exports = {
@@ -149,5 +153,6 @@ module.exports = {
     filterProductType,
     filterCPU,
     filterRAM,
-    getMinInfoByIdArray
+    getMinInfoByIdArray,
+    addNewProduct
 }
