@@ -53,7 +53,7 @@ module.exports.getStore = async (req, res, next) => {
     res.locals.currentPage = parseInt(page);
     res.locals.productData = productArray;
     res.locals.activeCell = 'store';
-    res.render('staffStore');
+    res.render('storeDashboard');
 }
 
 module.exports.getOrder = async (req, res, next) => {

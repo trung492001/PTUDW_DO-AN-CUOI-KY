@@ -1,3 +1,4 @@
+const { render } = require('pug');
 const accountService = require('../../service/account.service');
 const changePasswordValidation = require('../../validation/account/changePassword.validation');
 
@@ -22,4 +23,8 @@ module.exports.postPassword = async(req,res) =>{
         res.render('profilePage', {error: 'Mật khẩu hiện tại không đúng'});
     }
     res.redirect('/profile');
+}
+
+module.exports.postOrder = async(req,res) => {
+    res.render("detailOrder");
 }
