@@ -74,4 +74,6 @@ router.get('/UnbanUser', banUserController.unbanUser);
 
 router.post('/addNewProduct', upload.single('image'), adminProductController.addNewProduct);
 
+router.post('/addNewCategory', upload.single('image'), adminProductController.addNewCategory);
+
 module.exports = router;

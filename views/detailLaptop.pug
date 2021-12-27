@@ -54,14 +54,6 @@ block content
                 strong toàn cầu 24 tháng
               li
                 ="Đổi mới trong 15 ngày đầu tiên"
-      div(class="flex flex-col leading-10 items-center gap-3 mx-4 mb-5 mb:mb-0")
-        div(class="md:flex space-x-2 mr-auto hidden")
-          p(class="text-2xl") Giá:
-          p(class="text-2xl text-red-600") 23.990.000 đ
-        div(class="border rounded-full bg-brand text-white cursor-pointer w-full text-center")
-          div(class="p-1 space-x-3 ml-2 mr-2")
-            <i class="fas fa-cart-plus fa-lg"></i>
-            a(class="text-lg" href="") Thêm vào giỏ hàng
   div(id="bottom-container" class="max-w-4xl mx-auto")
     div(id="box-description" class="mb-10")
       h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12") Chi tiết sản phẩm
@@ -89,7 +81,7 @@ block content
         a(href="tel:1234567890")
           span(class="font-medium text-2xl") 1234567890
       div(class="flex items-center")
-        div(class="mr-4 md:mr-8 font-bold text-red-600 text-2xl md:text-3xl") 23.990.000 ₫
+        div(class="mr-4 md:mr-8 font-bold text-red-600 text-2xl md:text-3xl")=product.price + ' ₫'
         button(onclick=`addProduct("${product._id}")` class="flex items-center px-3 md:px-8 py-10px py-2 md:py-3 space-x-2 text-sm md:text-lg font-semibold bg-brand text-white rounded-full")
           i(class="fas fa-cart-plus mr-2") 
           span Thêm vào giỏ

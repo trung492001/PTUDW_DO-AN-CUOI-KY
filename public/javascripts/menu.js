@@ -54,7 +54,7 @@ function closeModalCategory() {
 function openModalAddCategory() {
     const formCategory = document.getElementById('category-form');
     formCategory.reset();
-    formCategory.setAttribute('action', '/addCategory');
+    formCategory.setAttribute('action', '/addNewCategory');
     formCategory.setAttribute('method', 'POST');
     document.getElementById('category-label').innerText = 'Thêm hãng';
     document.getElementById('category-submit').value = 'Thêm hãng';

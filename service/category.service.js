@@ -12,7 +12,19 @@ const getAllCategory = async function() {
     return productData;
 }
 
+const addNewCategory = async function(categoryInfo, image) {
+    const category = await getAllCategory();
+    const newCategory = await categoryModels.create({
+        name: categoryInfo.name,
+        thumbnail: [image],
+        brandId: category.length,
+        description: categoryInfo.description
+    });
+    newCategory.save();
+}
+
 module.exports = {
     getCategoryByBrand,
-    getAllCategory
+    getAllCategory,
+    addNewCategory
 }
