@@ -21,13 +21,24 @@ function openModalAddDish() {
     document.getElementById('dish-modal').classList.remove('hidden');
 }
 
-function openModalEditDish(id, name, price) {
+function openModalEditDish(id, name, price, information1, information3, information4, information5, information6, information7, information8, brand, type, ramType, cpuType) {
     const formDish = document.getElementById('dish-form');
     formDish.reset();
-    formDish.setAttribute('action', `/adminProduct/${id}`);
+    formDish.setAttribute('action', `/editProduct?productId=${id}`);
     formDish.setAttribute('method', 'POST');
     document.getElementById('form-dish-name').value = name;
     document.getElementById('form-dish-price').value = price;
+    document.getElementById('form-dish-type').value = type;
+    document.getElementById('form-dish-brand').value = brand;
+    document.getElementById('form-dish-ram').value = ramType;
+    document.getElementById('form-dish-cpu').value = cpuType;
+    document.getElementById('form-dish-manhinh').value = information1;
+    document.getElementById('form-dish-card').value = information3;
+    document.getElementById('form-dish-luutru').value = information4;
+    document.getElementById('form-dish-pin').value = information5;
+    document.getElementById('form-dish-ketnoichinh').value = information6;
+    document.getElementById('form-dish-cannang').value = information7;
+    document.getElementById('form-dish-hedieuhanh').value = information8;
     document.getElementById('modal-label').innerText = 'Edit Product';
     document.getElementById('form-dish-submit').value = 'Edit Product';
     document.getElementById('dish-modal').classList.remove('hidden');
@@ -35,7 +46,7 @@ function openModalEditDish(id, name, price) {
 }
 
 function openModalDeleteDish(id){
-    document.getElementById('form-delete-dish').setAttribute('action', `/adminProduct/${id}`);
+    document.getElementById('form-delete-dish').setAttribute('action', `/deleteProduct?productId=${id}`);
     document.getElementById('delete-dish-modal').classList.remove('hidden');
 }
 

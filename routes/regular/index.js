@@ -78,4 +78,8 @@ router.post('/addNewProduct', upload.single('image'), adminProductController.add
 
 router.post('/addNewCategory', upload.single('image'), adminProductController.addNewCategory);
 
+router.post('/editProduct', upload.single('image'), adminProductController.editProduct);
+
+router.post('/deleteProduct', adminProductController.deleteProduct);
+
 module.exports = router;

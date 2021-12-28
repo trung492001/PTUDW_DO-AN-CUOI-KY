@@ -1,12 +1,12 @@
 extends dashboard
 
-mixin productCell(id, name, img, price)
+mixin productCell(id, name, img, price, information1, information3, information4, information5, information6, information7, information8, brand, type, ramType, cpuType)
   div(class="relative inline-block col-span-1 mb-6")
     div(class="absolute right-0")
       button(id="dropdown-btn" class="px-2 py-1 float-right" onclick=`toggleDropdown("${id}")`)
         i(id="dropdown-btn" class="fas fa-ellipsis-v text-gray-600")
       div(id=`dropdown-content-${id}` class="bg-white rounded z-10 text-left cursor-pointer clear-both hidden")
-        div(class="hover:bg-gray-300 px-3 py-1 rounded-t" onclick=`openModalEditDish("${id}", "${name}", ${price})`) Edit
+        div(class="hover:bg-gray-300 px-3 py-1 rounded-t" onclick=`openModalEditDish("${id}", "${name}", ${price}, "${information1}", "${information3}", "${information4}", "${information5}", "${information6}", "${information7}", "${information8}", ${brand}, ${type}, ${ramType}, ${cpuType})`) Edit
         div(class="hover:bg-gray-300 px-3 py-1 rounded-b" onclick=`openModalDeleteDish("${id}")`) Delete
     img(src='/images/'+img alt=name class="w-full mb-3 lg:px-6")
     div(class="text-center mb-4")
@@ -97,7 +97,7 @@ block content
         div(class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 lg:gap-4")
           - var n = 0;
           each value in productData
-            +productCell(productData[n]._id, productData[n].name, productData[n].thumbnail[0], productData[n].price)
+            +productCell(productData[n]._id, productData[n].name, productData[n].thumbnail[0], productData[n].price, productData[n].information[1], productData[n].information[3], productData[n].information[4], productData[n].information[5], productData[n].information[6], productData[n].information[7], productData[n].information[8], productData[n].brand, productData[n].type, productData[n].ramType, productData[n].cpuType)
             -n++;
       - var n = 0;
         +paginationStore(currentCategory, currentPage, maxPage)
@@ -109,9 +109,9 @@ block content
           div(class="flex flex-row gap-4")
             i(class="fas fa-exclamation-circle text-4xl text-red-400")
             div(class="")
-              h4(class="text-xl leading-6 font-medium text-gray-900") Delete dish
+              h4(class="text-xl leading-6 font-medium text-gray-900") Delete Product
               div(class="mt-2")
-                p(class="text-sm text-gray-500") Are you sure to delete this dish? This dish data will be permanently deleted. This action cannot be undone.
+                p(class="text-sm text-gray-500") Are you sure to delete this product? This dish data will be permanently deleted. This action cannot be undone.
         form(action="" method="POST" id="form-delete-dish" class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse")
           button(type="submit" class="w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm") Delete
           button(type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="closeModalDeleteDish()") Cancel
@@ -132,10 +132,10 @@ block content
               label(for="form-product-image") Hình sản phẩm:
               label(for="form-product-image") 
                 div(class="bg-gray-200 h-10 w-full px-2 py-1 mt-1 rounded-sm cursor-pointer leading-8" id="form-product-image-filename") No file chosen
-              input(type="file" id="form-product-image" name="image" required hidden) 
+              input(type="file" id="form-product-image" name="image" hidden) 
             div(class="mb-3")
               label(for="form-dish-type") Brand:
-              select(name="type" id="form-dish-type" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+              select(name="type" id="form-dish-brand" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
                 each value, index in category
                   if index == 0
                     option(value=value.brandId selected)=value.name
@@ -150,7 +150,7 @@ block content
                 option(value=3) Used
             div(class="mb-3")
               label(for="form-dish-type") RAM:
-              select(name="ram" id="form-dish-type" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+              select(name="ram" id="form-dish-ram" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
                 option(value=0) 4 GB
                 option(value=1) 8 GB
                 option(value=2) 16 GB
@@ -159,7 +159,7 @@ block content
                 option(value=5) 128 GB
             div(class="mb-3")
               label(for="form-dish-type") CPU:
-              select(name="cpu" id="form-dish-type" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+              select(name="cpu" id="form-dish-cpu" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
                 option(value=0) Intel Dual Core
                 option(value=1) Intel Core i3
                 option(value=2) Intel Core i5
@@ -173,26 +173,26 @@ block content
               label(for="form-dish-price") Price:
               input(type="number" value="1000000" min="1000000" step="1000" id="form-dish-price" name="price" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
             div(class="mb-3")
-              label(for="form-dish-ingredient") Màn Hình:
-              input(type="text" name="man_hinh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+              label(for="form-dish-manhinh") Màn Hình:
+              input(type="text" name="man_hinh" id="form-dish-manhinh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
             div(class="mb-3")
-              label(for="form-dish-ingredient") Card đồ họa:
-              input(type="text" name="card" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+              label(for="form-dish-card") Card đồ họa:
+              input(type="text" name="card" id="form-dish-card" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
             div(class="mb-3")
-              label(for="form-dish-ingredient") Lưu trữ:
-              input(type="text" name="luu_tru" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+              label(for="form-dish-luutru") Lưu trữ:
+              input(type="text" name="luu_tru" id="form-dish-luutru" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
             div(class="mb-3")
-              label(for="form-dish-ingredient") Pin:
-              input(type="text" name="pin" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+              label(for="form-dish-pin") Pin:
+              input(type="text" name="pin" id="form-dish-pin" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
             div(class="mb-3")
-              label(for="form-dish-ingredient") Kết nối chính:
-              input(type="text" name="ket_noi_chinh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+              label(for="form-dish-ketnoichinh") Kết nối chính:
+              input(type="text" name="ket_noi_chinh" id="form-dish-ketnoichinh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
             div(class="mb-3")
-              label(for="form-dish-ingredient") Cân nặng:
-              input(type="text" name="can_nang" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+              label(for="form-dish-cannang") Cân nặng:
+              input(type="text" name="can_nang" id="form-dish-cannang" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
             div(class="mb-3")
-              label(for="form-dish-ingredient") Hệ điều hành:
-              input(type="text" name="he_dieu_hanh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+              label(for="form-dish-hedieuhanh") Hệ điều hành:
+              input(type="text" name="he_dieu_hanh" id="form-dish-hedieuhanh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
             input(id="form-dish-submit" type="submit" value="Add Product" class="w-full float-right mb-3 inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:w-auto sm:text-sm")
   //Add category
   div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label" role="dialog" aria-modal="true" id="category-modal")
