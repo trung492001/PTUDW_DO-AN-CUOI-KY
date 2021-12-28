@@ -4,7 +4,11 @@ const changePasswordValidation = require('../../validation/account/changePasswor
 
 module.exports.postProfile = async (req, res, next) => {
     accountService.Update(req.user,req.body);
-    res.redirect('/profile');
+    if(req.user.role === 100) {
+        res.redirect('/dashboard/staff-profile');
+    } else {
+        res.redirect('/profile');
+    }
 }
 module.exports.get = async (req, res) => {
     res.render('profilePage');
