@@ -78,11 +78,133 @@ mixin paginationStore(category, currentPage, pageCount)
             li(class="border py-1 px-2 text-center" style="min-width: 36px;")
               <i class="fas fa-chevron-right"></i>
 
+mixin catalogue(title, device, idCatalogue)
+    div(class="border-t border-gray-300 py-3" onclick=`showAndHide('${device}',${idCatalogue})`)
+        p(class="flex items-center text-black justify-between cursor-pointer")
+            span=title
+            <i class="fas fa-plus"></i>
+    if(idCatalogue === "1")
+      div(id=`list${idCatalogue}` class="items-center hidden")
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="1")
+          span(class="text") Lenovo 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") Razer
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="0")
+          span(class="text") Dell
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="3")
+          span(class="text") Asus 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="4")
+          span(class="text") HP
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="5")
+          span(class="text") Microsoft
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="6")
+          span(class="text") Apple 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="7")
+          span(class="text") MSI 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="8")
+          span(class="text") Acer 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="9")
+          span(class="text") Lg
+    if(idCatalogue === "2")
+      div(id=`list${idCatalogue}` class="items-center hidden")
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="1")
+          span(class="text") Trên 50 triệu 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") 40 - 50 triệu
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="3")
+          span(class="text") 30 - 40 triệu
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="4")
+          span(class="text") 20 - 30 triệu 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="5")
+          span(class="text") 10 - 20 triệu
+    if(idCatalogue === "3")
+      div(id=`list${idCatalogue}` class="items-center hidden")
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="0")
+          span(class="text") New, Sealed 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="1")
+          span(class="text") New, Fullbox
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") New, Outlet 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="3")
+          span(class="text") Used
+    if(idCatalogue === "4")
+      div(id=`list${idCatalogue}` class="items-center hidden")
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="0")
+          span(class="text") Intel Dual Core 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="1")
+          span(class="text") Intel Core i3
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") Intel Core i5
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") Intel Core i7
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="3")
+          span(class="text") Intel Core i9
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="4")
+          span(class="text") Intel Xeon
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="5")
+          span(class="text") AMD Ryzen 3 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="6")
+          span(class="text") AMD Ryzen 5
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="7")
+          span(class="text") AMD Ryzen 7
+    if(idCatalogue === "5")
+      div(id=`list${idCatalogue}` class="items-center hidden")
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="0")
+          span(class="text") 4 GB 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="1")
+          span(class="text") 8 GB
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") 16 GB
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="3")
+          span(class="text") 32 GB
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="4")
+          span(class="text") 64 GB
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="5")
+          span(class="text") 128 GB
+block header
+  script(src="/javascripts/menu.js" defer)           
 block content 
-  script(src="/javascripts/menu.js") 
   div(class="container mx-auto px-4 lg:px-40")
     div(class="mt-6")
       h3(class="mb-3 font-bold text-5xl text-center text-red-600 p-2 mx-auto bg-black max-w-max" style="transform: skew(-20deg);") LAPTOP
+      div(class="flex my-3")
+        div(class="flex items-center space-x-2 border-2 rounded-full py-1 px-3 filter-btn cursor-pointer bg-brand text-white")
+          <i class="w-1/2 fas fa-filter"></i>
+          span Lọc
       div(class="rounded bg-white p-2 lg:p-4 mb-8 shadow")
         div(class="flex")
           h4(class="mb-3 font-semibold text-2xl text-center lg:text-left") Category
@@ -101,6 +223,19 @@ block content
             -n++;
       - var n = 0;
         +paginationStore(currentCategory, currentPage, maxPage)
+  div(class="filter-mobile bg-white ml-0 fixed top-0 right-0 overflow-scroll p-4 transform translate-x-full transition-all duration-1000 ease-in-out" style="height: calc(var(--vh, 1vh)*100); z-index: 998")
+    div(class="grid grid-cols-3 pb-3 items-center")
+      div(class="back")
+        <i class="fas fa-angle-left fa-lg"></i>
+      p(class="text-xl font-semibold text-center") Lọc
+      div(class="filter text-center border-2 rounded-full filter-btn bg-brand text-white cursor-pointer ml-auto" style="max-width:104px")
+          div(class="p-2 mx-2")
+            p Áp dụng
+    +catalogue('Thương hiệu','mobile','1')
+    +catalogue('Khoảng giá','mobile','2')
+    +catalogue('Tình trạng','mobile','3')
+    +catalogue('CPU','mobile','4')
+    +catalogue('RAM','mobile','5') 
   div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label-delete-dish" role="dialog" aria-modal="true" id="delete-dish-modal")
     div(class="flex items-end justify-center min-h-screen text-center px-5")
       div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalDeleteDish()")

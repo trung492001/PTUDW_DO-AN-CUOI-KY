@@ -1,3 +1,31 @@
+const backBtn = document.querySelector('.back');
+const filterMobile = document.querySelector('.filter-mobile');
+const filterBtn = document.querySelector('.filter-btn');
+const filterPC = document.querySelector('.filter-pc');
+
+function showAndHide(device, id){
+    const idList = "list" + id;
+    let list;
+    if(device === 'pc')
+        list = filterPC.querySelector(`#${idList}`);
+    else
+        list = filterMobile.querySelector(`#${idList}`);
+    list.classList.toggle("hidden");
+}
+
+
+backBtn.addEventListener('click', () =>{
+    filterMobile.classList.toggle('translate-x-full');
+});
+
+filterBtn.addEventListener('click', () =>{
+    filterMobile.classList.toggle('translate-x-full');
+});
+
+filterMobile.addEventListener('mouseleave', () => {
+    filterMobile.classList.toggle('translate-x-full');
+});
+
 window.onclick = (event) => {
     if (!event.target.matches('#dropdown-btn')) {
         const dropdownList = document.querySelectorAll('[id^="dropdown-content-"]');
