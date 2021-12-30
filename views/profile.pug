@@ -6,8 +6,9 @@ mixin Order(id,date,nameFirstProduct,numberOfArray,cost,status)
         div(class="text-center flex flex-col justify-center") 
             p= date
         div(class="col-span-2 pl-3")
-            div= nameFirstProduct 
-                span(class="ml-2 px-3 bg-gray-600 text-white rounded-md")="+" + numberOfArray
+            div= nameFirstProduct
+                if(numberOfArray != 0) 
+                    span(class="ml-2 px-3 bg-gray-600 text-white rounded-md")="+" + numberOfArray
         div(class="text-center flex flex-col justify-center") 
             p= cost 
         if (status == -1)
@@ -149,8 +150,10 @@ block content
                                     div(class="col-span-2") Sản phẩm 
                                     div Tổng tiền 
                                     div Trạng thái
-                                +Order("61c16a78d70f2e7218964ccf","21/12/2021","Dell Vostro 5410 Intel gen 11","1","18896527",0)
-                                +Order("61c16a78d70f2e7218964ccf","21/12/2021","Dell Vostro 5410 Intel gen 11","1","18896527",1)
+                                - var n = 0;
+                                each value in orderProcessing
+                                    +Order(orderProcessing[n]._id,orderProcessing[n].createdAt,orderProcessing[n].FirstProductName,orderProcessing[n].cart.length - 1,orderProcessing[n].total,orderProcessing[n].status)
+                                    - n++;
                             div(id="third" class="hidden p-4")
                                 div(class="grid grid-cols-7 my-3 text-center")
                                     div(class="col-span-2") Mã đơn hàng 
@@ -158,8 +161,10 @@ block content
                                     div(class="col-span-2") Sản phẩm 
                                     div Tổng tiền 
                                     div Trạng thái
-                                +Order("61c16a78d70f2e7218964ccf","21/12/2021","Dell Vostro 5410 Intel gen 11","1","18896527",-1)
-                                +Order("61c16a78d70f2e7218964ccf","21/12/2021","Dell Vostro 5410 Intel gen 11","1","18896527",2)
+                                - var n = 0;
+                                each value in orderProcessing
+                                    +Order(orderProcessing[n]._id,orderProcessing[n].createdAt,orderProcessing[n].FirstProductName,orderProcessing[n].cart.length - 1,orderProcessing[n].total,orderProcessing[n].status)
+                                    - n++;
 
                         
 

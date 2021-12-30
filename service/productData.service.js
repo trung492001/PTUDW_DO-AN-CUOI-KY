@@ -22,6 +22,15 @@ const getOneProduct = async function (productId) {
     return productData;
 };
 
+//Lay ten product theo Id
+const getNameProduct = async function (productId) {
+    const productName = await productModel.findOne(
+        { _id: productId },
+        {name: 1}
+    ).lean().exec();
+    return productName;
+};
+
 const getProductByBrand = async function (brandCode) {
     const productData = await productModel.find(
         { brand: brandCode }
@@ -148,6 +157,7 @@ module.exports = {
     getProductData,
     getRandomProduct,
     getOneProduct,
+    getNameProduct,
     getProductByBrand,
     filterPrice,
     filterProductType,

@@ -27,3 +27,8 @@ module.exports.createOrder = async ({ _id: user }, { name: username, phone, addr
     cart: orderCartPayload
   })
 }
+//Lấy tất cả đơn hàng của customer theo id
+module.exports.getOrderOfCustomer = async(idUser) => await Order.find({user: idUser}).lean().exec();
+
+//Lấy đơn hàng theo id
+module.exports.getOrder = async(id) => await Order.findOne({_id: id}).lean().exec(); 

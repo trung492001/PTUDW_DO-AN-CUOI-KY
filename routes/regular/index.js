@@ -46,7 +46,7 @@ router.post('/profile/updateProfile', banUserMiddleware, userAuthMiddleware, pro
 
 router.post('/profile/changePassword', banUserMiddleware, userAuthMiddleware, profileController.postPassword);
 
-router.get('/profile/order/:id',profileController.postOrder);
+router.get('/profile/order/:id',profileController.getDetailOrder);
 
 router.get('/category?', banUserMiddleware, categoryController);
 
