@@ -82,4 +82,12 @@ router.post('/editProduct', upload.single('image'), adminProductController.editP
 
 router.post('/deleteProduct', adminProductController.deleteProduct);
 
+router.get('/Cancel', dashboardController.cancelOrder);
+
+router.get('/InTransmit', dashboardController.inTransmitOrder);
+
+router.get('/Deliver', dashboardController.deliveredOrder);
+
+router.get('/Processing', dashboardController.processOrder);
+
 module.exports = router;

@@ -128,3 +128,5 @@ module.exports.resetPassword = async(userId,resetToken,password) => {
 module.exports.updateStatus = async function(userId, updateStatus) {
   await Account.findByIdAndUpdate({_id: userId}, {$set: {"banStatus": updateStatus}});
 }
+
+module.exports.getUserById = async(userId) => await Account.findById(userId)

@@ -31,4 +31,14 @@ module.exports.createOrder = async ({ _id: user }, { name: username, phone, addr
 module.exports.getOrderOfCustomer = async(idUser) => await Order.find({user: idUser}).lean().exec();
 
 //Lấy đơn hàng theo id
-module.exports.getOrder = async(id) => await Order.findOne({_id: id}).lean().exec(); 
+module.exports.getOrder = async(id) => await Order.findOne({_id: id}).lean().exec();
+
+//Lấy toàn bộ dữ liệu đơn hàng
+module.exports.getOrderData = async() => {
+  const orderData = await Order.find().lean().exec();
+  return orderData;
+};
+
+module.exports.updateStatus = async(id,status) => {
+  await Order.findByIdAndUpdate({_id: id},{$set: {"status": status}});
+} 

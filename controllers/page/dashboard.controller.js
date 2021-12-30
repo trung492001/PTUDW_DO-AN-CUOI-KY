@@ -1,6 +1,7 @@
 const accountService = require('../../service/account.service'); 
 const categoryService = require('../../service/category.service');
 const productService = require('../../service/productData.service');
+const orderService = require('../../service/order.service');
 
 module.exports.getAccount = async (req,res) => {
     const page = parseInt(req.query.page) || 1;
@@ -57,10 +58,43 @@ module.exports.getStore = async (req, res, next) => {
 }
 
 module.exports.getOrder = async (req, res, next) => {
+    const orders = await orderService.getOrderData();
+    for (let i = 0; i < orders.length; i++){
+        let cart = orders[i].cart;
+        let total = 0;
+        for (let j = 0; j < cart.length; j++){
+            let product = await productService.getOneProduct(cart[j].productId);
+            cart[j].productName = product.name;
+            total += cart[j].unitPrice * cart[j].quantity;
+        }
+        orders[i].total = total;
+        let user = await accountService.getUserById(orders[i].user);
+        orders[i].username = user.name;
+    }
     res.locals.activeCell = 'order';
-    res.render('dashboard');
+    res.locals.order = orders;
+    res.render('orderDashboard');
 }
 
 module.exports.getProfile = (req, res) => {
     res.render('staffProfile');
+}
+
+module.exports.cancelOrder = (req,res) => {
+    orderService.updateStatus(req.query.orderId,-1);
+    res.redirect('/dashboard/order');
+}
+
+module.exports.inTransmitOrder = (req,res) => {
+    orderService.updateStatus(req.query.orderId,1);
+    res.redirect('/dashboard/order');
+}
+module.exports.deliveredOrder = (req,res) => {
+    orderService.updateStatus(req.query.orderId,2);
+    res.redirect('/dashboard/order');
+}
+
+module.exports.processOrder = (req,res) => {
+    orderService.updateStatus(req.query.orderId,0);
+    res.redirect('/dashboard/order');
 }
