@@ -83,38 +83,6 @@ mixin catalogue(title, device, idCatalogue)
         p(class="flex items-center text-black justify-between cursor-pointer")
             span=title
             <i class="fas fa-plus"></i>
-    if(idCatalogue === "1")
-      div(id=`list${idCatalogue}` class="items-center hidden")
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="1")
-          span(class="text") Lenovo 
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="2")
-          span(class="text") Razer
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="0")
-          span(class="text") Dell
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="3")
-          span(class="text") Asus 
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="4")
-          span(class="text") HP
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="5")
-          span(class="text") Microsoft
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="6")
-          span(class="text") Apple 
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="7")
-          span(class="text") MSI 
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="8")
-          span(class="text") Acer 
-        label(class="block space-x-1")
-          input(type="checkbox" class="checkBox" value="9")
-          span(class="text") Lg
     if(idCatalogue === "2")
       div(id=`list${idCatalogue}` class="items-center hidden")
         label(class="block space-x-1")
@@ -196,7 +164,10 @@ mixin catalogue(title, device, idCatalogue)
           input(type="checkbox" class="checkBox" value="5")
           span(class="text") 128 GB
 block header
-  script(src="/javascripts/menu.js" defer)           
+  script(src="/javascripts/menu.js" defer)   
+  script(src="/javascripts/adminStore.js" defer)
+  script(type="text/javascript").
+      var currentCategory = !{currentCategory};          
 block content 
   div(class="container mx-auto px-4 lg:px-40")
     div(class="mt-6")
@@ -231,7 +202,6 @@ block content
       div(class="filter text-center border-2 rounded-full filter-btn bg-brand text-white cursor-pointer ml-auto" style="max-width:104px")
           div(class="p-2 mx-2")
             p Áp dụng
-    +catalogue('Thương hiệu','mobile','1')
     +catalogue('Khoảng giá','mobile','2')
     +catalogue('Tình trạng','mobile','3')
     +catalogue('CPU','mobile','4')
