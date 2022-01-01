@@ -72,13 +72,12 @@ block content
                 ="Đổi mới trong 15 ngày đầu tiên"
   div(id="bottom-container" class="max-w-4xl mx-auto")
     div(class="mb-10")
-      h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12") Sản phẩm mua kèm
+      h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12") Sản phẩm tương tự
       div(class="flex flex-row")
-        +productCell("abc", "/images/may1.jpg", "2", "180000000000","61b6088dff6e5808f7d983d7")
-        +productCell("abc", "/images/may1.jpg", "2", "180000000000","61b6088dff6e5808f7d983d7")
-        +productCell("abc", "/images/may1.jpg", "2", "180000000000","61b6088dff6e5808f7d983d7")
-        +productCell("abc", "/images/may1.jpg", "2", "180000000000","61b6088dff6e5808f7d983d7")
-        +productCell("abc", "/images/may1.jpg", "2", "180000000000","61b6088dff6e5808f7d983d7")
+        - var n = 0;
+        each value in recommendProduct
+          +productCell(recommendProduct[n].name, "/images/"+recommendProduct[n].thumbnail[0], "2", recommendProduct[n].price, recommendProduct[n]._id)
+          -n++ ;
 
     div(id="box-description" class="mb-10")
       h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12") Chi tiết sản phẩm

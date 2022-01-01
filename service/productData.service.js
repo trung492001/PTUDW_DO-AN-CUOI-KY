@@ -153,6 +153,19 @@ const addNewProduct = async function(productInfo, image) {
     newProduct.save();
 }
 
+// Lay 5 san pham cung phan khuc
+const recommendProduct = async function(brandId, ramId, cpuId, productId) {
+    const productData = await getProductByBrand(brandId);
+    const productArray = [];
+    for(let i = 0; i < productData.length; i++ ) {
+        if((productData[i].ramType === ramId || productData[i].cpuType === cpuId) && productData[i]._id != productId) {
+            productArray.push(productData[i]);
+        }
+    }
+    console.log(productArray);
+    return productArray.slice(0,5);
+}
+
 module.exports = {
     getProductData,
     getRandomProduct,
@@ -164,5 +177,6 @@ module.exports = {
     filterCPU,
     filterRAM,
     getMinInfoByIdArray,
-    addNewProduct
+    addNewProduct,
+    recommendProduct
 }
