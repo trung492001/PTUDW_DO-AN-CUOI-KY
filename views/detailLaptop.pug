@@ -49,9 +49,11 @@ block content
             span(class="mr-2") Thương hiệu:
             a(class="w-10" href="#") Asus
           div(id="description" class="md:pr-8")
-            +tag("Vi xử lý:", product.information[0])
+            -var cpuType = ['Intel Dual Core', 'Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'Intel Xeon', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7'];
+            -var ramType = ['4GB', '8GB', '16GB', '32GB', '64GB', '128GB'];
+            +tag("Vi xử lý:", cpuType[product.cpuType])
             +tag("Màn hình:", product.information[1])
-            +tag("RAM:", product.information[2])
+            +tag("RAM:", ramType[product.ramType])
             +tag("Card đồ họa:", product.information[3])
             +tag("Lưu trữ:", product.information[4])
             +tag("Pin:", product.information[5])
