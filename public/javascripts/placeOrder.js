@@ -79,6 +79,7 @@ function placeOrder() {
 
   axios.post('/api/order', payload).then(res => {
     Toast.success('Đặt hàng thành công!');
+    localStorage.removeItem('cart');
     setTimeout(() => window.location.href = "/place-order-success", 2000);
   }).catch(err => {
     Toast.alert("Có lỗi khi đặt hàng!");
