@@ -179,10 +179,10 @@ html(lang="en")
                 div(class="overflow-x-auto")
                   block content
                 if(activeCell && activeCell == "dashboard")
-                  div(class="grid grid-cols-3 gap-3")
+                  div(class="grid md:grid-cols-3 md:grid-rows-1 gap-3 grid-rows-3")
                     +cardContent("512","Clients")
                     +cardContent("512","Sales")
                     +cardContent("512","Performance")
-                  <canvas id="myChart" style="width:100%" class="bg-white mt-4"></canvas>
+                <canvas id="myChart" style="width:100%" class="bg-white mt-4"></canvas>
 
           
