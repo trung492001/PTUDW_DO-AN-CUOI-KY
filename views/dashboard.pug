@@ -178,9 +178,71 @@ html(lang="en")
                 if(activeCell && activeCell == "dashboard")
                   div(class="flex -mx-2 flex-row flex-wrap gap-y-4")
                     +cardContent("512","Active users", "Current active users", "fas fa-user-clock")
-                    +cardContent(newClient,"New clients", "Monthly new clients", "fas fa-user-plus")
-                    +cardContent(newSale,"Sales", "Monthly sales", "fas fa-money-bill-wave")
-                    +cardContent(newProduct,"New Products", "Monthly new products", "fas fa-boxes")
-                  <canvas id="myChart" style="width:100%" class="bg-white mt-4"></canvas>
-
-          
+                    +cardContent(client[client.length - 1].data,"New clients", "Monthly new clients", "fas fa-user-plus")
+                    +cardContent(sale[sale.length - 1].data,"Sales", "Monthly sales", "fas fa-money-bill-wave")
+                    +cardContent(product[product.length - 1].data,"New Products", "Monthly new products", "fas fa-boxes")
+                  canvas(id="myChart" style="width:100%" class="bg-white mt-4")
+                  script.
+                    const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    const xValues = [];
+                    let d = new Date();
+                    d.setDate(1);
+                    for (let i = 0; i < 12; ++i) {
+                      xValues.unshift(`${month[d.getMonth()]}-${d.getFullYear()}`);
+                      d.setMonth(d.getMonth() - 1);
+                    }  
+                    let client = !{JSON.stringify(client)};
+                    let clientData = [];
+                    for(let i = 0; i < 12; ++i){
+                      let flag = client.find(e => xValues[i] === e.month_year);
+                      if(flag){
+                        clientData.push(flag.data);
+                      } else {
+                        clientData.push(0);
+                      }
+                    }
+                    let sale = !{JSON.stringify(sale)};
+                    let saleData = [];
+                    for(let i = 0; i < 12; ++i){
+                      let flag = sale.find(e => xValues[i] === e.month_year)
+                      if(flag){
+                        saleData.push(flag.data);
+                      } else {
+                        saleData.push(0);
+                      }
+                    }
+                    let product = !{JSON.stringify(product)};
+                    let productData = [];
+                    for(let i = 0; i < 12; ++i){
+                      let flag = product.find(e => xValues[i] === e.month_year)
+                      if(flag){
+                        productData.push(flag.data);
+                      } else {
+                        productData.push(0);
+                      }
+                    }
+                    new Chart("myChart", {
+                      type: "line",
+                      data: {
+                        labels: xValues,
+                        datasets: [{
+                          label: "New clients",
+                          data: clientData,
+                          borderColor: "red",
+                          fill: false
+                        }, {
+                          label: "Sales",
+                          data: saleData,
+                          borderColor: "green",
+                          fill: false
+                        }, {
+                          label: "New products",
+                          data: productData,
+                          borderColor: "blue",
+                          fill: false
+                        }]
+                      },
+                      options: {
+                        legend: { display: false }
+                      }
+                    });

@@ -1,6 +1,7 @@
 const { BadRequest } = require("../utils/response");
 const { getMinInfoByIdArray } = require("./productData.service");
 const Order = require("../models/order.model");
+const month = require("../config/month");
 
 
 module.exports.createOrder = async ({ _id: user }, { name: username, phone, address, cart }) => {
@@ -33,9 +34,45 @@ module.exports.createOrder = async ({ _id: user }, { name: username, phone, addr
   })
 }
 
-module.exports.getMonthlySale = async (date) => {
-  const thisMonthOrder = await Order.find({ createdAt: { $gte: date } }, "total");
-  const sales = thisMonthOrder.reduce((sum, e) => sum + e.total, 0);
+module.exports.getMonthlySale = async (startDate, endDate) => {
+  const sales = await Order.aggregate()
+    .match({
+      createdAt: { $gte: startDate, $lte: endDate }
+    })
+    .group({
+      _id: {
+        year_month: {
+          $substrCP: ["$createdAt", 0, 7]
+        }
+      },
+      data: { $sum: "$total" }
+    })
+    .sort({
+      "_id.year_month": 1
+    })
+    .project({
+      _id: 0,
+      data: 1,
+      month_year: {
+        $concat: [
+          {
+            $arrayElemAt: [
+              month, {
+                $subtract: [
+                  {
+                    $toInt: {
+                      $substrCP: ["$_id.year_month", 5, 2]
+                    }
+                  }, 1
+                ]
+              }]
+          }, "-",
+          {
+            $substrCP: ["$_id.year_month", 0, 4]
+          }
+        ],
+      }
+    })
   return sales;
 }
 

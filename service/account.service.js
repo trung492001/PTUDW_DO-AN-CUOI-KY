@@ -3,6 +3,7 @@ const { comparePassword, hashPassword } = require("../utils/crypto");
 const random = require('randomstring');
 const mailer = require('../utils/mail');
 const Token = require('../models/token.model');
+const month = require("../config/month");
 
 module.exports.checkExistAccount = async (username, email) => await Account.exists({
   $or: [{
@@ -130,9 +131,46 @@ module.exports.updateStatus = async function (userId, updateStatus) {
   await Account.findByIdAndUpdate({ _id: userId }, { $set: { "banStatus": updateStatus } });
 }
 
-module.exports.getMonthlyNewClient = async (date) => {
-  const newClient = await Account.countDocuments({ createdAt: { $gte: date } });
+module.exports.getMonthlyNewClient = async (startDate, endDate) => {
+  const newClient = await Account.aggregate()
+    .match({
+      createdAt: { $gte: startDate, $lte: endDate }
+    })
+    .group({
+      _id: {
+        year_month: {
+          $substrCP: ["$createdAt", 0, 7]
+        }
+      },
+      data: { $sum: 1 }
+    })
+    .sort({
+      "_id.year_month": 1
+    })
+    .project({
+      _id: 0,
+      data: 1,
+      month_year: {
+        $concat: [
+          {
+            $arrayElemAt: [
+              month, {
+                $subtract: [
+                  {
+                    $toInt: {
+                      $substrCP: ["$_id.year_month", 5, 2]
+                    }
+                  }, 1
+                ]
+              }]
+          }, "-",
+          {
+            $substrCP: ["$_id.year_month", 0, 4]
+          }
+        ],
+      }
+    })
   return newClient;
 }
 
-module.exports.getUserById = async(userId) => await Account.findById(userId)
+module.exports.getUserById = async (userId) => await Account.findById(userId)
