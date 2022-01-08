@@ -1,6 +1,7 @@
 const accountService = require('../../service/account.service');
 const orderService = require('../../service/order.service');
 const productService = require('../../service/productData.service');
+const categoryService = require('../../service/category.service');
 const sortService = require('../../service/sort.service');
 
 module.exports.getAccount = async (req, res) => {
