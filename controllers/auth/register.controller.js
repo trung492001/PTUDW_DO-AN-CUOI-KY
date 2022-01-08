@@ -14,20 +14,21 @@ module.exports.post = async (req, res, next) => {
     console.log(error.message);
     res.render('register', { error: error.message });
   }
-  const { email, username } = value;
+  const { email, username, name, password } = value;
 
   if (await accountService.checkExistAccount(username, email)) {
     console.log('Username or email is already taken!');
     res.render('register', { error: 'Username or email is already taken!' });
   }
 
-  passport.authenticate('register', {
-    successRedirect: '/',
-  })(req, res, next)
+  await accountService.createNewAccount(name, username, password, email);
+
+  res.redirect('/');
 }
 
-module.exports.active = async (req,res,next) => {
-  const {title,status} = await accountService.activeAccount(req.params.activeToken);
-  console.log(title,status);
-  res.render('messageActiveAccount', {title: title,status: status});
+
+module.exports.active = async (req, res, next) => {
+  const { title, status } = await accountService.activeAccount(req.params.activeToken);
+  console.log(title, status);
+  res.render('messageActiveAccount', { title: title, status: status });
 }

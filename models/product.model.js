@@ -64,6 +64,8 @@ const productSchema = new mongoose.Schema({
   cpuType: Number,
   ramType: Number,
   comment: [commentSchema]
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model('Product', productSchema, 'Product');

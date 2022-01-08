@@ -49,6 +49,8 @@ const accountSchema = new mongoose.Schema({
   },
   activeToken: String,
   activeExpires: Date,
+}, {
+  timestamps: true
 })
 
 module.exports = mongoose.model('Account', accountSchema, 'Account');

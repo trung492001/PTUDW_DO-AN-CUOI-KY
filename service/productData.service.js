@@ -120,6 +120,11 @@ const getMinInfoByIdArray = async (arrayId) => {
     return product;
 }
 
+const getMonthlyNewProduct = async (date) => {
+    const newProductCount = await productModel.countDocuments({ createdAt: { $gte: date } });
+    return newProductCount;
+}
+
 module.exports = {
     getProductData,
     getRandomProduct,
@@ -129,5 +134,6 @@ module.exports = {
     filterProductType,
     filterCPU,
     filterRAM,
-    getMinInfoByIdArray
+    getMinInfoByIdArray,
+    getMonthlyNewProduct
 }

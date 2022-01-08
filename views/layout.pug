@@ -40,6 +40,14 @@ html(lang="en")
     script(src="https://code.jquery.com/jquery-3.5.0.js")
     script(src="/javascripts/layout.js" defer)
     script(src="/javascripts/toast.js")
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    script(async src="https://www.googletagmanager.com/gtag/js?id=G-894H3LBYV1")
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-894H3LBYV1');
     block header
   body(style="font-family: 'Sen', sans-serif;")
       nav(class="text-white z-40" style="background: #05042c")

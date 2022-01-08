@@ -19,14 +19,6 @@ passport.use('login', new localStrategy(
   }
 ))
 
-passport.use('register', new localStrategy({ passReqToCallback: true },
-  async (req, username, password, done) => {
-    const { email, name } = req.body;
-    const user = await accountService.createNewAccount(name, username, password, email);
-    return done(null, user._id);
-  }
-))
-
 passport.serializeUser(function (user, done) {
   return done(null, user._id);
 });

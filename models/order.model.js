@@ -27,6 +27,10 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  total: {
+    type: Number,
+    default: 0
+  },
   status: {
     type: Number,
     enum: Object.values(orderStatus),

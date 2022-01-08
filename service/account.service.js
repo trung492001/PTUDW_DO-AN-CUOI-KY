@@ -13,7 +13,6 @@ module.exports.checkExistAccount = async (username, email) => await Account.exis
   ]
 })
 
-
 module.exports.authenticate = async (username, password) => {
   const user = await Account.findOne({ username: username }, "password role avatar name").lean();
   if (!user) {
@@ -27,11 +26,13 @@ module.exports.authenticate = async (username, password) => {
 }
 
 module.exports.createNewAccount = async (name, username, password, email) => {
-  const user = await Account.create({name, username, password: hashPassword(password), email,
-                        activeToken: random.generate(),
-                        activeExpires: Date.now() + 24 * 3600 * 1000,});
-  
-  const link = 'http://localhost:3000/account/active/'+ user.activeToken;
+  const user = await Account.create({
+    name, username, password: hashPassword(password), email,
+    activeToken: random.generate(),
+    activeExpires: Date.now() + 24 * 3600 * 1000,
+  });
+
+  const link = 'http://localhost:3000/account/active/' + user.activeToken;
   mailer.send({
     to: email,
     subject: 'Welcome',
@@ -46,12 +47,12 @@ module.exports.Update = async (user, newInfo) => {
   let email = newInfo.email;
   let phone = newInfo.phone;
   let address = newInfo.address;
-  const update = await Account.findByIdAndUpdate({_id: user.id}, {$set: {"name": name, "username": username, "email": email, "phone":phone, "address": address}});
+  const update = await Account.findByIdAndUpdate({ _id: user.id }, { $set: { "name": name, "username": username, "email": email, "phone": phone, "address": address } });
 }
 
 module.exports.changePassword = async (userId, oldPassword, newPassword) => {
-  const user = await Account.findById({_id: userId});
-  if(!comparePassword(oldPassword, user.password)){
+  const user = await Account.findById({ _id: userId });
+  if (!comparePassword(oldPassword, user.password)) {
     console.log("wrong pass");
     return null;
   }
@@ -59,17 +60,17 @@ module.exports.changePassword = async (userId, oldPassword, newPassword) => {
   await user.save();
 }
 
-module.exports.getAllAccount = async () =>{
+module.exports.getAllAccount = async () => {
   const users = await Account.find({}).lean().exec();
   return users;
 };
 
 module.exports.activeAccount = async (token) => {
-  const user = await Account.findOne({activeToken: token, activeExpires: {$gt: Date.now()}});
-  if (!user){
+  const user = await Account.findOne({ activeToken: token, activeExpires: { $gt: Date.now() } });
+  if (!user) {
     return {
-        title: 'active',
-        status: 'fail'
+      title: 'active',
+      status: 'fail'
     };
   }
 
@@ -79,17 +80,17 @@ module.exports.activeAccount = async (token) => {
 
   // activation success
   return {
-    title:'active',
+    title: 'active',
     status: 'success'
   };
 }
 
-module.exports.sendLinkResetPassword = async(email) => {
-  const user = await Account.findOne({email: email});
+module.exports.sendLinkResetPassword = async (email) => {
+  const user = await Account.findOne({ email: email });
   if (!user)
     return null;
-  let token = await Token.findOne({userId: user._id});
-  if (!token){
+  let token = await Token.findOne({ userId: user._id });
+  if (!token) {
     token = await Token.create({
       userId: user._id,
       token: random.generate()
@@ -99,15 +100,15 @@ module.exports.sendLinkResetPassword = async(email) => {
   mailer.send({
     to: email,
     subject: 'Reset Password',
-    html: '<h2>You have request to reset password</h2>' + 
-          '<p>Please click <a href="' + link + '"> here </a> to reset your password.</p>'
+    html: '<h2>You have request to reset password</h2>' +
+      '<p>Please click <a href="' + link + '"> here </a> to reset your password.</p>'
   });
   return user;
 }
 
-module.exports.resetPassword = async(userId,resetToken,password) => {
+module.exports.resetPassword = async (userId, resetToken, password) => {
   const user = await Account.findById(userId).exec();
-  if(!user){
+  if (!user) {
     console.log("not exists user");
     return null;
   }
@@ -115,16 +116,21 @@ module.exports.resetPassword = async(userId,resetToken,password) => {
     userId: userId,
     token: resetToken
   });
-  if (!token){
-    console.log("wrong token"); 
+  if (!token) {
+    console.log("wrong token");
     return null;
   }
   user.password = hashPassword(password);
   await user.save();
   await token.delete();
-  return {messsage:'Success'};
+  return { messsage: 'Success' };
 }
 
-module.exports.updateStatus = async function(userId, updateStatus) {
-  await Account.findByIdAndUpdate({_id: userId}, {$set: {"banStatus": updateStatus}});
+module.exports.updateStatus = async function (userId, updateStatus) {
+  await Account.findByIdAndUpdate({ _id: userId }, { $set: { "banStatus": updateStatus } });
+}
+
+module.exports.getMonthlyNewClient = async (date) => {
+  const newClient = await Account.countDocuments({ createdAt: { $gte: date } });
+  return newClient;
 }
