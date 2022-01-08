@@ -22,6 +22,15 @@ const getOneProduct = async function (productId) {
     return productData;
 };
 
+//Lay ten product theo Id
+const getNameProduct = async function (productId) {
+    const productName = await productModel.findOne(
+        { _id: productId },
+        { name: 1 }
+    ).lean().exec();
+    return productName;
+};
+
 const getProductByBrand = async function (brandCode) {
     const productData = await productModel.find(
         { brand: brandCode }
@@ -125,15 +134,55 @@ const getMonthlyNewProduct = async (date) => {
     return newProductCount;
 }
 
+const addNewProduct = async function (productInfo, image) {
+    const newProduct = await productModel.create({
+        name: productInfo.name,
+        thumbnail: [image],
+        price: productInfo.price,
+        information: [
+            productInfo.cpu,
+            productInfo.man_hinh,
+            productInfo.ram,
+            productInfo.card,
+            productInfo.luu_tru,
+            productInfo.pin,
+            productInfo.ket_noi_chinh,
+            productInfo.can_nang,
+            productInfo.he_dieu_hanh
+        ],
+        brand: productInfo.type,
+        type: productInfo.status,
+        ramType: productInfo.ram,
+        cpuType: productInfo.cpu
+    });
+    newProduct.save();
+}
+
+// Lay 5 san pham cung phan khuc
+const recommendProduct = async function (brandId, ramId, cpuId, productId) {
+    const productData = await getProductByBrand(brandId);
+    const productArray = [];
+    for (let i = 0; i < productData.length; i++) {
+        if ((productData[i].ramType === ramId || productData[i].cpuType === cpuId) && productData[i]._id != productId) {
+            productArray.push(productData[i]);
+        }
+    }
+    console.log(productArray);
+    return productArray.slice(0, 5);
+}
+
 module.exports = {
     getProductData,
     getRandomProduct,
     getOneProduct,
+    getNameProduct,
     getProductByBrand,
     filterPrice,
     filterProductType,
     filterCPU,
     filterRAM,
     getMinInfoByIdArray,
-    getMonthlyNewProduct
+    getMonthlyNewProduct,
+    addNewProduct,
+    recommendProduct
 }

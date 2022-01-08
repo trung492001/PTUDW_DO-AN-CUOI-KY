@@ -1,0 +1,46 @@
+extends dashboard
+
+mixin orderRow(idOrder,status,listProduct,FullNameUser)
+  tr
+    td(class="p-2 whitespace-nowrap")
+        div(class="text-left")= idOrder
+    td(class="p-2 whitespace-nowrap")
+        if (status == -1)
+            div(class="text-left text-red-700 font-medium") Canceled
+        else if(status == 0)
+            div(class="text-left text-yellow-400 font-medium") Processing
+        else if(status == 1)
+            div(class="text-left text-blue-600 font-medium") InTransit
+        else 
+            div(class="text-left text-green-700 font-medium") Delivered
+    td(class="p-2 whitespace-nowrap")
+        div(class="text-left flex-col") 
+            - var n = 0;
+            each product in listProduct 
+                p= "x" + listProduct[n].quantity + " " + listProduct[n].productName
+                - n++;
+    td(class="p-2 whitespace-nowrap")
+        div(class="text-left")= FullNameUser
+    td(class="p-2 whitespace-nowrap")
+        div(class="flex space-x-3")
+            a(class="text-white cursor-pointer bg-red-700 p-2 rounded-md" href="/Cancel?orderId=" + idOrder) Cancel
+            a(class="text-white cursor-pointer bg-blue-600 p-2 rounded-md" href="/InTransmit?orderId=" + idOrder) In Transmit 
+            a(class="text-white cursor-pointer bg-green-700 p-2 rounded-md" href="/Deliver?orderId=" + idOrder) Delivered 
+            a(class="text-white cursor-pointer bg-yellow-400 p-2 rounded-md" href="/Processing?orderId=" + idOrder) Processing 
+
+block content
+    table(class="w-full divide-y divide-gray-200")
+        thead(class="text-sm uppercase text-gray-500 bg-gray-100 w-full")
+            tr
+                th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") ID Order
+                th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Status
+                th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Items
+                th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Customer
+                th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Action
+        tbody(class="text-sm items-center")
+            tr
+                - var i = 0;
+                each value in order 
+                    +orderRow(order[i]._id,order[i].status,order[i].cart,order[i].username)
+                    - i++;
+            

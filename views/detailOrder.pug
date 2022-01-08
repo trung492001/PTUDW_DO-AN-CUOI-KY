@@ -1,0 +1,63 @@
+extends layout
+mixin detailMobile(name,img,cost,quantity)
+    div(class="flex items-center border")
+        img(class="w-32 h-32" src=`/images/${img}`)
+        div
+            p(class="font-bold text-base")= name 
+            p= cost + " ₫"
+            p= "x " + quantity 
+mixin detailPC(name,img,cost,quantity)
+    div(class="grid grid-cols-5 text-center items-center border-t")
+        div(class="col-span-2 flex space-x-5")
+            img(class="w-48 md:h-48" src=`/images/${img}`)
+            div(class="flex flex-col justify-center")
+                p(class="font-bold")=name
+        p= cost + " ₫"
+        p= quantity
+        p= (cost * quantity) + " ₫"
+block content
+    div(class="text-sm md:text-base my-3")
+        div(class="flex flex-col md:flex-row text-base md:text-xl my-3")
+            p(class="pr-4 pb-2")= "Chi tiết đơn hàng " + order._id  
+            div(class="flex")
+                p(class="block md:hidden mr-2") Tình trạng:
+                if (order.status == -1) 
+                    p(class="text-red-700") Đã hủy
+                else if(order.status == 0)
+                    p(class="text-yellow-400") Đang xử lý
+                else if(order.status == 1)
+                    p(class="text-blue-700") Đang giao
+                else 
+                    p(class="text-green-700") Đã giao hàng
+        p(class="text-right my-3")= "Ngày đặt" + order.date
+        div(class="flex bg-gray-100 rounded-md")
+            div(class="space-y-3 pl-3")
+                p(class="text-xl font-bold") Địa chỉ người nhận
+                div 
+                    p(class="font-bold text-xl")= order.username 
+                    p Địa chỉ: 
+                        span= order.address
+                    p Điện thoại: 
+                        span= order.phone
+        div(class="block md:hidden my-3")
+            p(class="text-base font-bold") Sản phẩm
+            - var n = 0;
+            each product in order.cart
+                +detailMobile(order.cart[n].detail.name,order.cart[n].detail.thumbnail[0],order.cart[n].detail.price,order.cart[n].quantity)
+                - n++;
+
+        div(class="hidden md:block my-3")
+            div(class="grid grid-cols-5 text-center text-xl text-gray-600 font-bold")
+                p(class="col-span-2 text-left") Sản phẩm 
+                p Giá
+                p Số lượng
+                p Tạm Tính
+            - var n = 0;
+            each product in order.cart
+                +detailPC(order.cart[n].detail.name,order.cart[n].detail.thumbnail[0],order.cart[n].detail.price,order.cart[n].quantity)
+                - n++;
+        div(class="text-xl flex justify-between md:justify-end my-3 space-x-0 md:space-x-56")
+            p(class="font-bold") Tổng tiền   
+            p(class="text-red-600")= order.total + " ₫"
+
+         

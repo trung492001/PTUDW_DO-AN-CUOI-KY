@@ -80,7 +80,7 @@ function cartItem({ _id, name, thumbnail, price, quantity }) {
   quantityInput.disabled = true;
   quantityInput.id = `quantity-value-${_id}`;
 
-  quantityInput.className = "rounded-none border-t text-center border-b bg-white border-gray-200 h-8 w-8";
+  quantityInput.className = "rounded-none border-t text-center border-b bg-white border-gray-200 h-8 w-9";
   const quantityInputAdd = document.createElement('input');
   quantityInputAdd.type = 'button';
   quantityInputAdd.className = "cursor-pointer rounded-none rounded-r text-center border bg-gray-100 border-gray-200 h-8 w-7 align-top";

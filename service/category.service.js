@@ -7,6 +7,24 @@ const getCategoryByBrand = async function(brandCode) {
     return productData;
 }
 
+const getAllCategory = async function() {
+    const productData = await categoryModels.find();
+    return productData;
+}
+
+const addNewCategory = async function(categoryInfo, image) {
+    const category = await getAllCategory();
+    const newCategory = await categoryModels.create({
+        name: categoryInfo.name,
+        thumbnail: [image],
+        brandId: category.length,
+        description: categoryInfo.description
+    });
+    newCategory.save();
+}
+
 module.exports = {
-    getCategoryByBrand
+    getCategoryByBrand,
+    getAllCategory,
+    addNewCategory
 }

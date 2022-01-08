@@ -14,13 +14,13 @@ module.exports.post = async(req,res) => {
             const name = result.name.toLowerCase();
             if (name.includes(searchQ)){
                 if(hint === "")
-                    hint = `<a href="/detailLaptop?productId=${result._id} target="_blank class="flex items-center justify-between space-x-1 hover:bg-gray-400">
+                    hint = `<a href="/detailLaptop?productId=${result._id}" target="_blank" class="flex items-center justify-between space-x-1 hover:bg-gray-400">
                                 <img src="/images/${result.thumbnail[0]}" class="w-20 h-20 block relative">
                                 <p class="text-sm lg:text-base"> ${result.name}</p>
                                 <p class="text-base pr-2 text-red-500"> ${result.price}</p>
                             </a>`
                 else
-                    hint = hint + `<a href="/detailLaptop?productId=${result._id} target="_blank class="flex items-center justify-between space-x-1 hover:bg-gray-400">
+                    hint = hint + `<a href="/detailLaptop?productId=${result._id}" target="_blank" class="flex items-center justify-between space-x-1 hover:bg-gray-400">
                                         <img src="/images/${result.thumbnail[0]}" class="w-20 h-20 block relative">
                                         <p class="text-sm lg:text-base"> ${result.name}</p>
                                         <p class="text-base pr-2 text-red-500"> ${result.price}</p>

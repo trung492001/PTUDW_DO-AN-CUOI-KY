@@ -1,6 +1,5 @@
 const registerValidation = require("../../validation/account/register.validation")
 const accountService = require('../../service/account.service');
-const passport = require("passport");
 module.exports.get = async (req, res) => {
   res.render('register');
 }

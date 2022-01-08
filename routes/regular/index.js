@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const multer  = require('multer')
+const upload = multer({ dest: 'public/images/uploads' })
 
 const authRoute = require('./auth.route');
 const indexController = require('../../controllers/auth/index.controller');
@@ -13,46 +15,50 @@ const dashboardController = require('../../controllers/page/dashboard.controller
 const resetPasswordController = require('../../controllers/auth/resetPassword.controller');
 const forgotController = require('../../controllers/page/forgot.controller');
 const banUserController = require('../../controllers/auth/banUser.controller');
+const adminProductController = require('../../controllers/adminProduct.controller');
 
+const banUserMiddleware = require('../../middleware/banUser.middleware');
 const adminAuthMiddleware = require('../../middleware/admin.auth.middleware');
 const userAuthMiddleware = require('../../middleware/user.auth.middleware');
 router.use('/', authRoute);
 
-router.get('/', indexController.get);
+router.get('/', banUserMiddleware, indexController.get);
 
 router.post('/', indexController.post);
 
-router.get('/laptop', laptopController);
+router.get('/laptop', banUserMiddleware, laptopController);
 
-router.get('/detailLaptop?', detailLaptopController);
+router.get('/detailLaptop?', banUserMiddleware, detailLaptopController);
 
-router.get('/laptop/:id', (req, res) => res.render('detailLaptop'));
+router.get('/laptop/:id', banUserMiddleware, (req, res) => res.render('detailLaptop'));
 
 router.get('/404', (req, res) => res.render('404'));
 
-router.get('/cart', cartController.get);
+router.get('/cart', banUserMiddleware, cartController.get);
 
-router.get('/place-order', userAuthMiddleware, placeOrderController.get)
+router.get('/place-order', banUserMiddleware, userAuthMiddleware, placeOrderController.get)
 
-router.get('/place-order-success', userAuthMiddleware, placeOrderController.success);
+router.get('/place-order-success', banUserMiddleware, userAuthMiddleware, placeOrderController.success);
 
-router.get('/profile', userAuthMiddleware, profileController.get);
+router.get('/profile', banUserMiddleware, userAuthMiddleware, profileController.get);
 
-router.post('/profile/updateProfile', profileController.postProfile);
+router.post('/profile/updateProfile', banUserMiddleware, userAuthMiddleware, profileController.postProfile);
 
-router.post('/profile/changePassword', profileController.postPassword);
+router.post('/profile/changePassword', banUserMiddleware, userAuthMiddleware, profileController.postPassword);
 
-router.get('/category?', categoryController);
+router.get('/profile/order/:id',profileController.getDetailOrder);
 
-router.get('/dashboard', adminAuthMiddleware, dashboardController.get);
+router.get('/category?', banUserMiddleware, categoryController);
 
-router.get('/dashboard/accounts', adminAuthMiddleware, dashboardController.getAccount);
+router.get('/dashboard', banUserMiddleware, adminAuthMiddleware, dashboardController.get);
 
-router.get('/dashboard/store', adminAuthMiddleware, dashboardController.getStore);
+router.get('/dashboard/accounts', banUserMiddleware, adminAuthMiddleware, dashboardController.getAccount);
 
-router.get('/dashboard/order', adminAuthMiddleware, dashboardController.getOrder);
+router.get('/dashboard/store', banUserMiddleware, adminAuthMiddleware, dashboardController.getStore);
 
-router.get('/dashboard/staff-profile', adminAuthMiddleware, dashboardController.getProfile);
+router.get('/dashboard/order', banUserMiddleware, adminAuthMiddleware, dashboardController.getOrder);
+
+router.get('/dashboard/staff-profile', banUserMiddleware, adminAuthMiddleware, dashboardController.getProfile);
 
 router.get('/staffSignIn', (req, res) => res.render('staffSignIn'));
 
@@ -65,5 +71,23 @@ router.post('/account/password-reset/:userId/:token', resetPasswordController.po
 router.get('/account/password-reset/:userId/:token', resetPasswordController.get);
 
 router.get('/BanUser', banUserController.banUser);
+
+router.get('/UnbanUser', banUserController.unbanUser);
+
+router.post('/addNewProduct', upload.single('image'), adminProductController.addNewProduct);
+
+router.post('/addNewCategory', upload.single('image'), adminProductController.addNewCategory);
+
+router.post('/editProduct', upload.single('image'), adminProductController.editProduct);
+
+router.post('/deleteProduct', adminProductController.deleteProduct);
+
+router.get('/Cancel', dashboardController.cancelOrder);
+
+router.get('/InTransmit', dashboardController.inTransmitOrder);
+
+router.get('/Deliver', dashboardController.deliveredOrder);
+
+router.get('/Processing', dashboardController.processOrder);
 
 module.exports = router;

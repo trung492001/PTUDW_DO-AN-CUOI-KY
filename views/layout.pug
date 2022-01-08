@@ -34,7 +34,9 @@ html(lang="en")
     link(rel="preconnect" href="https://fonts.googleapis.com")
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
     link(href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@200&family=Sen&display=swap" rel="stylesheet")
+    link(rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css")
 
+    script(src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js" defer)
     script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
     script(src="https://cdn.jsdelivr.net/npm/toastify-js")
     script(src="https://code.jquery.com/jquery-3.5.0.js")
@@ -57,10 +59,10 @@ html(lang="en")
                   img(src="/images/logo2.svg" class="w-116px md:w-168px xl:w-1/2" alt="ThinkVip Logo")
               div(class="nav-bar text-xl items-center flex")
                   form(class="mr-10 hidden md:flex w-full lg:w-96 items-center")
-                    input(class="w-full leading-7 border-4 border-blue-500 rounded-l-lg outline-none text-black pl-1" name="search" placeholder="Tìm kiếm" autocomplete="off" type="text" onkeyup="showResults(this.value)")
-                    div(class="px-2 border-4 border-l-0 border-blue-500 rounded-r-lg bg-blue-500 hover:bg-brand")
+                    input(class="w-full leading-7 border-4 border-blue-500 rounded-l-lg outline-none text-black" name="search" placeholder="Tìm kiếm" autocomplete="off" type="text" onkeyup="showResults(this.value)")
+                    div(class="p-2 border-4 border-l-0 border-blue-500 rounded-r-lg bg-blue-500 hover:bg-brand")
                       i(class="fas fa-search fa-md" onclick="myFunction()")
-                    div(id="listResult" class="absolute bg-white text-black top-16 rounded-sm ml-1 shadow-md hidden z-10 h-96 overflow-y-auto flex-col w-268px lg:w-338px") this
+                    div(id="listResult" class="absolute bg-white text-black top-16 rounded-sm ml-1 shadow-md hidden z-10 h-96 overflow-y-auto flex-col w-268px lg:w-338px")
                   div(class="nav-bar text-xl items-center hidden md:flex")
                     a(href="/laptop") LAPTOP
                   div(class="text-sm")
@@ -99,10 +101,10 @@ html(lang="en")
           div(class="nav-bar mobile-menu hidden md:hidden bg-black text-white px-2 py-2")
               if user 
                 a(class="block px-4 py-3 rounded-md hover:bg-white" href="/profile") PROFILE
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") LAPTOP
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/laptop") LAPTOP
               else
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/AboutUs") LAPTOP
-                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/sign-in") LOGIN
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/laptop") LAPTOP
+                a(class="block px-4 py-3 rounded-md hover:bg-white" href="/login") LOGIN
       input(id="logged-in" value=user?1:0 class="hidden")
       div(class="container mx-auto px-4" style="max-width: 1254px")
         div(class="my-6 mx-auto")

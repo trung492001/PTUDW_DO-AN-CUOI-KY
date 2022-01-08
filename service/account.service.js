@@ -14,7 +14,7 @@ module.exports.checkExistAccount = async (username, email) => await Account.exis
 })
 
 module.exports.authenticate = async (username, password) => {
-  const user = await Account.findOne({ username: username }, "password role avatar name").lean();
+  const user = await Account.findOne({ username: username }, "password role avatar name banStatus").lean();
   if (!user) {
     return null;
   }
@@ -134,3 +134,5 @@ module.exports.getMonthlyNewClient = async (date) => {
   const newClient = await Account.countDocuments({ createdAt: { $gte: date } });
   return newClient;
 }
+
+module.exports.getUserById = async(userId) => await Account.findById(userId)

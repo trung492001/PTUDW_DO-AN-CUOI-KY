@@ -1,0 +1,324 @@
+extends dashboard
+
+mixin productCell(id, name, img, price, information1, information3, information4, information5, information6, information7, information8, brand, type, ramType, cpuType)
+  div(class="relative inline-block col-span-1 mb-6")
+    div(class="absolute right-0")
+      button(id="dropdown-btn" class="px-2 py-1 float-right" onclick=`toggleDropdown("${id}")`)
+        i(id="dropdown-btn" class="fas fa-ellipsis-v text-gray-600")
+      div(id=`dropdown-content-${id}` class="bg-white rounded z-10 text-left cursor-pointer clear-both hidden")
+        div(class="hover:bg-gray-300 px-3 py-1 rounded-t" onclick=`openModalEditDish("${id}", "${name}", ${price}, "${information1}", "${information3}", "${information4}", "${information5}", "${information6}", "${information7}", "${information8}", ${brand}, ${type}, ${ramType}, ${cpuType})`) Edit
+        div(class="hover:bg-gray-300 px-3 py-1 rounded-b" onclick=`openModalDeleteDish("${id}")`) Delete
+    img(src='/images/'+img alt=name class="w-full mb-3 lg:px-6")
+    div(class="text-center mb-4")
+      h5(class="text-xl mb-2 font-bold")=name
+      h4(class="text-xl font-bold text-red-600")=price+" VNĐ"
+
+mixin categoryCell(id, name, img)
+  a(href=`/dashboard/store?brandId=${id}` class="flex-grow col-span-1")
+    img(src='/images/'+img alt=name class="my-1 object-contain mx-auto" style="min-width:62px; height:62px;")
+    h4(class="lg:font-semibold text-sm text-center")=name
+
+mixin paginationStore(category, currentPage, pageCount)
+  - var prefixUrl = `?brandId=${category}`;
+  if pageCount > 0
+    nav(class="mb-12" id="#pagination")
+      ul(class="flex justify-center gap-x-1")
+
+        //- Prev item
+        if currentPage > 1
+          a(class="" href=`${prefixUrl}&page=${currentPage-1}`)
+            li(class="border py-1 px-2 text-center" style="min-width: 36px;")
+              <i class="fas fa-chevron-left"></i>
+
+        //- Small pageCount
+        if pageCount < 8
+          - for(var i = 1; i <= pageCount; ++i)
+            if i == currentPage
+              li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                span(class="underline")=i
+            else
+              li(class="border text-center py-1" style="min-width: 36px;")
+                a(href=`${prefixUrl}&page=${i}`)=i
+        else
+          //- First item
+          if currentPage > 4
+            li(class="border text-center py-1" style="min-width: 36px;")
+              a(href=prefixUrl) 1
+            li(class="text-center py-1 cursor-default" style="min-width: 36px;")
+              span(class="mt-auto align-baseline text-gray-500") •••
+
+          if currentPage <= 4
+            - for(var i = 1; i <= (currentPage == 4 ? 6 : 5); ++i)
+              if i == currentPage
+                li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                  span(class="underline")=i
+              else
+                li(class="border text-center py-1" style="min-width: 36px;")
+                  a(href=`${prefixUrl}&page=${i}`)=i
+          else if pageCount - currentPage < 4
+            - for(var i = (pageCount - currentPage == 3 ? currentPage - 2: pageCount - 4); i <= pageCount; ++i)
+              if i == currentPage
+                li(class="border bg-gray-100 text-center py-1 cursor-not-allowed" style="min-width: 36px;")
+                  span(class="underline")=i
+              else
+                li(class="border text-center py-1" style="min-width: 36px;")
+                  a(href=`${prefixUrl}&page=${i}`)=i
+          
+          
+          //- Last item
+          if pageCount - currentPage >= 4
+            li(class="text-center py-1 cursor-default" style="min-width: 36px;")
+              span(class="mt-auto align-baseline text-gray-500") •••
+            li(class="border text-center py-1" style="min-width: 36px;")
+              a(href=`${prefixUrl}&page=${pageCount}`)=pageCount
+        
+        //- Next item
+        if currentPage < pageCount
+          a(class="" href=`${prefixUrl}&page=${currentPage+1}`)
+            li(class="border py-1 px-2 text-center" style="min-width: 36px;")
+              <i class="fas fa-chevron-right"></i>
+
+mixin catalogue(title, device, idCatalogue)
+    div(class="border-t border-gray-300 py-3" onclick=`showAndHide('${device}',${idCatalogue})`)
+        p(class="flex items-center text-black justify-between cursor-pointer")
+            span=title
+            <i class="fas fa-plus"></i>
+    if(idCatalogue === "2")
+      div(id=`list${idCatalogue}` class="items-center hidden")
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="1")
+          span(class="text") Trên 50 triệu 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") 40 - 50 triệu
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="3")
+          span(class="text") 30 - 40 triệu
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="4")
+          span(class="text") 20 - 30 triệu 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="5")
+          span(class="text") 10 - 20 triệu
+    if(idCatalogue === "3")
+      div(id=`list${idCatalogue}` class="items-center hidden")
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="0")
+          span(class="text") New, Sealed 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="1")
+          span(class="text") New, Fullbox
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") New, Outlet 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="3")
+          span(class="text") Used
+    if(idCatalogue === "4")
+      div(id=`list${idCatalogue}` class="items-center hidden")
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="0")
+          span(class="text") Intel Dual Core 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="1")
+          span(class="text") Intel Core i3
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") Intel Core i5
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") Intel Core i7
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="3")
+          span(class="text") Intel Core i9
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="4")
+          span(class="text") Intel Xeon
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="5")
+          span(class="text") AMD Ryzen 3 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="6")
+          span(class="text") AMD Ryzen 5
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="7")
+          span(class="text") AMD Ryzen 7
+    if(idCatalogue === "5")
+      div(id=`list${idCatalogue}` class="items-center hidden")
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="0")
+          span(class="text") 4 GB 
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="1")
+          span(class="text") 8 GB
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="2")
+          span(class="text") 16 GB
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="3")
+          span(class="text") 32 GB
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="4")
+          span(class="text") 64 GB
+        label(class="block space-x-1")
+          input(type="checkbox" class="checkBox" value="5")
+          span(class="text") 128 GB
+block header
+  script(src="/javascripts/menu.js" defer)   
+  script(src="/javascripts/adminStore.js" defer)
+  script(type="text/javascript").
+      var currentCategory = !{currentCategory};          
+block content 
+  div(class="container mx-auto px-4 lg:px-40")
+    div(class="mt-6")
+      h3(class="mb-3 font-bold text-5xl text-center text-red-600 p-2 mx-auto bg-black max-w-max" style="transform: skew(-20deg);") LAPTOP
+      div(class="flex my-3")
+        div(class="flex items-center space-x-2 border-2 rounded-full py-1 px-3 filter-btn cursor-pointer bg-brand text-white")
+          <i class="w-1/2 fas fa-filter"></i>
+          span Lọc
+      div(class="rounded bg-white p-2 lg:p-4 mb-8 shadow")
+        div(class="flex")
+          h4(class="mb-3 font-semibold text-2xl text-center lg:text-left") Category
+          button(class="ml-auto mb-3 px-2 py-1 rounded bg-gray-600 text-white font-bold hover:bg-red-600" onclick="openModalAddCategory()") Thêm
+        div(class="flex flex-nowrap overflow-x-scroll gap-4 lg:gap-6 xl:gap-8 no-scrollbar")
+          - var n = 0;
+          each value in category
+            +categoryCell(category[n].brandId, category[n].name, category[n].thumbnail[0])
+            -n++;
+      div(class="flex flex-col")
+        button(class="ml-auto mb-3 px-2 py-1 rounded bg-gray-600 text-white font-bold hover:bg-red-600" onclick="openModalAddDish()") Thêm
+        div(class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 lg:gap-4")
+          - var n = 0;
+          each value in productData
+            +productCell(productData[n]._id, productData[n].name, productData[n].thumbnail[0], productData[n].price, productData[n].information[1], productData[n].information[3], productData[n].information[4], productData[n].information[5], productData[n].information[6], productData[n].information[7], productData[n].information[8], productData[n].brand, productData[n].type, productData[n].ramType, productData[n].cpuType)
+            -n++;
+      - var n = 0;
+        +paginationStore(currentCategory, currentPage, maxPage)
+  div(class="filter-mobile bg-white ml-0 fixed top-0 right-0 overflow-scroll p-4 transform translate-x-full transition-all duration-1000 ease-in-out" style="height: calc(var(--vh, 1vh)*100); z-index: 998")
+    div(class="grid grid-cols-3 pb-3 items-center")
+      div(class="back")
+        <i class="fas fa-angle-left fa-lg"></i>
+      p(class="text-xl font-semibold text-center") Lọc
+      div(class="filter text-center border-2 rounded-full filter-btn bg-brand text-white cursor-pointer ml-auto" style="max-width:104px")
+          div(class="p-2 mx-2")
+            p Áp dụng
+    +catalogue('Khoảng giá','mobile','2')
+    +catalogue('Tình trạng','mobile','3')
+    +catalogue('CPU','mobile','4')
+    +catalogue('RAM','mobile','5') 
+  div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label-delete-dish" role="dialog" aria-modal="true" id="delete-dish-modal")
+    div(class="flex items-end justify-center min-h-screen text-center px-5")
+      div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalDeleteDish()")
+      div(class="inline-block bg-white rounded text-left overflow-hidden shadow-xl transform transition-all max-w-lg w-full my-auto")
+        div(class="bg-white px-5 py-8")
+          div(class="flex flex-row gap-4")
+            i(class="fas fa-exclamation-circle text-4xl text-red-400")
+            div(class="")
+              h4(class="text-xl leading-6 font-medium text-gray-900") Delete Product
+              div(class="mt-2")
+                p(class="text-sm text-gray-500") Are you sure to delete this product? This dish data will be permanently deleted. This action cannot be undone.
+        form(action="" method="POST" id="form-delete-dish" class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse")
+          button(type="submit" class="w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm") Delete
+          button(type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="closeModalDeleteDish()") Cancel
+  div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label" role="dialog" aria-modal="true" id="dish-modal")
+    div(class="flex items-end justify-center min-h-screen text-center px-5")
+      div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalDish()")
+      div(class="inline-block bg-white rounded text-left overflow-hidden shadow-xl transform transition-all max-w-lg w-full my-auto")
+        div(class="flex bg-gray-100 px-4 py-2 text-gray-700") 
+          span(class="font-semibold text-xl" id="modal-label") Add Product
+          button(class="ml-auto px-2" onclick="closeModalDish()")
+            i(class="fas fa-times")
+        div(class="bg-white px-4 py-3 overflow-y-scroll")
+          form(action="/addNewProduct" method="POST" enctype="multipart/form-data" id="dish-form")
+            div(class="mb-3")
+              label(for="form-dish-name") Product name:
+              input(type="text" id="form-dish-name" name="name" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+            div(class="mb-3")
+              label(for="form-product-image") Hình sản phẩm:
+              label(for="form-product-image") 
+                div(class="bg-gray-200 h-10 w-full px-2 py-1 mt-1 rounded-sm cursor-pointer leading-8" id="form-product-image-filename") No file chosen
+              input(type="file" id="form-product-image" name="image" hidden) 
+            div(class="mb-3")
+              label(for="form-dish-type") Brand:
+              select(name="type" id="form-dish-brand" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+                each value, index in category
+                  if index == 0
+                    option(value=value.brandId selected)=value.name
+                  else
+                    option(value=value.brandId)=value.name
+            div(class="mb-3")
+              label(for="form-dish-type") Tình trạng:
+              select(name="status" id="form-dish-type" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+                option(value=0) New, Sealed 
+                option(value=1) New, Fullbox
+                option(value=2) New, Outlet 
+                option(value=3) Used
+            div(class="mb-3")
+              label(for="form-dish-type") RAM:
+              select(name="ram" id="form-dish-ram" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+                option(value=0) 4 GB
+                option(value=1) 8 GB
+                option(value=2) 16 GB
+                option(value=3) 32 GB
+                option(value=4) 64 GB
+                option(value=5) 128 GB
+            div(class="mb-3")
+              label(for="form-dish-type") CPU:
+              select(name="cpu" id="form-dish-cpu" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+                option(value=0) Intel Dual Core
+                option(value=1) Intel Core i3
+                option(value=2) Intel Core i5
+                option(value=3) Intel Core i7
+                option(value=4) Intel Core i9
+                option(value=5) Intel Xeon
+                option(value=6) AMD Ryzen 3 
+                option(value=7) AMD Ryzen 5
+                option(value=8) AMD Ryzen 7
+            div(class="mb-3")
+              label(for="form-dish-price") Price:
+              input(type="number" value="1000000" min="1000000" step="1000" id="form-dish-price" name="price" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+            div(class="mb-3")
+              label(for="form-dish-manhinh") Màn Hình:
+              input(type="text" name="man_hinh" id="form-dish-manhinh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-card") Card đồ họa:
+              input(type="text" name="card" id="form-dish-card" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-luutru") Lưu trữ:
+              input(type="text" name="luu_tru" id="form-dish-luutru" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-pin") Pin:
+              input(type="text" name="pin" id="form-dish-pin" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-ketnoichinh") Kết nối chính:
+              input(type="text" name="ket_noi_chinh" id="form-dish-ketnoichinh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-cannang") Cân nặng:
+              input(type="text" name="can_nang" id="form-dish-cannang" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            div(class="mb-3")
+              label(for="form-dish-hedieuhanh") Hệ điều hành:
+              input(type="text" name="he_dieu_hanh" id="form-dish-hedieuhanh" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required)
+            input(id="form-dish-submit" type="submit" value="Add Product" class="w-full float-right mb-3 inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:w-auto sm:text-sm")
+  //Add category
+  div(class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-label" role="dialog" aria-modal="true" id="category-modal")
+    div(class="flex items-end justify-center min-h-screen text-center px-5")
+      div(class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModalCategory()")
+      div(class="inline-block bg-white rounded text-left overflow-hidden shadow-xl transform transition-all max-w-lg w-full my-auto")
+        div(class="flex bg-gray-100 px-4 py-2 text-gray-700") 
+          span(class="font-semibold text-xl" id="category-label") Thêm hãng
+          button(class="ml-auto px-2" onclick="closeModalCategory()")
+            i(class="fas fa-times")
+        div(class="bg-white px-4 py-3 overflow-y-scroll")
+          form(action="/addNewCategory" method="POST" enctype="multipart/form-data" id="category-form")
+            div(class="mb-3")
+              label(for="category-name") Tên hãng:
+              input(type="text" id="category-name" name="name" class="bg-gray-200 h-10 w-full p-2 mt-1 rounded-sm" required) 
+            div(class="mb-3")
+              label(for="category-image") Hình logo của hãng:
+              label(for="category-image") 
+                div(class="bg-gray-200 h-10 w-full px-2 py-1 mt-1 rounded-sm cursor-pointer leading-8" id="category-image-filename") No file chosen
+              input(type="file" id="category-image" name="image" required hidden)
+            div(class="mb-3")
+              label(for="category-description") Giới thiệu:
+              textarea(id="category-description" name="description" class="bg-gray-200 h-20 w-full p-2 mt-1 rounded-sm" required) 
+            input(id="category-submit" type="submit" value="Thêm hãng" class="w-full float-right mb-3 inline-flex justify-center rounded-md border shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:w-auto sm:text-sm")

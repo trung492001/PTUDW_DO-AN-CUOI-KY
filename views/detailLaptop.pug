@@ -6,6 +6,22 @@ mixin tag(title, content)
       strong(class="mr-2")=title
       =content
 
+mixin productCell(name, img, number, cost, productId)
+    div(class="flex flex-col w-1/2 md:w-1/3 lg:w-1/4 border transform ease-in duration-200 hover:shadow-2xl")
+        div(class="px-2 pt-2 md:px-4 md:pt-4 mb-2")
+            div
+                a(href="/detailLaptop?productId="+productId)
+                    img(class="transform hover:-translate-y-1" src=img alt=name)
+        div(class="content-bottom px-2 pb-0 md:px-4 md:pb-4 flex flex-col md:block flex-grow flex-shrink")
+            a(href="/detailLaptop?productId="+productId class="font-semibold text-sm md:text-base mb-1 text-body-main block leading-5")=name
+            div(class="flex items-center space-x-2 text-sm text-dark-gray mb-1 md:mb-2")
+                strong=number
+                span Cấu hình tùy chọn 
+            div
+                div(class="flex items-center space-x-1")
+                    span(class="text-sm text-black leading-5") Giá từ: 
+                    span(class="text-sm xl:text-lg text-red-500 leading-7 font-semibold")=cost + " ₫"
+                  
 block content
   script(src="/javascripts/addToCart.js")
   input(id="product-id" value=product._id class="hidden")
@@ -33,9 +49,11 @@ block content
             span(class="mr-2") Thương hiệu:
             a(class="w-10" href="#") Asus
           div(id="description" class="md:pr-8")
-            +tag("Vi xử lý:", product.information[0])
+            -var cpuType = ['Intel Dual Core', 'Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'Intel Xeon', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7'];
+            -var ramType = ['4GB', '8GB', '16GB', '32GB', '64GB', '128GB'];
+            +tag("Vi xử lý:", cpuType[product.cpuType])
             +tag("Màn hình:", product.information[1])
-            +tag("RAM:", product.information[2])
+            +tag("RAM:", ramType[product.ramType])
             +tag("Card đồ họa:", product.information[3])
             +tag("Lưu trữ:", product.information[4])
             +tag("Pin:", product.information[5])
@@ -54,15 +72,15 @@ block content
                 strong toàn cầu 24 tháng
               li
                 ="Đổi mới trong 15 ngày đầu tiên"
-      div(class="flex flex-col leading-10 items-center gap-3 mx-4 mb-5 mb:mb-0")
-        div(class="md:flex space-x-2 mr-auto hidden")
-          p(class="text-2xl") Giá:
-          p(class="text-2xl text-red-600") 23.990.000 đ
-        div(class="border rounded-full bg-brand text-white cursor-pointer w-full text-center")
-          div(class="p-1 space-x-3 ml-2 mr-2")
-            <i class="fas fa-cart-plus fa-lg"></i>
-            a(class="text-lg" href="") Thêm vào giỏ hàng
   div(id="bottom-container" class="max-w-4xl mx-auto")
+    div(class="mb-10")
+      h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12") Sản phẩm tương tự
+      div(class="flex flex-row")
+        - var n = 0;
+        each value in recommendProduct
+          +productCell(recommendProduct[n].name, "/images/"+recommendProduct[n].thumbnail[0], "2", recommendProduct[n].price, recommendProduct[n]._id)
+          -n++ ;
+
     div(id="box-description" class="mb-10")
       h2(class="font-bold text-xl md:text-3xl mb-4 md:mb-12") Chi tiết sản phẩm
       div(id="description-content") Lorem ipsum
@@ -89,7 +107,7 @@ block content
         a(href="tel:1234567890")
           span(class="font-medium text-2xl") 1234567890
       div(class="flex items-center")
-        div(class="mr-4 md:mr-8 font-bold text-red-600 text-2xl md:text-3xl") 23.990.000 ₫
+        div(class="mr-4 md:mr-8 font-bold text-red-600 text-2xl md:text-3xl")=product.price + ' ₫'
         button(onclick=`addProduct("${product._id}")` class="flex items-center px-3 md:px-8 py-10px py-2 md:py-3 space-x-2 text-sm md:text-lg font-semibold bg-brand text-white rounded-full")
           i(class="fas fa-cart-plus mr-2") 
           span Thêm vào giỏ

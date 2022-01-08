@@ -5,7 +5,7 @@ block header
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap" rel="stylesheet">
 block content
-    script(src="/profilePage.js" defer)
+    script(src="/javascripts/profilePage.js" defer)
     div(class="container mx-auto my-5")
         div(class="container my-3")
             div(class="grid grid-cols-3 gap-3")
@@ -71,19 +71,19 @@ block content
                                     div(class="p-3")
                                         div(class="grid grid-cols-4 mb-4")
                                             label(for="name" class="text-lg") Họ và tên
-                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="name" type="text" name="name" value="alo" required)
+                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="name" type="text" name="name" value=user.name required)
                                         div(class="grid grid-cols-4 mb-4")
                                             label(for="username" class="text-lg") Username
-                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="username" type="text" name="username" value="alo" required)
+                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="username" type="text" name="username" value=user.username required)
                                         div(class="grid grid-cols-4 mb-4")
                                             label(for="email" class="text-lg") Email
-                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="email" type="text" name="email" value="alo" required)
+                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="email" type="text" name="email" value=user.email required)
                                         div(class="grid grid-cols-4 mb-4")
                                             label(for="phone" class="text-lg") Số điện thoại
-                                            input(class=" col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="phone" type="text" name="phone" value="alo")  
+                                            input(class=" col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="phone" type="text" name="phone" value=user.phone)  
                                         div(class="grid grid-cols-4 mb-4")
                                             label(for="address" class="text-lg") Địa chỉ
-                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="address" type="text" name="address" value="alo")  
+                                            input(class="col-span-3 form-control w-full border border-gray-400 py-1 px-3 rounded" id="address" type="text" name="address" value=user.address)  
                                         div(class="flex justify-evenly")
                                             input(class="cursor-pointer text-base px-5 py-2 rounded-md bg-brand text-white" type='submit' value='Cập nhật')
                                 //- Change password

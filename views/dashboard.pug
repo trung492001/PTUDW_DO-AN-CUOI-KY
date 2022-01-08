@@ -20,7 +20,7 @@ mixin breadcrumb(args)
 
 mixin cardContent(data, content, description, icon)
   div(class="px-2 shrink-0 grow-0 basis-full md:basis-1/2 lg:basis-1/4")
-    div(class="flex justify-between items-center p-4 rounded bg-gradient-to-r from-green-600 to-green-300 text-white")
+    div(class="flex justify-between items-center p-4 rounded bg-gradient-to-r from-green-600 to-green-400 text-white")
       div(id="content")
         p(class="font-semibold uppercase mb-2")=content
         p(class="text-3xl font-bold")=data
@@ -104,6 +104,7 @@ html(lang="en")
 
     //JS
     script(src="/javascripts/dashboard.js" defer)
+    script(src="https://code.jquery.com/jquery-3.5.0.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js")
     block header
   body

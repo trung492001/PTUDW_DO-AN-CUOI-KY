@@ -1,6 +1,6 @@
 extends dashboard 
 
-mixin accountRow(id, avatar, name, username, email)
+mixin accountRow(id, avatar, name, username, email, status)
   tr
     td(class="p-2 whitespace-nowrap")
       div(class="flex items-center")
@@ -12,8 +12,16 @@ mixin accountRow(id, avatar, name, username, email)
     td(class="p-2 whitespace-nowrap")
       div(class="text-left")=email
     td(class="p-2 whitespace-nowrap")
+      if status === 0 
+        div(class="text-left text-green-500") Active
+      else 
+        div(class="text-left text-red-500") Banned
+    td(class="p-2 whitespace-nowrap")
       div(class="flex")
-        a(class="text-indigo-600 hover:text-indigo-900 cursor-pointer" href="/BanUser?userId=" + id) Ban
+        if status === 0 
+          a(class="text-indigo-600 hover:text-indigo-900 cursor-pointer" href="/BanUser?userId=" + id) Ban
+        else 
+          a(class="text-indigo-600 hover:text-indigo-900 cursor-pointer" href="/UnbanUser?userId=" + id) Unban
 
 
 
@@ -32,10 +40,11 @@ block content
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Name
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Username
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Email
+        th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Status
         th(class="p-2 whitespace-nowrap tracking-wider font-semibold text-left") Action
     tbody(class="text-sm")
       each value in accountData
-        +accountRow(value._id, value.avatar, value.name, value.username, value.email)
+        +accountRow(value._id, value.avatar, value.name, value.username, value.email, value.banStatus)
   -var n = 0;
     +pagination(currentQuery, currentPage, maxPage)
   script(src="/accountDashboard.js") 
