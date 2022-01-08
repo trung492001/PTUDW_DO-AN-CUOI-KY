@@ -1,8 +1,13 @@
 const passport = require("passport");
 
 module.exports.get = async (req, res) => {
-  const wrongCredential = req.query['wrong-credentials'] !== undefined;
-  res.render('login', { wrongCredential });
+  const activeMess = req.query['active-account'] !== undefined;
+  if (activeMess)
+    res.render('login', {activeMess});
+  else{
+    const wrongCredential = req.query['wrong-credentials'] !== undefined;
+    res.render('login', { wrongCredential });
+  }
 }
 
 module.exports.post = async (req, res, next) => {

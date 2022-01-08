@@ -15,8 +15,8 @@ module.exports.checkExistAccount = async (username, email) => await Account.exis
 })
 
 module.exports.authenticate = async (username, password) => {
-  const user = await Account.findOne({ username: username }, "password role avatar name banStatus").lean();
-  if (!user) {
+  const user = await Account.findOne({ username: username }, "password role avatar name banStatus active").lean();
+  if (!user || user.active === false) {
     return null;
   }
   if (!comparePassword(password, user.password)) {

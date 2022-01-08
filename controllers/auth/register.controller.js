@@ -22,7 +22,7 @@ module.exports.post = async (req, res, next) => {
 
   await accountService.createNewAccount(name, username, password, email);
 
-  res.redirect('/');
+  res.redirect('/login?active-account');
 }
 
 
