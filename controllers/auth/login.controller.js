@@ -16,3 +16,10 @@ module.exports.post = async (req, res, next) => {
     successRedirect: '/'
   })(req, res, next)
 }
+
+module.exports.staffPost = async (req, res, next) => {
+  passport.authenticate('login', {
+    failureRedirect: '/sign-in-staff?wrong-credentials',
+    successRedirect: '/dashboard'
+  })(req, res, next)
+}

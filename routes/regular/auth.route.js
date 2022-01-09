@@ -14,6 +14,9 @@ router.route('/register')
   .get(registerController.get)
   .post(registerController.post);
 
+router.route('/sign-in-staff')
+  .post(loginController.staffPost);
+
 router.get('/logout', logoutController);
 
 router.get('/account/active/:activeToken', registerController.active);

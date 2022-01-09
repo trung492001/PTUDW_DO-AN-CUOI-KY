@@ -578,10 +578,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   bottom: 1rem;
 }
 
-.top-12 {
-  top: 3rem;
-}
-
 .z-40 {
   z-index: 40;
 }
