@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^7.6.0",
-    "@themesberg/flowbite": "^1.2.0",
     "autoprefixer": "^10.4.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
