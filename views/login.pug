@@ -9,12 +9,12 @@ block content
         if (activeMess)
           span(class="text-red-600") Please check your email to activate your account
         else 
-          div(class="mb-3 w-full h-14 bg-gray-700 text-white text-2xl font-bold rounded-sm transition ease-in-out hover:bg-gray-600 text-center")
-            div(class="pt-3")
-              a(href="/staffSignIn" class="uppercase") Sign in as staff
-          div(class="mb-3 w-full" style="height: 1px; background: linear-gradient(0.25turn, #fff, #1f1f1f, #fff);")
-            if (wrongCredential)
-              span Wrong username or password
+          //- div(class="mb-3 w-full h-14 bg-gray-700 text-white text-2xl font-bold rounded-sm transition ease-in-out hover:bg-gray-600 text-center")
+          //-   div(class="pt-3")
+          //-     a(href="/staffSignIn" class="uppercase") Sign in as staff
+          //- div(class="mb-3 w-full" style="height: 1px; background: linear-gradient(0.25turn, #fff, #1f1f1f, #fff);")
+          if (wrongCredential)
+            span Wrong username or password
           form(action="/login" method="POST")
             div(class="mb-3")
               label(for="username" class="text-xl font-semibold") Username
@@ -23,7 +23,7 @@ block content
               label(for="password" class="text-xl font-semibold") Password
               a(href="/forgot" class="text-xl font-semibold text-gray-500 ml-2") Forgot?
               input(id="password" type="password" name="password" class="text-xl bg-gray-200 h-14 w-full p-2 mt-1 rounded-sm" required)
-            <input type="checkbox" onclick="myFunction()"> Show Password </input> 
+            //- <input type="checkbox" onclick="myFunction()"> Show Password </input> 
             div(class="mb-3 w-full" style="height: 1px; background: linear-gradient(0.25turn, #fff, #1f1f1f, #fff);")
             div(class="mb-3")
               input(type="submit" value="Login" class="w-full h-14 bg-red-700 text-white text-2xl font-bold rounded-sm transition ease-in-out hover:bg-red-600 ring-red-400 focus:ring-4")
